@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Activité 1 : Déconsommation et stress financier</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
@@ -45,6 +45,7 @@
             padding: 0.5rem;
             width: 100%;
             transition: border-color 0.2s;
+            font-size: 16px; /* Empêche le zoom auto sur iOS */
         }
         .quiz-input:focus {
             outline: none;
@@ -54,64 +55,107 @@
         .correct { border-color: #28a745 !important; background-color: #d4edda; }
         .incorrect { border-color: #dc3545 !important; background-color: #f8d7da; }
         .feedback { font-size: 0.875rem; margin-top: 0.25rem; min-height: 1.25rem; }
+        
+        /* Styles pour les 4 brûleurs */
+        :root {
+            --color-work: #4F46E5;
+            --color-family: #E11D48;
+            --color-friends: #059669;
+            --color-health: #D97706;
+        }
+        .slider-work::-webkit-slider-thumb { background: var(--color-work); }
+        .slider-family::-webkit-slider-thumb { background: var(--color-family); }
+        .slider-friends::-webkit-slider-thumb { background: var(--color-friends); }
+        .slider-health::-webkit-slider-thumb { background: var(--color-health); }
+        
+        input[type=range].custom-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 14px; /* Un peu plus grand pour mobile */
+            border-radius: 7px;
+            background: #e2e8f0;
+            outline: none;
+        }
+        input[type=range].custom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 28px;
+            width: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
-    <header class="bg-qc-blue text-white py-6 shadow-md border-b-4 border-qc-red sticky top-0 z-50">
+    <header class="bg-qc-blue text-white py-4 md:py-6 shadow-md border-b-4 border-qc-red sticky top-0 z-50">
         <div class="container mx-auto px-4 max-w-5xl flex justify-between items-center">
-            <div>
-                <a href="index.html" class="text-sm text-gray-300 hover:text-white mb-1 inline-block flex items-center transition-colors">
+            <div class="w-full md:w-auto">
+                <a href="index.html" class="text-xs md:text-sm text-gray-300 hover:text-white mb-1 inline-flex items-center transition-colors">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                     Retour à l'index
                 </a>
-                <h1 class="text-2xl md:text-3xl font-bold tracking-tight">Activité 1 : Déconsommation et stress financier</h1>
-                <p class="text-sm font-light mt-1 opacity-90">Niveau A2-B1</p>
+                <h1 class="text-xl md:text-3xl font-bold tracking-tight leading-tight">Activité 1 : Déconsommation et stress financier</h1>
+                <p class="text-xs md:text-sm font-light mt-1 opacity-90">Niveau A2-B1</p>
             </div>
-            <div class="hidden md:block">
-                <span class="px-3 py-1 bg-white text-qc-blue rounded-full text-xs font-bold uppercase">Lecture & Production</span>
+            <div class="hidden md:block shrink-0 ml-4">
+                <span class="px-3 py-1 bg-white text-qc-blue rounded-full text-xs font-bold uppercase whitespace-nowrap">Lecture & Production</span>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow container mx-auto px-4 py-8 max-w-5xl">
+    <main class="flex-grow container mx-auto px-4 py-6 md:py-8 max-w-5xl">
 
-        <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8 border-l-4 border-l-qc-red">
-            <h2 class="text-xl font-bold text-qc-blue mb-4 flex items-center">
-                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+        <!-- Navigation par onglets -->
+        <div class="flex flex-wrap gap-2 mb-6 border-b pb-2">
+            <button id="btn-tab-deconsommation" onclick="switchTab('tab-deconsommation')" class="px-3 md:px-4 py-2 bg-qc-blue text-white font-bold rounded-t-lg transition-colors text-xs md:text-base flex-grow text-center md:flex-grow-0">
+                Activité 1 : Déconsommation
+            </button>
+            <button id="btn-tab-bruleurs" onclick="switchTab('tab-bruleurs')" class="px-3 md:px-4 py-2 bg-gray-200 text-gray-700 hover:bg-gray-300 font-bold rounded-t-lg transition-colors text-xs md:text-base flex-grow text-center md:flex-grow-0">
+                Activité 2 : Les 4 Brûleurs
+            </button>
+        </div>
+
+        <!-- ONGLET 1 : DÉCONSOMMATION -->
+        <div id="tab-deconsommation">
+
+        <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 mb-6 md:mb-8 border-l-4 border-l-qc-red">
+            <h2 class="text-lg md:text-xl font-bold text-qc-blue mb-3 md:mb-4 flex items-center">
+                <svg class="w-5 h-5 md:w-6 md:h-6 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
                 Mise en route
             </h2>
-            <div class="bg-qc-light p-4 rounded-lg">
-                <p class="font-medium text-lg mb-2">Discutez avec votre partenaire ou répondez personnellement :</p>
-                <ul class="list-disc list-inside space-y-2 text-gray-700 ml-2">
+            <div class="bg-qc-light p-3 md:p-4 rounded-lg">
+                <p class="font-medium text-base md:text-lg mb-2">Discutez avec votre partenaire ou répondez personnellement :</p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 ml-1 md:ml-2 text-sm md:text-base">
                     <li>Faites-vous attention à ce que vous consommez ? Si oui, dans quel(s) domaine(s) ?</li>
                     <li>Avez-vous réduit vos achats dernièrement ? Pourquoi ?</li>
                 </ul>
             </div>
         </section>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
             
             <div class="space-y-6">
                 <article class="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
-                    <div class="bg-gray-50 border-b border-gray-200 px-6 py-4">
-                        <h2 class="text-xl font-bold text-gray-800">Document à lire</h2>
+                    <div class="bg-gray-50 border-b border-gray-200 px-4 md:px-6 py-3 md:py-4">
+                        <h2 class="text-lg md:text-xl font-bold text-gray-800">Document à lire</h2>
                     </div>
                     
-                    <div class="p-6 md:p-8">
-                        <header class="mb-6 border-b pb-4">
-                            <h1 class="text-2xl md:text-3xl font-serif font-bold text-gray-900 leading-tight mb-4">
+                    <div class="p-4 md:p-8">
+                        <header class="mb-5 md:mb-6 border-b pb-4">
+                            <h1 class="text-xl md:text-3xl font-serif font-bold text-gray-900 leading-tight mb-3 md:mb-4">
                                 Inflation : la tendance à la "déconsommation" des Français se confirme
                             </h1>
-                            <div class="text-sm text-gray-500 flex flex-col sm:flex-row sm:items-center gap-2">
+                            <div class="text-xs md:text-sm text-gray-500 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
                                 <span class="font-semibold text-qc-red">Jade Peychieras</span>
                                 <span class="hidden sm:inline">•</span>
                                 <span>Publié le vendredi 28 avril 2023 à 10h36</span>
                             </div>
                         </header>
 
-                        <div class="article-body font-serif text-gray-800 text-base md:text-lg">
-                            <p class="font-semibold text-xl mb-6 text-gray-900">
+                        <div class="article-body font-serif text-gray-800 text-sm md:text-lg">
+                            <p class="font-semibold text-base md:text-xl mb-4 md:mb-6 text-gray-900">
                                 L'inflation nous pousse à consommer moins. Selon l'analyse du cabinet NielsenIQ, partenaire de France Bleu. En moyenne depuis le début de l'année, un foyer français a réduit ses achats de 1,5%. La dépense additionnelle liée à l'inflation est de 27 euros en moyenne par mois.
                             </p>
 
@@ -127,7 +171,7 @@
                                 En tout, ces produits alimentaires et d'hygiène représentent un budget moyen de 305 euros par mois par foyer.
                             </p>
 
-                            <h3 class="font-sans font-bold text-xl mt-8 mb-3 text-qc-blue">Les Français "déconsomment"</h3>
+                            <h3 class="font-sans font-bold text-lg md:text-xl mt-6 md:mt-8 mb-2 md:mb-3 text-qc-blue">Les Français "déconsomment"</h3>
                             
                             <p>
                                 Le résultat de cette inflation est une baisse de la consommation. En moyenne, un foyer français a ainsi acheté 1,5% de produits en moins sur les trois premiers mois de l'année, en allant faire ses courses. Les foyers de quatre personnes et plus sont ceux qui réduisent le plus leur consommation : ils ont acheté 3,6% de produits en moins en ce début d'année. Signe que cette "déconsommation" ne se limite plus uniquement aux foyers modestes, <strong>ce sont les classes moyennes supérieures qui réduisent leur consommation le plus rapidement</strong> : -4.5%.
@@ -137,7 +181,7 @@
                                 Les Français se sont aussi adaptés à l'inflation, note l'étude. Ils vont désormais faire leurs courses <strong>plus souvent</strong> (hausse de 6,5% de la fréquence d'achat) mais en repartant à chaque fois avec des <strong>paniers plus petits</strong> qu'auparavant (-7,5% d'articles achetés).
                             </p>
 
-                            <h3 class="font-sans font-bold text-xl mt-8 mb-3 text-qc-blue">Quels sont les articles sacrifiés ?</h3>
+                            <h3 class="font-sans font-bold text-lg md:text-xl mt-6 md:mt-8 mb-2 md:mb-3 text-qc-blue">Quels sont les articles sacrifiés ?</h3>
 
                             <p>
                                 Si les Français réduisent globalement leur consommation, ils font aussi des arbitrages : certains produits sont délaissés plus que d'autres. Les <strong>produits d'hygiène beauté</strong>, considérés moins essentiels, en font les frais, avec une baisse de 10% du nombre d'unités achetées en moyenne (jusqu'à -15% pour les familles de quatre personnes ou plus).
@@ -159,45 +203,45 @@
                                 À l'inverse, les <strong>produits laitiers</strong> et le <strong>rayon épicerie sucrée</strong> sont les moins sacrifiés par les Français, avec moins de 2% de baisse.
                             </p>
                             
-                            <div class="mt-8 pt-4 border-t border-gray-200 text-sm text-gray-500 font-sans">
-                                Source : <a href="https://ici.radio-canada.ca" class="text-qc-blue hover:underline">ICI</a> / France Bleu
+                            <div class="mt-6 md:mt-8 pt-4 border-t border-gray-200 text-xs md:text-sm text-gray-500 font-sans">
+                                Source : <a href="https://ici.radio-canada.ca" class="text-qc-blue hover:underline break-all">ICI</a> / France Bleu
                             </div>
                         </div>
                     </div>
                 </article>
 
                 <!-- Lexique Section -->
-                <div class="bg-gray-800 text-white rounded-xl p-6 shadow-md">
-                    <h3 class="text-lg font-bold mb-3 flex items-center text-qc-red">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                <div class="bg-gray-800 text-white rounded-xl p-4 md:p-6 shadow-md">
+                    <h3 class="text-base md:text-lg font-bold mb-3 flex items-center text-qc-red">
+                        <svg class="w-5 h-5 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                         Lexique
                     </h3>
                     <ul class="space-y-2 text-sm md:text-base">
-                        <li><strong class="text-gray-300">Une disparité</strong> = un manque d’égalité</li>
-                        <li><strong class="text-gray-300">Délaisser</strong> = abandonner</li>
-                        <li><strong class="text-gray-300">En faire les frais</strong> = supporter les conséquences</li>
-                        <li><strong class="text-gray-300">Un foyer</strong> = une famille</li>
+                        <li><strong class="text-gray-300 block sm:inline">Une disparité</strong> <span class="hidden sm:inline">=</span><span class="sm:hidden block text-xs text-gray-400">Signifie :</span> un manque d’égalité</li>
+                        <li><strong class="text-gray-300 block sm:inline">Délaisser</strong> <span class="hidden sm:inline">=</span><span class="sm:hidden block text-xs text-gray-400">Signifie :</span> abandonner</li>
+                        <li><strong class="text-gray-300 block sm:inline">En faire les frais</strong> <span class="hidden sm:inline">=</span><span class="sm:hidden block text-xs text-gray-400">Signifie :</span> supporter les conséquences</li>
+                        <li><strong class="text-gray-300 block sm:inline">Un foyer</strong> <span class="hidden sm:inline">=</span><span class="sm:hidden block text-xs text-gray-400">Signifie :</span> une famille</li>
                     </ul>
                 </div>
             </div>
 
             <div class="space-y-6">
                 
-                <div class="bg-white rounded-xl shadow-md border border-gray-200 p-6 sticky top-24">
-                    <h2 class="text-xl font-bold text-qc-blue mb-6 border-b pb-2">Compréhension écrite</h2>
+                <div class="bg-white rounded-xl shadow-md border border-gray-200 p-4 md:p-6 lg:sticky lg:top-24">
+                    <h2 class="text-lg md:text-xl font-bold text-qc-blue mb-4 md:mb-6 border-b pb-2">Compréhension écrite</h2>
                     
-                    <p class="text-sm text-gray-600 italic mb-6">Lisez l'article et répondez aux questions. Cliquez sur "Vérifier" après chaque exercice.</p>
+                    <p class="text-xs md:text-sm text-gray-600 italic mb-4 md:mb-6">Lisez l'article et répondez aux questions. Cliquez sur "Vérifier" après chaque exercice.</p>
 
-                    <div class="mb-8">
-                        <h3 class="font-bold text-gray-800 mb-3">1. À quels mots correspondent ces définitions ?</h3>
-                        <p class="text-sm font-medium bg-gray-100 p-2 rounded mb-4 text-center">
+                    <div class="mb-6 md:mb-8">
+                        <h3 class="font-bold text-gray-800 text-sm md:text-base mb-3">1. À quels mots correspondent ces définitions ?</h3>
+                        <p class="text-xs md:text-sm font-medium bg-gray-100 p-2 rounded mb-4 text-center">
                             L’inflation - la surconsommation - la déconsommation
                         </p>
                         
                         <div class="space-y-4">
                             <div class="bg-gray-50 p-3 rounded border">
                                 <p class="text-sm mb-2">a. Concept qui vise à freiner le consumérisme dans une logique de préservation de l'environnement.</p>
-                                <select id="ex1-a" class="quiz-input bg-white">
+                                <select id="ex1-a" class="quiz-input bg-white text-sm md:text-base">
                                     <option value="">Choisissez...</option>
                                     <option value="inflation">L'inflation</option>
                                     <option value="surconsommation">La surconsommation</option>
@@ -208,7 +252,7 @@
                             
                             <div class="bg-gray-50 p-3 rounded border">
                                 <p class="text-sm mb-2">b. Phénomène économique qui se traduit par une hausse générale des prix.</p>
-                                <select id="ex1-b" class="quiz-input bg-white">
+                                <select id="ex1-b" class="quiz-input bg-white text-sm md:text-base">
                                     <option value="">Choisissez...</option>
                                     <option value="inflation">L'inflation</option>
                                     <option value="surconsommation">La surconsommation</option>
@@ -219,7 +263,7 @@
 
                             <div class="bg-gray-50 p-3 rounded border">
                                 <p class="text-sm mb-2">c. Pratique consistant à acheter des biens périssables de manière excessive dans un volume supérieur à la normale.</p>
-                                <select id="ex1-c" class="quiz-input bg-white">
+                                <select id="ex1-c" class="quiz-input bg-white text-sm md:text-base">
                                     <option value="">Choisissez...</option>
                                     <option value="inflation">L'inflation</option>
                                     <option value="surconsommation">La surconsommation</option>
@@ -228,39 +272,39 @@
                                 <div id="fb-ex1-c" class="feedback text-green-600 hidden">✓ Correct !</div>
                             </div>
                         </div>
-                        <button onclick="checkEx1()" class="mt-4 px-4 py-2 bg-qc-blue text-white rounded hover:bg-blue-800 transition-colors text-sm font-medium">Vérifier l'exercice 1</button>
+                        <button onclick="checkEx1()" class="mt-4 w-full md:w-auto px-4 py-3 md:py-2 bg-qc-blue text-white rounded hover:bg-blue-800 transition-colors text-sm font-medium">Vérifier l'exercice 1</button>
                     </div>
 
-                    <div class="mb-8 border-t pt-6">
-                        <h3 class="font-bold text-gray-800 mb-3">2. Parmi les trois mots précédents, de quel phénomène parle-t-on dans l’article ?</h3>
-                        <textarea id="ex2" rows="2" class="quiz-input" placeholder="Votre réponse..."></textarea>
+                    <div class="mb-6 md:mb-8 border-t pt-4 md:pt-6">
+                        <h3 class="font-bold text-gray-800 text-sm md:text-base mb-3">2. Parmi les trois mots précédents, de quel phénomène parle-t-on dans l’article ?</h3>
+                        <textarea id="ex2" rows="2" class="quiz-input text-sm md:text-base" placeholder="Votre réponse..."></textarea>
                         <div id="fb-ex2" class="feedback hidden mt-2 p-2 bg-blue-50 text-blue-800 rounded text-sm">
                             <strong>Corrigé :</strong> Des trois mais principalement de la déconsommation.
                         </div>
-                        <button onclick="showCorrection('ex2')" class="mt-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition-colors text-sm font-medium">Voir le corrigé</button>
+                        <button onclick="showCorrection('ex2')" class="mt-2 w-full md:w-auto px-4 py-3 md:py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition-colors text-sm font-medium">Voir le corrigé</button>
                     </div>
 
-                    <div class="mb-8 border-t pt-6">
-                        <h3 class="font-bold text-gray-800 mb-3">3. Quelles sont les quatre catégories d’articles moins consommés par les Français depuis l’inflation ? Et, au contraire, les moins touchés ?</h3>
-                        <textarea id="ex3" rows="4" class="quiz-input" placeholder="Votre réponse..."></textarea>
+                    <div class="mb-6 md:mb-8 border-t pt-4 md:pt-6">
+                        <h3 class="font-bold text-gray-800 text-sm md:text-base mb-3">3. Quelles sont les quatre catégories d’articles moins consommés par les Français depuis l’inflation ? Et, au contraire, les moins touchés ?</h3>
+                        <textarea id="ex3" rows="4" class="quiz-input text-sm md:text-base" placeholder="Votre réponse..."></textarea>
                         <div id="fb-ex3" class="feedback hidden mt-2 p-3 bg-blue-50 text-blue-800 rounded text-sm">
                             <strong>Corrigé :</strong><br>
                             - Moins consommés : Les produits d'hygiène beauté, les produits d’entretien, les surgelés, les produits frais.<br>
                             - Moins touchés : Les produits laitiers et le rayon épicerie sucrée.
                         </div>
-                        <button onclick="showCorrection('ex3')" class="mt-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition-colors text-sm font-medium">Voir le corrigé</button>
+                        <button onclick="showCorrection('ex3')" class="mt-2 w-full md:w-auto px-4 py-3 md:py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition-colors text-sm font-medium">Voir le corrigé</button>
                     </div>
 
-                    <div class="mb-6 border-t pt-6">
-                        <h3 class="font-bold text-gray-800 mb-3">4. Vrai ou faux ?</h3>
+                    <div class="mb-4 md:mb-6 border-t pt-4 md:pt-6">
+                        <h3 class="font-bold text-gray-800 text-sm md:text-base mb-3">4. Vrai ou faux ?</h3>
                         
                         <div class="space-y-4">
                             <!-- a -->
                             <div class="bg-gray-50 p-3 rounded border">
                                 <p class="text-sm mb-2">a. La dépense additionnelle s’élève à 27 euros par semaine en moyenne.</p>
-                                <div class="flex gap-4 mb-2">
-                                    <label class="flex items-center"><input type="radio" name="vf-a" value="vrai" class="mr-2"> Vrai</label>
-                                    <label class="flex items-center"><input type="radio" name="vf-a" value="faux" class="mr-2"> Faux</label>
+                                <div class="flex flex-wrap gap-4 mb-2">
+                                    <label class="flex items-center text-sm md:text-base cursor-pointer p-1"><input type="radio" name="vf-a" value="vrai" class="mr-2 w-4 h-4"> Vrai</label>
+                                    <label class="flex items-center text-sm md:text-base cursor-pointer p-1"><input type="radio" name="vf-a" value="faux" class="mr-2 w-4 h-4"> Faux</label>
                                 </div>
                                 <div id="fb-vf-a" class="feedback hidden text-sm"><strong>Faux</strong>, par mois.</div>
                             </div>
@@ -268,9 +312,9 @@
                             <!-- b -->
                             <div class="bg-gray-50 p-3 rounded border">
                                 <p class="text-sm mb-2">b. La déconsommation touche seulement les foyers modestes.</p>
-                                <div class="flex gap-4 mb-2">
-                                    <label class="flex items-center"><input type="radio" name="vf-b" value="vrai" class="mr-2"> Vrai</label>
-                                    <label class="flex items-center"><input type="radio" name="vf-b" value="faux" class="mr-2"> Faux</label>
+                                <div class="flex flex-wrap gap-4 mb-2">
+                                    <label class="flex items-center text-sm md:text-base cursor-pointer p-1"><input type="radio" name="vf-b" value="vrai" class="mr-2 w-4 h-4"> Vrai</label>
+                                    <label class="flex items-center text-sm md:text-base cursor-pointer p-1"><input type="radio" name="vf-b" value="faux" class="mr-2 w-4 h-4"> Faux</label>
                                 </div>
                                 <div id="fb-vf-b" class="feedback hidden text-sm"><strong>Faux</strong>, les classes moyennes supérieures aussi.</div>
                             </div>
@@ -278,9 +322,9 @@
                             <!-- c -->
                             <div class="bg-gray-50 p-3 rounded border">
                                 <p class="text-sm mb-2">c. Les Français font leurs courses plus rarement.</p>
-                                <div class="flex gap-4 mb-2">
-                                    <label class="flex items-center"><input type="radio" name="vf-c" value="vrai" class="mr-2"> Vrai</label>
-                                    <label class="flex items-center"><input type="radio" name="vf-c" value="faux" class="mr-2"> Faux</label>
+                                <div class="flex flex-wrap gap-4 mb-2">
+                                    <label class="flex items-center text-sm md:text-base cursor-pointer p-1"><input type="radio" name="vf-c" value="vrai" class="mr-2 w-4 h-4"> Vrai</label>
+                                    <label class="flex items-center text-sm md:text-base cursor-pointer p-1"><input type="radio" name="vf-c" value="faux" class="mr-2 w-4 h-4"> Faux</label>
                                 </div>
                                 <div id="fb-vf-c" class="feedback hidden text-sm"><strong>Faux</strong>, ils font les courses plus souvent, avec des paniers plus petits.</div>
                             </div>
@@ -288,9 +332,9 @@
                             <!-- d -->
                             <div class="bg-gray-50 p-3 rounded border">
                                 <p class="text-sm mb-2">d. Les familles avec plus de 3 enfants sont les plus touchées.</p>
-                                <div class="flex gap-4 mb-2">
-                                    <label class="flex items-center"><input type="radio" name="vf-d" value="vrai" class="mr-2"> Vrai</label>
-                                    <label class="flex items-center"><input type="radio" name="vf-d" value="faux" class="mr-2"> Faux</label>
+                                <div class="flex flex-wrap gap-4 mb-2">
+                                    <label class="flex items-center text-sm md:text-base cursor-pointer p-1"><input type="radio" name="vf-d" value="vrai" class="mr-2 w-4 h-4"> Vrai</label>
+                                    <label class="flex items-center text-sm md:text-base cursor-pointer p-1"><input type="radio" name="vf-d" value="faux" class="mr-2 w-4 h-4"> Faux</label>
                                 </div>
                                 <div id="fb-vf-d" class="feedback hidden text-sm"><strong>Vrai</strong>, les familles nombreuses.</div>
                             </div>
@@ -298,59 +342,170 @@
                             <!-- e -->
                             <div class="bg-gray-50 p-3 rounded border">
                                 <p class="text-sm mb-2">e. 305 euros est le budget d’un foyer par mois pour les produits alimentaires et d’hygiène.</p>
-                                <div class="flex gap-4 mb-2">
-                                    <label class="flex items-center"><input type="radio" name="vf-e" value="vrai" class="mr-2"> Vrai</label>
-                                    <label class="flex items-center"><input type="radio" name="vf-e" value="faux" class="mr-2"> Faux</label>
+                                <div class="flex flex-wrap gap-4 mb-2">
+                                    <label class="flex items-center text-sm md:text-base cursor-pointer p-1"><input type="radio" name="vf-e" value="vrai" class="mr-2 w-4 h-4"> Vrai</label>
+                                    <label class="flex items-center text-sm md:text-base cursor-pointer p-1"><input type="radio" name="vf-e" value="faux" class="mr-2 w-4 h-4"> Faux</label>
                                 </div>
                                 <div id="fb-vf-e" class="feedback hidden text-sm"><strong>Vrai</strong>.</div>
                             </div>
                         </div>
-                        <button onclick="checkVF()" class="mt-4 px-4 py-2 bg-qc-blue text-white rounded hover:bg-blue-800 transition-colors text-sm font-medium">Vérifier Vrai/Faux</button>
+                        <button onclick="checkVF()" class="mt-4 w-full md:w-auto px-4 py-3 md:py-2 bg-qc-blue text-white rounded hover:bg-blue-800 transition-colors text-sm font-medium">Vérifier Vrai/Faux</button>
                     </div>
 
                 </div>
             </div>
         </div>
 
-        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             
-            <section class="bg-white rounded-xl shadow-md border border-gray-200 p-6 border-t-4 border-t-qc-red">
-                <h2 class="text-xl font-bold text-gray-800 mb-4">Pour aller plus loin : Jeux de vocabulaire</h2>
-                <p class="text-sm mb-4">Choisissez un rayon. Chacun votre tour, citez un produit que l’on peut trouver dans ce rayon jusqu’à épuisement d’idées, puis changez de rayon et recommencez.</p>
+            <section class="bg-white rounded-xl shadow-md border border-gray-200 p-4 md:p-6 border-t-4 border-t-qc-red">
+                <h2 class="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4">Pour aller plus loin : Jeux de vocabulaire</h2>
+                <p class="text-xs md:text-sm mb-4">Choisissez un rayon. Chacun votre tour, citez un produit que l’on peut trouver dans ce rayon jusqu’à épuisement d’idées, puis changez de rayon et recommencez.</p>
                 
                 <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 bg-gray-100 border border-gray-300 rounded text-sm font-medium text-gray-700">Rayon textile</span>
-                    <span class="px-3 py-1 bg-gray-100 border border-gray-300 rounded text-sm font-medium text-gray-700">Rayon hygiène et beauté</span>
-                    <span class="px-3 py-1 bg-gray-100 border border-gray-300 rounded text-sm font-medium text-gray-700">Rayon épicerie salée</span>
-                    <span class="px-3 py-1 bg-gray-100 border border-gray-300 rounded text-sm font-medium text-gray-700">Rayon épicerie sucrée</span>
-                    <span class="px-3 py-1 bg-gray-100 border border-gray-300 rounded text-sm font-medium text-gray-700">Rayon produits laitiers</span>
-                    <span class="px-3 py-1 bg-gray-100 border border-gray-300 rounded text-sm font-medium text-gray-700">Rayon produits d’entretien</span>
-                    <span class="px-3 py-1 bg-gray-100 border border-gray-300 rounded text-sm font-medium text-gray-700">Rayon produits frais</span>
-                    <span class="px-3 py-1 bg-gray-100 border border-gray-300 rounded text-sm font-medium text-gray-700">Rayon surgelés</span>
+                    <span class="px-2 md:px-3 py-1 bg-gray-100 border border-gray-300 rounded text-xs md:text-sm font-medium text-gray-700">Rayon textile</span>
+                    <span class="px-2 md:px-3 py-1 bg-gray-100 border border-gray-300 rounded text-xs md:text-sm font-medium text-gray-700">Rayon hygiène et beauté</span>
+                    <span class="px-2 md:px-3 py-1 bg-gray-100 border border-gray-300 rounded text-xs md:text-sm font-medium text-gray-700">Rayon épicerie salée</span>
+                    <span class="px-2 md:px-3 py-1 bg-gray-100 border border-gray-300 rounded text-xs md:text-sm font-medium text-gray-700">Rayon épicerie sucrée</span>
+                    <span class="px-2 md:px-3 py-1 bg-gray-100 border border-gray-300 rounded text-xs md:text-sm font-medium text-gray-700">Rayon produits laitiers</span>
+                    <span class="px-2 md:px-3 py-1 bg-gray-100 border border-gray-300 rounded text-xs md:text-sm font-medium text-gray-700">Rayon produits d’entretien</span>
+                    <span class="px-2 md:px-3 py-1 bg-gray-100 border border-gray-300 rounded text-xs md:text-sm font-medium text-gray-700">Rayon produits frais</span>
+                    <span class="px-2 md:px-3 py-1 bg-gray-100 border border-gray-300 rounded text-xs md:text-sm font-medium text-gray-700">Rayon surgelés</span>
                 </div>
             </section>
 
-            <section class="bg-white rounded-xl shadow-md border border-gray-200 p-6 border-t-4 border-t-qc-blue">
-                <h2 class="text-xl font-bold text-gray-800 mb-4">Expression Orale</h2>
-                <p class="text-sm font-bold mb-4 text-qc-red">Quelles affirmations vous font réagir ? Avec lesquelles êtes-vous d'accord ? Lesquelles vous dérangent ?</p>
+            <section class="bg-white rounded-xl shadow-md border border-gray-200 p-4 md:p-6 border-t-4 border-t-qc-blue">
+                <h2 class="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4">Expression Orale</h2>
+                <p class="text-xs md:text-sm font-bold mb-4 text-qc-red">Quelles affirmations vous font réagir ? Avec lesquelles êtes-vous d'accord ? Lesquelles vous dérangent ?</p>
                 
                 <div class="h-64 overflow-y-auto pr-2 space-y-3">
-                    <div class="p-3 bg-blue-50 border-l-4 border-blue-400 rounded-r shadow-sm text-sm">a. La déconsommation est une bonne chose pour la cause climatique.</div>
-                    <div class="p-3 bg-gray-50 border-l-4 border-gray-400 rounded-r shadow-sm text-sm">b. On doit réapprendre à aimer les choses simples.</div>
-                    <div class="p-3 bg-red-50 border-l-4 border-red-400 rounded-r shadow-sm text-sm">c. On n’achète pas moins de choses mais des choses de moins bonne qualité à coût plus bas.</div>
-                    <div class="p-3 bg-yellow-50 border-l-4 border-yellow-400 rounded-r shadow-sm text-sm">d. Avec toutes les publicités qui nous entourent, c’est trop difficile de ne pas avoir envie d’acheter plein de choses.</div>
-                    <div class="p-3 bg-green-50 border-l-4 border-green-400 rounded-r shadow-sm text-sm">e. Consommer moins pour consommer mieux !</div>
-                    <div class="p-3 bg-purple-50 border-l-4 border-purple-400 rounded-r shadow-sm text-sm">f. Le besoin de rentabiliser notre temps est la source du problème.</div>
-                    <div class="p-3 bg-indigo-50 border-l-4 border-indigo-400 rounded-r shadow-sm text-sm">g. Il faut lutter contre les supermarchés et les centres commerciaux.</div>
-                    <div class="p-3 bg-pink-50 border-l-4 border-pink-400 rounded-r shadow-sm text-sm">h. C’est impossible pour la majorité des gens de consommer moins.</div>
-                    <div class="p-3 bg-orange-50 border-l-4 border-orange-400 rounded-r shadow-sm text-sm">i. La déconsommation n’est pas un choix mais une contrainte.</div>
-                    <div class="p-3 bg-teal-50 border-l-4 border-teal-400 rounded-r shadow-sm text-sm">j. La déconsommation doit passer par le fait de ralentir son style de vie.</div>
-                    <div class="p-3 bg-cyan-50 border-l-4 border-cyan-400 rounded-r shadow-sm text-sm">k. La déconsommation n’est pas le seul moyen pour améliorer les choses.</div>
-                    <div class="p-3 bg-rose-50 border-l-4 border-rose-400 rounded-r shadow-sm text-sm">l. La surconsommation n’a pas que des désavantages.</div>
+                    <div class="p-3 bg-blue-50 border-l-4 border-blue-400 rounded-r shadow-sm text-xs md:text-sm">a. La déconsommation est une bonne chose pour la cause climatique.</div>
+                    <div class="p-3 bg-gray-50 border-l-4 border-gray-400 rounded-r shadow-sm text-xs md:text-sm">b. On doit réapprendre à aimer les choses simples.</div>
+                    <div class="p-3 bg-red-50 border-l-4 border-red-400 rounded-r shadow-sm text-xs md:text-sm">c. On n’achète pas moins de choses mais des choses de moins bonne qualité à coût plus bas.</div>
+                    <div class="p-3 bg-yellow-50 border-l-4 border-yellow-400 rounded-r shadow-sm text-xs md:text-sm">d. Avec toutes les publicités qui nous entourent, c’est trop difficile de ne pas avoir envie d’acheter plein de choses.</div>
+                    <div class="p-3 bg-green-50 border-l-4 border-green-400 rounded-r shadow-sm text-xs md:text-sm">e. Consommer moins pour consommer mieux !</div>
+                    <div class="p-3 bg-purple-50 border-l-4 border-purple-400 rounded-r shadow-sm text-xs md:text-sm">f. Le besoin de rentabiliser notre temps est la source du problème.</div>
+                    <div class="p-3 bg-indigo-50 border-l-4 border-indigo-400 rounded-r shadow-sm text-xs md:text-sm">g. Il faut lutter contre les supermarchés et les centres commerciaux.</div>
+                    <div class="p-3 bg-pink-50 border-l-4 border-pink-400 rounded-r shadow-sm text-xs md:text-sm">h. C’est impossible pour la majorité des gens de consommer moins.</div>
+                    <div class="p-3 bg-orange-50 border-l-4 border-orange-400 rounded-r shadow-sm text-xs md:text-sm">i. La déconsommation n’est pas un choix mais une contrainte.</div>
+                    <div class="p-3 bg-teal-50 border-l-4 border-teal-400 rounded-r shadow-sm text-xs md:text-sm">j. La déconsommation doit passer par le fait de ralentir son style de vie.</div>
+                    <div class="p-3 bg-cyan-50 border-l-4 border-cyan-400 rounded-r shadow-sm text-xs md:text-sm">k. La déconsommation n’est pas le seul moyen pour améliorer les choses.</div>
+                    <div class="p-3 bg-rose-50 border-l-4 border-rose-400 rounded-r shadow-sm text-xs md:text-sm">l. La surconsommation n’a pas que des désavantages.</div>
                 </div>
             </section>
 
         </div>
+        </div> <!-- Fin onglet 1 -->
+
+        <!-- ONGLET 2 : LES 4 BRÛLEURS -->
+        <div id="tab-bruleurs" class="hidden pb-4 md:pb-8">
+            <div class="space-y-6 md:space-y-10">
+                <!-- 1. GENÈSE DU MODÈLE (Niveau B1) -->
+                <section class="bg-indigo-50 p-4 md:p-8 rounded-xl border border-indigo-100 shadow-sm mt-2 md:mt-4">
+                    <h2 class="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-indigo-400 mb-2">Origine du modèle</h2>
+                    <h3 class="text-lg md:text-xl font-bold text-indigo-900 mb-3 md:mb-4">La théorie des Quatre Brûleurs (David Sedaris)</h3>
+                    <div class="text-xs md:text-base text-indigo-800 leading-relaxed space-y-3 font-medium">
+                        <p>Cette théorie célèbre a été popularisée par l'écrivain américain David Sedaris. Imaginez que votre vie quotidienne est une cuisinière équipée de quatre brûleurs (les plaques pour chauffer les casseroles).</p>
+                        <p>Chaque brûleur représente un domaine fondamental de votre existence : <strong>la Famille</strong>, <strong>les Amis</strong>, <strong>la Santé</strong> et <strong>le Travail</strong>.</p>
+                        <p>La théorie affirme une chose difficile à accepter : <span class="bg-indigo-200 px-1 rounded">notre énergie est limitée à 100%</span>. Si vous voulez réussir et être performant, vous devez éteindre au moins un brûleur. Et si vous voulez être vraiment exceptionnel (un génie dans votre domaine professionnel ou personnel), vous devez malheureusement en éteindre deux ! C'est une métaphore puissante pour expliquer qu'il est impossible d'être parfait partout sans risquer le "burn-out" (l'épuisement total).</p>
+                    </div>
+                </section>
+
+                <!-- 2. LE SIMULATEUR -->
+                <div class="space-y-4 md:space-y-6">
+                    <header class="text-center">
+                        <h1 class="text-2xl md:text-3xl font-black uppercase tracking-tighter text-slate-900">Le Simulateur d'Énergie</h1>
+                        <p class="font-medium text-slate-500 mt-2 italic text-xs md:text-base">Répartissez vos 100% d'énergie. Atteindre un haut pourcentage sur un aspect exige de baisser les autres.</p>
+                    </header>
+
+                    <div class="bg-slate-900 text-white p-4 md:p-6 rounded-2xl shadow-xl flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
+                        <div class="text-center md:text-left">
+                            <span class="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-400">Énergie Totale Utilisée</span>
+                            <div class="text-3xl md:text-4xl font-black text-indigo-400" id="total-energy-display">100% <span class="text-lg md:text-xl text-slate-500 font-normal">/ 100%</span></div>
+                        </div>
+                        <div class="w-full md:w-1/2 bg-slate-800 h-3 md:h-4 rounded-full overflow-hidden mt-2 md:mt-0">
+                            <div id="budget-bar" class="h-full bg-indigo-500 transition-all duration-300" style="width: 100%"></div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+                        <div class="bg-white p-5 md:p-8 rounded-2xl shadow-md border border-slate-200 space-y-6 md:space-y-8">
+                            <h2 class="font-black uppercase text-[10px] md:text-xs tracking-widest text-slate-400 text-center tracking-[0.2em]">Configuration des Brûleurs</h2>
+                            
+                            <div class="space-y-5">
+                                <div class="space-y-2">
+                                    <div class="flex justify-between font-black text-xs">
+                                        <span style="color: var(--color-work)">💻 TRAVAIL</span>
+                                        <span id="val-travail" class="bg-slate-100 px-2 py-1 rounded text-slate-700">25%</span>
+                                    </div>
+                                    <input type="range" id="input-travail" class="custom-slider slider-work" min="0" max="100" value="25" oninput="redistribute(this, 'travail')">
+                                </div>
+
+                                <div class="space-y-2">
+                                    <div class="flex justify-between font-black text-xs">
+                                        <span style="color: var(--color-family)">🏠 FAMILLE</span>
+                                        <span id="val-famille" class="bg-slate-100 px-2 py-1 rounded text-slate-700">25%</span>
+                                    </div>
+                                    <input type="range" id="input-famille" class="custom-slider slider-family" min="0" max="100" value="25" oninput="redistribute(this, 'famille')">
+                                </div>
+
+                                <div class="space-y-2">
+                                    <div class="flex justify-between font-black text-xs">
+                                        <span style="color: var(--color-friends)">🍻 AMIS</span>
+                                        <span id="val-amis" class="bg-slate-100 px-2 py-1 rounded text-slate-700">25%</span>
+                                    </div>
+                                    <input type="range" id="input-amis" class="custom-slider slider-friends" min="0" max="100" value="25" oninput="redistribute(this, 'amis')">
+                                </div>
+
+                                <div class="space-y-2">
+                                    <div class="flex justify-between font-black text-xs">
+                                        <span style="color: var(--color-health)">🧘 SANTÉ</span>
+                                        <span id="val-sante" class="bg-slate-100 px-2 py-1 rounded text-slate-700">25%</span>
+                                    </div>
+                                    <input type="range" id="input-sante" class="custom-slider slider-health" min="0" max="100" value="25" oninput="redistribute(this, 'sante')">
+                                </div>
+                            </div>
+
+                            <button onclick="analyze()" class="w-full bg-slate-900 text-white py-3 md:py-4 rounded-xl font-black uppercase text-xs md:text-sm tracking-widest hover:bg-black transition-all shadow-lg mt-2 active:scale-95">Générer l'Analyse</button>
+                        </div>
+
+                        <div id="analysis-box" class="bg-white p-5 md:p-8 rounded-2xl shadow-md border border-slate-200 flex flex-col justify-center opacity-50 transition-all duration-500">
+                            <div id="analysis-content" class="text-center space-y-4 md:space-y-6">
+                                <div class="text-4xl md:text-5xl">⚖️</div>
+                                <h3 class="text-lg md:text-xl font-black uppercase tracking-tight">Analyse du profil</h3>
+                                <p class="text-slate-500 text-xs md:text-sm leading-relaxed italic">Modifiez les jauges et cliquez sur le bouton pour voir quels aspects de votre vie sont sacrifiés.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. ESPACE DE DÉBAT (Niveau B1) -->
+                <section class="bg-slate-900 text-white p-5 md:p-10 rounded-2xl shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-48 h-48 md:w-64 md:h-64 bg-indigo-500/10 blur-3xl"></div>
+                    <h2 class="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-indigo-400 mb-4 md:mb-6 flex items-center">
+                        <svg class="w-4 h-4 md:w-5 md:h-5 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path></svg>
+                        Discussion & Production
+                    </h2>
+                    
+                    <div class="space-y-5 md:space-y-6 z-10 relative">
+                        <div class="bg-indigo-900/50 p-3 md:p-4 rounded-lg border border-indigo-500/30">
+                            <h3 class="font-bold text-indigo-300 uppercase text-[10px] md:text-sm tracking-widest mb-2">Consigne (Niveau B1) :</h3>
+                            <p class="text-xs md:text-base leading-relaxed">
+                                Lisez attentivement les trois questions ci-dessous. <br><br>
+                                <strong>Étape 1 :</strong> Choisissez une question pour en débattre <strong>à l'oral</strong> avec vos camarades.<br>
+                                <strong>Étape 2 :</strong> Choisissez une autre question et rédigez votre opinion <strong>par écrit</strong> (entre 120 et 140 mots). Vous rendrez ce texte à votre professeur.
+                            </p>
+                        </div>
+
+                        <div class="space-y-3 md:space-y-4 text-slate-200 text-xs md:text-base pl-3 md:pl-4 border-l-2 md:border-l-4 border-indigo-500">
+                            <p><strong>1.</strong> Êtes-vous d'accord avec la théorie de David Sedaris ? Pensez-vous qu'il est absolument obligatoire de sacrifier un aspect de sa vie (comme la santé ou les amis) pour réussir professionnellement ?</p>
+                            <p><strong>2.</strong> Dans votre vie actuelle, quel est le « brûleur » qui consomme le plus d'énergie et quel est celui que vous négligez le plus ? Expliquez pourquoi.</p>
+                            <p><strong>3.</strong> Selon vous, notre société moderne et la technologie nous obligent-elles à travailler toujours plus, au détriment (au désavantage) de notre vie personnelle ?</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div> <!-- Fin onglet 2 -->
 
     </main>
 
@@ -433,6 +588,123 @@
                 case 'd': return "<strong>Vrai</strong>, l'inflation touche davantage les familles nombreuses.";
                 case 'e': return "<strong>Vrai</strong>, c'est le budget moyen par foyer et par mois.";
                 default: return "";
+            }
+        }
+
+        /* --- LOGIQUE DE NAVIGATION DES ONGLETS --- */
+        function switchTab(tabId) {
+            document.getElementById('tab-deconsommation').classList.add('hidden');
+            document.getElementById('tab-bruleurs').classList.add('hidden');
+            
+            const btnDeco = document.getElementById('btn-tab-deconsommation');
+            const btnBrul = document.getElementById('btn-tab-bruleurs');
+            
+            const inactiveClasses = "px-3 md:px-4 py-2 bg-gray-200 text-gray-700 hover:bg-gray-300 font-bold rounded-t-lg transition-colors text-xs md:text-base flex-grow text-center md:flex-grow-0";
+            const activeClasses = "px-3 md:px-4 py-2 bg-qc-blue text-white font-bold rounded-t-lg transition-colors text-xs md:text-base flex-grow text-center md:flex-grow-0";
+            
+            btnDeco.className = inactiveClasses;
+            btnBrul.className = inactiveClasses;
+            
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).className = activeClasses;
+        }
+
+        /* --- LOGIQUE DES 4 BRÛLEURS --- */
+        const MAX_BUDGET = 100;
+        const keys = ['travail', 'famille', 'amis', 'sante'];
+
+        function redistribute(changedInput, type) {
+            let total = 0;
+            keys.forEach(k => total += parseInt(document.getElementById(`input-${k}`).value));
+
+            if (total > MAX_BUDGET) {
+                let excess = total - MAX_BUDGET;
+                
+                // On cherche à réduire les autres curseurs en commençant par les plus bas
+                let others = keys
+                    .filter(k => k !== type)
+                    .map(k => ({ key: k, val: parseInt(document.getElementById(`input-${k}`).value) }))
+                    .filter(o => o.val > 0)
+                    .sort((a, b) => a.val - b.val);
+
+                while (excess > 0 && others.length > 0) {
+                    others.forEach(o => {
+                        if (excess > 0 && o.val > 0) {
+                            let el = document.getElementById(`input-${o.key}`);
+                            el.value = parseInt(el.value) - 1;
+                            o.val--;
+                            excess--;
+                        }
+                    });
+                    others = others.filter(o => o.val > 0);
+                }
+
+                if (excess > 0) {
+                    changedInput.value = parseInt(changedInput.value) - excess;
+                }
+            }
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            let total = 0;
+            keys.forEach(k => {
+                const val = document.getElementById(`input-${k}`).value;
+                document.getElementById(`val-${k}`).innerText = val + "%";
+                total += parseInt(val);
+            });
+            
+            document.getElementById('total-energy-display').innerHTML = `${total}% <span class="text-lg md:text-xl text-slate-500 font-normal">/ 100%</span>`;
+            document.getElementById('budget-bar').style.width = `${(total / MAX_BUDGET) * 100}%`;
+        }
+
+        function analyze() {
+            const values = {};
+            keys.forEach(k => values[k] = parseInt(document.getElementById(`input-${k}`).value));
+            
+            const box = document.getElementById('analysis-box');
+            const content = document.getElementById('analysis-content');
+            box.style.opacity = "1";
+
+            let title = "Équilibre Prudent";
+            let icon = "⚖️";
+            let feedback = "Vous essayez de tout maintenir, mais sans pouvoir vous investir à fond nulle part. Vous évitez les crises, mais vous ne deviendrez probablement pas un virtuose dans un domaine précis.";
+
+            // Analyse ajustée pour un budget de 100%
+            if (values.travail >= 50) {
+                title = "Le Bourreau de Travail";
+                icon = "🔥";
+                feedback = "Un investissement professionnel très élevé. Vous limitez fortement vos autres domaines. C'est le profil typique pour réussir une grande carrière, mais au risque de l'isolement social ou du burn-out.";
+            } else if (values.travail >= 35 && values.famille >= 35) {
+                title = "Le Pilier Familial & Pro";
+                icon = "🏠";
+                feedback = "Vous réussissez le pari de vous investir au travail et en famille. Mais vos amis vous voient moins et votre santé physique est reléguée au second plan.";
+            } else if (values.sante <= 5) {
+                title = "Zone de Danger (Burn-out)";
+                icon = "🚨";
+                feedback = "Attention ! Vous avez presque totalement éteint votre brûleur santé. À ce rythme, votre corps finira par couper l'alimentation de tous les autres brûleurs sans votre avis.";
+            } else if (values.amis >= 40) {
+                title = "L'Hédoniste Social";
+                icon = "🥂";
+                feedback = "Vous vivez pour les liens sociaux et les amitiés. C'est une vie riche émotionnellement, mais sans doute au détriment de l'ambition professionnelle ou de la famille.";
+            }
+
+            const deadBurners = Object.entries(values).filter(([k, v]) => v <= 5);
+
+            content.innerHTML = `
+                <div class="text-5xl md:text-6xl mb-3 md:mb-4">${icon}</div>
+                <h3 class="text-xl md:text-2xl font-black uppercase text-slate-800 tracking-tight">${title}</h3>
+                <p class="text-slate-600 text-xs md:text-sm leading-relaxed">${feedback}</p>
+                <div class="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-slate-100 flex flex-wrap justify-center gap-2">
+                    ${deadBurners.length > 0 ? deadBurners.map(([k, v]) => `<span class="bg-rose-600 text-white text-[9px] md:text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-widest">Brûleur ${k} critique (${v}%)</span>`).join('') : '<span class="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-widest">Tous les brûleurs sont actifs</span>'}
+                </div>
+            `;
+            
+            // Auto scroll vers l'analyse sur mobile
+            if(window.innerWidth < 1024) {
+                 setTimeout(() => {
+                     box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                 }, 100);
             }
         }
     </script>
