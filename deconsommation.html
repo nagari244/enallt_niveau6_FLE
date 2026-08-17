@@ -15,10 +15,9 @@
                         serif: ['Merriweather', 'serif'],
                     },
                     colors: {
-                        // Palette inspired by Canada-Quebec
                         qc: {
-                            red: '#D80621',    // Canada Red
-                            blue: '#003399',   // Quebec Blue
+                            red: '#D80621',
+                            blue: '#003399',
                             light: '#F8F9FA',
                             dark: '#212529',
                             gray: '#E9ECEF'
@@ -37,15 +36,13 @@
             margin-bottom: 1.2rem;
             line-height: 1.7;
         }
-        
-        /* Custom styles for interactive elements */
         .quiz-input {
             border: 2px solid #ced4da;
             border-radius: 0.375rem;
             padding: 0.5rem;
             width: 100%;
             transition: border-color 0.2s;
-            font-size: 16px; /* Empêche le zoom auto sur iOS */
+            font-size: 16px; 
         }
         .quiz-input:focus {
             outline: none;
@@ -56,7 +53,6 @@
         .incorrect { border-color: #dc3545 !important; background-color: #f8d7da; }
         .feedback { font-size: 0.875rem; margin-top: 0.25rem; min-height: 1.25rem; }
         
-        /* Styles pour les 4 brûleurs */
         :root {
             --color-work: #4F46E5;
             --color-family: #E11D48;
@@ -85,8 +81,6 @@
             border: 3px solid white;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-
-        /* Drag and drop (Activité ludique stress) */
         .card-advice { transition: transform 0.2s; }
         .card-advice:active { transform: scale(0.95); }
     </style>
@@ -111,7 +105,6 @@
 
     <main class="flex-grow container mx-auto px-4 py-6 md:py-8 max-w-5xl">
 
-        <!-- Navigation par onglets -->
         <div class="flex flex-wrap gap-2 mb-6 border-b pb-2">
             <button id="btn-tab-deconsommation" onclick="switchTab('tab-deconsommation')" class="px-3 md:px-4 py-2 bg-qc-blue text-white font-bold rounded-t-lg transition-colors text-xs md:text-sm flex-grow text-center md:flex-grow-0">
                 1 : Déconsommation
@@ -124,7 +117,6 @@
             </button>
         </div>
 
-        <!-- ONGLET 1 : DÉCONSOMMATION -->
         <div id="tab-deconsommation" class="tab-content hidden">
 
             <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 mb-6 md:mb-8 border-l-4 border-l-qc-red">
@@ -195,7 +187,7 @@
                                 </p>
 
                                 <p>
-                                    En seconde position viennent les <strong>produits d'entretien</strong>, là aussi jugés moins importants, avec -5% de produits achetés dans ce rayon par foyer, et -6% pour les familles de quatre personnes ou plus.
+                                    En seconde position viennent les <strong>produits d'entretien</strong>, là aussi jugés moins importantes, avec -5% de produits achetés dans ce rayon par foyer, et -6% pour les familles de quatre personnes ou plus.
                                 </p>
 
                                 <p>
@@ -217,7 +209,6 @@
                         </div>
                     </article>
 
-                    <!-- Lexique Section -->
                     <div class="bg-gray-800 text-white rounded-xl p-4 md:p-6 shadow-md">
                         <h3 class="text-base md:text-lg font-bold mb-3 flex items-center text-qc-red">
                             <svg class="w-5 h-5 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
@@ -233,10 +224,8 @@
                 </div>
 
                 <div class="space-y-6">
-                    
                     <div class="bg-white rounded-xl shadow-md border border-gray-200 p-4 md:p-6 lg:sticky lg:top-24">
                         <h2 class="text-lg md:text-xl font-bold text-qc-blue mb-4 md:mb-6 border-b pb-2">Compréhension écrite</h2>
-                        
                         <p class="text-xs md:text-sm text-gray-600 italic mb-4 md:mb-6">Lisez l'article et répondez aux questions. Cliquez sur "Vérifier" après chaque exercice.</p>
 
                         <div class="mb-6 md:mb-8">
@@ -256,7 +245,6 @@
                                     </select>
                                     <div id="fb-ex1-a" class="feedback text-green-600 hidden">✓ Correct !</div>
                                 </div>
-                                
                                 <div class="bg-gray-50 p-3 rounded border">
                                     <p class="text-sm mb-2">b. Phénomène économique qui se traduit par une hausse générale des prix.</p>
                                     <select id="ex1-b" class="quiz-input bg-white text-sm md:text-base">
@@ -267,7 +255,6 @@
                                     </select>
                                     <div id="fb-ex1-b" class="feedback text-green-600 hidden">✓ Correct !</div>
                                 </div>
-
                                 <div class="bg-gray-50 p-3 rounded border">
                                     <p class="text-sm mb-2">c. Pratique consistant à acheter des biens périssables de manière excessive dans un volume supérieur à la normale.</p>
                                     <select id="ex1-c" class="quiz-input bg-white text-sm md:text-base">
@@ -304,7 +291,6 @@
 
                         <div class="mb-4 md:mb-6 border-t pt-4 md:pt-6">
                             <h3 class="font-bold text-gray-800 text-sm md:text-base mb-3">4. Vrai ou faux ?</h3>
-                            
                             <div class="space-y-4">
                                 <div class="bg-gray-50 p-3 rounded border">
                                     <p class="text-sm mb-2">a. La dépense additionnelle s’élève à 27 euros par semaine en moyenne.</p>
@@ -349,12 +335,10 @@
                             </div>
                             <button onclick="checkVF()" class="mt-4 w-full md:w-auto px-4 py-3 md:py-2 bg-qc-blue text-white rounded hover:bg-blue-800 transition-colors text-sm font-medium">Vérifier Vrai/Faux</button>
                         </div>
-
                     </div>
                 </div>
             </div>
 
-            <!-- Sections additionnelles Déconsommation ... -->
             <div class="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 <section class="bg-white rounded-xl shadow-md border border-gray-200 p-4 md:p-6 border-t-4 border-t-qc-red">
                     <h2 class="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4">Pour aller plus loin : Jeux de vocabulaire</h2>
@@ -385,10 +369,7 @@
                     </div>
                 </section>
             </div>
-        </div> <!-- Fin onglet 1 -->
-
-        <!-- ONGLET 2 : LES 4 BRÛLEURS -->
-        <div id="tab-bruleurs" class="tab-content hidden pb-4 md:pb-8">
+        </div> <div id="tab-bruleurs" class="tab-content hidden pb-4 md:pb-8">
             <div class="space-y-6 md:space-y-10">
                 <section class="bg-indigo-50 p-4 md:p-8 rounded-xl border border-indigo-100 shadow-sm mt-2 md:mt-4">
                     <h2 class="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-indigo-400 mb-2">Origine du modèle</h2>
@@ -484,13 +465,9 @@
                     </div>
                 </section>
             </div>
-        </div> <!-- Fin onglet 2 -->
-
-        <!-- ONGLET 3 : STRESS FINANCIER -->
-        <div id="tab-stress" class="tab-content hidden pb-4 md:pb-8">
+        </div> <div id="tab-stress" class="tab-content hidden pb-4 md:pb-8">
             <div class="space-y-6 md:space-y-10">
 
-                <!-- 1. Activité avant visionnage -->
                 <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 mt-2 md:mt-4 border-l-4 border-l-qc-red">
                     <h2 class="text-lg md:text-xl font-bold text-qc-blue mb-3 md:mb-4 flex items-center">
                         <svg class="w-5 h-5 md:w-6 md:h-6 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -505,7 +482,6 @@
                     </div>
                 </section>
 
-                <!-- 2. Visionnage et vidéo -->
                 <section class="bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800">
                     <div class="p-4 bg-gray-800 text-white flex justify-between items-center">
                         <h2 class="text-base md:text-lg font-bold flex items-center">
@@ -514,14 +490,12 @@
                         </h2>
                         <span class="text-xs bg-gray-700 px-2 py-1 rounded text-gray-300">Micro-trottoir</span>
                     </div>
-                    <!-- Vidéo intégrée -->
                     <video id="stress-video" controls class="w-full h-auto aspect-video object-cover" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' fill='%231f2937'/%3E%3Ctext x='50%25' y='50%25' fill='white' font-family='sans-serif' font-size='20' text-anchor='middle' dominant-baseline='middle'%3EChargement de la vidéo...%3C/text%3E%3C/svg%3E">
                         <source src="stress_financier.mp4" type="video/mp4">
                         Votre navigateur ne supporte pas la lecture de vidéos.
                     </video>
                 </section>
 
-                <!-- Petit Lexique Québécois -->
                 <div class="bg-qc-light border-l-4 border-qc-blue p-4 rounded shadow-sm text-sm md:text-base">
                     <h3 class="font-bold text-qc-blue mb-2">📌 Petit lexique québécois (pour mieux comprendre la vidéo) :</h3>
                     <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-gray-700">
@@ -532,10 +506,8 @@
                     </ul>
                 </div>
 
-                <!-- 3. Compréhension (Questions) -->
                 <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
                     
-                    <!-- Ex A : Qui dit quoi ? -->
                     <div class="bg-white rounded-xl shadow-md border border-gray-200 p-4 md:p-6">
                         <h3 class="text-lg font-bold text-gray-800 mb-4 border-b pb-2">A. Qui exprime ces idées ?</h3>
                         <p class="text-xs md:text-sm text-gray-500 mb-4">Associez chaque phrase à la personne qui la prononce dans la vidéo.</p>
@@ -545,42 +517,70 @@
                                 <p class="text-sm font-medium mb-2">1. "Les salaires n'augmentent pas au même rythme que le coût de la vie."</p>
                                 <select id="stress-q1" class="quiz-input text-sm">
                                     <option value="">Choisissez la personne...</option>
-                                    <option value="p1">La femme avec le t-shirt gris "Speed"</option>
+                                    <option value="p1">La femme avec le t-shirt gris « Speed »</option>
                                     <option value="p2">L'homme en chemise beige rayée</option>
                                     <option value="p3">La femme avec le gilet noir</option>
-                                    <option value="p4">L'homme avec le t-shirt noir</option>
+                                    <option value="p4">L'homme au t-shirt noir « Dime »</option>
+                                    <option value="p5">L'homme au t-shirt bleu « Tennis Montréal »</option>
                                 </select>
                                 <div id="fb-stress-q1" class="feedback text-green-600 hidden">✓ Correct !</div>
                             </div>
                             
                             <div class="bg-gray-50 p-3 rounded border">
-                                <p class="text-sm font-medium mb-2">2. "Même avec 2 ou 3 emplois, ça ne passe pas trop."</p>
+                                <p class="text-sm font-medium mb-2">2. « Je vais avoir 24 ans, (mes parents) réfléchissaient déjà à acheter leur maison. On vit nos 24 ans différemment »</p>
                                 <select id="stress-q2" class="quiz-input text-sm">
                                     <option value="">Choisissez la personne...</option>
-                                    <option value="p1">La femme avec le t-shirt gris "Speed"</option>
+                                    <option value="p1">La femme avec le t-shirt gris « Speed »</option>
                                     <option value="p2">L'homme en chemise beige rayée</option>
                                     <option value="p3">La femme avec le gilet noir</option>
-                                    <option value="p4">L'homme avec le t-shirt noir</option>
+                                    <option value="p4">L'homme au t-shirt noir « Dime »</option>
+                                    <option value="p5">L'homme au t-shirt bleu « Tennis Montréal »</option>
                                 </select>
                                 <div id="fb-stress-q2" class="feedback text-green-600 hidden">✓ Correct !</div>
                             </div>
 
                             <div class="bg-gray-50 p-3 rounded border">
-                                <p class="text-sm font-medium mb-2">3. "À chaque paie, j'investis un pourcentage."</p>
+                                <p class="text-sm font-medium mb-2">3. "Même avec 2 ou 3 emplois, ça ne passe pas trop."</p>
                                 <select id="stress-q3" class="quiz-input text-sm">
                                     <option value="">Choisissez la personne...</option>
-                                    <option value="p1">La femme avec le t-shirt gris "Speed"</option>
+                                    <option value="p1">La femme avec le t-shirt gris « Speed »</option>
                                     <option value="p2">L'homme en chemise beige rayée</option>
                                     <option value="p3">La femme avec le gilet noir</option>
-                                    <option value="p4">L'homme avec le t-shirt noir</option>
+                                    <option value="p4">L'homme au t-shirt noir « Dime »</option>
+                                    <option value="p5">L'homme au t-shirt bleu « Tennis Montréal »</option>
                                 </select>
                                 <div id="fb-stress-q3" class="feedback text-green-600 hidden">✓ Correct !</div>
+                            </div>
+
+                            <div class="bg-gray-50 p-3 rounded border">
+                                <p class="text-sm font-medium mb-2">4. "À chaque paie, j'investis un pourcentage."</p>
+                                <select id="stress-q4" class="quiz-input text-sm">
+                                    <option value="">Choisissez la personne...</option>
+                                    <option value="p1">La femme avec le t-shirt gris « Speed »</option>
+                                    <option value="p2">L'homme en chemise beige rayée</option>
+                                    <option value="p3">La femme avec le gilet noir</option>
+                                    <option value="p4">L'homme au t-shirt noir « Dime »</option>
+                                    <option value="p5">L'homme au t-shirt bleu « Tennis Montréal »</option>
+                                </select>
+                                <div id="fb-stress-q4" class="feedback text-green-600 hidden">✓ Correct !</div>
+                            </div>
+
+                            <div class="bg-gray-50 p-3 rounded border">
+                                <p class="text-sm font-medium mb-2">5. « il faut essayer d’économiser, d’investir »</p>
+                                <select id="stress-q5" class="quiz-input text-sm">
+                                    <option value="">Choisissez la personne...</option>
+                                    <option value="p1">La femme avec le t-shirt gris « Speed »</option>
+                                    <option value="p2">L'homme en chemise beige rayée</option>
+                                    <option value="p3">La femme avec le gilet noir</option>
+                                    <option value="p4">L'homme au t-shirt noir « Dime »</option>
+                                    <option value="p5">L'homme au t-shirt bleu « Tennis Montréal »</option>
+                                </select>
+                                <div id="fb-stress-q5" class="feedback text-green-600 hidden">✓ Correct !</div>
                             </div>
                         </div>
                         <button onclick="checkStressQuiDitQuoi()" class="mt-4 w-full md:w-auto px-4 py-2 bg-qc-blue text-white rounded hover:bg-blue-800 transition-colors text-sm font-medium">Vérifier les citations</button>
                     </div>
 
-                    <!-- Ex B : Texte à trous -->
                     <div class="bg-white rounded-xl shadow-md border border-gray-200 p-4 md:p-6">
                         <h3 class="text-lg font-bold text-gray-800 mb-4 border-b pb-2">B. Résumé : Complétez le texte</h3>
                         <p class="text-xs md:text-sm text-gray-500 mb-4">Utilisez les mots de la liste pour compléter le résumé de la vidéo.</p>
@@ -606,13 +606,11 @@
 
                 </section>
 
-                <!-- 4. Activité ludique & d'expression -->
                 <section class="bg-indigo-50 rounded-xl p-4 md:p-6 shadow-sm border border-indigo-100 mt-6">
                     <h2 class="text-lg md:text-xl font-bold text-indigo-900 mb-4 border-b border-indigo-200 pb-2">Étape 4 : Trier les conseils financiers</h2>
                     <p class="text-sm md:text-base text-gray-700 mb-4">Lisez ces affirmations. Selon le micro-trottoir et le bon sens, s'agit-il d'une <span class="text-green-600 font-bold">Bonne idée</span> ou d'une <span class="text-red-600 font-bold">Mauvaise idée</span> pour réduire le stress ? Cliquez sur le bouton correspondant.</p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Carte 1 -->
                         <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200 flex flex-col justify-between" id="card-adv-1">
                             <p class="text-sm font-medium mb-3 text-center">Faire un budget mensuel pour savoir où va son argent.</p>
                             <div class="flex gap-2 justify-center">
@@ -621,7 +619,6 @@
                             </div>
                             <div id="fb-adv-1" class="text-center text-xs mt-2 font-bold hidden"></div>
                         </div>
-                        <!-- Carte 2 -->
                         <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200 flex flex-col justify-between" id="card-adv-2">
                             <p class="text-sm font-medium mb-3 text-center">Avoir 3 emplois en même temps sans jamais s'arrêter de travailler.</p>
                             <div class="flex gap-2 justify-center">
@@ -630,7 +627,6 @@
                             </div>
                             <div id="fb-adv-2" class="text-center text-xs mt-2 font-bold hidden"></div>
                         </div>
-                        <!-- Carte 3 -->
                         <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200 flex flex-col justify-between" id="card-adv-3">
                             <p class="text-sm font-medium mb-3 text-center">Dépenser tout son argent immédiatement pour profiter de la vie sans penser à demain.</p>
                             <div class="flex gap-2 justify-center">
@@ -639,7 +635,6 @@
                             </div>
                             <div id="fb-adv-3" class="text-center text-xs mt-2 font-bold hidden"></div>
                         </div>
-                        <!-- Carte 4 -->
                         <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200 flex flex-col justify-between" id="card-adv-4">
                             <p class="text-sm font-medium mb-3 text-center">Investir un petit pourcentage de sa paie à chaque fois (mettre de l'argent de côté).</p>
                             <div class="flex gap-2 justify-center">
@@ -651,28 +646,23 @@
                     </div>
                 </section>
 
-                <!-- 5. Conclusion & Production -->
-                <section class="bg-qc-dark text-white rounded-xl p-4 md:p-8 shadow-lg mt-6">
-                    <h2 class="text-lg md:text-xl font-bold mb-4 flex items-center text-qc-red">
+                <section class="bg-white rounded-xl p-4 md:p-8 shadow-md border border-gray-200 mt-6 border-t-4 border-t-qc-blue">
+                    <h2 class="text-lg md:text-xl font-bold mb-4 flex items-center text-qc-blue">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                         Étape 5 : Production finale (Niveau B1)
                     </h2>
-                    <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
-                        <p class="text-sm md:text-base leading-relaxed mb-4">
-                            <strong>Consigne :</strong> Un(e) ami(e) francophone vous écrit pour vous dire qu'il/elle est très stressé(e) par l'inflation et la gestion de son argent. <br>
-                            À l'écrit (ou à l'oral avec votre binôme), donnez-lui <strong>3 conseils</strong> pratiques pour mieux gérer son budget et réduire son anxiété. <em>Utilisez l'impératif ou le subjonctif (ex: Il faut que tu...).</em>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <p class="text-sm md:text-base leading-relaxed text-gray-800">
+                            <strong>Consigne :</strong> Un(e) ami(e) francophone vous écrit pour vous dire qu'il/elle est très stressé(e) par l'inflation et la gestion de son argent.<br><br>
+                            À l'écrit, dans une feuille séparée, donnez-lui <strong>3 conseils pratiques</strong> pour mieux gérer son budget et réduire son anxiété. Utilisez l'impératif ou le subjonctif (ex: Il faut que tu...).
                         </p>
-                        <textarea class="w-full bg-gray-900 border border-gray-600 text-white rounded p-3 text-sm md:text-base focus:border-qc-blue focus:outline-none" rows="4" placeholder="Écrivez vos conseils ici (pour votre brouillon)..."></textarea>
                     </div>
                 </section>
 
             </div>
-        </div> <!-- Fin onglet 3 -->
-
-    </main>
+        </div> </main>
 
     <script>
-        /* --- ONGLET 1 : LOGIQUE DECONSOMMATION --- */
         function checkEx1() {
             const answers = {
                 'ex1-a': 'deconsommation',
@@ -725,219 +715,4 @@
 
                 if (selectedValue === correctValue) {
                     feedback.innerHTML = '✓ Bonne réponse ! ' + getVfExplanation(letter);
-                    feedback.classList.add('text-green-800', 'bg-green-100');
-                } else if (selectedValue !== null) {
-                    feedback.innerHTML = '✗ Mauvaise réponse. ' + getVfExplanation(letter);
-                    feedback.classList.add('text-red-800', 'bg-red-100');
-                } else {
-                     feedback.innerHTML = 'Veuillez sélectionner une réponse.';
-                     feedback.classList.add('text-gray-800', 'bg-gray-200');
-                }
-                feedback.classList.remove('hidden');
-            }
-        }
-
-        function getVfExplanation(letter) {
-            switch(letter) {
-                case 'a': return "<strong>Faux</strong>, la dépense est de 27 euros par <em>mois</em> en moyenne.";
-                case 'b': return "<strong>Faux</strong>, les classes moyennes supérieures réduisent aussi leur consommation (le plus rapidement même).";
-                case 'c': return "<strong>Faux</strong>, ils font les courses <em>plus souvent</em>, mais avec des paniers plus petits.";
-                case 'd': return "<strong>Vrai</strong>, l'inflation touche davantage les familles nombreuses.";
-                case 'e': return "<strong>Vrai</strong>, c'est le budget moyen par foyer et par mois.";
-                default: return "";
-            }
-        }
-
-        /* --- LOGIQUE DE NAVIGATION DES ONGLETS --- */
-        function switchTab(tabId) {
-            const tabs = ['tab-deconsommation', 'tab-bruleurs', 'tab-stress'];
-            
-            const inactiveClasses = "px-3 md:px-4 py-2 bg-gray-200 text-gray-700 hover:bg-gray-300 font-bold rounded-t-lg transition-colors text-xs md:text-sm flex-grow text-center md:flex-grow-0";
-            const activeClasses = "px-3 md:px-4 py-2 bg-qc-blue text-white font-bold rounded-t-lg transition-colors text-xs md:text-sm flex-grow text-center md:flex-grow-0";
-            
-            tabs.forEach(t => {
-                document.getElementById(t).classList.add('hidden');
-                document.getElementById('btn-' + t).className = inactiveClasses;
-            });
-            
-            document.getElementById(tabId).classList.remove('hidden');
-            document.getElementById('btn-' + tabId).className = activeClasses;
-
-            // Pause la vidéo si on change d'onglet
-            if(tabId !== 'tab-stress') {
-                const video = document.getElementById('stress-video');
-                if(video) video.pause();
-            }
-        }
-
-        /* --- ONGLET 2 : LOGIQUE DES 4 BRÛLEURS --- */
-        const MAX_BUDGET = 100;
-        const keys = ['travail', 'famille', 'amis', 'sante'];
-
-        function redistribute(changedInput, type) {
-            let total = 0;
-            keys.forEach(k => total += parseInt(document.getElementById(`input-${k}`).value));
-
-            if (total > MAX_BUDGET) {
-                let excess = total - MAX_BUDGET;
-                let others = keys
-                    .filter(k => k !== type)
-                    .map(k => ({ key: k, val: parseInt(document.getElementById(`input-${k}`).value) }))
-                    .filter(o => o.val > 0)
-                    .sort((a, b) => a.val - b.val);
-
-                while (excess > 0 && others.length > 0) {
-                    others.forEach(o => {
-                        if (excess > 0 && o.val > 0) {
-                            let el = document.getElementById(`input-${o.key}`);
-                            el.value = parseInt(el.value) - 1;
-                            o.val--;
-                            excess--;
-                        }
-                    });
-                    others = others.filter(o => o.val > 0);
-                }
-                if (excess > 0) { changedInput.value = parseInt(changedInput.value) - excess; }
-            }
-            updateDisplay();
-        }
-
-        function updateDisplay() {
-            let total = 0;
-            keys.forEach(k => {
-                const val = document.getElementById(`input-${k}`).value;
-                document.getElementById(`val-${k}`).innerText = val + "%";
-                total += parseInt(val);
-            });
-            document.getElementById('total-energy-display').innerHTML = `${total}% <span class="text-lg md:text-xl text-slate-500 font-normal">/ 100%</span>`;
-            document.getElementById('budget-bar').style.width = `${(total / MAX_BUDGET) * 100}%`;
-        }
-
-        function analyze() {
-            const values = {};
-            keys.forEach(k => values[k] = parseInt(document.getElementById(`input-${k}`).value));
-            
-            const box = document.getElementById('analysis-box');
-            const content = document.getElementById('analysis-content');
-            box.style.opacity = "1";
-
-            let title = "Équilibre Prudent"; let icon = "⚖️";
-            let feedback = "Vous essayez de tout maintenir, mais sans pouvoir vous investir à fond nulle part. Vous évitez les crises, mais vous ne deviendrez probablement pas un virtuose dans un domaine précis.";
-
-            if (values.travail >= 50) {
-                title = "Le Bourreau de Travail"; icon = "🔥";
-                feedback = "Un investissement professionnel très élevé. Vous limitez fortement vos autres domaines. C'est le profil typique pour réussir une grande carrière, mais au risque de l'isolement social ou du burn-out.";
-            } else if (values.travail >= 35 && values.famille >= 35) {
-                title = "Le Pilier Familial & Pro"; icon = "🏠";
-                feedback = "Vous réussissez le pari de vous investir au travail et en famille. Mais vos amis vous voient moins et votre santé physique est reléguée au second plan.";
-            } else if (values.sante <= 5) {
-                title = "Zone de Danger (Burn-out)"; icon = "🚨";
-                feedback = "Attention ! Vous avez presque totalement éteint votre brûleur santé. À ce rythme, votre corps finira par couper l'alimentation de tous les autres brûleurs sans votre avis.";
-            } else if (values.amis >= 40) {
-                title = "L'Hédoniste Social"; icon = "🥂";
-                feedback = "Vous vivez pour les liens sociaux et les amitiés. C'est une vie riche émotionnellement, mais sans doute au détriment de l'ambition professionnelle ou de la famille.";
-            }
-
-            const deadBurners = Object.entries(values).filter(([k, v]) => v <= 5);
-
-            content.innerHTML = `
-                <div class="text-5xl md:text-6xl mb-3 md:mb-4">${icon}</div>
-                <h3 class="text-xl md:text-2xl font-black uppercase text-slate-800 tracking-tight">${title}</h3>
-                <p class="text-slate-600 text-xs md:text-sm leading-relaxed">${feedback}</p>
-                <div class="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-slate-100 flex flex-wrap justify-center gap-2">
-                    ${deadBurners.length > 0 ? deadBurners.map(([k, v]) => `<span class="bg-rose-600 text-white text-[9px] md:text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-widest">Brûleur ${k} critique (${v}%)</span>`).join('') : '<span class="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-widest">Tous les brûleurs sont actifs</span>'}
-                </div>
-            `;
-            if(window.innerWidth < 1024) { setTimeout(() => { box.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100); }
-        }
-
-        /* --- ONGLET 3 : LOGIQUE STRESS FINANCIER --- */
-        function checkStressQuiDitQuoi() {
-            const answers = {
-                'stress-q1': 'p2', // L'homme en chemise beige rayée
-                'stress-q2': 'p3', // La femme avec le gilet noir
-                'stress-q3': 'p1'  // La femme avec le t-shirt gris "Speed"
-            };
-
-            for (const [id, correctValue] of Object.entries(answers)) {
-                const select = document.getElementById(id);
-                const feedback = document.getElementById('fb-' + id);
-                
-                select.classList.remove('correct', 'incorrect');
-                feedback.classList.remove('hidden', 'text-green-600', 'text-red-600');
-
-                if (select.value === correctValue) {
-                    select.classList.add('correct');
-                    feedback.textContent = '✓ Correct !';
-                    feedback.classList.add('text-green-600');
-                } else if (select.value !== "") {
-                    select.classList.add('incorrect');
-                    feedback.textContent = '✗ Incorrect. Observez bien la vidéo.';
-                    feedback.classList.add('text-red-600');
-                }
-                feedback.classList.remove('hidden');
-            }
-        }
-
-        function checkStressTrous() {
-            const answers = {
-                'trou-1': 'financier',
-                'trou-2': 'coût',
-                'trou-3': 'salaires',
-                'trou-4': 'maison',
-                'trou-5': 'budget',
-                'trou-6': 'investir'
-            };
-
-            let score = 0;
-            let total = 6;
-
-            for (const [id, correctValue] of Object.entries(answers)) {
-                const select = document.getElementById(id);
-                select.classList.remove('text-green-600', 'text-red-600');
-                if (select.value === correctValue) {
-                    select.classList.add('text-green-600');
-                    score++;
-                } else if (select.value !== "") {
-                    select.classList.add('text-red-600');
-                }
-            }
-
-            const feedbackBox = document.getElementById('fb-stress-trous');
-            feedbackBox.classList.remove('hidden', 'text-green-600', 'text-red-600', 'text-blue-600');
-            
-            if (score === total) {
-                feedbackBox.textContent = `Bravo ! Vous avez trouvé les ${total} mots.`;
-                feedbackBox.classList.add('text-green-600');
-            } else {
-                feedbackBox.textContent = `Vous avez ${score} bonne(s) réponse(s) sur ${total}. Corrigez les mots en rouge.`;
-                feedbackBox.classList.add('text-blue-600');
-            }
-        }
-
-        function evalAdvice(id, isGoodAdvice) {
-            const card = document.getElementById('card-adv-' + id);
-            const fb = document.getElementById('fb-adv-' + id);
-            
-            card.classList.remove('border-green-500', 'border-red-500', 'bg-green-50', 'bg-red-50');
-            fb.classList.remove('hidden', 'text-green-600', 'text-red-600');
-
-            if (isGoodAdvice) {
-                card.classList.add('border-green-500', 'bg-green-50', 'border-2');
-                fb.textContent = '✓ Vous avez raison, c\'est ce qui est conseillé !';
-                fb.classList.add('text-green-600');
-            } else {
-                card.classList.add('border-red-500', 'bg-red-50', 'border-2');
-                fb.textContent = '✓ Exactement, c\'est un comportement à éviter.';
-                fb.classList.add('text-red-600');
-            }
-        }
-
-        // Initialize display to tab 1
-        switchTab('tab-deconsommation');
-        
-        // Initialize brûleurs display
-        updateDisplay();
-    </script>
-</body>
-</html>
+                    feedback.
