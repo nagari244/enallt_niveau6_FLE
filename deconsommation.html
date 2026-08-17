@@ -715,4 +715,214 @@
 
                 if (selectedValue === correctValue) {
                     feedback.innerHTML = '✓ Bonne réponse ! ' + getVfExplanation(letter);
-                    feedback.
+                    feedback.classList.add('text-green-800', 'bg-green-100');
+                } else if (selectedValue !== null) {
+                    feedback.innerHTML = '✗ Mauvaise réponse. ' + getVfExplanation(letter);
+                    feedback.classList.add('text-red-800', 'bg-red-100');
+                } else {
+                     feedback.innerHTML = 'Veuillez sélectionner une réponse.';
+                     feedback.classList.add('text-gray-800', 'bg-gray-200');
+                }
+                feedback.classList.remove('hidden');
+            }
+        }
+
+        function getVfExplanation(letter) {
+            switch(letter) {
+                case 'a': return "<strong>Faux</strong>, la dépense est de 27 euros par <em>mois</em> en moyenne.";
+                case 'b': return "<strong>Faux</strong>, les classes moyennes supérieures réduisent aussi leur consommation (le plus rapidement même).";
+                case 'c': return "<strong>Faux</strong>, ils font les courses <em>plus souvent</em>, mais avec des paniers plus petits.";
+                case 'd': return "<strong>Vrai</strong>, l'inflation touche davantage les familles nombreuses.";
+                case 'e': return "<strong>Vrai</strong>, c'est le budget moyen par foyer et par mois.";
+                default: return "";
+            }
+        }
+
+        function switchTab(tabId) {
+            const tabs = ['tab-deconsommation', 'tab-bruleurs', 'tab-stress'];
+            
+            const inactiveClasses = "px-3 md:px-4 py-2 bg-gray-200 text-gray-700 hover:bg-gray-300 font-bold rounded-t-lg transition-colors text-xs md:text-sm flex-grow text-center md:flex-grow-0";
+            const activeClasses = "px-3 md:px-4 py-2 bg-qc-blue text-white font-bold rounded-t-lg transition-colors text-xs md:text-sm flex-grow text-center md:flex-grow-0";
+            
+            tabs.forEach(t => {
+                document.getElementById(t).classList.add('hidden');
+                document.getElementById('btn-' + t).className = inactiveClasses;
+            });
+            
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).className = activeClasses;
+
+            if(tabId !== 'tab-stress') {
+                const video = document.getElementById('stress-video');
+                if(video) video.pause();
+            }
+        }
+
+        const MAX_BUDGET = 100;
+        const keys = ['travail', 'famille', 'amis', 'sante'];
+
+        function redistribute(changedInput, type) {
+            let total = 0;
+            keys.forEach(k => total += parseInt(document.getElementById(`input-${k}`).value));
+
+            if (total > MAX_BUDGET) {
+                let excess = total - MAX_BUDGET;
+                let others = keys
+                    .filter(k => k !== type)
+                    .map(k => ({ key: k, val: parseInt(document.getElementById(`input-${k}`).value) }))
+                    .filter(o => o.val > 0)
+                    .sort((a, b) => a.val - b.val);
+
+                while (excess > 0 && others.length > 0) {
+                    others.forEach(o => {
+                        if (excess > 0 && o.val > 0) {
+                            let el = document.getElementById(`input-${o.key}`);
+                            el.value = parseInt(el.value) - 1;
+                            o.val--;
+                            excess--;
+                        }
+                    });
+                    others = others.filter(o => o.val > 0);
+                }
+                if (excess > 0) { changedInput.value = parseInt(changedInput.value) - excess; }
+            }
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            let total = 0;
+            keys.forEach(k => {
+                const val = document.getElementById(`input-${k}`).value;
+                document.getElementById(`val-${k}`).innerText = val + "%";
+                total += parseInt(val);
+            });
+            document.getElementById('total-energy-display').innerHTML = `${total}% <span class="text-lg md:text-xl text-slate-500 font-normal">/ 100%</span>`;
+            document.getElementById('budget-bar').style.width = `${(total / MAX_BUDGET) * 100}%`;
+        }
+
+        function analyze() {
+            const values = {};
+            keys.forEach(k => values[k] = parseInt(document.getElementById(`input-${k}`).value));
+            
+            const box = document.getElementById('analysis-box');
+            const content = document.getElementById('analysis-content');
+            box.style.opacity = "1";
+
+            let title = "Équilibre Prudent"; let icon = "⚖️";
+            let feedback = "Vous essayez de tout maintenir, mais sans pouvoir vous investir à fond nulle part. Vous évitez les crises, mais vous ne deviendrez probablement pas un virtuose dans un domaine précis.";
+
+            if (values.travail >= 50) {
+                title = "Le Bourreau de Travail"; icon = "🔥";
+                feedback = "Un investissement professionnel très élevé. Vous limitez fortement vos autres domaines. C'est le profil typique pour réussir une grande carrière, mais au risque de l'isolement social ou du burn-out.";
+            } else if (values.travail >= 35 && values.famille >= 35) {
+                title = "Le Pilier Familial & Pro"; icon = "🏠";
+                feedback = "Vous réussissez le pari de vous investir au travail et en famille. Mais vos amis vous voient moins et votre santé physique est reléguée au second plan.";
+            } else if (values.sante <= 5) {
+                title = "Zone de Danger (Burn-out)"; icon = "🚨";
+                feedback = "Attention ! Vous avez presque totalement éteint votre brûleur santé. À ce rythme, votre corps finira par couper l'alimentation de tous les autres brûleurs sans votre avis.";
+            } else if (values.amis >= 40) {
+                title = "L'Hédoniste Social"; icon = "🥂";
+                feedback = "Vous vivez pour les liens sociaux et les amitiés. C'est une vie riche émotionnellement, mais sans doute au détriment de l'ambition professionnelle ou de la famille.";
+            }
+
+            const deadBurners = Object.entries(values).filter(([k, v]) => v <= 5);
+
+            content.innerHTML = `
+                <div class="text-5xl md:text-6xl mb-3 md:mb-4">${icon}</div>
+                <h3 class="text-xl md:text-2xl font-black uppercase text-slate-800 tracking-tight">${title}</h3>
+                <p class="text-slate-600 text-xs md:text-sm leading-relaxed">${feedback}</p>
+                <div class="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-slate-100 flex flex-wrap justify-center gap-2">
+                    ${deadBurners.length > 0 ? deadBurners.map(([k, v]) => `<span class="bg-rose-600 text-white text-[9px] md:text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-widest">Brûleur ${k} critique (${v}%)</span>`).join('') : '<span class="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-widest">Tous les brûleurs sont actifs</span>'}
+                </div>
+            `;
+            if(window.innerWidth < 1024) { setTimeout(() => { box.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100); }
+        }
+
+        function checkStressQuiDitQuoi() {
+            const answers = {
+                'stress-q1': 'p2',
+                'stress-q2': 'p5',
+                'stress-q3': 'p3',
+                'stress-q4': 'p1',
+                'stress-q5': 'p4'
+            };
+
+            for (const [id, correctValue] of Object.entries(answers)) {
+                const select = document.getElementById(id);
+                const feedback = document.getElementById('fb-' + id);
+                
+                select.classList.remove('correct', 'incorrect');
+                feedback.classList.remove('hidden', 'text-green-600', 'text-red-600');
+
+                if (select.value === correctValue) {
+                    select.classList.add('correct');
+                    feedback.textContent = '✓ Correct !';
+                    feedback.classList.add('text-green-600');
+                } else if (select.value !== "") {
+                    select.classList.add('incorrect');
+                    feedback.textContent = '✗ Incorrect. Observez bien la vidéo.';
+                    feedback.classList.add('text-red-600');
+                }
+                feedback.classList.remove('hidden');
+            }
+        }
+
+        function checkStressTrous() {
+            const answers = {
+                'trou-1': 'financier',
+                'trou-2': 'coût',
+                'trou-3': 'salaires',
+                'trou-4': 'maison',
+                'trou-5': 'budget',
+                'trou-6': 'investir'
+            };
+
+            let score = 0;
+            let total = 6;
+
+            for (const [id, correctValue] of Object.entries(answers)) {
+                const select = document.getElementById(id);
+                select.classList.remove('text-green-600', 'text-red-600');
+                if (select.value === correctValue) {
+                    select.classList.add('text-green-600');
+                    score++;
+                } else if (select.value !== "") {
+                    select.classList.add('text-red-600');
+                }
+            }
+
+            const feedbackBox = document.getElementById('fb-stress-trous');
+            feedbackBox.classList.remove('hidden', 'text-green-600', 'text-red-600', 'text-blue-600');
+            
+            if (score === total) {
+                feedbackBox.textContent = `Bravo ! Vous avez trouvé les ${total} mots.`;
+                feedbackBox.classList.add('text-green-600');
+            } else {
+                feedbackBox.textContent = `Vous avez ${score} bonne(s) réponse(s) sur ${total}. Corrigez les mots en rouge.`;
+                feedbackBox.classList.add('text-blue-600');
+            }
+        }
+
+        function evalAdvice(id, isGoodAdvice) {
+            const card = document.getElementById('card-adv-' + id);
+            const fb = document.getElementById('fb-adv-' + id);
+            
+            card.classList.remove('border-green-500', 'border-red-500', 'bg-green-50', 'bg-red-50');
+            fb.classList.remove('hidden', 'text-green-600', 'text-red-600');
+
+            if (isGoodAdvice) {
+                card.classList.add('border-green-500', 'bg-green-50', 'border-2');
+                fb.textContent = '✓ Vous avez raison, c\'est ce qui est conseillé !';
+                fb.classList.add('text-green-600');
+            } else {
+                card.classList.add('border-red-500', 'bg-red-50', 'border-2');
+                fb.textContent = '✓ Exactement, c\'est un comportement à éviter.';
+                fb.classList.add('text-red-600');
+            }
+        }
+
+        switchTab('tab-deconsommation');
+        updateDisplay();
+    </script>
+</body>
+</html>
