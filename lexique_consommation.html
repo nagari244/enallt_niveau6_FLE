@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lexique de la Consommation - Niveau B1+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        // Palette UNAM
+                        unam: {
+                            blue: '#002B5C',
+                            gold: '#D4AF37',
+                            light: '#F4F6F8'
+                        },
+                        // Accents OIF (Francophonie)
+                        oif: {
+                            red: '#EF4135',
+                            green: '#00B36B',
+                            yellow: '#FFC425',
+                            purple: '#8F3D8D'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: theme('colors.unam.light');
+            color: #333;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Cacher la barre de défilement pour le menu mobile */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Styles pour l'activité d'association */
+        .match-btn { transition: all 0.2s ease; touch-action: manipulation; }
+        .match-btn.selected {
+            background-color: theme('colors.unam.gold'); color: white;
+            border-color: theme('colors.unam.gold'); transform: scale(0.98);
+        }
+        .match-btn.matched {
+            background-color: theme('colors.oif.green'); color: white;
+            border-color: theme('colors.oif.green'); opacity: 0.7; pointer-events: none;
+        }
+        .match-btn.error {
+            animation: shake 0.4s; background-color: theme('colors.oif.red');
+            color: white; border-color: theme('colors.oif.red');
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+
+        /* Styles pour les menus déroulants (Phrases à trous) */
+        .trous-select {
+            appearance: none; background-color: #fff;
+            border: 2px solid theme('colors.unam.gold'); border-radius: 0.5rem;
+            padding: 0.2rem 1.5rem 0.2rem 0.5rem; color: theme('colors.unam.blue');
+            font-weight: 600; text-align: center; cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23D4AF37'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 0.2rem center; background-size: 1rem;
+        }
+        .trous-select:focus { outline: none; box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.5); }
+        .trous-select.correct { border-color: theme('colors.oif.green'); color: theme('colors.oif.green'); background-image: none; }
+        .trous-select.incorrect { border-color: theme('colors.oif.red'); color: theme('colors.oif.red'); }
+
+        /* Styles pour l'intrus */
+        .intrus-btn { transition: all 0.2s ease; }
+        .intrus-btn:hover { background-color: #f3f4f6; }
+        .intrus-btn.correct { background-color: theme('colors.oif.green'); color: white; border-color: theme('colors.oif.green'); }
+        .intrus-btn.incorrect { background-color: theme('colors.oif.red'); color: white; border-color: theme('colors.oif.red'); }
+
+        /* Tooltip pour le lexique */
+        .lexique-item { outline: none; }
+        .lexique-tooltip {
+            opacity: 0; visibility: hidden; transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        /* Déclencheurs pour mobile (focus) et desktop (hover) */
+        .lexique-item:hover .lexique-tooltip,
+        .lexique-item:focus .lexique-tooltip {
+            opacity: 1; visibility: visible; transform: translateY(0);
+        }
+
+        /* Animation bouton audio */
+        .playing-audio { animation: pulse-audio 1.5s infinite; }
+        @keyframes pulse-audio {
+            0% { box-shadow: 0 0 0 0 rgba(0, 179, 107, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 179, 107, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 179, 107, 0); }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <header class="bg-unam-blue text-white py-4 md:py-6 shadow-md border-b-4 border-unam-gold sticky top-0 z-40">
+        <div class="container mx-auto px-4 max-w-4xl flex justify-between items-center">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold tracking-tight">Ateliers de Lexique</h1>
+                <p class="text-xs md:text-sm font-light text-unam-gold mt-1">La Consommation (Niveau B1+)</p>
+            </div>
+            <div class="hidden sm:flex gap-1">
+                <span class="w-3 h-3 rounded-full bg-oif-red"></span>
+                <span class="w-3 h-3 rounded-full bg-unam-gold"></span>
+                <span class="w-3 h-3 rounded-full bg-oif-green"></span>
+                <span class="w-3 h-3 rounded-full bg-oif-purple"></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-6 max-w-4xl">
+
+        <!-- Menu des onglets avec défilement horizontal sur mobile -->
+        <div class="flex overflow-x-auto hide-scrollbar gap-2 mb-6 md:mb-8 pb-2 snap-x">
+            <button id="btn-tab-0" onclick="switchTab('tab-0')" class="snap-start shrink-0 px-4 py-3 sm:py-2 bg-unam-blue text-white font-bold rounded-lg transition-colors text-sm md:text-base shadow-sm">
+                0. Le Lexique
+            </button>
+            <button id="btn-tab-1" onclick="switchTab('tab-1')" class="snap-start shrink-0 px-4 py-3 sm:py-2 bg-white text-unam-blue border border-gray-300 hover:border-unam-gold font-bold rounded-lg transition-colors text-sm md:text-base shadow-sm">
+                1. Les Définitions
+            </button>
+            <button id="btn-tab-2" onclick="switchTab('tab-2')" class="snap-start shrink-0 px-4 py-3 sm:py-2 bg-white text-unam-blue border border-gray-300 hover:border-unam-gold font-bold rounded-lg transition-colors text-sm md:text-base shadow-sm">
+                2. En Contexte
+            </button>
+            <button id="btn-tab-3" onclick="switchTab('tab-3')" class="snap-start shrink-0 px-4 py-3 sm:py-2 bg-white text-unam-blue border border-gray-300 hover:border-unam-gold font-bold rounded-lg transition-colors text-sm md:text-base shadow-sm">
+                3. L'Intrus
+            </button>
+            <button id="btn-tab-4" onclick="switchTab('tab-4')" class="snap-start shrink-0 px-4 py-3 sm:py-2 bg-white text-unam-blue border border-gray-300 hover:border-unam-gold font-bold rounded-lg transition-colors text-sm md:text-base shadow-sm">
+                4. Synthèse Vocale
+            </button>
+        </div>
+
+        <!-- ACTIVITÉ 0 : LE LEXIQUE CIBLÉ (ONGLET DE RÉFÉRENCE) -->
+        <div id="tab-0" class="tab-content">
+            <div class="bg-white rounded-xl shadow-md border-t-4 border-t-unam-gold p-4 md:p-8">
+                <div class="text-center mb-6 border-b pb-4">
+                    <h2 class="text-xl md:text-2xl font-bold text-unam-blue mb-2">Référentiel Lexical</h2>
+                    <p class="text-sm text-gray-600">Survolez ou touchez un mot pour afficher sa définition.</p>
+                </div>
+
+                <div class="space-y-8" id="lexique-container">
+                    <!-- Les catégories seront injectées ici par JS pour garder le HTML propre -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ACTIVITÉ 1 : ASSOCIATION -->
+        <div id="tab-1" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-md border-t-4 border-t-oif-red p-4 md:p-8">
+                <div class="text-center mb-6">
+                    <h2 class="text-xl md:text-2xl font-bold text-unam-blue mb-2">Reliez les concepts</h2>
+                    <p class="text-sm text-gray-600">Tapez sur un mot dans la colonne bleue, puis tapez sur sa définition correspondante dans la colonne blanche.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+                    <div class="flex flex-col gap-3" id="words-container"></div>
+                    <div class="flex flex-col gap-3" id="defs-container"></div>
+                </div>
+                
+                <div id="assoc-feedback" class="mt-6 text-center font-bold text-lg hidden"></div>
+                <button onclick="resetAssoc()" class="mt-6 mx-auto block px-6 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-bold hover:bg-gray-300 hidden" id="assoc-reset-btn">Recommencer</button>
+            </div>
+        </div>
+
+        <!-- ACTIVITÉ 2 : PHRASES À TROUS -->
+        <div id="tab-2" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-md border-t-4 border-t-oif-yellow p-4 md:p-8">
+                <div class="text-center mb-6">
+                    <h2 class="text-xl md:text-2xl font-bold text-unam-blue mb-2">Le mot juste</h2>
+                    <p class="text-sm text-gray-600">Lisez attentivement les phrases et choisissez le terme qui convient le mieux au contexte.</p>
+                </div>
+
+                <div class="space-y-6 text-sm md:text-base text-gray-800 leading-loose" id="trous-container">
+                    <div class="p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                        1. L'association de défense des consommateurs a dénoncé cette 
+                        <select id="trou-1" class="trous-select mx-1">
+                            <option value="">...</option>
+                            <option value="remise">remise</option>
+                            <option value="escroquerie">escroquerie</option>
+                            <option value="brocante">brocante</option>
+                        </select>
+                        sur les faux produits bio.
+                    </div>
+                    <div class="p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                        2. Au marché aux puces, il est très courant de 
+                        <select id="trou-2" class="trous-select mx-1">
+                            <option value="">...</option>
+                            <option value="défendre">défendre</option>
+                            <option value="liquider">liquider</option>
+                            <option value="marchander">marchander</option>
+                        </select>
+                        le prix avec le vendeur pour obtenir une réduction.
+                    </div>
+                    <div class="p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                        3. Ce téléphone coûte seulement 50 euros, mais attention, c'est clairement un appareil 
+                        <select id="trou-3" class="trous-select mx-1">
+                            <option value="">...</option>
+                            <option value="bas de gamme">bas de gamme</option>
+                            <option value="compétitif">compétitif</option>
+                            <option value="équitable">équitable</option>
+                        </select>
+                        qui va vite tomber en panne.
+                    </div>
+                    <div class="p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                        4. Acheter du café certifié 
+                        <select id="trou-4" class="trous-select mx-1">
+                            <option value="">...</option>
+                            <option value="commerce équitable">commerce équitable</option>
+                            <option value="citoyen">citoyen</option>
+                            <option value="juste">juste</option>
+                        </select>
+                        garantit que le producteur au Sud reçoit un salaire digne.
+                    </div>
+                    <div class="p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                        5. Mon entreprise cherche un nouveau 
+                        <select id="trou-5" class="trous-select mx-1">
+                            <option value="">...</option>
+                            <option value="client">client</option>
+                            <option value="consommateur">consommateur</option>
+                            <option value="fournisseur">fournisseur</option>
+                        </select>
+                        capable de livrer des matériaux recyclés moins chers.
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <button onclick="checkTrous()" class="px-8 py-3 bg-unam-blue text-white rounded-full font-bold shadow-md hover:bg-blue-900 transition-colors w-full sm:w-auto">Vérifier mes réponses</button>
+                    <div id="trous-feedback" class="font-bold text-lg"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACTIVITÉ 3 : L'INTRUS -->
+        <div id="tab-3" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-md border-t-4 border-t-oif-purple p-4 md:p-8">
+                <div class="text-center mb-6">
+                    <h2 class="text-xl md:text-2xl font-bold text-unam-blue mb-2">Chasse à l'intrus</h2>
+                    <p class="text-sm text-gray-600">Dans chaque liste, trois mots appartiennent au même domaine sémantique (au même thème). Trouvez et tapez sur le mot qui est l'intrus.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="intrus-container">
+                    <!-- Généré par JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ACTIVITÉ 4 : SYNTHÈSE VOCALE -->
+        <div id="tab-4" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-md border-t-4 border-t-oif-green p-4 md:p-8">
+                <div class="text-center mb-6">
+                    <h2 class="text-xl md:text-2xl font-bold text-unam-blue mb-2">Dictée de Définitions</h2>
+                    <p class="text-sm text-gray-600">Écoutez la définition dictée par le navigateur, puis sélectionnez le mot correspondant parmi les 4 options.</p>
+                </div>
+
+                <div class="max-w-xl mx-auto bg-gray-50 border border-gray-200 rounded-xl p-6 md:p-8 text-center shadow-inner relative">
+                    <div class="absolute top-4 right-4 text-xs font-bold text-gray-400" id="audio-progress">Question 1 / 4</div>
+                    
+                    <button id="btn-play-audio" onclick="playCurrentAudio()" class="mt-4 mb-8 mx-auto flex items-center justify-center w-20 h-20 bg-oif-green text-white rounded-full shadow-lg hover:bg-green-600 transition-all focus:outline-none">
+                        <svg class="w-10 h-10 ml-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2v16l-7-5.5H0v-5h3z"/><path d="M14 6.5v7c1.5-1 1.5-6 0-7z"/><path d="M16.5 3.5v13c3-2 3-11 0-13z"/></svg>
+                    </button>
+
+                    <p class="text-sm text-gray-500 mb-4 italic" id="audio-help">Appuyez pour écouter la définition</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="audio-options">
+                        <!-- Options générées par JS -->
+                    </div>
+
+                    <div id="audio-feedback" class="mt-6 font-bold text-lg hidden"></div>
+                    <button id="btn-next-audio" onclick="nextAudioQuestion()" class="mt-4 px-6 py-2 bg-unam-blue text-white rounded-full text-sm font-bold shadow-md hover:bg-blue-900 transition-colors hidden mx-auto">Question suivante</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-unam-blue text-white text-center py-4 border-t-2 border-unam-gold mt-auto">
+        <p class="text-xs opacity-80">Conception Pédagogique FLE - Niveau B1+</p>
+    </footer>
+
+    <script>
+        /* --- NAVIGATION DES ONGLETS --- */
+        function switchTab(tabId) {
+            // Arrêter la synthèse vocale si on change d'onglet
+            window.speechSynthesis.cancel();
+
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+
+            const activeBtnClass = "snap-start shrink-0 px-4 py-3 sm:py-2 bg-unam-blue text-white font-bold rounded-lg transition-colors text-sm md:text-base shadow-sm";
+            const inactiveBtnClass = "snap-start shrink-0 px-4 py-3 sm:py-2 bg-white text-unam-blue border border-gray-300 hover:border-unam-gold font-bold rounded-lg transition-colors text-sm md:text-base shadow-sm";
+
+            for(let i=0; i<=4; i++) {
+                document.getElementById('btn-tab-'+i).className = inactiveBtnClass;
+            }
+            document.getElementById('btn-' + tabId).className = activeBtnClass;
+        }
+
+        /* --- ONGLET 0 : LE LEXIQUE (CATÉGORISÉ AVEC TOOLTIPS) --- */
+        const lexiqueComplet = [
+            {
+                categorie: "Les Acteurs du marché",
+                mots: [
+                    { mot: "Client", def: "Personne qui achète un produit ou un service." },
+                    { mot: "Consommateur", def: "Personne qui utilise ou détruit un produit pour satisfaire un besoin." },
+                    { mot: "Fournisseur", def: "Entreprise ou personne qui procure des marchandises." },
+                    { mot: "Citoyen", def: "Personne qui participe à la vie de la société (ex: consommateur responsable)." },
+                    { mot: "Écolos", def: "Personnes engagées dans la protection de l'environnement." }
+                ]
+            },
+            {
+                categorie: "Les Produits & Le Commerce",
+                mots: [
+                    { mot: "Brocante", def: "Marché public où l'on vend des objets anciens et d'occasion." },
+                    { mot: "Commerce équitable", def: "Système garantissant une juste rémunération aux producteurs." },
+                    { mot: "Bas de gamme", def: "Produit de faible qualité, souvent peu cher." },
+                    { mot: "Rapport qualité-prix", def: "Valeur d'un objet comparée à son coût financier." },
+                    { mot: "Remise", def: "Réduction accordée sur le prix de vente." },
+                    { mot: "Marchandising", def: "Techniques de présentation des produits pour faire vendre." },
+                    { mot: "Compétitif", def: "Qui peut rivaliser avec les autres (prix compétitif)." }
+                ]
+            },
+            {
+                categorie: "La Négociation",
+                mots: [
+                    { mot: "Marchander", def: "Discuter le prix d'une marchandise pour payer moins cher." },
+                    { mot: "Négocier un prix", def: "Synonyme de marchander, trouver un accord financier." },
+                    { mot: "Rabattre un prix", def: "Faire baisser le prix initialement demandé." },
+                    { mot: "Conseiller", def: "Recommander un choix à quelqu'un." }
+                ]
+            },
+            {
+                categorie: "Les Dérives & La Loi",
+                mots: [
+                    { mot: "Fraude", def: "Tromperie pour échapper à une règle ou voler de l'argent." },
+                    { mot: "Escroquerie", def: "Délit consistant à tromper quelqu'un pour obtenir son bien." },
+                    { mot: "Manipulation", def: "Action d'influencer le comportement des acheteurs à leur insu." },
+                    { mot: "Dispositions officielles", def: "Lois et règles encadrant la consommation." },
+                    { mot: "Anti-fraude", def: "Mesures destinées à lutter contre les tromperies commerciales." }
+                ]
+            }
+        ];
+
+        function initLexique() {
+            const container = document.getElementById('lexique-container');
+            
+            lexiqueComplet.forEach(cat => {
+                const section = document.createElement('div');
+                section.className = "mb-6";
+                
+                const title = document.createElement('h3');
+                title.className = "text-lg font-bold text-unam-gold mb-4 border-b pb-1";
+                title.innerText = cat.categorie;
+                section.appendChild(title);
+
+                const tagsContainer = document.createElement('div');
+                tagsContainer.className = "flex flex-wrap gap-4";
+
+                cat.mots.forEach(item => {
+                    // Conteneur relatif pour le tooltip
+                    const wrapper = document.createElement('div');
+                    wrapper.className = "relative inline-block lexique-item";
+                    wrapper.tabIndex = "0"; // Rend l'élément "focusable" pour mobile
+
+                    const badge = document.createElement('span');
+                    badge.className = "inline-block px-4 py-2 bg-gray-100 border border-gray-300 rounded-full text-unam-blue font-semibold cursor-pointer hover:bg-unam-blue hover:text-white transition-colors shadow-sm";
+                    badge.innerText = item.mot;
+
+                    const tooltip = document.createElement('div');
+                    tooltip.className = "lexique-tooltip absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-56 p-3 bg-unam-blue text-white text-sm rounded-lg shadow-xl z-10 text-center pointer-events-none";
+                    tooltip.innerText = item.def;
+                    
+                    // Petit triangle pointant vers le bas
+                    const triangle = document.createElement('div');
+                    triangle.className = "absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-unam-blue";
+                    tooltip.appendChild(triangle);
+
+                    wrapper.appendChild(badge);
+                    wrapper.appendChild(tooltip);
+                    tagsContainer.appendChild(wrapper);
+                });
+
+                section.appendChild(tagsContainer);
+                container.appendChild(section);
+            });
+        }
+
+
+        /* --- ACTIVITÉ 1 : ASSOCIATION --- */
+        const assocData = [
+            { id: 1, word: "Brocante", def: "Marché d'occasion." },
+            { id: 2, word: "Rapport qualité-prix", def: "Évaluation selon ce qu'il offre et ce qu'il coûte." },
+            { id: 3, word: "Rabattre un prix", def: "Négocier pour faire diminuer le coût." },
+            { id: 4, word: "Fraude", def: "Tromperie punie par la loi." },
+            { id: 5, word: "Remise", def: "Réduction accordée sur le prix." }
+        ];
+
+        let selectedWordId = null; let selectedDefId = null; let matchesFound = 0;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function initAssoc() {
+            const wordsContainer = document.getElementById('words-container');
+            const defsContainer = document.getElementById('defs-container');
+            wordsContainer.innerHTML = ''; defsContainer.innerHTML = '';
+            matchesFound = 0;
+            document.getElementById('assoc-feedback').classList.add('hidden');
+            document.getElementById('assoc-reset-btn').classList.add('hidden');
+
+            const shuffledWords = shuffleArray([...assocData]);
+            const shuffledDefs = shuffleArray([...assocData]);
+
+            shuffledWords.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'match-btn w-full p-4 bg-blue-50 border-2 border-blue-200 text-unam-blue font-bold rounded-xl text-left shadow-sm text-sm md:text-base';
+                btn.innerText = item.word; btn.dataset.id = item.id; btn.dataset.type = 'word';
+                btn.onclick = () => handleAssocClick(btn);
+                wordsContainer.appendChild(btn);
+            });
+
+            shuffledDefs.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'match-btn w-full p-4 bg-white border-2 border-gray-200 text-gray-700 rounded-xl text-left shadow-sm text-sm md:text-base';
+                btn.innerText = item.def; btn.dataset.id = item.id; btn.dataset.type = 'def';
+                btn.onclick = () => handleAssocClick(btn);
+                defsContainer.appendChild(btn);
+            });
+        }
+
+        function handleAssocClick(btn) {
+            if(btn.classList.contains('matched')) return;
+            const isWord = btn.dataset.type === 'word';
+            
+            document.querySelectorAll(`.match-btn[data-type="${btn.dataset.type}"]`).forEach(el => {
+                if(!el.classList.contains('matched')) el.classList.remove('selected');
+            });
+
+            btn.classList.add('selected');
+            if(isWord) selectedWordId = btn.dataset.id; else selectedDefId = btn.dataset.id;
+
+            if(selectedWordId && selectedDefId) checkMatch();
+        }
+
+        function checkMatch() {
+            const wordBtn = document.querySelector(`.match-btn[data-type="word"].selected`);
+            const defBtn = document.querySelector(`.match-btn[data-type="def"].selected`);
+
+            if(selectedWordId === selectedDefId) {
+                wordBtn.classList.remove('selected'); defBtn.classList.remove('selected');
+                wordBtn.classList.add('matched'); defBtn.classList.add('matched');
+                matchesFound++;
+                if(matchesFound === assocData.length) {
+                    const fb = document.getElementById('assoc-feedback');
+                    fb.innerText = "🎉 Félicitations ! Vous avez tout trouvé.";
+                    fb.className = "mt-6 text-center font-bold text-lg text-oif-green";
+                    document.getElementById('assoc-reset-btn').classList.remove('hidden');
+                }
+            } else {
+                wordBtn.classList.add('error'); defBtn.classList.add('error');
+                setTimeout(() => {
+                    wordBtn.classList.remove('error', 'selected'); defBtn.classList.remove('error', 'selected');
+                }, 400);
+            }
+            selectedWordId = null; selectedDefId = null;
+        }
+
+        function resetAssoc() { initAssoc(); }
+
+        /* --- ACTIVITÉ 2 : PHRASES À TROUS --- */
+        const trousAnswers = {
+            'trou-1': 'escroquerie', 'trou-2': 'marchander', 'trou-3': 'bas de gamme',
+            'trou-4': 'commerce équitable', 'trou-5': 'fournisseur'
+        };
+
+        function checkTrous() {
+            let score = 0;
+            for (let id in trousAnswers) {
+                const select = document.getElementById(id);
+                select.classList.remove('correct', 'incorrect');
+                if (select.value === trousAnswers[id]) { select.classList.add('correct'); score++; } 
+                else if (select.value !== "") { select.classList.add('incorrect'); }
+            }
+            const fb = document.getElementById('trous-feedback');
+            if (score === 5) {
+                fb.innerText = "Parfait ! 5/5"; fb.className = "font-bold text-lg text-oif-green";
+            } else {
+                fb.innerText = `Score : ${score}/5. Corrigez les mots en rouge.`; fb.className = "font-bold text-lg text-oif-red";
+            }
+        }
+
+        /* --- ACTIVITÉ 3 : L'INTRUS --- */
+        const intrusData = [
+            { theme: "Catégorie 1 : Les acteurs du marché", words: ["Client", "Consommateur", "Fournisseur", "Acheteur"], intrus: "Fournisseur", explication: "Le <strong>fournisseur</strong> <em>vend</em>. Les autres <em>achètent</em>." },
+            { theme: "Catégorie 2 : La discussion du prix", words: ["Marchander", "Négocier un prix", "Conseiller", "Rabattre un prix"], intrus: "Conseiller", explication: "<strong>Conseiller</strong> = donner un avis. Les autres concernent la négociation." },
+            { theme: "Catégorie 3 : Les pratiques illégales", words: ["Fraude", "Escroquerie", "Manipulation", "Remise"], intrus: "Remise", explication: "Une <strong>remise</strong> est légale. Les autres sont des tromperies." },
+            { theme: "Catégorie 4 : L'évaluation", words: ["Bas de gamme", "Rapport qualité-prix", "Compétitif", "Écolo"], intrus: "Écolo", explication: "<strong>Écolo</strong> concerne l'environnement. Les autres évaluent la valeur commerciale." }
+        ];
+
+        function initIntrus() {
+            const container = document.getElementById('intrus-container');
+            container.innerHTML = '';
+            intrusData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-gray-50 border border-gray-200 rounded-xl p-4 shadow-sm";
+                const title = document.createElement('h3');
+                title.className = "font-bold text-unam-blue text-sm mb-3 border-b pb-2"; title.innerText = item.theme;
+                card.appendChild(title);
+
+                const btnGrid = document.createElement('div'); btnGrid.className = "grid grid-cols-2 gap-2 mb-3";
+                const shuffledWords = shuffleArray([...item.words]);
+
+                shuffledWords.forEach(word => {
+                    const btn = document.createElement('button');
+                    btn.className = "intrus-btn w-full py-2 px-1 border border-gray-300 bg-white rounded-lg text-sm font-medium text-gray-700 shadow-sm";
+                    btn.innerText = word;
+                    btn.onclick = () => handleIntrusClick(btn, word, item, card);
+                    btnGrid.appendChild(btn);
+                });
+                card.appendChild(btnGrid);
+
+                const explDiv = document.createElement('div');
+                explDiv.className = "text-xs text-gray-600 bg-white p-2 rounded border border-gray-100 hidden mt-2";
+                card.appendChild(explDiv);
+                container.appendChild(card);
+            });
+        }
+
+        function handleIntrusClick(btn, word, item, card) {
+            const buttons = card.querySelectorAll('button');
+            buttons.forEach(b => b.disabled = true);
+            const explDiv = card.querySelector('div.text-xs');
+            explDiv.classList.remove('hidden');
+
+            if (word === item.intrus) {
+                btn.classList.add('correct');
+                explDiv.innerHTML = `✅ <strong>Correct !</strong> ${item.explication}`;
+                explDiv.classList.add('border-oif-green', 'bg-green-50');
+            } else {
+                btn.classList.add('incorrect');
+                buttons.forEach(b => { if (b.innerText === item.intrus) b.classList.add('!bg-green-100', '!border-green-400', '!text-green-800'); });
+                explDiv.innerHTML = `❌ <strong>Oups !</strong> L'intrus était <strong>${item.intrus}</strong>. <br>${item.explication}`;
+                explDiv.classList.add('border-oif-red', 'bg-red-50');
+            }
+        }
+
+        /* --- ACTIVITÉ 4 : SYNTHÈSE VOCALE --- */
+        const audioQuestions = [
+            { def: "Délit consistant à tromper quelqu'un pour obtenir son bien ou son argent.", options: ["Brocante", "Escroquerie", "Remise", "Client"], correct: "Escroquerie" },
+            { def: "Faire baisser le prix initialement demandé par le vendeur.", options: ["Conseiller", "Frauder", "Rabattre un prix", "Liquider"], correct: "Rabattre un prix" },
+            { def: "Personne ou entreprise chargée de procurer des marchandises à un commerce.", options: ["Fournisseur", "Citoyen", "Consommateur", "Écolo"], correct: "Fournisseur" },
+            { def: "Produit de faible qualité, qui est souvent vendu à un prix très bas.", options: ["Compétitif", "Commerce équitable", "Rapport qualité-prix", "Bas de gamme"], correct: "Bas de gamme" }
+        ];
+
+        let currentAudioIndex = 0;
+
+        function initAudioQuiz() {
+            currentAudioIndex = 0;
+            loadAudioQuestion();
+        }
+
+        function loadAudioQuestion() {
+            const q = audioQuestions[currentAudioIndex];
+            document.getElementById('audio-progress').innerText = `Question ${currentAudioIndex + 1} / ${audioQuestions.length}`;
+            
+            const btnPlay = document.getElementById('btn-play-audio');
+            btnPlay.classList.remove('playing-audio');
+            
+            const optionsContainer = document.getElementById('audio-options');
+            optionsContainer.innerHTML = '';
+            
+            // Randomize options visually
+            const shuffledOptions = shuffleArray([...q.options]);
+            
+            shuffledOptions.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = "py-3 px-4 bg-white border-2 border-gray-200 rounded-lg text-unam-blue font-bold hover:bg-blue-50 transition-colors shadow-sm disabled:opacity-50";
+                btn.innerText = opt;
+                btn.onclick = () => checkAudioAnswer(btn, opt, q.correct);
+                optionsContainer.appendChild(btn);
+            });
+
+            document.getElementById('audio-feedback').classList.add('hidden');
+            document.getElementById('btn-next-audio').classList.add('hidden');
+            document.getElementById('audio-help').innerText = "Appuyez pour écouter la définition";
+            document.getElementById('audio-help').classList.remove('text-oif-green', 'text-oif-red');
+        }
+
+        function playCurrentAudio() {
+            if (!('speechSynthesis' in window)) {
+                alert("Désolé, votre navigateur ne supporte pas la synthèse vocale.");
+                return;
+            }
+            
+            const q = audioQuestions[currentAudioIndex];
+            const btnPlay = document.getElementById('btn-play-audio');
+            const helpText = document.getElementById('audio-help');
+            
+            window.speechSynthesis.cancel(); // Arrêter s'il y a déjà un audio en cours
+            
+            const utterance = new SpeechSynthesisUtterance(q.def);
+            utterance.lang = 'fr-FR';
+            utterance.rate = 0.9; // Légèrement plus lent pour une meilleure compréhension
+            
+            utterance.onstart = () => {
+                btnPlay.classList.add('playing-audio');
+                helpText.innerText = "Écoute en cours...";
+            };
+            
+            utterance.onend = () => {
+                btnPlay.classList.remove('playing-audio');
+                helpText.innerText = "Sélectionnez le mot correspondant (ou réécoutez)";
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkAudioAnswer(btnSelected, selectedWord, correctWord) {
+            window.speechSynthesis.cancel(); // Couper le son s'il tournait encore
+            
+            const buttons = document.getElementById('audio-options').querySelectorAll('button');
+            buttons.forEach(b => b.disabled = true); // Bloquer les autres choix
+
+            const feedback = document.getElementById('audio-feedback');
+            feedback.classList.remove('hidden');
+
+            if (selectedWord === correctWord) {
+                btnSelected.classList.remove('bg-white', 'border-gray-200', 'text-unam-blue');
+                btnSelected.classList.add('bg-oif-green', 'border-oif-green', 'text-white');
+                feedback.innerText = `✅ Correct ! C'était bien : ${correctWord}.`;
+                feedback.className = "mt-6 font-bold text-lg text-oif-green";
+            } else {
+                btnSelected.classList.remove('bg-white', 'border-gray-200', 'text-unam-blue');
+                btnSelected.classList.add('bg-oif-red', 'border-oif-red', 'text-white', 'animation-shake');
+                
+                // Mettre en évidence la bonne réponse
+                buttons.forEach(b => {
+                    if (b.innerText === correctWord) {
+                        b.classList.remove('bg-white', 'border-gray-200', 'text-unam-blue');
+                        b.classList.add('bg-green-100', 'border-oif-green', 'text-oif-green');
+                    }
+                });
+                
+                feedback.innerHTML = `❌ Faux. La bonne réponse était <strong>${correctWord}</strong>.`;
+                feedback.className = "mt-6 font-bold text-lg text-oif-red";
+            }
+
+            const btnNext = document.getElementById('btn-next-audio');
+            btnNext.classList.remove('hidden');
+            
+            if (currentAudioIndex >= audioQuestions.length - 1) {
+                btnNext.innerText = "Terminer l'exercice";
+                btnNext.onclick = () => {
+                    feedback.innerText = "🎉 Vous avez terminé l'exercice d'écoute !";
+                    feedback.className = "mt-6 font-bold text-lg text-unam-gold";
+                    btnNext.classList.add('hidden');
+                    // Optionnel : ajouter un bouton recommencer ici
+                };
+            } else {
+                btnNext.innerText = "Question suivante";
+                btnNext.onclick = nextAudioQuestion;
+            }
+        }
+
+        function nextAudioQuestion() {
+            currentAudioIndex++;
+            loadAudioQuestion();
+        }
+
+        // Initialisation globale
+        initLexique();
+        initAssoc();
+        initIntrus();
+        initAudioQuiz();
+        
+        // Assurer l'affichage correct au chargement
+        switchTab('tab-0');
+
+    </script>
+</body>
+</html>
