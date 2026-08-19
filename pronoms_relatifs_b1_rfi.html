@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les pronoms relatifs "que" et "dont" - B1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0fdfa; /* Fond cyan très clair */
+            color: #1e293b;
+        }
+        
+        .incorrect { 
+            border-color: #ef4444 !important; 
+            background-color: #fef2f2 !important; 
+            color: #991b1b !important; 
+            font-weight: bold;
+        }
+        
+        .rfi-red { background-color: #e3001b; }
+        
+        /* Style des champs à remplir */
+        .blank-input {
+            border: none;
+            border-bottom: 2px solid #cbd5e1;
+            background: transparent;
+            text-align: center;
+            font-weight: 600;
+            color: #334155;
+            width: 80px;
+            padding: 0 4px;
+            transition: all 0.2s;
+            outline: none;
+        }
+        .blank-input:focus {
+            border-bottom-width: 3px;
+            border-color: #06b6d4;
+            color: #0891b2;
+        }
+        
+        /* Cacher les inputs radio de base pour un style personnalisé si besoin, mais ici on utilise Tailwind */
+    </style>
+</head>
+<body class="antialiased pb-12">
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        
+        <header class="bg-white rounded-3xl shadow-md p-6 sm:p-8 mb-8 flex flex-col sm:flex-row items-center justify-between border-t-8 border-cyan-500 relative">
+            <div class="flex items-center gap-4 mb-4 sm:mb-0">
+                <div class="w-16 h-16 rounded-full bg-cyan-100 flex items-center justify-center p-2 border-2 border-cyan-300">
+                    <svg class="w-10 h-10 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+                </div>
+                <div>
+                    <h1 class="text-3xl font-extrabold text-slate-800">Le français <span class="text-cyan-500">facile</span></h1>
+                    <p class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Fiche apprenant·e</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <div class="bg-cyan-500 text-white rounded-full w-14 h-14 flex items-center justify-center text-xl font-bold shadow-lg ring-4 ring-cyan-100">
+                    B1
+                </div>
+            </div>
+            
+            <div class="w-full mt-6 bg-cyan-500 text-white rounded-2xl p-4 text-center shadow-inner">
+                <h2 class="text-xl sm:text-2xl font-bold tracking-wide">GRAMMAIRE</h2>
+                <p class="text-lg font-medium opacity-90">Les pronoms relatifs « que » et « dont »</p>
+            </div>
+        </header>
+
+        <section class="bg-white rounded-2xl shadow-sm p-6 mb-8 border border-slate-100">
+            <div class="flex items-center gap-3 mb-4">
+                <svg class="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <h3 class="text-lg font-bold text-slate-800">Document sonore</h3>
+            </div>
+            <div class="w-full bg-slate-50 p-4 rounded-xl border border-slate-200 flex justify-center">
+                <audio controls class="w-full max-w-md">
+                    <source src="audio_dont_qui.mp3" type="audio/mpeg">
+                    Votre navigateur ne supporte pas la balise audio.
+                </audio>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-2xl shadow-sm p-6 sm:p-8 mb-8 border border-slate-100 relative">
+            <h3 class="text-xl font-bold text-slate-800 mb-2 flex items-center gap-2">
+                <span class="bg-cyan-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm">1</span>
+                Activité 1 - Écouter
+            </h3>
+            <p class="text-slate-600 mb-6 font-medium">« Que » ou « dont » ? Écoutez et complétez les phrases avec les mots que vous entendez.</p>
+            
+            <div class="space-y-5 text-slate-700 leading-relaxed">
+                <p>1. Ce kataklè, <input type="text" class="blank-input act1" data-answer="dont" autocomplete="off"> la trace avait été perdue, a finalement été retrouvé dans un musée en Finlande et rendu, aujourd'hui, au Bénin.</p>
+                <p>2. C'est le rappeur français Werenoi <input type="text" class="blank-input act1" data-answer="que" autocomplete="off"> l'on retrouve, sans surprise, à la tête de ce classement.</p>
+                <p>3. On retrouve aussi, à la troisième marche, Nicola Sirkis et son groupe Indochine, <input type="text" class="blank-input act1" data-answer="dont" autocomplete="off"> l'album Babel Babel a cartonné l'an dernier.</p>
+                <p>4. C'est un rocher <input type="text" class="blank-input act1" data-answer="dont" autocomplete="off"> , en théorie, on ne s'échappe jamais.</p>
+                <p>5. Le cinéaste haïtien Raoul Peck livre un documentaire sur l'auteur de 1984, George Orwell, <input type="text" class="blank-input act1" data-answer="dont" autocomplete="off"> les mots et l'engagement font écho à l'actualité brûlante.</p>
+                <p>6. Transmettre cette mémoire, c'est l'objectif pédagogique <input type="text" class="blank-input act1" data-answer="que" autocomplete="off"> s'est fixé José Garzon, le directeur du lycée.</p>
+                <p>7. C'est justement le niveau maximal fixé par l'accord de 2015, <input type="text" class="blank-input act1" data-answer="dont" autocomplete="off"> Donald Trump s'est retiré en 2018.</p>
+                <p>8. C'était le Journal en français facile, <input type="text" class="blank-input act1" data-answer="que" autocomplete="off"> vous pouvez retrouver sur francaisfacile.rfi.fr.</p>
+            </div>
+            
+            <div class="mt-8 flex flex-col items-center">
+                <button onclick="verifierAct1()" class="bg-cyan-100 hover:bg-cyan-200 text-cyan-800 font-semibold py-2 px-6 rounded-full transition-colors text-sm border border-cyan-200 shadow-sm">
+                    Vérifier l'activité 1
+                </button>
+                <p id="msg-act1" class="mt-2 text-sm hidden"></p>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-2xl shadow-sm p-6 sm:p-8 mb-8 border border-slate-100">
+            <h3 class="text-xl font-bold text-slate-800 mb-2 flex items-center gap-2">
+                <span class="bg-cyan-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm">2</span>
+                Activité 2 - Observer
+            </h3>
+            <p class="text-slate-600 mb-6 font-medium">Observez et répondez.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div class="bg-cyan-50 rounded-xl p-4 border border-cyan-100">
+                        <p class="font-semibold mb-3">1. « Que » est suivi...</p>
+                        <label class="flex items-center gap-3 mb-2 cursor-pointer">
+                            <input type="radio" name="q1" value="wrong" class="w-4 h-4 text-cyan-600 focus:ring-cyan-500 act2">
+                            <span>d'un verbe.</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q1" value="correct" class="w-4 h-4 text-cyan-600 focus:ring-cyan-500 act2">
+                            <span>d'un sujet et d'un verbe.</span>
+                        </label>
+                    </div>
+
+                    <div class="bg-cyan-50 rounded-xl p-4 border border-cyan-100">
+                        <p class="font-semibold mb-3">2. « Que » remplace une personne ou une chose introduite par un verbe...</p>
+                        <label class="flex items-center gap-3 mb-2 cursor-pointer">
+                            <input type="radio" name="q2" value="correct" class="w-4 h-4 text-cyan-600 focus:ring-cyan-500 act2">
+                            <span>direct (sans préposition).</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q2" value="wrong" class="w-4 h-4 text-cyan-600 focus:ring-cyan-500 act2">
+                            <span>indirect (avec préposition).</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-cyan-50 rounded-xl p-4 border border-cyan-100">
+                        <p class="font-semibold mb-3">3. « Dont » est suivi...</p>
+                        <label class="flex items-center gap-3 mb-2 cursor-pointer">
+                            <input type="radio" name="q3" value="wrong" class="w-4 h-4 text-cyan-600 focus:ring-cyan-500 act2">
+                            <span>d'un verbe.</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q3" value="correct" class="w-4 h-4 text-cyan-600 focus:ring-cyan-500 act2">
+                            <span>d'un sujet et d'un verbe.</span>
+                        </label>
+                    </div>
+
+                    <div class="bg-cyan-50 rounded-xl p-4 border border-cyan-100">
+                        <p class="font-semibold mb-3">4. « Dont » remplace une personne ou une chose introduite par la préposition...</p>
+                        <label class="flex items-center gap-3 mb-2 cursor-pointer">
+                            <input type="radio" name="q4" value="correct" class="w-4 h-4 text-cyan-600 focus:ring-cyan-500 act2">
+                            <span>« de »</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q4" value="wrong" class="w-4 h-4 text-cyan-600 focus:ring-cyan-500 act2">
+                            <span>« à »</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 flex flex-col items-center">
+                <button onclick="verifierAct2()" class="bg-cyan-100 hover:bg-cyan-200 text-cyan-800 font-semibold py-2 px-6 rounded-full transition-colors text-sm border border-cyan-200 shadow-sm">
+                    Vérifier l'activité 2
+                </button>
+                <p id="msg-act2" class="mt-2 text-sm hidden"></p>
+            </div>
+        </section>
+
+        <section class="mb-12 mt-12">
+            <div class="flex items-center gap-3 mb-8">
+                <svg class="w-8 h-8 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                <h3 class="text-2xl font-bold text-slate-800">Observez la règle d'utilisation</h3>
+            </div>
+
+            <!-- Schéma QUE -->
+            <div class="bg-white border-2 border-cyan-200 rounded-3xl p-6 sm:p-10 pt-12 relative shadow-lg mb-16">
+                <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-cyan-500 text-white px-8 py-2 rounded-full font-bold shadow-md whitespace-nowrap">
+                    GRAMMAIRE : « que »
+                </div>
+                
+                <div class="flex items-center gap-2 font-bold text-lg mb-8 text-slate-700 bg-cyan-50 p-4 rounded-xl">
+                    <div class="w-10 h-10 rounded-full bg-cyan-500 text-white flex items-center justify-center font-bold text-xl mr-2">Que</div>
+                    <span>+ sujet + verbe direct <span class="text-cyan-500 mx-2">→</span> remplace une chose ou une personne</span>
+                </div>
+
+                <div class="space-y-8 pl-4 border-l-4 border-cyan-100 relative">
+                    <div class="relative">
+                        <p class="text-lg">
+                            Werenoi, <span class="font-bold text-cyan-600">que</span> <span class="underline decoration-cyan-400 decoration-2 underline-offset-4">nous retrouvons</span> à la première place, est un rappeur français.
+                        </p>
+                        <div class="text-sm text-cyan-700 bg-cyan-50 border border-cyan-100 inline-block px-3 py-1 rounded-full mt-2 ml-16 flex items-center gap-2 font-medium">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path></svg>
+                            retrouver quelqu'un ou quelque chose
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <p class="text-lg">
+                            Son album, <span class="font-bold text-cyan-600">qu'</span><span class="underline decoration-cyan-400 decoration-2 underline-offset-4">on va écouter</span> tout de suite, s'appelle Diamant noir.
+                        </p>
+                        <div class="text-sm text-cyan-700 bg-cyan-50 border border-cyan-100 inline-block px-3 py-1 rounded-full mt-2 ml-16 flex items-center gap-2 font-medium">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path></svg>
+                            écouter quelqu'un ou quelque chose
+                        </div>
+                        <div class="mt-3 text-xs font-semibold text-slate-600 bg-slate-100 inline-block px-3 py-1 rounded-md border border-slate-200 shadow-sm">
+                            Devant une voyelle, que ➔ qu'
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schéma DONT -->
+            <div class="bg-white border-2 border-teal-200 rounded-3xl p-6 sm:p-10 pt-12 relative shadow-lg mb-16">
+                <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-teal-500 text-white px-8 py-2 rounded-full font-bold shadow-md whitespace-nowrap">
+                    GRAMMAIRE : « dont »
+                </div>
+                
+                <div class="flex items-center gap-2 font-bold text-lg mb-8 text-slate-700 bg-teal-50 p-4 rounded-xl">
+                    <div class="w-10 h-10 rounded-full bg-teal-500 text-white flex items-center justify-center font-bold text-xl mr-2">Dont</div>
+                    <span>remplace une chose ou une personne introduite par « de »</span>
+                </div>
+
+                <div class="space-y-8 pl-4 border-l-4 border-teal-100 relative">
+                    <div class="relative">
+                        <p class="text-lg">
+                            La prison d'Alcatraz est un rocher <span class="font-bold text-teal-600">dont</span> on ne peut pas <span class="underline decoration-teal-400 decoration-2 underline-offset-4">s'échapper</span>.
+                        </p>
+                        <div class="text-sm text-teal-700 bg-teal-50 inline-block px-3 py-1 rounded-full mt-2 ml-16 flex items-center gap-2 font-medium border border-teal-100">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path></svg>
+                            s'échapper <strong>de</strong> quelque chose
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <p class="text-lg">
+                            Ce groupe, <span class="font-bold text-teal-600">dont</span> <span class="underline decoration-teal-400 decoration-2 underline-offset-4">l'album</span> a eu un grand succès, se trouve à la troisième place.
+                        </p>
+                        <div class="text-sm text-teal-700 bg-teal-50 inline-block px-3 py-1 rounded-full mt-2 ml-16 flex items-center gap-2 font-medium border border-teal-100">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path></svg>
+                            l'album <strong>de</strong> ce groupe
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schéma Verbes avec DE -->
+            <div class="bg-white border-2 border-slate-200 rounded-3xl p-6 sm:p-8 pt-12 relative shadow-lg">
+                <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-slate-700 text-white px-8 py-2 rounded-full font-bold shadow-md whitespace-nowrap">
+                    GRAMMAIRE : Verbes avec « de »
+                </div>
+                
+                <p class="text-lg font-bold text-slate-800 mb-6 text-center">De nombreux verbes se construisent avec « de » :</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-slate-700">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col gap-2 shadow-sm font-medium hover:bg-slate-100 transition-colors">
+                        <span>parler de</span>
+                        <span>discuter de</span>
+                        <span>se souvenir de</span>
+                        <span>se servir de</span>
+                        <span>avoir besoin de</span>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col gap-2 shadow-sm font-medium hover:bg-slate-100 transition-colors">
+                        <span>s'occuper de</span>
+                        <span>rêver de</span>
+                        <span>être fier/fière de</span>
+                        <span>avoir honte de</span>
+                        <span>avoir peur de</span>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col gap-2 shadow-sm font-medium hover:bg-slate-100 transition-colors">
+                        <span>faire partie de</span>
+                        <span>dépendre de</span>
+                        <span>se passer de</span>
+                        <span>disposer de</span>
+                        <span>bénéficier de</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-2xl shadow-sm p-6 sm:p-8 mb-8 border border-slate-100">
+            <h3 class="text-xl font-bold text-slate-800 mb-2 flex items-center gap-2">
+                <span class="bg-cyan-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm">3</span>
+                Activité 3 - S'exercer : les pronoms relatifs « que » et « dont »
+            </h3>
+            <p class="text-slate-600 mb-4 font-medium">« Que » ou « dont » ? Complétez les phrases avec le pronom relatif qui convient.</p>
+            
+            <div class="bg-amber-50 rounded-xl p-4 mb-6 border border-amber-200">
+                <p class="text-sm font-bold text-amber-800 mb-1">Exemple :</p>
+                <p class="text-sm text-slate-700 italic">Ce journaliste a publié un article. Tout le monde parle de cet article.</p>
+                <p class="text-sm text-slate-800 font-semibold mt-1">➔ L'article dont tout le monde parle a été publié par ce journaliste.</p>
+            </div>
+
+            <div class="space-y-6 text-slate-700">
+                <div class="border-b border-slate-100 pb-4">
+                    <p class="text-sm text-slate-500 mb-1 italic">1. J'ai vu un documentaire. Ce documentaire m'a beaucoup touché.</p>
+                    <p>➔ Le documentaire <input type="text" class="blank-input act3" data-answer="que" autocomplete="off"> j'ai vu m'a beaucoup touché.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-4">
+                    <p class="text-sm text-slate-500 mb-1 italic">2. Voici une entreprise. On admire beaucoup les innovations de cette entreprise.</p>
+                    <p>➔ Voici une entreprise <input type="text" class="blank-input act3" data-answer="dont" autocomplete="off"> on admire beaucoup les innovations.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-4">
+                    <p class="text-sm text-slate-500 mb-1 italic">3. La romancière a écrit un nouveau livre. Ce livre a eu beaucoup de succès.</p>
+                    <p>➔ Le nouveau livre <input type="text" class="blank-input act3" data-answer="que" autocomplete="off"> la romancière a écrit a eu beaucoup de succès.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-4">
+                    <p class="text-sm text-slate-500 mb-1 italic">4. Nous avons rencontré un chercheur. Ce chercheur a développé une méthode révolutionnaire.</p>
+                    <p>➔ Le chercheur <input type="text" class="blank-input act3" data-answer="que" autocomplete="off"> nous avons rencontré a développé une méthode révolutionnaire.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-4">
+                    <p class="text-sm text-slate-500 mb-1 italic">5. L'intelligence artificielle est un nouvel outil. Les élèves se servent de plus en plus de cet outil.</p>
+                    <p>➔ L'intelligence artificielle est un nouvel outil <input type="text" class="blank-input act3" data-answer="dont" autocomplete="off"> les élèves se servent de plus en plus.</p>
+                </div>
+                <div class="border-b border-slate-100 pb-4">
+                    <p class="text-sm text-slate-500 mb-1 italic">6. Robert de Niro a reçu la palme d'honneur au festival de Cannes. La carrière de Robert de Niro a commencé dans les années 60.</p>
+                    <p>➔ Robert de Niro, <input type="text" class="blank-input act3" data-answer="dont" autocomplete="off"> la carrière a commencé dans les années 60, a reçu la palme d'honneur au festival de Cannes.</p>
+                </div>
+                <div>
+                    <p class="text-sm text-slate-500 mb-1 italic">7. Cette technologie est encore en phase de test. Les hôpitaux ont besoin de cette technologie pour détecter les maladies plus vite.</p>
+                    <p>➔ Cette technologie, <input type="text" class="blank-input act3" data-answer="dont" autocomplete="off"> les hôpitaux ont besoin pour détecter les maladies plus vite, est encore en phase de test.</p>
+                </div>
+            </div>
+
+            <div class="mt-8 flex flex-col items-center">
+                <button onclick="verifierAct3()" class="bg-cyan-100 hover:bg-cyan-200 text-cyan-800 font-semibold py-2 px-6 rounded-full transition-colors text-sm border border-cyan-200 shadow-sm">
+                    Vérifier l'activité 3
+                </button>
+                <p id="msg-act3" class="mt-2 text-sm hidden"></p>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-2xl shadow-sm p-6 sm:p-8 mb-8 border border-slate-100">
+            <h3 class="text-xl font-bold text-slate-800 mb-2 flex items-center gap-2">
+                <span class="bg-cyan-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm">4</span>
+                Activité 4 - S'exercer : les pronoms relatifs « que » et « dont »
+            </h3>
+            <p class="text-slate-600 mb-6 font-medium">Choisissez le pronom relatif qui convient. Si besoin, consultez l'aide proposée sous l'exercice !</p>
+
+            <div class="space-y-4 text-slate-700 leading-relaxed mb-8">
+                <p>1. Le film inspiré d'une histoire vraie, 
+                    <select class="act4 bg-slate-100 border border-slate-300 rounded-md p-1 font-semibold text-cyan-800 outline-none focus:ring-2 focus:ring-cyan-500" data-answer="dont">
+                        <option value="">--</option><option value="que">que</option><option value="dont">dont</option>
+                    </select> 
+                on parle beaucoup, ne sortira finalement jamais au cinéma.</p>
+
+                <p>2. L'eau est une ressource précieuse. C'est une ressource 
+                    <select class="act4 bg-slate-100 border border-slate-300 rounded-md p-1 font-semibold text-cyan-800 outline-none focus:ring-2 focus:ring-cyan-500" data-answer="dont">
+                        <option value="">--</option><option value="que">que</option><option value="dont">dont</option>
+                    </select> 
+                on a besoin pour vivre.</p>
+
+                <p>3. La sonde japonaise Resilience, 
+                    <select class="act4 bg-slate-100 border border-slate-300 rounded-md p-1 font-semibold text-cyan-800 outline-none focus:ring-2 focus:ring-cyan-500" data-answer="dont">
+                        <option value="">--</option><option value="que">que</option><option value="dont">dont</option>
+                    </select> 
+                la mission a échoué, devait alunir cette semaine.</p>
+
+                <p>4. Le joueur 
+                    <select class="act4 bg-slate-100 border border-slate-300 rounded-md p-1 font-semibold text-cyan-800 outline-none focus:ring-2 focus:ring-cyan-500" data-answer="que">
+                        <option value="">--</option><option value="que">que</option><option value="dont">dont</option>
+                    </select> 
+                Djokovic a affronté en demi-finale de Roland-Garros s'appelle Jannik Sinner.</p>
+
+                <p>5. L'ADN environnemental est un outil révolutionnaire 
+                    <select class="act4 bg-slate-100 border border-slate-300 rounded-md p-1 font-semibold text-cyan-800 outline-none focus:ring-2 focus:ring-cyan-500" data-answer="dont">
+                        <option value="">--</option><option value="que">que</option><option value="dont">dont</option>
+                    </select> 
+                les scientifiques se servent pour étudier les océans.</p>
+
+                <p>6. Le studio Ghibli, 
+                    <select class="act4 bg-slate-100 border border-slate-300 rounded-md p-1 font-semibold text-cyan-800 outline-none focus:ring-2 focus:ring-cyan-500" data-answer="dont">
+                        <option value="">--</option><option value="que">que</option><option value="dont">dont</option>
+                    </select> 
+                les films ont marqué des générations, fête ses 40 ans.</p>
+
+                <p>7. Le sommet climatique 
+                    <select class="act4 bg-slate-100 border border-slate-300 rounded-md p-1 font-semibold text-cyan-800 outline-none focus:ring-2 focus:ring-cyan-500" data-answer="que">
+                        <option value="">--</option><option value="que">que</option><option value="dont">dont</option>
+                    </select> 
+                les ONG attendaient avec impatience s'est ouvert à Genève.</p>
+
+                <p>8. Le film 
+                    <select class="act4 bg-slate-100 border border-slate-300 rounded-md p-1 font-semibold text-cyan-800 outline-none focus:ring-2 focus:ring-cyan-500" data-answer="que">
+                        <option value="">--</option><option value="que">que</option><option value="dont">dont</option>
+                    </select> 
+                Netflix a produit cette année est en compétition pour plusieurs prix internationaux.</p>
+            </div>
+
+            <!-- Boîte d'aide -->
+            <div class="bg-cyan-50 border border-cyan-200 rounded-xl p-4 flex gap-3 mb-6">
+                <svg class="w-6 h-6 text-cyan-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div>
+                    <p class="font-bold text-cyan-800 mb-1">Aide</p>
+                    <p class="text-sm text-cyan-700">
+                        Voici quelques constructions de verbes utiles pour faire l'exercice : 
+                        <em>parler de ; avoir besoin de ; affronter quelqu'un ; se servir de ; attendre quelqu'un ou quelque chose ; produire quelque chose.</em>
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-8 flex flex-col items-center">
+                <button onclick="verifierAct4()" class="bg-cyan-100 hover:bg-cyan-200 text-cyan-800 font-semibold py-2 px-6 rounded-full transition-colors text-sm border border-cyan-200 shadow-sm">
+                    Vérifier l'activité 4
+                </button>
+                <p id="msg-act4" class="mt-2 text-sm hidden"></p>
+            </div>
+        </section>
+
+        <div class="bg-white rounded-2xl shadow-sm p-6 sm:p-10 mb-12 border-t-4 border-cyan-500 text-center">
+            <h3 class="text-2xl font-bold text-slate-800 mb-4">Bilan final</h3>
+            <p class="text-slate-600 mb-6">Avez-vous terminé toutes les activités ? Cliquez ici pour connaître votre score global.</p>
+            <button onclick="calculerScoreFinal()" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 active:scale-95 text-lg">
+                Voir mon score final
+            </button>
+            <div id="result-final" class="mt-8 hidden bg-cyan-50 p-6 rounded-xl border border-cyan-100">
+                <p id="score-text" class="text-4xl font-extrabold text-cyan-600 mb-3"></p>
+                <p id="feedback-text" class="text-lg font-medium text-slate-700"></p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-slate-800 text-slate-300 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm mt-8 border-b-4 border-rfi-red">
+            <div class="flex items-center gap-3">
+                <div class="bg-red-600 text-white font-bold px-2 py-1 rounded">RFI</div>
+                <span>Le Journal en français facile</span>
+            </div>
+            <div class="text-center sm:text-right">
+                <p>Extraits du 9 janvier, 10 janvier, 13 mai, 10 avril, 15 avril, 5 mai et 30 mai 2025</p>
+                <p class="mt-1 font-semibold text-slate-400">Par Madeleine Zazzo</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // Fonction générique pour vérifier les champs textes
+        function checkTextInputs(className, msgId) {
+            const inputs = document.querySelectorAll('.' + className);
+            let erreurs = 0;
+            inputs.forEach(input => {
+                // On réinitialise toujours le style au clic
+                input.classList.remove('incorrect');
+                const answer = input.value.trim().toLowerCase();
+                const expected = input.getAttribute('data-answer');
+                
+                // Tolérance pour l'apostrophe de "qu'"
+                if (answer !== expected && !(expected === "qu'" && answer === "qu'")) {
+                    input.classList.add('incorrect');
+                    erreurs++;
+                }
+            });
+            showFeedbackMsg(erreurs, msgId);
+        }
+
+        function verifierAct1() {
+            checkTextInputs('act1', 'msg-act1');
+        }
+
+        function verifierAct2() {
+            let erreurs = 0;
+            ['q1', 'q2', 'q3', 'q4'].forEach(name => {
+                const radios = document.querySelectorAll(`input[name="${name}"]`);
+                
+                // Enlever le style d'erreur précédent
+                radios.forEach(r => {
+                    r.parentElement.classList.remove('text-red-600', 'font-bold');
+                });
+                
+                const checked = document.querySelector(`input[name="${name}"]:checked`);
+                if (!checked || checked.value !== 'correct') {
+                    erreurs++;
+                    if (checked) {
+                        // Surligner uniquement l'erreur en rouge
+                        checked.parentElement.classList.add('text-red-600', 'font-bold');
+                    }
+                }
+            });
+            showFeedbackMsg(erreurs, 'msg-act2');
+        }
+
+        function verifierAct3() {
+            checkTextInputs('act3', 'msg-act3');
+        }
+
+        function verifierAct4() {
+            const selects = document.querySelectorAll('.act4');
+            let erreurs = 0;
+            selects.forEach(select => {
+                select.classList.remove('incorrect');
+                const expected = select.getAttribute('data-answer');
+                if (select.value !== expected) {
+                    select.classList.add('incorrect');
+                    erreurs++;
+                }
+            });
+            showFeedbackMsg(erreurs, 'msg-act4');
+        }
+
+        // Affiche un message sous le bouton indiquant le nombre d'erreurs
+        function showFeedbackMsg(erreurs, msgId) {
+            const msg = document.getElementById(msgId);
+            msg.classList.remove('hidden');
+            if (erreurs > 0) {
+                msg.textContent = `Attention, il y a ${erreurs} erreur(s) ou oubli(s) signalé(s) en rouge.`;
+                msg.className = "mt-3 text-sm text-red-600 font-semibold";
+            } else {
+                msg.textContent = "Aucune erreur !";
+                msg.className = "mt-3 text-sm text-slate-500 font-medium italic"; // Discret si tout est bon
+            }
+        }
+
+        function calculerScoreFinal() {
+            let total = 27; // Total des questions (8 + 4 + 7 + 8)
+            let erreursTotal = 0;
+            
+            // Comptage des erreurs - Act 1 & 3
+            document.querySelectorAll('.act1, .act3').forEach(input => {
+                const answer = input.value.trim().toLowerCase();
+                const expected = input.getAttribute('data-answer');
+                if (answer !== expected && !(expected === "qu'" && answer === "qu'")) erreursTotal++;
+            });
+            
+            // Comptage des erreurs - Act 2
+            ['q1', 'q2', 'q3', 'q4'].forEach(name => {
+                const checked = document.querySelector(`input[name="${name}"]:checked`);
+                if (!checked || checked.value !== 'correct') erreursTotal++;
+            });
+            
+            // Comptage des erreurs - Act 4
+            document.querySelectorAll('.act4').forEach(select => {
+                if (select.value !== select.getAttribute('data-answer')) erreursTotal++;
+            });
+            
+            let score = total - erreursTotal;
+            const resDiv = document.getElementById('result-final');
+            const scoreText = document.getElementById('score-text');
+            const feedbackText = document.getElementById('feedback-text');
+            
+            resDiv.classList.remove('hidden');
+            scoreText.textContent = `${score} / ${total}`;
+            
+            if (score === total) {
+                feedbackText.textContent = "Excellent ! Vous maîtrisez parfaitement les pronoms relatifs « que » et « dont ».";
+            } else if (score >= 20) {
+                feedbackText.textContent = "Très bon travail ! Quelques petites erreurs, mais la règle est globalement bien comprise.";
+            } else if (score >= 14) {
+                feedbackText.textContent = "Bon effort. N'hésitez pas à relire les schémas de grammaire pour corriger vos erreurs.";
+            } else {
+                feedbackText.textContent = "Continuez à vous exercer ! Prenez le temps de bien revoir la règle d'utilisation avant de réessayer.";
+            }
+        }
+    </script>
+</body>
+</html>
