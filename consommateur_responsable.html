@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consommer responsable - Échauffement & DELF B1</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ecoGreen: {
+              light: '#E8F5E9',
+              DEFAULT: '#2E7D32',
+              dark: '#1B5E20'
+            },
+            ecoBrown: {
+              light: '#EFEBE9',
+              DEFAULT: '#5D4037',
+              dark: '#3E2723'
+            },
+            ecoBlue: {
+              light: '#E1F5FE',
+              DEFAULT: '#0277BD',
+              dark: '#01579B'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#F4F6F0] text-gray-900 font-sans antialiased min-h-screen">
+
+  <div class="max-w-3xl mx-auto px-4 py-8 sm:px-6">
+    
+    <!-- Navigation par Onglets -->
+    <nav class="flex border-b-2 border-ecoGreen mb-6 bg-white rounded-t-lg shadow-sm overflow-hidden">
+      <button type="button" id="tabBtn1" class="flex-1 py-3 px-4 text-center font-bold text-sm sm:text-base border-b-4 border-ecoGreen text-ecoGreen-dark bg-ecoGreen-light transition-colors flex items-center justify-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-ecoGreen" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+          <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
+        </svg>
+        1. Test & Débat : Quel consommateur êtes-vous ?
+      </button>
+      <button type="button" id="tabBtn2" class="flex-1 py-3 px-4 text-center font-bold text-sm sm:text-base border-b-4 border-transparent text-gray-600 hover:text-ecoGreen hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-ecoBlue" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+        2. Épreuve DELF B1 : Compréhension Orale
+      </button>
+    </nav>
+
+    <!-- ================================================================= -->
+    <!-- ONGLET 1 : TEST DE SENSIBILISATION & DÉBAT (AVANT ÉCOUTE) -->
+    <!-- ================================================================= -->
+    <div id="tabContent1" class="space-y-6">
+      
+      <!-- En-tête accrocheur type magazine -->
+      <header class="bg-white border-2 border-ecoGreen rounded-lg p-6 shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+          <span class="inline-block bg-ecoGreen text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded">Échauffement Pédagogique</span>
+          <span class="text-xs font-medium text-ecoBrown">Avant l'écoute • Discussion orale</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-black text-ecoGreen-dark mb-2">Quel consommateur éco-responsable êtes-vous ?</h1>
+        <p class="text-sm text-gray-700 leading-relaxed">
+          Pour chacune des 10 situations du quotidien, choisissez spontanément l'option qui vous correspond le plus. Découvrez votre profil, comparez avec vos camarades et lancez le débat !
+        </p>
+      </header>
+
+      <!-- Formulaire du Test de profil -->
+      <form id="profileForm" class="space-y-5">
+
+        <!-- TQ1 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm" data-ptest="1">
+          <legend class="text-base font-bold text-gray-900 mb-3">1. Vous repérez un vêtement très élégant dans une vitrine :</legend>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p1" value="A" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous n'hésitez pas une seconde et vous l'achetez par coup de cœur.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p1" value="B" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous vous dites : « J'en ai déjà plusieurs presque identiques que je ne porte jamais ».</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p1" value="C" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous demandez le prix : si votre budget le permet ce mois-ci, vous le prenez.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p1" value="D" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">En réalité, vous n'achetez presque jamais de vêtements neufs, uniquement du réemploi ou par réelle nécessité.</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- TQ2 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm" data-ptest="2">
+          <legend class="text-base font-bold text-gray-900 mb-3">2. Au rayon fruits et légumes en plein mois de janvier :</legend>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p2" value="A" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Des fraises ou des tomates d'importation ? Peu importe la saison, seule votre envie compte.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p2" value="B" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous essayez de choisir des poireaux et des carottes de saison, mais vous cédez parfois à la tentation.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p2" value="C" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous regardez uniquement les étiquettes de promotion et le prix au kilo.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p2" value="D" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous achetez strictement des légumes racines locaux d'hiver, idéalement chez un producteur direct.</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- TQ3 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm" data-ptest="3">
+          <legend class="text-base font-bold text-gray-900 mb-3">3. Votre smartphone ralentit et la batterie se décharge vite :</legend>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p3" value="A" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">C'est le moment rêvé de vous offrir le tout dernier modèle haut de gamme !</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p3" value="B" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous cherchez d'abord un réparateur ou un tutoriel pour remplacer la batterie vous-même.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p3" value="C" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous comparez les forfaits téléphoniques pour trouver une offre avec téléphone à 1 euro.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p3" value="D" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous le conservez tant qu'il fonctionne encore et vous vous tournerez ensuite vers le reconditionné garanti.</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- TQ4 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm" data-ptest="4">
+          <legend class="text-base font-bold text-gray-900 mb-3">4. Concernant la viande et les protéines dans votre assiette :</legend>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p4" value="A" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Un repas complet sans steak ou viande n'est pas un vrai repas pour vous.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p4" value="B" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous tentez le flexitarisme : viande deux ou trois fois par semaine, et des légumes le reste du temps.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p4" value="C" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous achetez de la viande uniquement lorsqu'elle est en promotion ou en date courte.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p4" value="D" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous remplacez régulièrement la viande par des pois chiches, lentilles ou tofu local.</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- TQ5 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm" data-ptest="5">
+          <legend class="text-base font-bold text-gray-900 mb-3">5. Pour équiper votre logement (meuble, chaise, étagère) :</legend>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p5" value="A" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous filez dans une grande enseigne de mobilier pas cher en kit.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p5" value="B" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous explorez les brocantes, les ressourceries ou les applications de vente entre particuliers.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p5" value="C" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous récupérez les meubles laissés par votre famille ou vos colocataires sans dépenser.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p5" value="D" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous appliquez le minimalisme : vous n'achetez que l'indispensable en bois durable ou recyclé.</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- TQ6 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm" data-ptest="6">
+          <legend class="text-base font-bold text-gray-900 mb-3">6. À la caisse du supermarché avec vos achats :</legend>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p6" value="A" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous achetez un ou deux sacs plastiques jetables parce que vous avez encore oublié vos cabas.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p6" value="B" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous avez votre sac en tissu, mais la plupart de vos aliments sont emballés sous plastique.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p6" value="C" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous prenez les cartons vides du magasin pour transporter vos articles sans payer de sac.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p6" value="D" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous achetez en vrac avec vos propres bocaux et pochons réutilisables pour viser le zéro déchet.</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- TQ7 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm" data-ptest="7">
+          <legend class="text-base font-bold text-gray-900 mb-3">7. Les achats en ligne et les livraisons rapides à domicile :</legend>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p7" value="A" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous commandez très fréquemment en livraison express « en un clic ».</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p7" value="B" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous groupez vos commandes et choisissez la livraison en point relais pour limiter les camions.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p7" value="C" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous commandez sur Internet uniquement si les frais de port sont totalement gratuits.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p7" value="D" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous boycottez les géants du e-commerce pour faire vivre les commerces de proximité.</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- TQ8 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm" data-ptest="8">
+          <legend class="text-base font-bold text-gray-900 mb-3">8. Pour vos déplacements en ville (moins de 3 km) :</legend>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p8" value="A" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous prenez votre voiture ou un VTC par confort et rapidité.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p8" value="B" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous privilégiez les transports en commun (bus, métro, tramway).</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p8" value="C" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous calculez l'option la moins coûteuse entre ticket de bus et carburant.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p8" value="D" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous vous déplacez toujours à pied ou à vélo, quelle que soit la météo.</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- TQ9 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm" data-ptest="9">
+          <legend class="text-base font-bold text-gray-900 mb-3">9. Face à une publicité qui vante un produit « 100 % vert et éco-responsable » :</legend>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p9" value="A" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous avez confiance et cela déclenche facilement votre achat.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p9" value="B" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous restez prudent et jetez un coup d'œil à la composition exacte.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p9" value="C" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Le logo vert vous laisse indifférent, seul le rapport qualité/prix vous importe.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p9" value="D" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous flairez le « greenwashing » et vérifiez si un label indépendant certifie l'allégation.</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- TQ10 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm" data-ptest="10">
+          <legend class="text-base font-bold text-gray-900 mb-3">10. Votre grille-pain ou un petit appareil électrique tombe en panne :</legend>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p10" value="A" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous le jetez aussitôt à la poubelle pour en racheter un neuf sur internet.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p10" value="B" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous cherchez s'il existe un atelier de réparation solidaire (Repair Café) près de chez vous.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p10" value="C" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Si le devis de réparation dépasse 15 euros, vous préférez en racheter un premier prix.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="p10" value="D" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vous le démontez pour comprendre la panne, ou vous apprenez à vous en passer au quotidien.</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- Action calcul de profil -->
+        <div class="pt-2">
+          <button type="button" id="btnCalcProfile" class="w-full sm:w-auto px-6 py-3 bg-ecoGreen hover:bg-ecoGreen-dark text-white font-bold rounded shadow transition-colors">
+            Découvrir mon profil de consommateur
+          </button>
+        </div>
+      </form>
+
+      <!-- Bloc Résultat du Profil (masqué au départ) -->
+      <section id="profileResultBox" class="hidden bg-white border-2 border-ecoBlue rounded-lg p-6 shadow-sm space-y-4">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-ecoBlue-dark bg-ecoBlue-light px-3 py-1 rounded inline-block mb-1">Votre Diagnostic</span>
+            <h2 id="profileTitle" class="text-xl sm:text-2xl font-black text-ecoBlue-dark"></h2>
+          </div>
+          <div id="profileBadge" class="text-xl font-black px-4 py-2 bg-ecoBlue text-white rounded shrink-0"></div>
+        </div>
+
+        <p id="profileDescription" class="text-sm text-gray-800 leading-relaxed"></p>
+
+        <!-- Amorces de débat en classe -->
+        <div class="p-4 bg-ecoBrown-light border-l-4 border-ecoBrown rounded-r-lg">
+          <h3 class="font-bold text-ecoBrown-dark text-sm mb-2 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-ecoBrown" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
+            </svg>
+            Questions pour lancer le débat oral en classe :
+          </h3>
+          <ul class="text-xs text-gray-800 space-y-1.5 list-disc pl-5">
+            <li><strong>Reconnaissance :</strong> Vous reconnaissez-vous dans ce profil ? Pourquoi ?</li>
+            <li><strong>Dilemme :</strong> Quel sacrifice écologique vous paraît le plus difficile à faire aujourd'hui (vêtements, smartphone, viande, transport) ?</li>
+            <li><strong>Transition :</strong> Selon vous, consommer responsable coûte-t-il forcément plus cher ?</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Les 10 gestes éco-responsables à faire au quotidien -->
+      <section class="bg-white border border-ecoGreen rounded-lg p-6 shadow-sm">
+        <h3 class="text-lg font-bold text-ecoGreen-dark mb-3 flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-ecoGreen" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          10 gestes concrets d'un consommateur responsable
+        </h3>
+        <p class="text-xs text-gray-600 mb-4">
+          Ces attitudes éco-citoyennes préparent votre écoute de l'enregistrement sonore du DELF B1 :
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+          <div class="p-3 bg-ecoGreen-light rounded border border-ecoGreen/30 flex gap-2 items-start">
+            <span class="font-bold text-ecoGreen-dark shrink-0">1.</span>
+            <span><strong>Seconde main prioritaire :</strong> vêtements, meubles et électroménager d'occasion avant le neuf.</span>
+          </div>
+          <div class="p-3 bg-ecoGreen-light rounded border border-ecoGreen/30 flex gap-2 items-start">
+            <span class="font-bold text-ecoGreen-dark shrink-0">2.</span>
+            <span><strong>Manger local et de saison :</strong> soutenir l'agriculture paysanne et réduire le transport polluant.</span>
+          </div>
+          <div class="p-3 bg-ecoGreen-light rounded border border-ecoGreen/30 flex gap-2 items-start">
+            <span class="font-bold text-ecoGreen-dark shrink-0">3.</span>
+            <span><strong>Diversifier ses protéines :</strong> alterner viande et légumineuses (pois chiches, lentilles, soja).</span>
+          </div>
+          <div class="p-3 bg-ecoGreen-light rounded border border-ecoGreen/30 flex gap-2 items-start">
+            <span class="font-bold text-ecoGreen-dark shrink-0">4.</span>
+            <span><strong>Rejoindre une AMAP :</strong> commander des paniers de produits frais en circuit court direct producteur.</span>
+          </div>
+          <div class="p-3 bg-ecoGreen-light rounded border border-ecoGreen/30 flex gap-2 items-start">
+            <span class="font-bold text-ecoGreen-dark shrink-0">5.</span>
+            <span><strong>Réparer avant de jeter :</strong> fréquenter les Repair Cafés et privilégier l'indice de réparabilité.</span>
+          </div>
+          <div class="p-3 bg-ecoGreen-light rounded border border-ecoGreen/30 flex gap-2 items-start">
+            <span class="font-bold text-ecoGreen-dark shrink-0">6.</span>
+            <span><strong>Vendre et échanger :</strong> faire circuler ses habits inutilisés sur des plateformes de revente.</span>
+          </div>
+          <div class="p-3 bg-ecoGreen-light rounded border border-ecoGreen/30 flex gap-2 items-start">
+            <span class="font-bold text-ecoGreen-dark shrink-0">7.</span>
+            <span><strong>Réduire les emballages :</strong> utiliser des sacs réutilisables et favoriser l'achat au rayon vrac.</span>
+          </div>
+          <div class="p-3 bg-ecoGreen-light rounded border border-ecoGreen/30 flex gap-2 items-start">
+            <span class="font-bold text-ecoGreen-dark shrink-0">8.</span>
+            <span><strong>Prolonger ses appareils :</strong> conserver son téléphone et ses ordinateurs au-delà de 3 à 5 ans.</span>
+          </div>
+          <div class="p-3 bg-ecoGreen-light rounded border border-ecoGreen/30 flex gap-2 items-start">
+            <span class="font-bold text-ecoGreen-dark shrink-0">9.</span>
+            <span><strong>Préférer les mobilités douces :</strong> marche, vélo ou transports collectifs pour les trajets courts.</span>
+          </div>
+          <div class="p-3 bg-ecoGreen-light rounded border border-ecoGreen/30 flex gap-2 items-start">
+            <span class="font-bold text-ecoGreen-dark shrink-0">10.</span>
+            <span><strong>Déjouer le greenwashing :</strong> exiger des labels environnementaux sérieux et indépendants.</span>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t text-center">
+          <button type="button" id="btnGoToTab2" class="px-6 py-2.5 bg-ecoBlue hover:bg-ecoBlue-dark text-white font-bold rounded shadow transition-colors inline-flex items-center gap-2">
+            Passer à l'épreuve de compréhension orale DELF B1
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- ONGLET 2 : ÉPREUVE DELF B1 (COMPRÉHENSION ORALE) -->
+    <!-- ================================================================= -->
+    <div id="tabContent2" class="hidden space-y-6">
+
+      <!-- En-tête pédagogique DELF B1 -->
+      <header class="bg-white border-2 border-ecoGreen rounded-lg p-6 shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+          <span class="inline-block bg-ecoGreen text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded">DELF B1</span>
+          <span class="text-xs font-medium text-ecoBrown">Compréhension orale • 10 points</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-bold text-ecoGreen-dark mb-2">Consommer de manière responsable</h1>
+        <p class="text-sm text-gray-700 leading-relaxed">
+          Écoutez l'enregistrement sonore puis répondez aux 10 questions. Une fois votre travail validé, votre score s'affichera et vous pourrez consulter la transcription intégrale.
+        </p>
+      </header>
+
+      <!-- Lecteur Audio -->
+      <section class="bg-ecoBrown-light border-l-4 border-ecoBrown rounded-r-lg p-5 shadow-sm">
+        <h2 class="text-base font-bold text-ecoBrown-dark mb-3 flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd" />
+          </svg>
+          Document sonore (consom_responsable.mp3)
+        </h2>
+        <audio id="audioPlayer" controls class="w-full">
+          <source src="consom_responsable.mp3" type="audio/mpeg">
+          Votre navigateur ne prend pas en charge l'élément audio. Assurez-vous que le fichier <code>consom_responsable.mp3</code> se trouve dans le même répertoire.
+        </audio>
+      </section>
+
+      <!-- Formulaire d'évaluation DELF B1 -->
+      <form id="quizForm" class="space-y-6">
+
+        <!-- Q1 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm question-block" data-q="1">
+          <legend class="text-base font-bold text-gray-900 mb-3">1. Quel est l'objectif principal de cette intervention ?</legend>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q1" value="0" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Présenter une nouvelle application de vente en ligne.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q1" value="1" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Partager des astuces pour une consommation plus durable.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q1" value="2" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Inciter les gens à consommer des produits locaux.</span>
+            </label>
+          </div>
+          <div class="feedback hidden mt-3 p-3 rounded text-sm"></div>
+        </fieldset>
+
+        <!-- Q2 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm question-block" data-q="2">
+          <legend class="text-base font-bold text-gray-900 mb-1">2. Marquez deux avantages des objets d'occasion mentionnés dans l'enregistrement :</legend>
+          <p class="text-xs text-ecoBrown font-semibold mb-3">Sélectionnez exactement 2 réponses.</p>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" name="q2" value="1" class="mt-1 h-4 w-4 rounded text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">1. On trouve des objets de collection rares.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" name="q2" value="2" class="mt-1 h-4 w-4 rounded text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">2. Ils nous aident à faire des économies.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" name="q2" value="3" class="mt-1 h-4 w-4 rounded text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">3. Leur empreinte carbone est totalement inexistante.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" name="q2" value="4" class="mt-1 h-4 w-4 rounded text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">4. On contribue à préserver la planète.</span>
+            </label>
+          </div>
+          <div class="feedback hidden mt-3 p-3 rounded text-sm"></div>
+        </fieldset>
+
+        <!-- Q3 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm question-block" data-q="3">
+          <legend class="text-base font-bold text-gray-900 mb-3">3. Quels types d'articles d'occasion sont expressément cités par la locutrice ?</legend>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q3" value="0" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Les vêtements, les meubles et les livres.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q3" value="1" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Les vêtements, les meubles et les appareils électroniques.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q3" value="2" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Les voitures, les vêtements et l'électroménager.</span>
+            </label>
+          </div>
+          <div class="feedback hidden mt-3 p-3 rounded text-sm"></div>
+        </fieldset>
+
+        <!-- Q4 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm question-block" data-q="4">
+          <legend class="text-base font-bold text-gray-900 mb-3">4. Qu'est-ce que « Vestiaire Collective » ?</legend>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q4" value="0" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Un site associatif de dons de vêtements.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q4" value="1" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Une boutique physique solidaire.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q4" value="2" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Une plateforme en ligne pour vendre et acheter des vêtements.</span>
+            </label>
+          </div>
+          <div class="feedback hidden mt-3 p-3 rounded text-sm"></div>
+        </fieldset>
+
+        <!-- Q5 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm question-block" data-q="5">
+          <legend class="text-base font-bold text-gray-900 mb-3">5. Quel est l'intérêt concret de « Vestiaire Collective » expliqué par la locutrice ?</legend>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q5" value="0" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Faire don de ses habits usagés en échange de réductions en magasin.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q5" value="1" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Vendre les pièces qu'on ne porte plus et en acquérir de nouvelles à bas prix.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q5" value="2" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Faire repriser et raccommoder gratuitement ses vieux vêtements.</span>
+            </label>
+          </div>
+          <div class="feedback hidden mt-3 p-3 rounded text-sm"></div>
+        </fieldset>
+
+        <!-- Q6 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm question-block" data-q="6">
+          <legend class="text-base font-bold text-gray-900 mb-3">6. D'après le document, privilégier des produits de saison et locaux permet de :</legend>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q6" value="0" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Accéder à une offre variée de fruits et légumes exotiques toute l'année.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q6" value="1" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Concilier une alimentation saine et de qualité avec la réduction de ses dépenses d'épicerie.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q6" value="2" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Bénéficier d'importants rabais promotionnels négociés par la grande distribution.</span>
+            </label>
+          </div>
+          <div class="feedback hidden mt-3 p-3 rounded text-sm"></div>
+        </fieldset>
+
+        <!-- Q7 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm question-block" data-q="7">
+          <legend class="text-base font-bold text-gray-900 mb-3">7. Selon l'enregistrement, adopter une consommation responsable implique d'arrêter complètement de manger de la viande.</legend>
+          <div class="flex gap-6">
+            <label class="flex items-center gap-2 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q7" value="vrai" class="h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm font-medium">Vrai</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q7" value="faux" class="h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm font-medium">Faux</span>
+            </label>
+          </div>
+          <div class="feedback hidden mt-3 p-3 rounded text-sm"></div>
+        </fieldset>
+
+        <!-- Q8 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm question-block" data-q="8">
+          <legend class="text-base font-bold text-gray-900 mb-3">8. Quels substituts végétaux sont explicitement suggérés pour remplacer la viande ?</legend>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q8" value="0" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Le soja, le riz complet et les lentilles.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q8" value="1" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Les pois chiches, le soja et les haricots.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q8" value="2" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Les graines de courge, les noix et le tofu.</span>
+            </label>
+          </div>
+          <div class="feedback hidden mt-3 p-3 rounded text-sm"></div>
+        </fieldset>
+
+        <!-- Q9 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm question-block" data-q="9">
+          <legend class="text-base font-bold text-gray-900 mb-3">9. Que signifie exactement le sigle « AMAP » ?</legend>
+          <div class="space-y-2">
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q9" value="0" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Association pour le maintien de l'agriculture paysanne.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q9" value="1" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Association pour la modernisation de l'agriculture paysanne.</span>
+            </label>
+            <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q9" value="2" class="mt-1 h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm">Association pour le maintien de l'alimentation paysanne.</span>
+            </label>
+          </div>
+          <div class="feedback hidden mt-3 p-3 rounded text-sm"></div>
+        </fieldset>
+
+        <!-- Q10 -->
+        <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm question-block" data-q="10">
+          <legend class="text-base font-bold text-gray-900 mb-3">10. Pour trouver une coopérative AMAP proche de son domicile, il faut se renseigner sur leur site internet.</legend>
+          <div class="flex gap-6">
+            <label class="flex items-center gap-2 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q10" value="vrai" class="h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm font-medium">Vrai</span>
+            </label>
+            <label class="flex items-center gap-2 p-2 rounded cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="q10" value="faux" class="h-4 w-4 text-ecoGreen border-gray-300 focus:ring-ecoGreen">
+              <span class="text-sm font-medium">Faux</span>
+            </label>
+          </div>
+          <div class="feedback hidden mt-3 p-3 rounded text-sm"></div>
+        </fieldset>
+
+        <!-- Actions DELF B1 -->
+        <div class="pt-4 flex flex-col sm:flex-row gap-4 items-center">
+          <button type="button" id="btnVerifier" class="w-full sm:w-auto px-6 py-3 bg-ecoGreen hover:bg-ecoGreen-dark text-white font-bold rounded shadow transition-colors">
+            Vérifier mes réponses
+          </button>
+          <button type="button" id="btnTranscription" disabled class="w-full sm:w-auto px-6 py-3 bg-gray-300 text-gray-500 font-bold rounded cursor-not-allowed shadow transition-colors">
+            Afficher la transcription
+          </button>
+        </div>
+      </form>
+
+      <!-- Affichage du Score -->
+      <section id="scoreBox" class="hidden mt-6 p-5 bg-white border-2 border-ecoBlue rounded-lg shadow-sm">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg font-bold text-ecoBlue-dark">Résultat de votre évaluation</h2>
+            <p id="scoreText" class="text-sm text-gray-700 mt-1"></p>
+          </div>
+          <div id="scoreBadge" class="text-2xl font-black px-4 py-2 bg-ecoBlue text-white rounded">
+            0 / 10
+          </div>
+        </div>
+      </section>
+
+      <!-- Bloc Transcription (initialement replié et inaccessible) -->
+      <section id="transcriptionSection" class="hidden mt-6 bg-white border border-ecoBrown rounded-lg p-6 shadow-sm">
+        <div class="flex items-center justify-between border-b pb-3 mb-4">
+          <h3 class="text-lg font-bold text-ecoBrown-dark flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+            </svg>
+            Transcription intégrale de l'enregistrement
+          </h3>
+          <button type="button" id="btnHideTranscription" class="text-xs text-ecoBrown hover:underline font-semibold">
+            Masquer
+          </button>
+        </div>
+        <div class="text-sm leading-relaxed text-gray-800 space-y-3">
+          <p>« Je vais maintenant vous donner des conseils pratiques du quotidien pour consommer de manière responsable.</p>
+          <p><strong>Premier conseil :</strong> acheter des produits de seconde main. Pour réduire l'impact de votre consommation sur l'environnement, tout en faisant des économies, je vous conseille d'acheter des vêtements, des meubles, des appareils électroniques d'occasion plutôt que neufs. Et je peux vous dire que j'en ai testé, des sites et des applications pour ça. Mon super plan, c'est Vestiaire Collective. C'est une plateforme en ligne où vous pouvez vendre et acheter des vêtements d'occasion super facilement. J'y ai pu vendre des pièces de ma garde-robe que je ne portais plus, et j'en ai racheté des nouvelles à petit prix.</p>
+          <p><strong>Deuxième conseil :</strong> privilégier les produits locaux et de saison. La meilleure astuce pour bien manger et faire des économies sur son plein de courses, c'est d'acheter local et de saison.</p>
+          <p><strong>Une autre astuce :</strong> varier les sources de protéines. En effet, la viande, en plus de coûter cher, nécessite beaucoup de ressources pour être produite. Vous pouvez remplacer tout ou partie des protéines animales par des protéines végétales comme les pois chiches, le soja ou les haricots.</p>
+          <p>Et si vous cherchez des idées pour manger de bons produits locaux, j'en ai une super à vous proposer : c'est les <strong>AMAP</strong>, Association pour le maintien de l'agriculture paysanne. Vous pouvez trouver une coopérative près de chez vous sur leur site internet et y acheter des produits frais et de qualité. Manger de saison et local, c'est manger mieux, c'est moins cher et ça permet de soutenir les producteurs locaux. Franchement, que du bonus. »</p>
+        </div>
+      </section>
+
+    </div>
+
+  </div>
+
+  <script>
+    /* =========================================================
+       1. Gestion des Onglets
+       ========================================================= */
+    const tabBtn1 = document.getElementById('tabBtn1');
+    const tabBtn2 = document.getElementById('tabBtn2');
+    const tabContent1 = document.getElementById('tabContent1');
+    const tabContent2 = document.getElementById('tabContent2');
+    const btnGoToTab2 = document.getElementById('btnGoToTab2');
+
+    function switchTab(target) {
+      if (target === 1) {
+        tabContent1.classList.remove('hidden');
+        tabContent2.classList.add('hidden');
+        tabBtn1.className = "flex-1 py-3 px-4 text-center font-bold text-sm sm:text-base border-b-4 border-ecoGreen text-ecoGreen-dark bg-ecoGreen-light transition-colors flex items-center justify-center gap-2";
+        tabBtn2.className = "flex-1 py-3 px-4 text-center font-bold text-sm sm:text-base border-b-4 border-transparent text-gray-600 hover:text-ecoGreen hover:bg-gray-50 transition-colors flex items-center justify-center gap-2";
+      } else {
+        tabContent1.classList.add('hidden');
+        tabContent2.classList.remove('hidden');
+        tabBtn2.className = "flex-1 py-3 px-4 text-center font-bold text-sm sm:text-base border-b-4 border-ecoGreen text-ecoGreen-dark bg-ecoGreen-light transition-colors flex items-center justify-center gap-2";
+        tabBtn1.className = "flex-1 py-3 px-4 text-center font-bold text-sm sm:text-base border-b-4 border-transparent text-gray-600 hover:text-ecoGreen hover:bg-gray-50 transition-colors flex items-center justify-center gap-2";
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    tabBtn1.addEventListener('click', () => switchTab(1));
+    tabBtn2.addEventListener('click', () => switchTab(2));
+    btnGoToTab2.addEventListener('click', () => switchTab(2));
+
+    /* =========================================================
+       2. Logique du Test de Profil & Débat (Onglet 1)
+       ========================================================= */
+    const profilesData = {
+      A: {
+        title: "Le Consommateur Coup de Cœur / Spontané",
+        badge: "Profil A",
+        description: "Vous privilégiez avant tout le plaisir immédiat, le confort et la simplicité au quotidien. Les contraintes écologiques ou le recyclage passent souvent au second plan face à une belle opportunité d'achat ou à une envie soudaine. Votre défi ? Ralentir la cadence de consommation et découvrir que le réemploi peut procurer autant de satisfaction !"
+      },
+      B: {
+        title: "L'Éco-Pragmatique en Transition",
+        badge: "Profil B",
+        description: "Bravo ! Vous avez une conscience environnementale aiguisée et vous mettez déjà en place des réflexes vertueux (sacs réutilisables, modération des vêtements neufs, légumes de saison, réparations). Il vous arrive encore de faire des compromis avec vos habitudes, mais vous avancez pas à pas avec lucidité."
+      },
+      C: {
+        title: "L'Économe Prévoyant",
+        badge: "Profil C",
+        description: "Votre boussole principale est le budget et le bon sens financier. Votre modération découle souvent du fait d'éviter les dépenses inutiles, de chercher les bonnes affaires ou les promotions. C'est une excellente base car gaspiller moins d'argent rime très souvent avec gaspiller moins de ressources pour la planète !"
+      },
+      D: {
+        title: "Le Consom'acteur Engagé / Minimaliste",
+        badge: "Profil D",
+        description: "Chapeau bas ! Votre mode de vie intègre pleinement les principes de la décroissance raisonnée, du zéro déchet et de la solidarité paysanne. Circuits courts, boycott des modes éphémères et réparations systématiques font partie intégrante de votre identité de citoyen responsable."
+      }
+    };
+
+    const btnCalcProfile = document.getElementById('btnCalcProfile');
+    const profileResultBox = document.getElementById('profileResultBox');
+    const profileTitle = document.getElementById('profileTitle');
+    const profileBadge = document.getElementById('profileBadge');
+    const profileDescription = document.getElementById('profileDescription');
+
+    btnCalcProfile.addEventListener('click', () => {
+      const counts = { A: 0, B: 0, C: 0, D: 0 };
+      let answeredCount = 0;
+
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="p${i}"]:checked`);
+        if (selected) {
+          counts[selected.value] = (counts[selected.value] || 0) + 1;
+          answeredCount++;
+        }
+      }
+
+      if (answeredCount < 5) {
+        // Alerte visuelle intégrée
+        profileResultBox.classList.remove('hidden');
+        profileTitle.textContent = "Test incomplet";
+        profileBadge.textContent = `${answeredCount} / 10`;
+        profileDescription.textContent = "Veuillez répondre à au moins 5 questions pour obtenir un profil significatif.";
+        profileResultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        return;
+      }
+
+      // Trouver la lettre majoritaire (en cas d'égalité, priorité D > B > C > A)
+      let dominant = 'B';
+      let maxCount = -1;
+      const order = ['D', 'B', 'C', 'A'];
+      for (const letter of order) {
+        if (counts[letter] > maxCount) {
+          maxCount = counts[letter];
+          dominant = letter;
+        }
+      }
+
+      const profile = profilesData[dominant];
+      profileTitle.textContent = profile.title;
+      profileBadge.textContent = profile.badge;
+      profileDescription.textContent = profile.description;
+      profileResultBox.classList.remove('hidden');
+      profileResultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    /* =========================================================
+       3. Logique du Questionnaire DELF B1 (Onglet 2)
+       ========================================================= */
+    const answerKey = {
+      q1: { value: '1', reason: 'La locutrice énonce : « Je vais maintenant vous donner des conseils pratiques du quotidien pour consommer de manière responsable. »' },
+      q2: { values: ['2', '4'], reason: 'Les deux bénéfices explicités dans l\'enregistrement sont : « faire des économies » et « réduire l\'impact de votre consommation sur l\'environnement » (préserver la planète).' },
+      q3: { value: '1', reason: 'Sont expressément cités : « des vêtements, des meubles, des appareils électroniques d\'occasion plutôt que neufs. »' },
+      q4: { value: '2', reason: '« C\'est une plateforme en ligne où vous pouvez vendre et acheter des vêtements d\'occasion... »' },
+      q5: { value: '1', reason: 'Elle témoigne : « J\'y ai pu vendre des pièces de ma garde-robe que je ne portais plus, et j\'en ai racheté des nouvelles à petit prix. »' },
+      q6: { value: '1', reason: '« La meilleure astuce pour bien manger et faire des économies sur son plein de courses, c\'est d\'acheter local et de saison. »' },
+      q7: { value: 'faux', reason: 'Elle conseille de « varier les sources » et précise que l\'on peut remplacer « tout ou partie des protéines animales », ce qui exclut l\'obligation d\'un arrêt total.' },
+      q8: { value: '1', reason: 'Sont mentionnés : « les pois chiches, le soja ou les haricots. »' },
+      q9: { value: '0', reason: 'L\'enregistrement formule précisément : « AMAP, Association pour le maintien de l\'agriculture paysanne. »' },
+      q10: { value: 'vrai', reason: '« Vous pouvez trouver une coopérative près de chez vous sur leur site internet... »' }
+    };
+
+    const btnVerifier = document.getElementById('btnVerifier');
+    const btnTranscription = document.getElementById('btnTranscription');
+    const btnHideTranscription = document.getElementById('btnHideTranscription');
+    const transcriptionSection = document.getElementById('transcriptionSection');
+    const scoreBox = document.getElementById('scoreBox');
+    const scoreBadge = document.getElementById('scoreBadge');
+    const scoreText = document.getElementById('scoreText');
+
+    btnVerifier.addEventListener('click', function () {
+      let score = 0;
+      const total = 10;
+
+      for (let i = 1; i <= total; i++) {
+        const qKey = 'q' + i;
+        const fieldset = document.querySelector(`fieldset[data-q="${i}"]`);
+        const feedbackDiv = fieldset.querySelector('.feedback');
+        let isCorrect = false;
+        const reason = answerKey[qKey].reason;
+
+        if (i === 2) {
+          // Validation sélection multiple (Q2 : 2 et 4)
+          const checked = Array.from(document.querySelectorAll('input[name="q2"]:checked')).map(el => el.value).sort();
+          const target = [...answerKey.q2.values].sort();
+          isCorrect = (checked.length === target.length) && checked.every((val, idx) => val === target[idx]);
+        } else {
+          // Validation radio bouton
+          const selected = document.querySelector(`input[name="${qKey}"]:checked`);
+          isCorrect = selected && selected.value === answerKey[qKey].value;
+        }
+
+        if (isCorrect) {
+          score++;
+          fieldset.className = 'bg-white p-5 rounded-lg border-2 border-ecoGreen shadow-sm question-block';
+          feedbackDiv.className = 'feedback mt-3 p-3 rounded text-sm bg-green-50 text-green-900 border border-ecoGreen';
+          feedbackDiv.innerHTML = `<strong>Bonne réponse.</strong> <span class="block text-xs mt-1 text-gray-700">${reason}</span>`;
+        } else {
+          fieldset.className = 'bg-white p-5 rounded-lg border-2 border-red-500 shadow-sm question-block';
+          feedbackDiv.className = 'feedback mt-3 p-3 rounded text-sm bg-red-50 text-red-900 border border-red-400';
+          feedbackDiv.innerHTML = `<strong>Réponse incorrecte ou incomplète.</strong> <span class="block text-xs mt-1 text-gray-700"><strong>Justification :</strong> ${reason}</span>`;
+        }
+      }
+
+      // Affichage du résultat
+      scoreBadge.textContent = `${score} / ${total}`;
+      if (score >= 8) {
+        scoreText.textContent = "Excellent résultat ! Vous maîtrisez parfaitement les points abordés dans ce document sonore.";
+      } else if (score >= 5) {
+        scoreText.textContent = "Résultat satisfaisant. Relisez les justifications pour repérer les subtilités manquées.";
+      } else {
+        scoreText.textContent = "Score insuffisant. Il est conseillé de réécouter l'audio en observant la transcription ci-dessous.";
+      }
+      scoreBox.classList.remove('hidden');
+
+      // Déverrouillage de la transcription
+      btnTranscription.disabled = false;
+      btnTranscription.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+      btnTranscription.classList.add('bg-ecoBlue', 'text-white', 'hover:bg-ecoBlue-dark', 'cursor-pointer');
+      
+      scoreBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    btnTranscription.addEventListener('click', function () {
+      if (this.disabled) return;
+      transcriptionSection.classList.toggle('hidden');
+      if (!transcriptionSection.classList.contains('hidden')) {
+        transcriptionSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    btnHideTranscription.addEventListener('click', function () {
+      transcriptionSection.classList.add('hidden');
+    });
+  </script>
+</body>
+</html>
