@@ -23,8 +23,13 @@
   <style>
     .video-wrap { position: relative; padding-top: 56.25%; }
     .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-    select { max-width: 100%; }
-    .hidden { display: none; } /* la page reste utilisable si le CDN est bloqué */
+    fieldset { min-width: 0; } /* sinon le fieldset s'élargit selon l'option la plus longue */
+    select { width: 100%; max-width: 100%; min-width: 0; text-overflow: ellipsis; }
+    img, iframe, video { max-width: 100%; }
+    .hidden { display: none; }
+    html { scroll-padding-top: 6rem; -webkit-text-size-adjust: 100%; }
+    * { -webkit-tap-highlight-color: transparent; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } } /* la page reste utilisable si le CDN est bloqué */
   </style>
 </head>
 <body class="bg-unam-light text-gray-900 font-sans antialiased min-h-screen">
@@ -37,10 +42,10 @@
     </div>
   </header>
 
-  <div class="max-w-3xl mx-auto px-4 py-6 sm:px-6">
+  <div class="max-w-3xl mx-auto px-3 py-5 sm:px-6 sm:py-6">
 
     <!-- Onglets -->
-    <nav id="tabs" class="grid grid-cols-2 sm:grid-cols-4 gap-1 bg-white rounded-lg shadow-sm p-1 mb-6" role="tablist"></nav>
+    <nav id="tabs" class="sticky top-0 z-20 grid grid-cols-2 sm:grid-cols-4 gap-1 bg-white rounded-lg shadow-md p-1 mb-6" role="tablist"></nav>
 
     <!-- Lecteur vidéo (onglets 2 et 3) -->
     <section id="player" class="hidden bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
@@ -73,6 +78,8 @@
       </div>
     </section>
   </div>
+
+  <button type="button" id="btnVideo" class="hidden fixed bottom-4 right-4 z-30 bg-unam-blue text-white text-sm font-bold px-4 py-3 rounded-full shadow-lg">&#9654; Vidéo</button>
 
   <footer class="bg-unam-blue text-white text-center py-6 border-t-4 border-unam-gold mt-8">
     <p class="text-xs opacity-80">&copy; 2026 ENALLT - UNAM. Cours de français Niveau 6.</p>
@@ -129,7 +136,7 @@ const TABS = [
         options: ['Une consommatrice en colère.', 'Une spécialiste du droit qui enseigne.', 'Une vendeuse qui défend son entreprise.', 'Une journaliste qui interroge des passants.'], answer: 1,
         reason: 'Il s\'agit de Laurence Attuel-Mendès, professeure à la Burgundy School of Business (vidéo de FNEGE Médias).' },
       { type: 'match', q: 'Dans quel ordre la vidéo présente-t-elle ces informations ? Numérotez de 1 à 5.',
-        choices: ['1', '2', '3', '4', '5'],
+        choices: ['1', '2', '3', '4', '5'], ordered: true,
         items: [
           ['Les sanctions', 4], ['La définition d\'une pratique commerciale', 0], ['Les personnes protégées par la loi', 3],
           ['Les cas où une pratique est trompeuse', 1], ['Un exemple de pratique « réputée trompeuse »', 2],
@@ -202,7 +209,7 @@ const TABS = [
         ], answer: [0, 1],
         reason: '« … sans oublier la possibilité d\'interdiction professionnelle et la publication du jugement ou la diffusion d\'une annonce rectificative aux frais du condamné. »' },
       { type: 'match', q: 'Les peines de prison sont plus lourdes…',
-        choices: ['3 ans', '5 ans', '7 ans', '10 ans'],
+        choices: ['3 ans', '5 ans', '7 ans', '10 ans'], ordered: true,
         items: [['si un contrat a été signé à la suite de la pratique', 0], ['si l\'infraction est commise en bande organisée', 2]],
         reason: '« … si la pratique est suivie de la conclusion d\'un contrat, les peines étant dans ce cas de trois ans d\'emprisonnement, ou sept ans si l\'infraction est commise en bande organisée. »' },
     ] },
@@ -234,6 +241,7 @@ const TABS = [
 /* =========================================================
    Rendu
    ========================================================= */
+const shuffle = arr => { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const nav = document.getElementById('tabs');
 const panels = document.getElementById('panels');
@@ -248,35 +256,37 @@ function renderQuestion(q, tabId, idx) {
   if (q.type === 'radio' || q.type === 'check') {
     const t = q.type === 'radio' ? 'radio' : 'checkbox';
     body = q.options.map((o, k) => `
-      <label class="flex items-start gap-3 p-2 rounded cursor-pointer hover:bg-gray-50">
-        <input type="${t}" name="${name}" value="${k}" class="mt-1 h-4 w-4 shrink-0">
+      <label class="flex items-start gap-3 p-3 sm:p-2 rounded-md cursor-pointer hover:bg-gray-50 active:bg-gray-100">
+        <input type="${t}" name="${name}" value="${k}" class="mt-0.5 h-5 w-5 sm:h-4 sm:w-4 shrink-0">
         <span class="text-sm">${esc(o)}</span>
       </label>`).join('');
   } else if (q.type === 'tf') {
     body = `<div class="flex gap-3">${['Vrai', 'Faux'].map((o, k) => `
-      <label class="flex items-center gap-2 px-4 py-2 rounded border border-gray-300 cursor-pointer hover:bg-gray-50">
-        <input type="radio" name="${name}" value="${k === 0}" class="h-4 w-4"><span class="text-sm font-semibold">${o}</span>
+      <label class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-3 sm:py-2 rounded-md border border-gray-300 cursor-pointer hover:bg-gray-50 active:bg-gray-100">
+        <input type="radio" name="${name}" value="${k === 0}" class="h-5 w-5 sm:h-4 sm:w-4"><span class="text-sm font-semibold">${o}</span>
       </label>`).join('')}</div>`;
   } else if (q.type === 'match') {
+    // ordre d'affichage aléatoire (la valeur reste l'indice d'origine)
+    const order = q.ordered ? q.choices.map((_, j) => j) : shuffle(q.choices.map((_, j) => j));
     body = q.items.map((it, k) => `
-      <div class="grid sm:grid-cols-2 gap-2 items-center py-1.5 border-b border-gray-100 last:border-0">
+      <div class="grid sm:grid-cols-2 gap-1.5 sm:gap-3 items-center py-2.5 sm:py-1.5 border-b border-gray-100 last:border-0">
         <span class="text-sm font-semibold">${esc(it[0])}</span>
-        <select name="${name}_${k}" class="w-full text-sm border border-gray-300 rounded px-2 py-1.5 bg-white">
+        <select name="${name}_${k}" class="w-full text-base sm:text-sm border border-gray-300 rounded-md px-3 py-2.5 sm:py-2 bg-white">
           <option value="">— choisir —</option>
-          ${q.choices.map((c, j) => `<option value="${j}">${esc(c)}</option>`).join('')}
+          ${order.map(j => `<option value="${j}">${esc(q.choices[j])}</option>`).join('')}
         </select>
       </div>`).join('');
   } else if (q.type === 'open') {
-    body = `<textarea rows="4" class="w-full text-sm border border-gray-300 rounded p-2" placeholder="Écrivez ici…"></textarea>` +
+    body = `<textarea rows="4" class="w-full text-base sm:text-sm border border-gray-300 rounded-md p-3" placeholder="Écrivez ici…"></textarea>` +
       (q.model ? `<button type="button" class="show-model mt-2 text-xs font-semibold text-unam-blue underline">Voir une proposition</button>
         <div class="model hidden mt-2 p-3 rounded bg-ok-light text-sm border border-ok">${esc(q.model)}</div>` : '');
   }
   const num = ++qCounter;
   const scored = q.type !== 'open';
   return `
-    <fieldset class="bg-white p-5 rounded-lg border border-gray-300 shadow-sm q" data-tab="${tabId}" data-idx="${idx}" ${scored ? 'data-scored="1"' : ''}>
+    <fieldset class="bg-white p-4 sm:p-5 rounded-lg border border-gray-300 shadow-sm q" data-tab="${tabId}" data-idx="${idx}" ${scored ? 'data-scored="1"' : ''}>
       <legend class="sr-only">Question ${num}</legend>
-      <p class="text-base font-bold mb-3">${esc(q.q)}</p>
+      <p class="text-base font-bold mb-3 leading-snug">${esc(q.q)}</p>
       <div class="space-y-1">${body}</div>
       <div class="feedback hidden mt-3 p-3 rounded text-sm"></div>
     </fieldset>`;
@@ -284,7 +294,7 @@ function renderQuestion(q, tabId, idx) {
 
 TABS.forEach((t, i) => {
   nav.insertAdjacentHTML('beforeend',
-    `<button type="button" role="tab" data-tab="${t.id}" class="tab-btn py-2 px-2 rounded text-xs sm:text-sm font-bold text-center transition-colors">${esc(t.title)}</button>`);
+    `<button type="button" role="tab" data-tab="${t.id}" class="tab-btn py-2.5 px-2 rounded text-xs sm:text-sm font-bold text-center leading-tight transition-colors">${esc(t.title)}</button>`);
   const qs = t.questions.map((q, k) => renderQuestion(q, t.id, k)).join('');
   const hasScore = t.questions.some(q => q.type !== 'open');
   const next = TABS[i + 1];
@@ -296,12 +306,12 @@ TABS.forEach((t, i) => {
         <p class="text-sm text-gray-700 mt-1">${esc(t.intro)}</p>
       </header>
       ${qs}
-      <div class="flex flex-wrap gap-3">
+      <div class="flex flex-col sm:flex-row sm:flex-wrap gap-3">
         ${hasScore ? `<button type="button" class="btn-check bg-unam-blue hover:bg-blue-900 text-white font-bold text-sm px-5 py-2.5 rounded shadow" data-tab="${t.id}">Vérifier mes réponses</button>` : ''}
         <button type="button" class="btn-reset bg-white border border-gray-300 text-gray-700 font-semibold text-sm px-5 py-2.5 rounded" data-tab="${t.id}">Recommencer</button>
-        ${next ? `<button type="button" class="btn-next ml-auto bg-unam-gold hover:brightness-95 text-unam-blue font-bold text-sm px-5 py-2.5 rounded shadow" data-next="${next.id}">Étape suivante &rarr;</button>` : ''}
+        ${next ? `<button type="button" class="btn-next sm:ml-auto bg-unam-gold hover:brightness-95 text-unam-blue font-bold text-sm px-5 py-2.5 rounded shadow" data-next="${next.id}">Étape suivante &rarr;</button>` : ''}
       </div>
-      <div class="score hidden p-4 bg-white border-2 border-unam-gold rounded-lg shadow-sm flex items-center justify-between gap-4">
+      <div class="score hidden p-4 bg-white border-2 border-unam-gold rounded-lg shadow-sm flex flex-col-reverse sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
         <p class="score-text text-sm text-gray-700"></p>
         <span class="score-badge text-2xl font-black px-4 py-2 bg-unam-blue text-white rounded shrink-0"></span>
       </div>
@@ -312,8 +322,10 @@ TABS.forEach((t, i) => {
 const player = document.getElementById('player');
 const segBox = document.getElementById('segButtons');
 const yt = document.getElementById('yt');
+const btnVideo = document.getElementById('btnVideo');
+btnVideo.addEventListener('click', () => player.scrollIntoView({ behavior: 'smooth', block: 'start' }));
 SEGMENTS.forEach(sg => segBox.insertAdjacentHTML('beforeend',
-  `<button type="button" class="seg text-xs font-semibold px-3 py-1.5 rounded-full border border-unam-blue text-unam-blue hover:bg-unam-blue hover:text-white" data-start="${sg.start}" data-end="${sg.end ?? ''}">&#9654; ${esc(sg.label)}</button>`));
+  `<button type="button" class="seg text-xs sm:text-sm font-semibold px-3 py-2 rounded-full border border-unam-blue text-unam-blue hover:bg-unam-blue hover:text-white" data-start="${sg.start}" data-end="${sg.end ?? ''}">&#9654; ${esc(sg.label)}</button>`));
 segBox.addEventListener('click', e => {
   const b = e.target.closest('.seg'); if (!b) return;
   const end = b.dataset.end ? `&end=${b.dataset.end}` : '';
@@ -325,11 +337,12 @@ function showTab(id) {
   document.querySelectorAll('.panel').forEach(p => p.classList.toggle('hidden', p.id !== 'panel_' + id));
   document.querySelectorAll('.tab-btn').forEach(b => {
     const on = b.dataset.tab === id;
-    b.className = 'tab-btn py-2 px-2 rounded text-xs sm:text-sm font-bold text-center transition-colors ' +
+    b.className = 'tab-btn py-2.5 px-2 rounded text-xs sm:text-sm font-bold text-center leading-tight transition-colors ' +
       (on ? 'bg-unam-blue text-white' : 'text-gray-600 hover:bg-gray-100');
     b.setAttribute('aria-selected', on);
   });
   player.classList.toggle('hidden', !t.video);
+  btnVideo.classList.toggle('hidden', !t.video);
   segBox.classList.toggle('hidden', !t.segments);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
