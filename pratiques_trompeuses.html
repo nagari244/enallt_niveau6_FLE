@@ -120,7 +120,7 @@ const TABS = [
           ['une personne physique', 5], ['une personne morale', 6], ['le chiffre d\'affaires', 7], ['en bande organisée', 8],
         ],
         reason: 'Ces mots appartiennent à la langue du droit. Vous allez les entendre dans la vidéo.' },
-      { type: 'open', q: 'Hypothèses. En France, on parle souvent de « publicité mensongère ». À votre avis, que risque une entreprise qui ment à ses clients ? Notez deux idées.' },
+      { type: 'open', q: 'Hypothèses. En France, on parle souvent de « publicité mensongère ». À votre avis, que risque une entreprise qui ment à ses clients ? Notez deux idées dans votre cahier, puis comparez avec un camarade.', where: 'Dans votre cahier · puis à l\'oral' },
     ] },
 
   { id: 'glob', title: '2. Compréhension globale', badge: '1re écoute', video: true,
@@ -233,7 +233,7 @@ const TABS = [
           ['Un magasin vend un aspirateur 20 € plus cher que le magasin d\'en face.', 4],
         ],
         reason: 'Un prix élevé n\'est pas trompeur : le prix est libre, s\'il est clairement affiché. Pour les autres situations, le consommateur peut faire une réclamation à l\'entreprise et un signalement sur SignalConso.' },
-      { type: 'open', q: 'À vous ! Vous êtes victime d\'une des situations ci-dessus. Écrivez 3 ou 4 phrases d\'un mél de réclamation. Utilisez : malgré ou en dépit de · un adjectif comme inadmissible ou inacceptable · deux mots du lexique (remboursement, préjudice, litige…).',
+      { type: 'open', q: 'À vous ! Vous êtes victime d\'une des situations ci-dessus. Écrivez 3 ou 4 phrases d\'un mél de réclamation. Utilisez : malgré ou en dépit de · un adjectif comme inadmissible ou inacceptable · deux mots du lexique (remboursement, préjudice, litige…).', where: 'Dans votre cahier',
         model: 'Le 12 octobre, j\'ai commandé une crème sur votre site parce qu\'elle portait le logo « Bio certifié ». J\'ai découvert que ce label n\'existe pas : je trouve cette pratique inadmissible. En dépit de mon message du 15 octobre, vous ne m\'avez pas répondu. Je vous demande donc le remboursement intégral de ma commande ; à défaut, je ferai un signalement sur SignalConso.' },
     ] },
 ];
@@ -277,7 +277,7 @@ function renderQuestion(q, tabId, idx) {
         </select>
       </div>`).join('');
   } else if (q.type === 'open') {
-    body = `<textarea rows="4" class="w-full text-base sm:text-sm border border-gray-300 rounded-md p-3" placeholder="Écrivez ici…"></textarea>` +
+    body = `<p class="inline-flex items-center gap-2 text-sm font-semibold text-unam-blue bg-unam-light border border-gray-200 rounded-full px-3 py-1.5">&#9998; ${esc(q.where || 'Sur papier')}</p>` +
       (q.model ? `<button type="button" class="show-model mt-2 text-xs font-semibold text-unam-blue underline">Voir une proposition</button>
         <div class="model hidden mt-2 p-3 rounded bg-ok-light text-sm border border-ok">${esc(q.model)}</div>` : '');
   }
@@ -418,7 +418,6 @@ document.addEventListener('click', e => {
     const panel = document.getElementById('panel_' + r.dataset.tab);
     panel.querySelectorAll('input').forEach(i => i.checked = false);
     panel.querySelectorAll('select').forEach(s => { s.value = ''; s.classList.remove('border-ok', 'border-alert', 'border-2'); });
-    panel.querySelectorAll('textarea').forEach(t => t.value = '');
     panel.querySelectorAll('.feedback, .score, .model').forEach(x => x.classList.add('hidden'));
     panel.querySelectorAll('fieldset').forEach(fs => { fs.classList.remove('border-ok', 'border-alert', 'border-2'); fs.classList.add('border-gray-300'); });
   }
