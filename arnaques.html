@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arnaques : réclamer, signaler ou porter plainte ? - Compréhension orale</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    if (window.tailwind) tailwind.config = {
+      theme: { extend: {
+        fontFamily: { sans: ['Inter', 'sans-serif'] },
+        colors: {
+          unam: { blue: '#002B5C', gold: '#D4AF37', soft: '#F5F7FA' },
+          alert: { DEFAULT: '#B3261E', light: '#FCEEEE' },
+          ok: { DEFAULT: '#1E5A9C', light: '#EAF2FB' }
+        }
+      } }
+    }
+  </script>
+  <style>
+    .hidden { display: none; }
+    fieldset { min-width: 0; }
+    select { width: 100%; max-width: 100%; min-width: 0; text-overflow: ellipsis; }
+    img, iframe, video { max-width: 100%; }
+    html { scroll-padding-top: 6rem; -webkit-text-size-adjust: 100%; }
+    * { -webkit-tap-highlight-color: transparent; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    .vid { width: 100%; max-height: 70vh; background: #000; border-radius: .5rem; }
+    .oral { font-family: ui-monospace, Menlo, monospace; background: #FFF6D6; padding: 0 .25rem; border-radius: .2rem; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased min-h-screen">
+
+  <header class="bg-unam-blue text-white py-6 border-b-4 border-unam-gold">
+    <div class="max-w-3xl mx-auto px-4">
+      <a href="index.html" class="text-xs text-unam-gold hover:underline">&larr; Matériel didactique · Niveau 6</a>
+      <h1 class="text-2xl sm:text-3xl font-extrabold mt-2">Arnaques : réclamer, signaler ou porter plainte ?</h1>
+      <p class="text-sm opacity-90 mt-1">Dossier « Consommation » · Étape 3 « La réclamation » · Compréhension orale (deux vidéos)</p>
+    </div>
+  </header>
+
+  <div class="max-w-3xl mx-auto px-3 py-5 sm:px-6 sm:py-6">
+    <nav id="tabs" class="sticky top-0 z-20 grid grid-cols-3 gap-1 bg-white rounded-lg shadow-md border border-gray-200 p-1 mb-6" role="tablist"></nav>
+    <main id="panels"></main>
+  </div>
+
+  <button type="button" id="btnVideo" class="hidden fixed bottom-4 right-4 z-30 bg-unam-blue text-white text-sm font-bold px-4 py-3 rounded-full shadow-lg">&#9654; Vidéo</button>
+
+  <footer class="bg-unam-blue text-white text-center py-6 border-t-4 border-unam-gold mt-8">
+    <p class="text-xs opacity-80">&copy; 2026 ENALLT - UNAM. Cours de français Niveau 6.</p>
+  </footer>
+
+<script>
+/* =========================================================
+   Données
+   ========================================================= */
+const ACTIONS = [
+  'réclamer auprès de l\'entreprise',
+  'signaler (33700, SignalConso)',
+  'porter plainte (police, gendarmerie)',
+  'déclarer le sinistre à son assureur',
+  'faire opposition auprès de sa banque',
+];
+
+const TABS = [
+/* ---------------------------------------------------------- VIDÉO 1 */
+{ id: 'v1', title: 'Vidéo 1 · Le « crash for cash »', short: 'Vidéo 1', video: 'video_crash_for_cash.mp4',
+  segments: [['Vidéo entière', 0, null], ['1 · Le principe', 0, 19], ['2 · La mise en scène', 19, 39], ['3 · Les documents', 39, 62], ['4 · Les chiffres', 62, 74], ['5 · Les réflexes', 74, null]],
+  steps: [
+  { id: 'cult', title: 'A. Le contexte : un accident de voiture en France', badge: 'Culture',
+    intro: 'Avant de regarder la vidéo, découvrez quatre réalités françaises liées aux accidents de voiture.',
+    cards: [
+      ['Le constat amiable', 'Après un accident sans blessé grave, les deux conducteurs remplissent et signent ensemble un formulaire, le <b>constat amiable</b>, puis chacun l\'envoie à son assureur. Il n\'est <b>pas obligatoire</b> : on peut refuser de le signer, surtout si on se sent sous pression.'],
+      ['Le bonus-malus', 'En France, le prix de l\'assurance auto (la <b>prime</b>) dépend d\'un coefficient. Quand on est responsable d\'un accident, on a un <b>malus</b> : la prime augmente (en général de 25 %). Sans accident, on a un <b>bonus</b>.'],
+      ['L\'attestation d\'assurance', 'C\'est le document qui prouve qu\'un véhicule est assuré. Avec le <b>permis de conduire</b>, ce sont des documents personnels importants. La petite « carte verte » collée sur le pare-brise a été supprimée en 2024.'],
+      ['Porter plainte', 'Si on est victime d\'une infraction (une escroquerie, par exemple), on <b>porte plainte</b> (on « dépose plainte ») au commissariat de police ou à la gendarmerie. En urgence, on appelle le <b>17</b>.'],
+    ],
+    questions: [
+      { type: 'radio', q: 'Après un petit accident, que remplissent souvent les deux conducteurs ?', options: ['Une déclaration d\'impôts.', 'Un constat amiable.', 'Une plainte.', 'Une attestation d\'assurance.'], answer: 1, reason: 'Le constat amiable décrit l\'accident ; chaque conducteur l\'envoie à son assureur.' },
+      { type: 'tf', q: 'On est obligé de signer le constat amiable sur place.', answer: false, reason: 'Le constat n\'est pas obligatoire : on peut refuser de le signer et appeler la police.' },
+      { type: 'radio', q: 'Vous êtes responsable d\'un accident. Que se passe-t-il pour votre assurance ?', options: ['Vous avez un bonus : la prime baisse.', 'Vous avez un malus : la prime augmente.', 'Rien ne change.'], answer: 1, reason: 'Responsable d\'un accident → malus → hausse de la prime d\'assurance.' },
+    ] },
+  { id: 'glob', title: 'B. Compréhension globale', badge: '1re écoute', withVideo: true,
+    intro: 'Regardez la vidéo entière une fois, sans prendre de notes, puis répondez.',
+    questions: [
+      { type: 'radio', q: 'De quel type de document s\'agit-il ?', options: ['Une publicité pour une compagnie d\'assurance.', 'Une vidéo de prévention publiée sur les réseaux sociaux.', 'Le témoignage d\'une victime.', 'Un reportage du journal télévisé.'], answer: 1, reason: 'Une créatrice de contenu explique une arnaque face caméra et donne des conseils ; la vidéo se termine par « Abonne-toi ».' },
+      { type: 'radio', q: 'Qu\'est-ce que le « crash for cash » ?', options: ['Un jeu vidéo de course automobile.', 'Une escroquerie : provoquer un faux accident pour obtenir de l\'argent.', 'Une assurance pour les petits accidents.', 'Une réduction offerte aux bons conducteurs.'], answer: 1, reason: '« Ils provoquent des accidents de voiture volontairement pour vider vos comptes. »' },
+      { type: 'match', q: 'Dans quel ordre la vidéo présente-t-elle ces informations ? Numérotez de 1 à 5.', choices: ['1', '2', '3', '4', '5'], ordered: true,
+        items: [['Des conseils pour réagir', 4], ['Le principe de l\'arnaque', 0], ['Un chiffre sur la fraude en France', 3], ['La mise en scène après l\'accident', 1], ['L\'utilisation des documents de la victime', 2]],
+        reason: 'Principe → mise en scène → documents → chiffre → réflexes.' },
+    ] },
+  { id: 'det', title: 'C. Compréhension détaillée', badge: '2e écoute', withVideo: true, segments: true,
+    intro: 'Regardez la vidéo partie par partie. Utilisez les boutons sous la vidéo.',
+    questions: [
+      { type: 'head', q: 'Partie 1 · Le principe (0:00–0:19)' },
+      { type: 'check', q: 'Comment les escrocs provoquent-ils l\'accident ? (3 réponses)', options: ['Ils vous percutent volontairement.', 'Ils crèvent vos pneus.', 'Ils freinent brutalement devant vous.', 'Ils simulent un choc qui n\'a pas eu lieu.', 'Ils vous suivent jusqu\'à chez vous.'], answer: [0, 2, 3], reason: '« Des escrocs vous percutent volontairement ou freinent brutalement devant vous […]. Et parfois, ils simulent même carrément un choc qui n\'a pas vraiment eu lieu. »' },
+      { type: 'tf', q: 'D\'après la vidéo, ce phénomène se développe en France.', answer: true, reason: '« Ça s\'appelle le crash for cash, et ça se développe en France. »' },
+      { type: 'head', q: 'Partie 2 · La mise en scène (0:19–0:39)' },
+      { type: 'check', q: 'Que fait la « prétendue victime » ? (3 réponses)', options: ['Elle affirme être blessée.', 'Elle appelle tout de suite la police.', 'Elle se montre pressante.', 'Elle exige un constat immédiat.', 'Elle propose de l\'argent.'], answer: [0, 2, 3], reason: '« Une prétendue victime affirme être blessée, se montre pressante, exige un constat immédiat. »' },
+      { type: 'radio', q: 'Pourquoi des faux témoins apparaissent-ils ?', options: ['Pour aider la victime.', 'Pour crédibiliser la scène.', 'Pour appeler l\'assurance.', 'Pour filmer l\'accident.'], answer: 1, reason: '« Des faux témoins apparaissent pour crédibiliser la scène. »' },
+      { type: 'radio', q: 'Quel est le but de toute cette pression ?', options: ['Vous faire payer une amende.', 'Vous pousser à reconnaître votre responsabilité dans la précipitation.', 'Vous empêcher d\'appeler votre famille.', 'Vous obliger à vendre votre voiture.'], answer: 1, reason: '« Tout est fait pour vous mettre sous pression, vous pousser à reconnaître votre responsabilité dans la précipitation. »' },
+      { type: 'head', q: 'Partie 3 · Les documents (0:39–1:02)' },
+      { type: 'check', q: 'Qu\'est-ce qu\'ils vous demandent de photographier ? (2 réponses)', options: ['Votre permis de conduire.', 'Votre carte bancaire.', 'Votre attestation d\'assurance.', 'Votre passeport.'], answer: [0, 2], reason: '« Ils vous demandent de photographier votre permis de conduire et votre attestation d\'assurance. »' },
+      { type: 'radio', q: 'Quel prétexte utilisent-ils ?', options: ['« Faciliter les démarches ».', '« Gagner du temps avec la police ».', '« Envoyer les photos à un garage ».'], answer: 0, reason: '« Sous prétexte de “faciliter les démarches” ».' },
+      { type: 'check', q: 'Quelles sont les conséquences pour la victime ? (4 réponses)', options: ['Un malus.', 'Une hausse de la prime d\'assurance.', 'Le retrait du permis.', 'Une usurpation d\'identité.', 'Des mois de démarches pour s\'en sortir.', 'Une peine de prison.'], answer: [0, 1, 3, 4], reason: '« Résultat : malus, hausse de prime d\'assurance, usurpation d\'identité et des mois de démarches pour s\'en sortir. »' },
+      { type: 'head', q: 'Partie 4 · Les chiffres (1:02–1:14)' },
+      { type: 'radio', q: 'De combien les fraudes à l\'assurance automobile ont-elles augmenté entre 2022 et 2023 en France ?', options: ['+ 6 %', '+ 16 %', '+ 26 %', '+ 62 %'], answer: 2, reason: '« Les fraudes à l\'assurance automobile ont augmenté de 26 % entre 2022 et 2023 en France. »' },
+      { type: 'head', q: 'Partie 5 · Les réflexes (1:14–fin)' },
+      { type: 'match', q: 'Complétez les conseils de la vidéo.', choices: ['à la pression', 'aucune responsabilité', 'vos documents', 'un maximum de détails', 'la police et déposez plainte'],
+        items: [['Ne cédez jamais…', 0], ['Ne reconnaissez…', 1], ['Ne laissez personne photographier…', 2], ['Notez…', 3], ['En cas de doute, appelez…', 4]],
+        reason: '« Ne cédez jamais à la pression et ne reconnaissez aucune responsabilité si vous avez le moindre doute. Ne laissez personne photographier vos documents, et notez un maximum de détails […]. Et en cas de doute, appelez la police et déposez plainte. »' },
+      { type: 'check', q: 'Quels détails faut-il noter ? (4 réponses)', options: ['Les plaques d\'immatriculation.', 'Les véhicules impliqués.', 'La couleur des vêtements.', 'Les dégâts visibles.', 'L\'environnement.'], answer: [0, 1, 3, 4], reason: '« Plaques d\'immatriculation, véhicules impliqués, dégâts visibles, environnement. »' },
+    ] },
+  { id: 'lex', title: 'D. Les mots de la vidéo', badge: 'Lexique',
+    intro: 'Associez chaque mot ou expression entendu dans la vidéo à son sens.',
+    questions: [
+      { type: 'match', q: 'Associez.', choices: ['heurter un véhicule', 'une situation préparée comme au théâtre', 'rendre quelque chose crédible', 'trop vite, sans réfléchir', 'en donnant une fausse raison', 'un accident déclaré à l\'assurance', 'utiliser le nom de quelqu\'un pour frauder', 'vraiment, complètement (familier)'],
+        items: [['percuter', 0], ['une mise en scène', 1], ['crédibiliser', 2], ['dans la précipitation', 3], ['sous prétexte de…', 4], ['un sinistre', 5], ['l\'usurpation d\'identité', 6], ['carrément', 7]],
+        reason: '« Sinistre » appartient à la langue de l\'assurance. « Carrément » est familier : on l\'entend beaucoup à l\'oral.' },
+      { type: 'open', q: 'Le mot « démarches » apparaît deux fois dans la vidéo (« faciliter les démarches », « des mois de démarches »). Quelle est la différence avec « démarchage » ? Répondez à l\'oral avec votre voisin.', where: 'À l\'oral, en binôme',
+        model: 'Une démarche est une action qu\'on fait pour obtenir quelque chose (démarches administratives, auprès de l\'assurance). Le démarchage est l\'action d\'un vendeur qui sollicite des clients qui n\'ont rien demandé.' },
+    ] },
+  ],
+  transcript: [
+    ['0:00', 'Ils provoquent des accidents de voiture volontairement pour vider vos comptes. Ça s\'appelle le « crash for cash », et ça se développe en France.'],
+    ['0:10', 'Le principe est simple. Des escrocs vous percutent volontairement ou freinent brutalement devant vous pour provoquer une collision. Et parfois, ils simulent même carrément un choc qui n\'a pas vraiment eu lieu.'],
+    ['0:19', 'Une fois l\'accident provoqué, la mise en scène commence. Une prétendue victime affirme être blessée, se montre pressante, exige un constat immédiat. Des faux témoins apparaissent pour crédibiliser la scène. Tout est fait pour vous mettre sous pression, vous pousser à reconnaître votre responsabilité dans la précipitation.'],
+    ['0:37', 'Mais le plus dangereux arrive ensuite. Sous prétexte de « faciliter les démarches », ils vous demandent de photographier votre permis de conduire et votre attestation d\'assurance. Et une fois ces documents en leur possession, ils peuvent les utiliser pour monter de faux dossiers de sinistre ou souscrire des contrats à votre nom. Résultat : malus, hausse de prime d\'assurance, usurpation d\'identité et des mois de démarches pour s\'en sortir.'],
+    ['1:02', 'Les fraudes à l\'assurance automobile ont augmenté de 26 % entre 2022 et 2023 en France. Et cette arnaque, encore peu connue du grand public, en est l\'une des causes principales.'],
+    ['1:11', 'Alors, quelques réflexes essentiels si ça vous arrive. Ne cédez jamais à la pression et ne reconnaissez aucune responsabilité si vous avez le moindre doute. Ne laissez personne photographier vos documents, et notez un maximum de détails : plaques d\'immatriculation, véhicules impliqués, dégâts visibles, environnement. Et en cas de doute, appelez la police et déposez plainte.'],
+  ] },
+
+/* ---------------------------------------------------------- VIDÉO 2 */
+{ id: 'v2', title: 'Vidéo 2 · Le faux livreur', short: 'Vidéo 2', video: 'video_faux_livreur.mp4',
+  segments: [['Vidéo entière', 0, null], ['1 · L\'annonce', 0, 11], ['2 · Le SMS', 11, 23], ['3 · Pourquoi on y croit', 23, 33], ['4 · Le faux site', 33, 49], ['5 · Les conseils', 49, null]],
+  steps: [
+  { id: 'cult', title: 'A. Le contexte : recevoir un colis en France', badge: 'Culture',
+    intro: 'Avant de regarder la vidéo, découvrez quatre réalités françaises liées aux livraisons et aux SMS.',
+    cards: [
+      ['Les points relais', 'En France, on peut se faire livrer un colis dans un <b>point relais</b> : un commerce près de chez soi (boulangerie, tabac, épicerie). <b>Mondial Relay</b> est l\'une des entreprises les plus connues pour ce service.'],
+      ['Un 06 ou un 07', 'En France, les numéros de <b>portable</b> commencent par <b>06</b> ou <b>07</b> (+33 6 / +33 7 depuis l\'étranger). Les numéros fixes commencent par 01 à 05. Un livreur appelle souvent avec un portable.'],
+      ['Le 33700', 'C\'est un numéro <b>gratuit</b> pour <b>signaler</b> un SMS ou un appel frauduleux : on lui transfère le SMS suspect. Les opérateurs peuvent ainsi bloquer les numéros des escrocs.'],
+      ['Si on a payé', 'Si on a donné sa carte bancaire sur un faux site, il faut <b>faire opposition</b> tout de suite auprès de sa banque, puis <b>porter plainte</b>. Le site officiel <b>cybermalveillance.gouv.fr</b> aide les victimes.'],
+    ],
+    questions: [
+      { type: 'radio', q: 'Vous recevez un SMS suspect d\'un « livreur ». Que pouvez-vous faire ?', options: ['Le transférer au 33700 pour le signaler.', 'Répondre pour demander son nom.', 'Cliquer sur le lien pour vérifier.', 'Appeler le 17.'], answer: 0, reason: 'Le 33700 sert à signaler les SMS et appels frauduleux.' },
+      { type: 'radio', q: 'Un numéro qui commence par 07 en France, c\'est…', options: ['un numéro fixe à Paris.', 'un numéro de portable.', 'un numéro surtaxé.', 'un numéro de police.'], answer: 1, reason: '06 et 07 : numéros de téléphone portable.' },
+      { type: 'tf', q: 'Un point relais est un commerce où l\'on peut récupérer ses colis.', answer: true, reason: 'On se fait livrer dans un commerce de proximité au lieu de chez soi.' },
+    ] },
+  { id: 'glob', title: 'B. Compréhension globale', badge: '1re écoute', withVideo: true,
+    intro: 'Regardez la vidéo entière une fois, sans prendre de notes, puis répondez.',
+    questions: [
+      { type: 'radio', q: 'Qui parle ?', options: ['Une livreuse de Mondial Relay.', 'Une créatrice de contenu qui parle de tech et d\'intelligence artificielle.', 'Une policière.', 'Une victime qui a perdu de l\'argent.'], answer: 1, reason: '« Je m\'appelle Amélie et je parle de tech et d\'intelligence artificielle. »' },
+      { type: 'radio', q: 'De quelle arnaque parle-t-elle ?', options: ['Un faux livreur qui envoie un SMS avec un lien.', 'Un faux vendeur sur un site de petites annonces.', 'Un faux conseiller bancaire au téléphone.', 'Un faux colis déposé devant la porte.'], answer: 0, reason: '« Attention à cette arnaque des faux livreurs ! » : un SMS avec un vocal, une photo et un lien.' },
+      { type: 'radio', q: 'Pourquoi dit-elle que l\'arnaque « vient de passer un nouveau palier » ?', options: ['Elle est plus chère pour la victime.', 'Elle est beaucoup plus réaliste qu\'avant.', 'Elle touche maintenant d\'autres pays.', 'Elle passe par les réseaux sociaux.'], answer: 1, reason: 'Avant : de faux colis générés par IA. Maintenant : un vrai vocal, une vraie photo de l\'appareil du livreur, un 07…' },
+      { type: 'radio', q: 'Comment Amélie parle-t-elle à son public ?', options: ['Elle vouvoie, dans un registre soutenu.', 'Elle tutoie, dans un registre familier.', 'Elle parle à la troisième personne.'], answer: 1, reason: '« Je t\'explique tout pour que tu puisses t\'en protéger » ; « t\'as », « un vrai gars », « super bien fait ».' },
+    ] },
+  { id: 'det', title: 'C. Compréhension détaillée', badge: '2e écoute', withVideo: true, segments: true,
+    intro: 'Regardez la vidéo partie par partie. Utilisez les boutons sous la vidéo.',
+    questions: [
+      { type: 'head', q: 'Partie 1 · L\'annonce (0:00–0:11)' },
+      { type: 'radio', q: 'Qu\'est-ce qu\'on avait « dernièrement », avant cette nouvelle arnaque ?', options: ['De faux SMS de la banque.', 'De faux colis générés par IA.', 'De faux livreurs à domicile.'], answer: 1, reason: '« Dernièrement, on a eu les faux colis générés par IA. »' },
+      { type: 'head', q: 'Partie 2 · Le SMS (0:11–0:23)' },
+      { type: 'check', q: 'Que contient le SMS ? (3 réponses)', options: ['Un message vocal.', 'Une facture.', 'Une photo.', 'Un lien.', 'Un code promo.'], answer: [0, 2, 3], reason: '« Tu reçois un SMS avec un vocal […], une photo et un lien pour reprogrammer la livraison. »' },
+      { type: 'radio', q: 'Que dit le « livreur » dans le vocal ?', options: ['Qu\'il a perdu le colis.', 'Qu\'il est passé pour déposer un colis.', 'Qu\'il faut payer des frais de douane.', 'Qu\'il arrivera demain.'], answer: 1, reason: '« Bonjour, c\'est le livreur. Alors j\'suis passé à… 30 minutes pour, euh… vous déposer un colis. »' },
+      { type: 'radio', q: 'Pourquoi le numéro « paraît assez logique » ?', options: ['C\'est un numéro de Mondial Relay.', 'C\'est un 07, un numéro de portable.', 'C\'est un numéro gratuit.'], answer: 1, reason: '« En plus, le numéro, c\'est un 07, donc ça paraît assez logique. »' },
+      { type: 'head', q: 'Partie 3 · Pourquoi on y croit (0:23–0:33)' },
+      { type: 'check', q: 'Pourquoi l\'arnaque est-elle crédible ? (3 réponses)', options: ['Le vocal est très bien fait.', 'C\'est une vraie personne qui parle.', 'Le livreur connaît votre date de naissance.', 'Sur la photo, on voit votre nom et votre adresse.'], answer: [0, 1, 3], reason: '« Le vocal est super bien fait, c\'est un vrai gars qui parle. Et sur la photo […] tu peux voir apparaître ton nom avec ton adresse dessus. »' },
+      { type: 'tf', q: 'La photo montre un faux colis.', answer: false, reason: '« C\'est pas un faux colis, mais c\'est directement l\'appareil du livreur. »' },
+      { type: 'head', q: 'Partie 4 · Le faux site (0:33–0:49)' },
+      { type: 'radio', q: 'À quel site ressemble le site du lien ?', options: ['La Poste.', 'Mondial Relay.', 'Amazon.', 'Chronopost.'], answer: 1, reason: '« Tu vois un site qui ressemble beaucoup à celui de Mondial Relay. »' },
+      { type: 'check', q: 'Que voit-on sur ce faux site ? (2 réponses)', options: ['Deux options payantes pour reprogrammer la livraison.', 'Un numéro de téléphone pour appeler le livreur.', 'Ton numéro de colis.', 'Une carte du point relais.'], answer: [0, 2], reason: '« T\'as 2 options payantes pour reprogrammer la livraison, et tu peux voir ton numéro de colis. »' },
+      { type: 'radio', q: 'Que faut-il faire tout de suite ?', options: ['Payer l\'option la moins chère.', 'Vérifier le numéro du colis sur le vrai site de Mondial Relay.', 'Rappeler le livreur au 07.', 'Répondre au SMS.'], answer: 1, reason: '« Tu vas tout de suite vérifier le numéro du colis sur le vrai site de Mondial Relay. »' },
+      { type: 'head', q: 'Partie 5 · Les conseils (0:49–fin)' },
+      { type: 'tf', q: 'Mondial Relay fait parfois payer pour reprogrammer une livraison.', answer: false, reason: '« Dans tous les cas, Mondial Relay ne fait jamais payer pour reprogrammer une livraison. »' },
+      { type: 'radio', q: 'Complétez : « S\'ils te demandent de payer quelque chose, … »', options: ['… paie par carte.', '… c\'est une arnaque.', '… appelle ta banque.', '… attends un deuxième SMS.'], answer: 1, reason: '« S\'ils te demandent de payer quelque chose, c\'est une arnaque. »' },
+    ] },
+  { id: 'oral', title: 'D. Le français oral', badge: 'Oral',
+    intro: 'Amélie et le faux livreur parlent comme on parle vraiment en France. Observez ces formes orales et retrouvez la forme écrite standard.',
+    cards: [
+      ['On avale le « e » et le « u »', '<span class="oral">j\'suis</span> = je suis (on entend [ʃɥi]) · <span class="oral">t\'as</span> = tu as · <span class="oral">t\'alerter</span> = te alerter → t\'alerter (élision normale).'],
+      ['On supprime le « ne »', '<span class="oral">c\'est pas un faux colis</span> = ce n\'est pas un faux colis. À l\'oral, le « ne » de la négation disparaît très souvent ; à l\'écrit, il est obligatoire.'],
+      ['Des mots familiers', '<span class="oral">un gars</span> = un homme, un type · <span class="oral">super bien fait</span> = très bien fait · <span class="oral">du coup</span> = donc · <span class="oral">euh</span> = hésitation.'],
+      ['Tu ou vous ?', 'Amélie tutoie ses abonnés (« je <b>t</b>\'explique »), mais le faux livreur vouvoie son client (« pour <b>vous</b> déposer un colis ») : un livreur parle poliment à un client qu\'il ne connaît pas.'],
+    ],
+    questions: [
+      { type: 'radio', q: 'Écoutez la partie 2 (0:11–0:23). Qu\'est-ce que le livreur dit exactement ?', options: ['« Alors je suis passé… »', '« Alors j\'suis passé… »', '« Alors je passe… »'], answer: 1, reason: 'On entend « j\'suis » [ʃɥi] : le « e » de « je » disparaît. À l\'écrit : « je suis passé ».' },
+      { type: 'match', q: 'Retrouvez la forme écrite standard.', choices: ['je suis passé', 'tu as deux options', 'ce n\'est pas un faux colis', 'une vraie personne / un homme', 'très bien fait', 'donc', 'mais cette fois', 'récemment, il y a eu'],
+        items: [['j\'suis passé', 0], ['t\'as 2 options', 1], ['c\'est pas un faux colis', 2], ['un vrai gars', 3], ['super bien fait', 4], ['du coup', 5], ['sauf que là', 6], ['dernièrement, on a eu', 7]],
+        reason: 'À l\'oral : chute du « e », chute du « ne », mots familiers (gars, super, du coup). À l\'écrit standard, on les évite.' },
+      { type: 'check', q: 'Quelles phrases sont écrites en français standard ? (3 réponses)', options: ['Je suis passé il y a trente minutes.', 'C\'est pas grave.', 'Tu as reçu un SMS.', 'T\'as cliqué sur le lien ?', 'Ce n\'est pas un vrai livreur.'], answer: [0, 2, 4], reason: '« C\'est pas » (sans ne) et « t\'as » sont des formes orales familières.' },
+      { type: 'open', q: 'Le faux livreur a envoyé ce message : « Bonjour, c\'est livreur, alors je suis passé à 30 minutes pour vous déposer un colis. Malheureusement il ne rentrait pas dans la boîte aux lettres, du coup je vous ai laissé un SMS pour reprogrammer la livraison. Merci. » Réécrivez-le en français écrit standard.', where: 'Dans votre cahier',
+        model: 'Bonjour, c\'est le livreur. Je suis passé il y a trente minutes pour vous déposer un colis. Malheureusement, il ne rentrait pas dans la boîte aux lettres ; je vous ai donc laissé un SMS pour reprogrammer la livraison. Merci.' },
+    ] },
+  ],
+  transcript: [
+    ['0:00', 'Attention à cette arnaque des faux livreurs ! Je t\'explique tout pour que tu puisses t\'en protéger. Dernièrement, on a eu les faux colis générés par IA. Sauf que là, l\'arnaque vient de passer un nouveau palier.'],
+    ['0:11', 'Tu reçois un SMS avec un vocal : « Bonjour, c\'est le livreur. Alors <span class="oral">j\'suis</span> passé à… 30 minutes pour, <span class="oral">euh</span>… vous déposer un colis », une photo et un lien pour reprogrammer la livraison. En plus, le numéro, c\'est un 07, donc ça paraît assez logique.'],
+    ['0:23', 'Le vocal est <span class="oral">super</span> bien fait, c\'est un vrai <span class="oral">gars</span> qui parle. Et sur la photo, <span class="oral">c\'est pas</span> un faux colis, mais c\'est directement l\'appareil du livreur, et tu peux voir apparaître ton nom avec ton adresse dessus.'],
+    ['0:33', 'Et quand tu cliques sur le lien qui apparaît dans le SMS, tu vois un site qui ressemble beaucoup à celui de Mondial Relay. <span class="oral">T\'as</span> 2 options payantes pour reprogrammer la livraison, et tu peux voir ton numéro de colis. Et c\'est exactement là que ça doit t\'alerter. Tu vas tout de suite vérifier le numéro du colis sur le vrai site de Mondial Relay.'],
+    ['0:49', 'Et dans tous les cas, Mondial Relay ne fait jamais payer pour reprogrammer une livraison. S\'ils te demandent de payer quelque chose, c\'est une arnaque. Alors vérifiez bien tous ces détails et restez vigilants. Et n\'hésitez pas à vous abonner. Je m\'appelle Amélie et je parle de tech et d\'intelligence artificielle.'],
+  ] },
+
+/* ---------------------------------------------------------- BILAN */
+{ id: 'bil', title: 'Bilan · Réclamer, signaler ou porter plainte ?', short: 'Bilan',
+  steps: [
+  { id: 'act', title: 'A. Que faire dans chaque situation ?', badge: 'Réinvestir',
+    intro: 'Rappelez-vous la fiche de travail : on réclame auprès d\'une entreprise, on signale à une autorité, on porte plainte auprès de la police. Pour chaque situation, choisissez la démarche la plus adaptée.',
+    cards: [
+      ['Réclamer', 'On s\'adresse à <b>l\'entreprise</b> (vendeur, transporteur) pour obtenir réparation : remboursement, échange…'],
+      ['Signaler', 'On informe une <b>autorité</b> : le <b>33700</b> pour un SMS frauduleux, <b>SignalConso</b> pour une pratique d\'entreprise ou un faux site.'],
+      ['Porter plainte', 'On s\'adresse à la <b>police</b> ou à la <b>gendarmerie</b> quand on est victime d\'une infraction : escroquerie, usurpation d\'identité…'],
+    ],
+    questions: [
+      { type: 'match', q: 'Quelle démarche ?', choices: ACTIONS,
+        items: [
+          ['Une voiture freine brutalement devant vous ; le conducteur exige de l\'argent et des témoins arrivent.', 2],
+          ['Vous recevez le SMS d\'un faux livreur. Vous n\'avez pas cliqué sur le lien.', 1],
+          ['Vous avez payé 2,99 € sur le faux site avec votre carte bancaire.', 4],
+          ['Un vrai livreur a laissé votre colis abîmé devant la porte.', 0],
+          ['Après un vrai petit accident, vous voulez être indemnisé.', 3],
+          ['Quelqu\'un a souscrit un contrat d\'assurance à votre nom avec la photo de votre permis.', 2],
+        ],
+        reason: 'Plusieurs démarches se combinent souvent : après un paiement sur un faux site, on fait opposition puis on porte plainte ; après un SMS frauduleux, on peut signaler au 33700 et sur cybermalveillance.gouv.fr.' },
+      { type: 'tf', q: 'Une réclamation s\'adresse à la police.', answer: false, reason: 'La réclamation s\'adresse à l\'entreprise ; la plainte, à la police ou à la gendarmerie.' },
+    ] },
+  { id: 'prod', title: 'B. À vous d\'écrire', badge: 'Production',
+    intro: 'Production écrite à la main (15 minutes).',
+    questions: [
+      { type: 'open', q: 'Un(e) ami(e) vient de recevoir un SMS d\'un « livreur » ou a eu un « accident » bizarre. Écrivez-lui un message (80 à 100 mots) : expliquez comment fonctionne l\'arnaque, donnez deux conseils à l\'impératif et dites-lui ce qu\'il faut faire s\'il ou elle est victime (réclamer, signaler ou porter plainte). Écrivez en français standard : pas de « j\'suis » ni de « c\'est pas » !', where: 'Dans votre cahier',
+        model: 'Salut Léa ! Fais attention : le SMS que tu as reçu vient sûrement d\'un faux livreur. Les escrocs envoient un message vocal très réaliste, une photo et un lien vers un site qui ressemble à celui de Mondial Relay. Ensuite, ils te demandent de payer pour reprogrammer la livraison. Ne clique surtout pas sur le lien et vérifie ton numéro de colis sur le vrai site. Si tu as déjà payé, fais opposition auprès de ta banque et porte plainte. Tu peux aussi signaler le SMS au 33700. Bises !' },
+    ] },
+  ] },
+];
+
+/* =========================================================
+   Moteur
+   ========================================================= */
+const shuffle = arr => { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const nav = document.getElementById('tabs');
+const panels = document.getElementById('panels');
+const Q = {}; // clé → question
+
+function renderQ(q, key) {
+  Q[key] = q;
+  if (q.type === 'head') return `<h4 class="text-base font-bold text-unam-blue border-b-2 border-unam-gold pb-1 pt-2">${esc(q.q)}</h4>`;
+  let body = '';
+  if (q.type === 'radio' || q.type === 'check') {
+    const t = q.type === 'radio' ? 'radio' : 'checkbox';
+    body = q.options.map((o, k) => `
+      <label class="flex items-start gap-3 p-3 sm:p-2 rounded-md cursor-pointer hover:bg-gray-50 active:bg-gray-100">
+        <input type="${t}" name="${key}" value="${k}" class="mt-0.5 h-5 w-5 sm:h-4 sm:w-4 shrink-0">
+        <span class="text-sm">${esc(o)}</span>
+      </label>`).join('');
+  } else if (q.type === 'tf') {
+    body = `<div class="flex gap-3">${['Vrai', 'Faux'].map((o, k) => `
+      <label class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-3 sm:py-2 rounded-md border border-gray-300 cursor-pointer hover:bg-gray-50 active:bg-gray-100">
+        <input type="radio" name="${key}" value="${k === 0}" class="h-5 w-5 sm:h-4 sm:w-4"><span class="text-sm font-semibold">${o}</span>
+      </label>`).join('')}</div>`;
+  } else if (q.type === 'match') {
+    const order = q.ordered ? q.choices.map((_, j) => j) : shuffle(q.choices.map((_, j) => j));
+    body = q.items.map((it, k) => `
+      <div class="grid sm:grid-cols-2 gap-1.5 sm:gap-3 items-center py-2.5 sm:py-1.5 border-b border-gray-100 last:border-0">
+        <span class="text-sm font-semibold">${esc(it[0])}</span>
+        <select name="${key}_${k}" class="w-full text-base sm:text-sm border border-gray-300 rounded-md px-3 py-2.5 sm:py-2 bg-white">
+          <option value="">— choisir —</option>
+          ${order.map(j => `<option value="${j}">${esc(q.choices[j])}</option>`).join('')}
+        </select>
+      </div>`).join('');
+  } else if (q.type === 'open') {
+    body = `<p class="inline-flex items-center gap-2 text-sm font-semibold text-unam-blue bg-unam-soft border border-gray-200 rounded-full px-3 py-1.5">&#9998; ${esc(q.where || 'Sur papier')}</p>` +
+      (q.model ? `<div><button type="button" class="show-model mt-3 text-xs font-semibold text-unam-blue underline">Voir une proposition</button>
+        <div class="model hidden mt-2 p-3 rounded bg-ok-light text-sm border border-ok">${esc(q.model)}</div></div>` : '');
+  }
+  return `
+    <fieldset class="bg-white p-4 sm:p-5 rounded-lg border border-gray-300 q" data-key="${key}" ${q.type !== 'open' ? 'data-scored="1"' : ''}>
+      <p class="text-base font-bold mb-3 leading-snug">${esc(q.q)}</p>
+      <div class="space-y-1">${body}</div>
+      <div class="feedback hidden mt-3 p-3 rounded text-sm"></div>
+    </fieldset>`;
+}
+
+function renderCards(cards) {
+  return `<div class="grid sm:grid-cols-2 gap-3">${cards.map(([t, txt]) => `
+    <div class="rounded-lg border border-gray-200 bg-unam-soft p-4">
+      <h5 class="font-bold text-unam-blue mb-1">${esc(t)}</h5>
+      <p class="text-sm leading-relaxed">${txt}</p>
+    </div>`).join('')}</div>`;
+}
+
+TABS.forEach(T => {
+  nav.insertAdjacentHTML('beforeend',
+    `<button type="button" role="tab" data-tab="${T.id}" class="tab-btn py-2.5 px-2 rounded text-xs sm:text-sm font-bold text-center leading-tight"><span class="sm:hidden">${esc(T.short)}</span><span class="hidden sm:inline">${esc(T.title)}</span></button>`);
+  const video = T.video ? `
+    <section class="player bg-white rounded-lg border border-gray-200 p-3 sm:p-4" id="player_${T.id}">
+      <video class="vid" id="vid_${T.id}" src="${T.video}" controls playsinline preload="metadata"></video>
+      <div class="mt-3 flex flex-wrap gap-2">${T.segments.map(([l, s, e]) =>
+        `<button type="button" class="seg text-xs sm:text-sm font-semibold px-3 py-2 rounded-full border border-unam-blue text-unam-blue hover:bg-unam-blue hover:text-white" data-v="${T.id}" data-s="${s}" data-e="${e ?? ''}">&#9654; ${esc(l)}</button>`).join('')}</div>
+    </section>` : '';
+  const steps = T.steps.map(S => `
+    <section class="space-y-4 pt-2" id="step_${T.id}_${S.id}">
+      <header class="border-l-4 border-unam-gold pl-3">
+        <span class="inline-block bg-unam-blue text-white text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded">${esc(S.badge)}</span>
+        <h3 class="text-lg sm:text-xl font-extrabold text-unam-blue mt-1">${esc(S.title)}</h3>
+        <p class="text-sm text-gray-700 mt-1">${esc(S.intro)}</p>
+      </header>
+      ${S.withVideo ? `<button type="button" class="goto-video text-xs font-semibold text-unam-blue underline" data-v="${T.id}">&uarr; Revenir à la vidéo</button>` : ''}
+      ${S.cards ? renderCards(S.cards) : ''}
+      ${S.questions.map((q, k) => renderQ(q, `${T.id}_${S.id}_${k}`)).join('')}
+      ${S.questions.some(q => q.type !== 'open' && q.type !== 'head') ? `
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button type="button" class="btn-check bg-unam-blue hover:bg-blue-900 text-white font-bold text-sm px-5 py-2.5 rounded" data-sec="${T.id}_${S.id}">Vérifier mes réponses</button>
+        <button type="button" class="btn-reset bg-white border border-gray-300 text-gray-700 font-semibold text-sm px-5 py-2.5 rounded" data-sec="${T.id}_${S.id}">Recommencer</button>
+      </div>
+      <div class="score hidden p-4 bg-white border-2 border-unam-gold rounded-lg flex flex-col-reverse sm:flex-row items-start sm:items-center justify-between gap-3" id="score_${T.id}_${S.id}">
+        <p class="score-text text-sm text-gray-700"></p>
+        <span class="score-badge text-2xl font-black px-4 py-2 bg-unam-blue text-white rounded shrink-0"></span>
+      </div>` : ''}
+    </section>`).join('<hr class="my-6 border-gray-200">');
+  const tr = T.transcript ? `
+    <section class="hidden mt-6 bg-white rounded-lg border-2 border-unam-blue p-5" id="tr_${T.id}">
+      <h3 class="text-lg font-bold text-unam-blue mb-1">Transcription</h3>
+      <p class="text-xs text-gray-500 mb-4">Reconstituée à partir des sous-titres de la vidéo. En jaune : les formes orales.</p>
+      <div class="space-y-3 text-sm leading-relaxed">${T.transcript.map(([t, x]) => `<p><span class="font-mono text-xs text-unam-gold font-bold mr-1">${t}</span>${x}</p>`).join('')}</div>
+    </section>` : '';
+  panels.insertAdjacentHTML('beforeend', `
+    <div id="panel_${T.id}" class="panel hidden space-y-5">
+      <h2 class="text-xl sm:text-2xl font-extrabold text-unam-blue">${esc(T.title)}</h2>
+      ${video}${steps}${tr}
+    </div>`);
+});
+
+/* ---------- Onglets ---------- */
+const btnVideo = document.getElementById('btnVideo');
+let current = null;
+function showTab(id) {
+  current = id;
+  document.querySelectorAll('video').forEach(v => v.pause());
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('hidden', p.id !== 'panel_' + id));
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    const on = b.dataset.tab === id;
+    b.className = 'tab-btn py-2.5 px-2 rounded text-xs sm:text-sm font-bold text-center leading-tight ' + (on ? 'bg-unam-blue text-white' : 'text-gray-600 hover:bg-gray-100');
+    b.setAttribute('aria-selected', on);
+  });
+  btnVideo.classList.toggle('hidden', !TABS.find(t => t.id === id).video);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+nav.addEventListener('click', e => { const b = e.target.closest('.tab-btn'); if (b) showTab(b.dataset.tab); });
+btnVideo.addEventListener('click', () => document.getElementById('player_' + current).scrollIntoView({ behavior: 'smooth', block: 'start' }));
+
+/* ---------- Segments vidéo ---------- */
+const stopAt = {};
+document.querySelectorAll('video').forEach(v => v.addEventListener('timeupdate', () => {
+  const e = stopAt[v.id]; if (e != null && v.currentTime >= e) { v.pause(); stopAt[v.id] = null; }
+}));
+document.addEventListener('click', e => {
+  const s = e.target.closest('.seg');
+  if (s) {
+    const v = document.getElementById('vid_' + s.dataset.v);
+    stopAt[v.id] = s.dataset.e ? +s.dataset.e : null;
+    v.currentTime = +s.dataset.s; v.play();
+    v.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  const g = e.target.closest('.goto-video');
+  if (g) document.getElementById('player_' + g.dataset.v).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const m = e.target.closest('.show-model'); if (m) m.nextElementSibling.classList.toggle('hidden');
+});
+
+/* ---------- Correction ---------- */
+function check(fs) {
+  const key = fs.dataset.key, q = Q[key];
+  let pts = 0, max = 1, detail = '';
+  if (q.type === 'radio') {
+    const sel = fs.querySelector(`input[name="${key}"]:checked`);
+    pts = sel && +sel.value === q.answer ? 1 : 0;
+    if (!pts) detail = `Bonne réponse : <b>${esc(q.options[q.answer])}</b>`;
+  } else if (q.type === 'tf') {
+    const sel = fs.querySelector(`input[name="${key}"]:checked`);
+    pts = sel && (sel.value === 'true') === q.answer ? 1 : 0;
+    if (!pts) detail = `Bonne réponse : <b>${q.answer ? 'Vrai' : 'Faux'}</b>`;
+  } else if (q.type === 'check') {
+    const sel = [...fs.querySelectorAll(`input[name="${key}"]:checked`)].map(i => +i.value).sort();
+    const tgt = [...q.answer].sort();
+    pts = sel.length === tgt.length && sel.every((v, i) => v === tgt[i]) ? 1 : 0;
+    if (!pts) detail = `Bonnes réponses : ${tgt.map(i => '<b>' + esc(q.options[i]) + '</b>').join(' · ')}`;
+  } else if (q.type === 'match') {
+    max = q.items.length; const wrong = [];
+    q.items.forEach((it, k) => {
+      const s = fs.querySelector(`select[name="${key}_${k}"]`);
+      const good = s.value !== '' && +s.value === it[1];
+      s.classList.remove('border-gray-300', 'border-ok', 'border-alert');
+      s.classList.add('border-2', good ? 'border-ok' : 'border-alert');
+      if (good) pts++; else wrong.push(`${esc(it[0])} → <b>${esc(q.choices[it[1]])}</b>`);
+    });
+    if (wrong.length) detail = 'Corrections : ' + wrong.join(' · ');
+  }
+  const full = pts === max, fb = fs.querySelector('.feedback');
+  fs.classList.remove('border-gray-300', 'border-ok', 'border-alert');
+  fs.classList.add('border-2', full ? 'border-ok' : 'border-alert');
+  fb.className = 'feedback mt-3 p-3 rounded text-sm ' + (full ? 'bg-ok-light text-blue-900' : 'bg-alert-light text-red-900');
+  fb.innerHTML = `<strong>${full ? 'Bonne réponse.' : (max > 1 ? `${pts} / ${max}.` : 'Réponse incorrecte ou incomplète.')}</strong>` +
+    (detail ? `<span class="block mt-1">${detail}</span>` : '') + (q.reason ? `<span class="block text-xs mt-1 text-gray-700">${esc(q.reason)}</span>` : '');
+  return [pts, max];
+}
+
+document.addEventListener('click', e => {
+  const b = e.target.closest('.btn-check');
+  if (b) {
+    const sec = b.dataset.sec, root = document.getElementById('step_' + sec);
+    let pts = 0, max = 0;
+    root.querySelectorAll('fieldset[data-scored]').forEach(fs => { const [p, m] = check(fs); pts += p; max += m; });
+    const box = document.getElementById('score_' + sec), r = pts / max;
+    box.querySelector('.score-badge').textContent = `${pts} / ${max}`;
+    let txt = r >= 0.8 ? 'Excellent ! Vous avez bien compris.' : r >= 0.5 ? 'Résultat satisfaisant. Lisez les justifications et réécoutez les passages difficiles.' : 'Réécoutez la vidéo partie par partie en vous aidant des justifications.';
+    const [tab, step] = sec.split('_');
+    if (step === 'det') { document.getElementById('tr_' + tab).classList.remove('hidden'); txt += ' La transcription est maintenant disponible en bas de la page.'; }
+    box.querySelector('.score-text').textContent = txt;
+    box.classList.remove('hidden');
+    box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  const r = e.target.closest('.btn-reset');
+  if (r) {
+    const root = document.getElementById('step_' + r.dataset.sec);
+    root.querySelectorAll('input').forEach(i => i.checked = false);
+    root.querySelectorAll('select').forEach(s => { s.value = ''; s.classList.remove('border-ok', 'border-alert', 'border-2'); s.classList.add('border-gray-300'); });
+    root.querySelectorAll('.feedback, .score, .model').forEach(x => x.classList.add('hidden'));
+    root.querySelectorAll('fieldset').forEach(fs => { fs.classList.remove('border-ok', 'border-alert', 'border-2'); fs.classList.add('border-gray-300'); });
+  }
+});
+
+showTab('v1');
+</script>
+</body>
+</html>
