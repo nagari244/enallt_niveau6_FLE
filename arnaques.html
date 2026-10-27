@@ -26,7 +26,11 @@
     html { scroll-padding-top: 6rem; -webkit-text-size-adjust: 100%; }
     * { -webkit-tap-highlight-color: transparent; }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-    .vid { width: 100%; max-height: 70vh; background: #000; border-radius: .5rem; }
+    .vbox { position: relative; width: 100%; max-width: 360px; margin: 0 auto; }
+    .vid { display: block; width: 100%; height: auto; background: #000; border-radius: .5rem; }
+    .cache-st { position: absolute; left: 0; right: 0; background: #6B6B6B; color: #fff; display: flex; align-items: center; justify-content: center;
+      font-size: .8rem; font-weight: 700; text-align: center; padding: 0 .5rem; pointer-events: none; }
+    .cache-st.off { display: none; }
     .oral { font-family: ui-monospace, Menlo, monospace; background: #FFF6D6; padding: 0 .25rem; border-radius: .2rem; }
   </style>
 </head>
@@ -65,7 +69,7 @@ const ACTIONS = [
 
 const TABS = [
 /* ---------------------------------------------------------- VIDÉO 1 */
-{ id: 'v1', title: 'Vidéo 1 · Le « crash for cash »', short: 'Vidéo 1', video: 'video_crash_for_cash.mp4',
+{ id: 'v1', title: 'Vidéo 1 · Le « crash for cash »', short: 'Vidéo 1', video: 'video_crash_for_cash.mp4', band: [58.5, 73.5],
   segments: [['Vidéo entière', 0, null], ['1 · Le principe', 0, 19], ['2 · La mise en scène', 19, 39], ['3 · Les documents', 39, 62], ['4 · Les chiffres', 62, 74], ['5 · Les réflexes', 74, null]],
   steps: [
   { id: 'cult', title: 'A. Le contexte : un accident de voiture en France', badge: 'Culture',
@@ -132,7 +136,7 @@ const TABS = [
   ] },
 
 /* ---------------------------------------------------------- VIDÉO 2 */
-{ id: 'v2', title: 'Vidéo 2 · Le faux livreur', short: 'Vidéo 2', video: 'video_faux_livreur.mp4',
+{ id: 'v2', title: 'Vidéo 2 · Le faux livreur', short: 'Vidéo 2', video: 'video_faux_livreur.mp4', band: [53.5, 66.5],
   segments: [['Vidéo entière', 0, null], ['1 · L\'annonce', 0, 11], ['2 · Le SMS', 11, 23], ['3 · Pourquoi on y croit', 23, 33], ['4 · Le faux site', 33, 49], ['5 · Les conseils', 49, null]],
   steps: [
   { id: 'cult', title: 'A. Le contexte : recevoir un colis en France', badge: 'Culture',
@@ -185,7 +189,7 @@ const TABS = [
       ['Tu ou vous ?', 'Amélie tutoie ses abonnés (« je <b>t</b>\'explique »), mais le faux livreur vouvoie son client (« pour <b>vous</b> déposer un colis ») : un livreur parle poliment à un client qu\'il ne connaît pas.'],
     ],
     questions: [
-      { type: 'radio', q: 'Écoutez la partie 2 (0:11–0:23). Qu\'est-ce que le livreur dit exactement ?', options: ['« Alors je suis passé… »', '« Alors j\'suis passé… »', '« Alors je passe… »'], answer: 1, reason: 'On entend « j\'suis » [ʃɥi] : le « e » de « je » disparaît. À l\'écrit : « je suis passé ».' },
+      { type: 'radio', q: 'Écoutez la partie 2 (0:11–0:23) sans les sous-titres. Qu\'est-ce que le livreur dit exactement ?', options: ['« Alors je suis passé… »', '« Alors j\'suis passé… »', '« Alors je passe… »'], answer: 1, reason: 'On entend « j\'suis » [ʃɥi] : le « e » de « je » disparaît. À l\'écrit : « je suis passé ».' },
       { type: 'match', q: 'Retrouvez la forme écrite standard.', choices: ['je suis passé', 'tu as deux options', 'ce n\'est pas un faux colis', 'une vraie personne / un homme', 'très bien fait', 'donc', 'mais cette fois', 'récemment, il y a eu'],
         items: [['j\'suis passé', 0], ['t\'as 2 options', 1], ['c\'est pas un faux colis', 2], ['un vrai gars', 3], ['super bien fait', 4], ['du coup', 5], ['sauf que là', 6], ['dernièrement, on a eu', 7]],
         reason: 'À l\'oral : chute du « e », chute du « ne », mots familiers (gars, super, du coup). À l\'écrit standard, on les évite.' },
@@ -295,7 +299,14 @@ TABS.forEach(T => {
     `<button type="button" role="tab" data-tab="${T.id}" class="tab-btn py-2.5 px-2 rounded text-xs sm:text-sm font-bold text-center leading-tight"><span class="sm:hidden">${esc(T.short)}</span><span class="hidden sm:inline">${esc(T.title)}</span></button>`);
   const video = T.video ? `
     <section class="player bg-white rounded-lg border border-gray-200 p-3 sm:p-4" id="player_${T.id}">
-      <video class="vid" id="vid_${T.id}" src="${T.video}" controls playsinline preload="metadata"></video>
+      <div class="vbox">
+        <video class="vid" id="vid_${T.id}" src="${T.video}" controls playsinline preload="metadata" controlsList="nofullscreen" disablePictureInPicture></video>
+        <div class="cache-st" id="cache_${T.id}" style="top:${T.band[0]}%;height:${T.band[1] - T.band[0]}%">Sous-titres masqués : écoutez !</div>
+      </div>
+      <div class="flex justify-center mt-3">
+        <button type="button" class="toggle-st text-sm font-semibold px-4 py-2 rounded-md border border-gray-300 bg-white hover:bg-gray-50" data-v="${T.id}" aria-pressed="false">Afficher les sous-titres</button>
+      </div>
+      <p class="text-xs text-gray-600 text-center mt-2">Gardez les sous-titres masqués pendant les activités et ne mettez pas la vidéo en plein écran : le bandeau disparaîtrait.</p>
       <div class="mt-3 flex flex-wrap gap-2">${T.segments.map(([l, s, e]) =>
         `<button type="button" class="seg text-xs sm:text-sm font-semibold px-3 py-2 rounded-full border border-unam-blue text-unam-blue hover:bg-unam-blue hover:text-white" data-v="${T.id}" data-s="${s}" data-e="${e ?? ''}">&#9654; ${esc(l)}</button>`).join('')}</div>
     </section>` : '';
@@ -366,6 +377,12 @@ document.addEventListener('click', e => {
   const g = e.target.closest('.goto-video');
   if (g) document.getElementById('player_' + g.dataset.v).scrollIntoView({ behavior: 'smooth', block: 'start' });
   const m = e.target.closest('.show-model'); if (m) m.nextElementSibling.classList.toggle('hidden');
+  const t = e.target.closest('.toggle-st');
+  if (t) {
+    const c = document.getElementById('cache_' + t.dataset.v), shown = c.classList.toggle('off');
+    t.textContent = shown ? 'Masquer les sous-titres' : 'Afficher les sous-titres';
+    t.setAttribute('aria-pressed', String(shown));
+  }
 });
 
 /* ---------- Correction ---------- */
