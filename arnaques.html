@@ -75,7 +75,7 @@ const TABS = [
   { id: 'cult', title: 'A. Le contexte : un accident de voiture en France', badge: 'Culture',
     intro: 'Avant de regarder la vidéo, découvrez quatre réalités françaises liées aux accidents de voiture.',
     cards: [
-      ['Le constat amiable', 'Après un accident sans blessé grave, les deux conducteurs remplissent et signent ensemble un formulaire, le <b>constat amiable</b>, puis chacun l\'envoie à son assureur. Il n\'est <b>pas obligatoire</b> : on peut refuser de le signer, surtout si on se sent sous pression.'],
+      ['Le constat amiable', 'Après un accident sans blessé grave, les deux conducteurs remplissent et signent ensemble un formulaire, le <b>constat amiable</b>, puis chacun l\'envoie à son assureur. Il n\'est <b>pas obligatoire</b> : on peut refuser de le signer, surtout si on se sent sous pression. <a class="underline font-semibold text-unam-blue" href="https://www.service-public.gouv.fr/particuliers/vosdroits/F2149" target="_blank" rel="noopener">Comment le remplir (Service-Public.fr) ↗</a>'],
       ['Le bonus-malus', 'En France, le prix de l\'assurance auto (la <b>prime</b>) dépend d\'un coefficient. Quand on est responsable d\'un accident, on a un <b>malus</b> : la prime augmente (en général de 25 %). Sans accident, on a un <b>bonus</b>.'],
       ['L\'attestation d\'assurance', 'C\'est le document qui prouve qu\'un véhicule est assuré. Avec le <b>permis de conduire</b>, ce sont des documents personnels importants. La petite « carte verte » collée sur le pare-brise a été supprimée en 2024.'],
       ['Porter plainte', 'Si on est victime d\'une infraction (une escroquerie, par exemple), on <b>porte plainte</b> (on « dépose plainte ») au commissariat de police ou à la gendarmerie. En urgence, on appelle le <b>17</b>.'],
@@ -124,6 +124,18 @@ const TABS = [
         reason: '« Sinistre » appartient à la langue de l\'assurance. « Carrément » est familier : on l\'entend beaucoup à l\'oral.' },
       { type: 'open', q: 'Le mot « démarches » apparaît deux fois dans la vidéo (« faciliter les démarches », « des mois de démarches »). Quelle est la différence avec « démarchage » ? Répondez à l\'oral avec votre voisin.', where: 'À l\'oral, en binôme',
         model: 'Une démarche est une action qu\'on fait pour obtenir quelque chose (démarches administratives, auprès de l\'assurance). Le démarchage est l\'action d\'un vendeur qui sollicite des clients qui n\'ont rien demandé.' },
+    ] },
+  { id: 'plus', title: 'E. Pour aller plus loin : remplir un constat amiable', badge: 'Lecture',
+    intro: 'Ouvrez la fiche officielle de Service-Public.fr, lisez-la rapidement, puis répondez.',
+    cards: [
+      ['Document', 'Service-Public.fr, « Assurance auto : remplir le constat amiable après un accident ». <a class="underline font-semibold text-unam-blue" href="https://www.service-public.gouv.fr/particuliers/vosdroits/F2149" target="_blank" rel="noopener">Ouvrir la fiche ↗</a>'],
+    ],
+    questions: [
+      { type: 'check', q: 'Dans quels cas peut-on utiliser l\'e-constat (l\'application sur smartphone) ? (4 réponses)', options: ['L\'accident a eu lieu en France.', 'Il y a deux véhicules au maximum, immatriculés et assurés en France.', 'Il y a trois véhicules ou plus.', 'Il n\'y a aucun blessé, même léger.', 'Les deux conducteurs sont d\'accord.', 'Un des conducteurs a un blessé léger.'], answer: [0, 1, 3, 4], reason: 'L\'e-constat est réservé aux accidents en France, à deux véhicules au maximum, sans aucun blessé et quand les deux conducteurs sont d\'accord ; sinon, on utilise le formulaire papier.' },
+      { type: 'radio', q: 'Comment remplit-on le recto du constat papier ?', options: ['Chaque conducteur remplit le sien, chez lui.', 'Les deux conducteurs le remplissent ensemble, sur place, et le signent tous les deux.', 'C\'est la police qui le remplit.'], answer: 1, reason: 'Le recto est rempli ensemble sur place, sur un seul exemplaire, et signé par les deux conducteurs ; le verso est rempli séparément.' },
+      { type: 'radio', q: 'Dans quel délai faut-il l\'envoyer à son assureur, en général ?', options: ['24 heures.', '5 jours ouvrés.', '1 mois.'], answer: 1, reason: 'En général, 5 jours ouvrés après l\'accident (selon le contrat).' },
+      { type: 'check', q: 'L\'autre conducteur refuse de remplir ou de signer le constat. Que faut-il faire ? (3 réponses)', options: ['Noter son numéro d\'immatriculation.', 'Signer à sa place.', 'Noter les coordonnées des témoins.', 'Appeler la police ou la gendarmerie.', 'Partir sans prévenir son assureur.'], answer: [0, 2, 3], reason: 'On note la plaque, les témoins, on appelle la police ou la gendarmerie, on écrit le refus dans « Observations » et on prévient quand même son assureur.' },
+      { type: 'tf', q: 'S\'il y a un blessé, on appelle la police ou la gendarmerie avant de remplir le constat.', answer: true, reason: 'En cas de blessé, on appelle d\'abord la police ou la gendarmerie ; on fait aussi établir un certificat médical.' },
     ] },
   ],
   transcript: [
