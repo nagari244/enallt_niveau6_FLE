@@ -268,7 +268,7 @@ function renderQ(q, key) {
     body = q.options.map((o, k) => `
       <label class="flex items-start gap-3 p-3 sm:p-2 rounded-md cursor-pointer hover:bg-gray-50 active:bg-gray-100">
         <input type="${t}" name="${key}" value="${k}" class="mt-0.5 h-5 w-5 sm:h-4 sm:w-4 shrink-0">
-        <span class="text-sm">${esc(o)}</span>
+        <span class="text-sm"><b class="text-unam-blue">${String.fromCharCode(97 + k)})</b> ${esc(o)}</span>
       </label>`).join('');
   } else if (q.type === 'tf') {
     body = `<div class="flex gap-3">${['Vrai', 'Faux'].map((o, k) => `
@@ -305,6 +305,10 @@ function renderCards(cards) {
       <p class="text-sm leading-relaxed">${txt}</p>
     </div>`).join('')}</div>`;
 }
+
+const RES = {};                                   // partie → [points, max] (dernière vérification)
+const maxOf = S => S.questions.reduce((m, q) => m + (q.type === 'match' ? q.items.length : (q.type === 'open' || q.type === 'head') ? 0 : 1), 0);
+const scoredSteps = T => T.steps.filter(S => maxOf(S) > 0);
 
 TABS.forEach(T => {
   nav.insertAdjacentHTML('beforeend',
@@ -348,10 +352,26 @@ TABS.forEach(T => {
       <p class="text-xs text-gray-500 mb-4">Reconstituée à partir des sous-titres de la vidéo. En jaune : les formes orales.</p>
       <div class="space-y-3 text-sm leading-relaxed">${T.transcript.map(([t, x]) => `<p><span class="font-mono text-xs text-unam-gold font-bold mr-1">${t}</span>${x}</p>`).join('')}</div>
     </section>` : '';
+  const total = T.video ? `
+    <section class="mt-8 bg-white rounded-lg border-2 border-unam-gold p-4 sm:p-5" id="total_${T.id}">
+      <h3 class="text-lg font-extrabold text-unam-blue">Mon total · ${esc(T.short)}</h3>
+      <p class="text-sm text-gray-700 mt-1 mb-3">Vérifiez chaque partie, puis <b>envoyez ce total à votre professeur sur Classroom</b>. Ce total ne compte que les parties de cette vidéo.</p>
+      <table class="w-full text-sm border-collapse">
+        <tbody>${scoredSteps(T).map(S => `
+          <tr class="border-b border-gray-200"><td class="py-2 pr-2">${esc(S.title)}</td>
+            <td class="py-2 text-right font-semibold whitespace-nowrap" id="tot_${T.id}_${S.id}">— / ${maxOf(S)}</td></tr>`).join('')}
+        </tbody>
+        <tfoot><tr><td class="pt-3 font-extrabold text-unam-blue">Total</td>
+          <td class="pt-3 text-right"><span class="text-2xl font-black px-3 py-1 bg-unam-blue text-white rounded" id="totsum_${T.id}">0 / ${scoredSteps(T).reduce((a, S) => a + maxOf(S), 0)}</span></td></tr></tfoot>
+      </table>
+      <p class="text-xs mt-3" id="totnote_${T.id}"></p>
+      <button type="button" class="copy-total mt-3 w-full sm:w-auto bg-white border border-unam-blue text-unam-blue font-semibold text-sm px-5 py-2.5 rounded" data-tab="${T.id}">Copier mon résultat</button>
+      <span class="copy-ok hidden text-xs text-unam-blue font-semibold ml-0 sm:ml-3 mt-2 sm:mt-0 inline-block" id="copyok_${T.id}">Copié ! Collez-le dans Classroom.</span>
+    </section>` : '';
   panels.insertAdjacentHTML('beforeend', `
     <div id="panel_${T.id}" class="panel hidden space-y-5">
       <h2 class="text-xl sm:text-2xl font-extrabold text-unam-blue">${esc(T.title)}</h2>
-      ${video}${steps}${tr}
+      ${video}${steps}${tr}${total}
     </div>`);
 });
 
@@ -397,6 +417,33 @@ document.addEventListener('click', e => {
   }
 });
 
+/* ---------- Total par vidéo (indépendant) ---------- */
+function totalText(tabId) {
+  const T = TABS.find(t => t.id === tabId), st = scoredSteps(T);
+  let pts = 0, max = 0, done = 0;
+  st.forEach(S => { max += maxOf(S); const r = RES[`${tabId}_${S.id}`]; if (r) { pts += r[0]; done++; } });
+  return { T, st, pts, max, done };
+}
+function updateTotal(tabId) {
+  const T = TABS.find(t => t.id === tabId); if (!T || !T.video) return;
+  const { st, pts, max, done } = totalText(tabId);
+  st.forEach(S => { const r = RES[`${tabId}_${S.id}`]; document.getElementById(`tot_${tabId}_${S.id}`).textContent = r ? `${r[0]} / ${r[1]}` : `— / ${maxOf(S)}`; });
+  document.getElementById('totsum_' + tabId).textContent = `${pts} / ${max}`;
+  const note = document.getElementById('totnote_' + tabId);
+  note.textContent = done < st.length ? `Parties vérifiées : ${done} sur ${st.length}. Vérifiez toutes les parties avant d'envoyer votre total.` : 'Toutes les parties sont vérifiées.';
+  note.className = 'text-xs mt-3 ' + (done < st.length ? 'text-red-800' : 'text-unam-blue font-semibold');
+}
+document.addEventListener('click', e => {
+  const c = e.target.closest('.copy-total'); if (!c) return;
+  const id = c.dataset.tab, { T, st, pts, max, done } = totalText(id);
+  const detail = st.map(S => { const r = RES[`${id}_${S.id}`]; return `${S.title.split('.')[0]} ${r ? r[0] : '—'}/${maxOf(S)}`; }).join(' · ');
+  const txt = `${T.title} : ${pts} / ${max} (${detail})${done < st.length ? ' — incomplet' : ''}`;
+  const ok = () => { const m = document.getElementById('copyok_' + id); m.classList.remove('hidden'); setTimeout(() => m.classList.add('hidden'), 3000); };
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(txt).then(ok, () => fallback());
+  else fallback();
+  function fallback() { const t = document.createElement('textarea'); t.value = txt; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); ok(); } catch (_) {} t.remove(); }
+});
+
 /* ---------- Correction ---------- */
 function check(fs) {
   const key = fs.dataset.key, q = Q[key];
@@ -404,7 +451,7 @@ function check(fs) {
   if (q.type === 'radio') {
     const sel = fs.querySelector(`input[name="${key}"]:checked`);
     pts = sel && +sel.value === q.answer ? 1 : 0;
-    if (!pts) detail = `Bonne réponse : <b>${esc(q.options[q.answer])}</b>`;
+    if (!pts) detail = `Bonne réponse : <b>${String.fromCharCode(97 + q.answer)}) ${esc(q.options[q.answer])}</b>`;
   } else if (q.type === 'tf') {
     const sel = fs.querySelector(`input[name="${key}"]:checked`);
     pts = sel && (sel.value === 'true') === q.answer ? 1 : 0;
@@ -413,7 +460,7 @@ function check(fs) {
     const sel = [...fs.querySelectorAll(`input[name="${key}"]:checked`)].map(i => +i.value).sort();
     const tgt = [...q.answer].sort();
     pts = sel.length === tgt.length && sel.every((v, i) => v === tgt[i]) ? 1 : 0;
-    if (!pts) detail = `Bonnes réponses : ${tgt.map(i => '<b>' + esc(q.options[i]) + '</b>').join(' · ')}`;
+    if (!pts) detail = `Bonnes réponses : ${tgt.map(i => '<b>' + String.fromCharCode(97 + i) + ') ' + esc(q.options[i]) + '</b>').join(' · ')}`;
   } else if (q.type === 'match') {
     max = q.items.length; const wrong = [];
     q.items.forEach((it, k) => {
@@ -442,6 +489,7 @@ document.addEventListener('click', e => {
     root.querySelectorAll('fieldset[data-scored]').forEach(fs => { const [p, m] = check(fs); pts += p; max += m; });
     const box = document.getElementById('score_' + sec), r = pts / max;
     box.querySelector('.score-badge').textContent = `${pts} / ${max}`;
+    RES[sec] = [pts, max]; updateTotal(sec.split('_')[0]);
     let txt = r >= 0.8 ? 'Excellent ! Vous avez bien compris.' : r >= 0.5 ? 'Résultat satisfaisant. Lisez les justifications et réécoutez les passages difficiles.' : 'Réécoutez la vidéo partie par partie en vous aidant des justifications.';
     const [tab, step] = sec.split('_');
     if (step === 'det') { document.getElementById('tr_' + tab).classList.remove('hidden'); txt += ' La transcription est maintenant disponible en bas de la page.'; }
@@ -452,6 +500,7 @@ document.addEventListener('click', e => {
   const r = e.target.closest('.btn-reset');
   if (r) {
     const root = document.getElementById('step_' + r.dataset.sec);
+    delete RES[r.dataset.sec]; updateTotal(r.dataset.sec.split('_')[0]);
     root.querySelectorAll('input').forEach(i => i.checked = false);
     root.querySelectorAll('select').forEach(s => { s.value = ''; s.classList.remove('border-ok', 'border-alert', 'border-2'); s.classList.add('border-gray-300'); });
     root.querySelectorAll('.feedback, .score, .model').forEach(x => x.classList.add('hidden'));
@@ -459,6 +508,7 @@ document.addEventListener('click', e => {
   }
 });
 
+TABS.forEach(T => updateTotal(T.id));
 showTab('v1');
 </script>
 </body>
