@@ -113,6 +113,19 @@
   .progress > div{height:100%;background:var(--accent);width:0;transition:width .4s}
   .sticky-score{position:sticky;bottom:10px;display:inline-block;background:var(--accent);color:#fff;font-weight:700;border-radius:999px;padding:8px 16px;margin-top:10px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 
+  /* Comparatif Aya / Krego */
+  .compare{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:10px 0}
+  .compare .col-h{font-weight:700;padding:10px 12px;font-size:.95rem}
+  .aya-h{background:var(--accent);color:#fff}
+  .kr-h{background:var(--gold-soft);color:#7a5a12;border-left:1px solid var(--line)}
+  .cmp-rows{display:contents}
+  .cmp-a,.cmp-k{padding:9px 12px;border-top:1px solid var(--line);font-size:.95rem;min-height:44px}
+  .cmp-a{font-weight:600}
+  .cmp-a small{display:block;font-weight:400;color:var(--muted);font-size:.8rem}
+  .cmp-k{border-left:1px solid var(--line);color:#b7bec6;letter-spacing:.1em;background:repeating-linear-gradient(to bottom,transparent 0,transparent 30px,var(--line) 30px,var(--line) 31px)}
+  .disc{display:grid;grid-template-columns:1fr;gap:10px}
+  @media(min-width:720px){.disc{grid-template-columns:1fr 1fr}}
+
   footer{max-width:1000px;margin:0 auto;padding:0 16px 30px;color:var(--muted);font-size:.85rem}
 </style>
 </head>
@@ -129,9 +142,10 @@
   <div class="inner" role="tablist">
     <button role="tab" data-tab="aya" aria-selected="true">1. Aya</button>
     <button role="tab" data-tab="chanson" aria-selected="false">2. Djadja</button>
-    <button role="tab" data-tab="activites" aria-selected="false">3. Activités</button>
-    <button role="tab" data-tab="article" aria-selected="false">4. L'article</button>
-    <button role="tab" data-tab="quiz" aria-selected="false">5. Questionnaire</button>
+    <button role="tab" data-tab="krego" aria-selected="false">3. Krego</button>
+    <button role="tab" data-tab="activites" aria-selected="false">4. Activités</button>
+    <button role="tab" data-tab="article" aria-selected="false">5. L'article</button>
+    <button role="tab" data-tab="quiz" aria-selected="false">6. Questionnaire</button>
   </div>
 </nav>
 
@@ -173,7 +187,7 @@
 
   <div class="box gold">
     <h4>Pourquoi Aya divise ?</h4>
-    <p>À l'étranger, elle est un symbole de la France d'aujourd'hui. En France, certains l'accusent de « mal parler » français ou d'être « vulgaire ». D'autres répondent que ces critiques cachent du racisme et du sexisme. C'est le sujet de l'article de <i>Libération</i> (onglets 4 et 5).</p>
+    <p>À l'étranger, elle est un symbole de la France d'aujourd'hui. En France, certains l'accusent de « mal parler » français ou d'être « vulgaire ». D'autres répondent que ces critiques cachent du racisme et du sexisme. C'est le sujet de l'article de <i>Libération</i> (onglets 5 et 6).</p>
   </div>
 </section>
 
@@ -217,7 +231,52 @@
   </ul>
 </section>
 
-<!-- ============ 3. ACTIVITÉS ============ -->
+<!-- ============ 3. KREGO ============ -->
+<section id="krego">
+  <h2>« Djadja » en français soutenu</h2>
+  <div class="box gold">
+    <p><b>Jonathan Krego</b> est un jeune chanteur belge, ancien candidat de l'émission <i>The Voice</i> en Belgique. Le 22 décembre 2019, il publie sur Twitter sa reprise de « Djadja » en <b>« français soutenu, pour les nuls »</b>. La vidéo fait le buzz.</p>
+    <p>Son idée : beaucoup de gens ne comprennent pas ce que chante Aya, alors il « traduit » les paroles en français soutenu. Certains internautes y voient une critique de la chanteuse. Il répond qu'il adore la chanson et ses paroles, et qu'Aya est une « super artiste » qui représente des minorités peu visibles dans la musique.</p>
+  </div>
+
+  <div class="video">
+    <iframe src="https://www.youtube-nocookie.com/embed/IdDMqqrwgbM" title="Krego – Djadja en français soutenu" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <p style="font-size:.9rem;color:var(--muted)">La vidéo ne s'affiche pas ? <a href="https://youtu.be/IdDMqqrwgbM" target="_blank" rel="noopener">Ouvrir sur YouTube</a>.</p>
+
+  <h3>Comprendre la reprise</h3>
+  <div id="krQuiz"></div>
+  <div class="score" id="krScore"></div>
+
+  <h3>Aya face à Krego</h3>
+  <p>Écoutez les deux versions avec les paroles distribuées en classe. Pour chaque expression d'Aya, notez ce que chante Krego. Puis classez son choix : <b>S</b> (standard), <b>Sout.</b> (soutenu), <b>Lit.</b> (littéraire, ancien) ou <b>?</b> (le sens a changé).</p>
+  <p><span class="write-here">✎ Recopiez le tableau dans votre cahier</span></p>
+  <div class="compare">
+    <div class="col-h aya-h">Aya Nakamura (2018)</div>
+    <div class="col-h kr-h">Krego (2019)</div>
+    <div id="cmpRows" class="cmp-rows"></div>
+  </div>
+
+  <h3>Réécrire à votre tour</h3>
+  <div class="box accent">
+    <p>Choisissez le refrain ou un couplet de « Djadja » que Krego ne traduit pas, ou traduit autrement que vous. Réécrivez-le d'abord en français standard, puis en français soutenu. Gardez le sens, changez le registre.</p>
+    <p><span class="write-here">✎ Sur votre cahier</span></p>
+    <p style="font-size:.92rem;color:var(--muted)">Aide : <i>y a pas moyen</i> → il n'en est pas question → il est hors de question que… ; <i>t'es taré</i> → tu es fou → vous avez perdu la raison.</p>
+  </div>
+
+  <h3>Discussion · L'esprit de la chanson se maintient-il ?</h3>
+  <div class="disc">
+    <div class="card"><h4>1. Le sens</h4><p>Krego garde-t-il toutes les informations ? Quels mots d'Aya n'ont pas de vrai équivalent en français soutenu (<i>Djadja</i>, <i>en catchana</i>…) ? Que se perd-il dans la « traduction » ?</p></div>
+    <div class="card"><h4>2. Le ton</h4><p>Chez Aya, le ton est assuré, provocateur, un peu en colère. Et chez Krego ? D'où vient l'humour de sa version : des mots, de l'écart entre le registre et la situation, de sa manière de chanter ?</p></div>
+    <div class="card"><h4>3. Qui parle ?</h4><p>Dans l'original, une jeune femme noire de banlieue répond à une rumeur sur sa vie sexuelle. Dans la reprise, c'est un jeune homme belge qui chante. Est-ce la même parole ? Le message féministe reste-t-il ?</p></div>
+    <div class="card"><h4>4. La langue, c'est le message ?</h4><p>Le langage d'Aya montre d'où elle vient et à qui elle parle. Si on le remplace par du français soutenu, la chanson garde-t-elle son identité ? Rappelez-vous l'article : on reproche à Aya sa « vulgarité ».</p></div>
+    <div class="card"><h4>5. Hommage ou moquerie ?</h4><p>Krego dit qu'il « explique » les paroles « pour les nuls » et qu'il adore Aya. Pourtant, « traduire » Aya en « bon » français, est-ce suggérer que son français n'en est pas ? Qu'en pensez-vous ?</p></div>
+    <div class="card note"><h4>Pour conclure</h4><p>À l'oral, en une minute : « Selon moi, l'esprit de la chanson se maintient / ne se maintient pas, parce que… ». Donnez deux arguments et un exemple précis tiré des deux versions.</p></div>
+  </div>
+  <p style="font-size:.92rem;color:var(--muted)">Utilisez : d'un côté… de l'autre… · certes…, mais… · alors que… · en revanche… · ce qui disparaît, c'est… · ce qui reste, c'est…</p>
+</section>
+
+<!-- ============ 4. ACTIVITÉS ============ -->
 <section id="activites">
   <h2>Activités sur la chanson</h2>
 
@@ -248,15 +307,7 @@
 
   <div class="btnrow"><button class="btn ghost" id="resetActs">Recommencer les activités</button></div>
 
-  <h3>Activité 4 · « Djadja » en français soutenu</h3>
-  <div class="box accent">
-    <p>Un jeune chanteur belge, Krego, a eu beaucoup de succès sur les réseaux en chantant « Djadja » en <b>français soutenu</b>.</p>
-    <p><b>À vous :</b> choisissez le refrain ou un couplet. Réécrivez-le en français standard, puis en français soutenu. Gardez le sens, changez le registre.</p>
-    <p><span class="write-here">✎ Sur votre cahier</span></p>
-    <p style="font-size:.92rem;color:var(--muted)">Aide : <i>y a pas moyen</i> → il n'en est pas question → il est hors de question que… ; <i>t'es taré</i> → tu es fou → vous avez perdu la raison.</p>
-  </div>
-
-  <h3>Activité 5 · Débat</h3>
+  <h3>Activité 4 · Débat</h3>
   <div class="box">
     <p>En petits groupes, choisissez une question. Préparez trois arguments et un exemple.</p>
     <ul class="clean">
@@ -269,7 +320,7 @@
   </div>
 </section>
 
-<!-- ============ 4. ARTICLE ============ -->
+<!-- ============ 5. ARTICLE ============ -->
 <section id="article">
   <h2>L'article de <i>Libération</i></h2>
   <div class="box gold">
@@ -395,6 +446,20 @@
     {q:"« Elle pense surtout à faire de l'argent. »",o:["Elle pense à fabriquer des billets.","Elle pense à gagner de l'argent.","Elle pense à dépenser son argent."],r:1,e:"« Faire de l'argent » est un calque de l'anglais « to make money ». En standard, on dit gagner de l'argent."}
   ];
 
+  /* ---------- Krego ---------- */
+  var KR=[
+    {q:"Qui est Krego ?",o:["Un rappeur français de Seine-Saint-Denis.","Un jeune chanteur belge, ancien candidat de The Voice.","Le producteur d'Aya Nakamura."],r:1,e:"Jonathan Krego est belge ; il s'est fait connaître dans l'émission The Voice en Belgique."},
+    {q:"Que fait-il dans sa vidéo ?",o:["Il chante « Djadja » en français soutenu.","Il traduit « Djadja » en anglais.","Il chante « Djadja » avec Aya Nakamura."],r:0,e:"Il reprend la chanson en « français soutenu, pour les nuls »."},
+    {q:"Pourquoi, selon lui ?",o:["Pour critiquer la façon de parler d'Aya.","Pour gagner un concours de chant.","Parce que beaucoup de gens ne comprennent pas les paroles d'Aya."],r:2,e:"Il veut « expliquer » les paroles, que beaucoup ne comprennent pas."},
+    {q:"Comment répond-il à ceux qui voient une critique ?",o:["Il s'excuse et supprime la vidéo.","Il dit qu'il adore la chanson et qu'Aya est une « super artiste ».","Il dit que le français d'Aya est incorrect."],r:1,e:"Il affirme qu'il n'aurait pas pu reprendre la chanson s'il ne l'aimait pas, paroles comprises."}
+  ];
+  var CMP=[
+    ["Hello papi, qué pasa","anglais + espagnol"],["des bails atroces","argot"],["t'es taré","familier"],["le monde est tit-pe","verlan"],
+    ["afficher quelqu'un","sens familier"],["Djadja","mot inventé"],["y a pas moyen","familier"],["catin","mot ancien"],
+    ["en catchana","argot"],["tu dead ça","anglais"],["ta daronne","argot"],["y a R","abréviation"],["déconner","familier"]
+  ];
+  document.getElementById("cmpRows").innerHTML=CMP.map(function(c){return "<div class='cmp-a'>"+esc(c[0])+"<small>"+esc(c[1])+"</small></div><div class='cmp-k' aria-label='À compléter'></div>";}).join("");
+
   /* ---------- Article : lexique et notes ---------- */
   var LEX_ART=[
     ["incarner","représenter, être le symbole vivant de quelque chose.","Aya incarne une contradiction ; elle peut incarner la France."],
@@ -470,7 +535,7 @@
     [10,"Parfait ! Vous avez compris l'article dans ses moindres détails. Bravo !"],
     [8,"Excellent travail ! Relisez les explications des erreurs : vous y êtes presque."],
     [6,"Bon travail ! Vous avez compris l'essentiel. Relisez les passages des questions ratées et recommencez."],
-    [4,"C'est un bon début. Le texte est exigeant : retravaillez le lexique et les notes culturelles (onglet 4), puis réessayez."],
+    [4,"C'est un bon début. Le texte est exigeant : retravaillez le lexique et les notes culturelles (onglet 5), puis réessayez."],
     [0,"Ne vous découragez pas : ce texte est difficile. Relisez-le avec le lexique et les notes, puis recommencez. Vous allez progresser !"]
   ];
 
@@ -551,6 +616,7 @@
     typo(box);
   }
   function buildActs(){buildQCM("act1","act1Score",ACT1);buildCat();buildQCM("act3","act3Score",ACT3);}
+  buildQCM("krQuiz","krScore",KR);
   document.getElementById("resetActs").addEventListener("click",function(){buildActs();window.scrollTo({top:document.getElementById("activites").offsetTop,behavior:"smooth"});});
 
   /* ---------- Questionnaire ---------- */
