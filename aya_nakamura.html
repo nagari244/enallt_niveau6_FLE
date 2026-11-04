@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aya Nakamura · Djadja</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --surface:#f6f7f9; --line:#dfe3e8; --text:#1f2933; --muted:#5b6673;
+    --accent:#002B5C; --accent-soft:#eaf0f7; --gold:#b8892a; --gold-soft:#faf4e6;
+    --ok:#1d5fa8; --ok-bg:#e8f1fb; --ko:#b3403a; --ko-bg:#fbecea;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:'Source Sans 3',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:17px;line-height:1.55}
+  a{color:var(--accent)}
+  header{padding:20px 16px 12px;max-width:1000px;margin:0 auto}
+  header .kicker{font-size:.82rem;font-weight:700;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+  header h1{margin:4px 0 4px;font-size:1.8rem;line-height:1.2;color:var(--accent)}
+  header p{margin:0;color:var(--muted)}
+  .back{display:inline-block;margin-bottom:6px;font-size:.9rem;font-weight:600;text-decoration:none}
+  nav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+  nav .inner{max-width:1000px;margin:0 auto;display:flex;gap:2px;overflow-x:auto;padding:0 8px;scrollbar-width:none}
+  nav .inner::-webkit-scrollbar{display:none}
+  nav button{flex:0 0 auto;border:0;background:none;font:inherit;font-weight:600;color:var(--muted);padding:12px 11px;min-height:48px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+  nav button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--gold)}
+  main{max-width:1000px;margin:0 auto;padding:18px 16px 70px}
+  section{display:none}
+  section.active{display:block}
+  h2{font-size:1.4rem;margin:4px 0 10px;color:var(--accent)}
+  h3{font-size:1.14rem;margin:24px 0 8px;color:var(--accent)}
+  h4{margin:0 0 4px;font-size:1.02rem}
+  p{margin:8px 0}
+  .box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}
+  .box.accent{background:var(--accent-soft);border-color:#cfdbe8}
+  .box.gold{background:var(--gold-soft);border-color:#ecdcb4}
+  .box > :first-child{margin-top:0}.box > :last-child{margin-bottom:0}
+  ul.clean{margin:6px 0;padding-left:20px}
+  ul.clean li{margin:4px 0}
+  .write-here{display:inline-block;font-weight:700;color:var(--accent);background:var(--accent-soft);border:1px dashed #9db3cc;border-radius:8px;padding:6px 12px}
+  .btnrow{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+  .btn{font:inherit;font-weight:600;border-radius:10px;padding:11px 16px;min-height:46px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:#fff;text-decoration:none;display:inline-flex;align-items:center}
+  .btn.ghost{background:#fff;color:var(--accent)}
+
+  /* Biographie */
+  .bio{display:grid;grid-template-columns:1fr;gap:16px;align-items:start}
+  @media(min-width:720px){.bio{grid-template-columns:260px 1fr}}
+  .bio figure{margin:0}
+  .bio img{width:100%;max-width:320px;height:auto;border-radius:14px;display:block;margin:0 auto}
+  .bio figcaption{font-size:.8rem;color:var(--muted);text-align:center;margin-top:6px}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+  @media(min-width:720px){.facts{grid-template-columns:repeat(4,1fr)}}
+  .fact{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff}
+  .fact b{display:block;font-size:1.25rem;color:var(--accent);line-height:1.2}
+  .fact span{font-size:.88rem;color:var(--muted)}
+  .timeline{list-style:none;padding:0;margin:8px 0;border-left:3px solid var(--line)}
+  .timeline li{padding:4px 0 8px 14px;position:relative}
+  .timeline li::before{content:"";position:absolute;left:-7px;top:12px;width:11px;height:11px;border-radius:50%;background:var(--gold)}
+  .timeline .y{font-weight:700;color:var(--accent);margin-right:6px}
+
+  /* Vidéo */
+  .video{position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#000;margin:10px 0}
+  .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+  /* Tableaux */
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0}
+  table.lex{border-collapse:collapse;width:100%;min-width:600px;font-size:.95rem}
+  table.lex th,table.lex td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left;vertical-align:top}
+  table.lex th{background:var(--accent-soft);color:var(--accent);font-size:.88rem}
+  table.lex td:first-child{font-weight:700;white-space:nowrap}
+  .tag{display:inline-block;font-size:.76rem;font-weight:700;border-radius:999px;padding:2px 9px;background:var(--surface);border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+  .tag.warn{background:var(--ko-bg);border-color:#f0c9c5;color:var(--ko)}
+  .tag.new{background:var(--gold-soft);border-color:#ecdcb4;color:#7a5a12}
+
+  /* Cartes de lexique (article) */
+  .cards{display:grid;grid-template-columns:1fr;gap:10px}
+  @media(min-width:720px){.cards{grid-template-columns:1fr 1fr}}
+  .card{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:10px 13px;background:#fff}
+  .card.note{border-left-color:var(--gold);background:var(--gold-soft)}
+  .card h4{color:var(--accent)}
+  .card p{margin:2px 0;font-size:.95rem}
+  .card .ex{color:var(--muted);font-style:italic}
+
+  /* Exercices */
+  .ex-block{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0;background:#fff}
+  .ex-block .stem{margin:0 0 8px;font-weight:600}
+  .ex-block .stem .n{color:var(--accent);margin-right:6px}
+  .opts{display:grid;gap:8px}
+  .opt{font:inherit;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;min-height:46px;cursor:pointer;color:var(--text);width:100%}
+  .opt .l{font-weight:700;margin-right:6px}
+  .opt.ok{border-color:var(--ok);background:var(--ok-bg)}
+  .opt.ko{border-color:var(--ko);background:var(--ko-bg)}
+  .opt:disabled{cursor:default}
+  .fb{margin-top:8px;font-size:.95rem;display:none;border-radius:8px;padding:8px 10px}
+  .fb.show{display:block}
+  .fb.ok{color:var(--ok);background:var(--ok-bg)} .fb.ko{color:var(--ko);background:var(--ko-bg)}
+  .score{font-weight:700;color:var(--accent);margin-top:10px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font:inherit;font-size:.92rem;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:8px 12px;min-height:42px;cursor:pointer;color:var(--text)}
+  .chip.ok{border-color:var(--ok);background:var(--ok-bg)}
+  .chip.ko{border-color:var(--ko);background:var(--ko-bg)}
+  .chip:disabled{cursor:default}
+  .item-word{font-weight:700;font-size:1.05rem;color:var(--accent)}
+
+  /* Résultat final */
+  .result{border:2px solid var(--gold);background:var(--gold-soft);border-radius:14px;padding:16px;margin-top:16px;display:none}
+  .result.show{display:block}
+  .result .big{font-size:2rem;font-weight:700;color:var(--accent);line-height:1}
+  .progress{height:10px;background:var(--line);border-radius:999px;overflow:hidden;margin:10px 0}
+  .progress > div{height:100%;background:var(--accent);width:0;transition:width .4s}
+  .sticky-score{position:sticky;bottom:10px;display:inline-block;background:var(--accent);color:#fff;font-weight:700;border-radius:999px;padding:8px 16px;margin-top:10px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+
+  footer{max-width:1000px;margin:0 auto;padding:0 16px 30px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="back" href="index.html">← Matériel didactique</a>
+  <div class="kicker">Niveau 6 · Dossier « Les jeunes » · Francophonie</div>
+  <h1>Aya Nakamura · « Djadja »</h1>
+  <p>Une chanson, une artiste, un débat sur la langue et l'identité.</p>
+</header>
+
+<nav aria-label="Sections">
+  <div class="inner" role="tablist">
+    <button role="tab" data-tab="aya" aria-selected="true">1. Aya</button>
+    <button role="tab" data-tab="chanson" aria-selected="false">2. Djadja</button>
+    <button role="tab" data-tab="activites" aria-selected="false">3. Activités</button>
+    <button role="tab" data-tab="article" aria-selected="false">4. L'article</button>
+    <button role="tab" data-tab="quiz" aria-selected="false">5. Questionnaire</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ 1. AYA ============ -->
+<section id="aya" class="active">
+  <h2>Qui est Aya Nakamura ?</h2>
+  <div class="bio">
+    <figure>
+      <img src="aya_nakamura.jpg" alt="Portrait d'Aya Nakamura sur fond rouge" width="390" height="382">
+      <figcaption>Aya Nakamura · pochette de l'album <i>AYA</i> (2020)</figcaption>
+    </figure>
+    <div>
+      <p><b>Aya Coco Danioko</b> est née le 10 mai 1995 à <b>Bamako</b>, au Mali, dans une famille de <b>griots</b> : des conteurs et musiciens qui transmettent l'histoire et les traditions par la parole et le chant. Elle est l'aînée de cinq enfants.</p>
+      <p>Elle arrive en France quand elle est petite. Elle passe par <b>Montreuil</b>, puis grandit à <b>Aulnay-sous-Bois</b>, en Seine-Saint-Denis (le « 93 »), au nord-est de Paris. Elle devient française en 2021.</p>
+      <p>Son nom de scène vient de <b>Hiro Nakamura</b>, un personnage de la série américaine <i>Heroes</i> qui peut voyager dans le temps.</p>
+      <p>Elle écrit ses textes elle-même. Elle mélange le français, l'argot, des mots d'Afrique de l'Ouest, l'anglais et l'espagnol. Sa musique mêle la pop, le R&amp;B, le zouk et les rythmes afro.</p>
+    </div>
+  </div>
+
+  <div class="facts">
+    <div class="fact"><b>5</b><span>albums, de 2017 à 2025</span></div>
+    <div class="fact"><b>1 milliard</b><span>de vues pour le clip de « Djadja » (2025)</span></div>
+    <div class="fact"><b>n° 1</b><span>en France et aux Pays-Bas avec « Djadja »</span></div>
+    <div class="fact"><b>31,4 millions</b><span>de téléspectateurs pour les JO 2024</span></div>
+  </div>
+
+  <h3>Les grandes étapes</h3>
+  <ul class="timeline">
+    <li><span class="y">2017</span>Premier album, <i>Journal intime</i>.</li>
+    <li><span class="y">2018</span>Album <i>Nakamura</i> et le tube « Djadja ». Elle est la première chanteuse française numéro 1 aux Pays-Bas depuis Édith Piaf (1961).</li>
+    <li><span class="y">2020</span>Album <i>AYA</i>. Elle devient la chanteuse francophone la plus écoutée au monde sur Spotify.</li>
+    <li><span class="y">2023</span>Album <i>DNK</i>.</li>
+    <li><span class="y">2024</span>Elle chante à la cérémonie d'ouverture des Jeux olympiques de Paris, avec la Garde républicaine, en mélangeant ses chansons et Charles Aznavour. Avant la cérémonie, elle a été la cible d'attaques racistes de l'extrême droite. C'est le moment le plus regardé de l'histoire de la télévision française.</li>
+    <li><span class="y">2025</span>Album <i>Destinée</i>. Le clip de « Djadja » dépasse le milliard de vues sur YouTube.</li>
+    <li><span class="y">2026</span>Trois concerts complets au Stade de France.</li>
+  </ul>
+
+  <div class="box gold">
+    <h4>Pourquoi Aya divise ?</h4>
+    <p>À l'étranger, elle est un symbole de la France d'aujourd'hui. En France, certains l'accusent de « mal parler » français ou d'être « vulgaire ». D'autres répondent que ces critiques cachent du racisme et du sexisme. C'est le sujet de l'article de <i>Libération</i> (onglets 4 et 5).</p>
+  </div>
+</section>
+
+<!-- ============ 2. DJADJA ============ -->
+<section id="chanson">
+  <h2>« Djadja » (2018)</h2>
+  <div class="video">
+    <iframe src="https://www.youtube-nocookie.com/embed/iPGgnzc34tY" title="Aya Nakamura – Djadja (clip officiel)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <p style="font-size:.9rem;color:var(--muted)">La vidéo ne s'affiche pas ? <a href="https://youtu.be/iPGgnzc34tY" target="_blank" rel="noopener">Ouvrir sur YouTube</a>. Les paroles sont distribuées en classe.</p>
+
+  <h3>L'histoire</h3>
+  <p>Un homme raconte partout qu'il a couché avec Aya. C'est faux. Elle lui répond directement : elle a entendu les rumeurs, elle les dément et elle le ridiculise. Lui pense à elle ; elle, elle pense à son travail et à gagner de l'argent.</p>
+  <p><b>« Djadja »</b> n'est pas un vrai prénom. C'est un surnom inventé et péjoratif pour un menteur, un homme qui raconte des histoires sur les filles. Selon Aya, ça peut être « un mec lambda » : un ami, un frère… La chanson s'inspire d'une histoire vraie.</p>
+
+  <div class="box accent">
+    <h4>Une chanson féministe ?</h4>
+    <p>Beaucoup y voient un hymne à l'<b>empowerment</b> des jeunes femmes. Une femme refuse qu'un homme salisse sa réputation, elle reprend le pouvoir par la parole et refuse d'être un objet. Le thème touche aussi au <b>slut-shaming</b> : on juge une femme sur sa vie sexuelle, réelle ou inventée.</p>
+  </div>
+
+  <h3>Comment c'est construit ?</h3>
+  <ul class="clean">
+    <li><b>Une adresse directe</b> : Aya parle à Djadja à la 2ᵉ personne (« tu »), comme dans une dispute.</li>
+    <li><b>Un refrain très répétitif</b> : « Oh, Djadja » et le refus (« y a pas moyen »), faciles à chanter en chœur.</li>
+    <li><b>Des oppositions</b> : lui contre elle, la rumeur contre la vérité, le sexe contre l'argent et le travail.</li>
+    <li><b>Le discours rapporté</b> : elle cite ce que Djadja dit sur elle, puis le contredit.</li>
+  </ul>
+
+  <h3>Le lexique de la chanson</h3>
+  <p>On y retrouve les procédés du langage des jeunes vus en classe : le verlan, la troncation et les emprunts.</p>
+  <div class="cards" id="lexSong"></div>
+  <p style="font-size:.88rem;color:var(--muted)"><span class="tag warn">vulgaire</span> = à comprendre, pas à réutiliser. <span class="tag new">à discuter</span> = le sens n'est pas sûr.</p>
+
+  <h3>Les traits de l'oral</h3>
+  <ul class="clean">
+    <li><b>Élisions</b> : <i>j'suis, j'te, c'qu'il, t'façon</i> (= je suis, je te, ce qu'il, de toute façon).</li>
+    <li><b>Pas de « ne »</b> dans la négation : <i>j'suis pas</i>, <i>c'est pas</i>, <i>faut pas</i>.</li>
+    <li><b>« Y a »</b> au lieu de « il y a ».</li>
+    <li><b>Les marqueurs</b> <i>genre</i> et <i>mais</i> en début de phrase, comme dans la vidéo des expressions de jeunes.</li>
+    <li><b>Le mélange des langues</b> : <i>hello</i>, <i>baby</i> (anglais) ; <i>papi</i>, <i>qué pasa</i> (espagnol).</li>
+  </ul>
+</section>
+
+<!-- ============ 3. ACTIVITÉS ============ -->
+<section id="activites">
+  <h2>Activités sur la chanson</h2>
+
+  <h3>Avant d'écouter</h3>
+  <div class="box">
+    <p>À deux, répondez à l'oral :</p>
+    <ul class="clean">
+      <li>Regardez le début du clip sans le son. Où sommes-nous ? Quelle est l'ambiance ?</li>
+      <li>« Djadja » : à votre avis, c'est un prénom, un mot inventé, un mot étranger ?</li>
+      <li>Avez-vous déjà été victime d'une rumeur ? Comment avez-vous réagi ?</li>
+    </ul>
+  </div>
+
+  <h3>Activité 1 · Compréhension globale</h3>
+  <p>Écoutez la chanson avec les paroles, puis répondez.</p>
+  <div id="act1"></div>
+  <div class="score" id="act1Score"></div>
+
+  <h3>Activité 2 · D'où vient ce mot ?</h3>
+  <p>Pour chaque mot, choisissez le procédé. Vous avez vu ces procédés avec la vidéo des expressions de jeunes.</p>
+  <div id="act2"></div>
+  <div class="score" id="act2Score"></div>
+
+  <h3>Activité 3 · Du familier au standard</h3>
+  <p>Ces phrases utilisent des mots de la chanson. Choisissez l'équivalent en français standard.</p>
+  <div id="act3"></div>
+  <div class="score" id="act3Score"></div>
+
+  <div class="btnrow"><button class="btn ghost" id="resetActs">Recommencer les activités</button></div>
+
+  <h3>Activité 4 · « Djadja » en français soutenu</h3>
+  <div class="box accent">
+    <p>Un jeune chanteur belge, Krego, a eu beaucoup de succès sur les réseaux en chantant « Djadja » en <b>français soutenu</b>.</p>
+    <p><b>À vous :</b> choisissez le refrain ou un couplet. Réécrivez-le en français standard, puis en français soutenu. Gardez le sens, changez le registre.</p>
+    <p><span class="write-here">✎ Sur votre cahier</span></p>
+    <p style="font-size:.92rem;color:var(--muted)">Aide : <i>y a pas moyen</i> → il n'en est pas question → il est hors de question que… ; <i>t'es taré</i> → tu es fou → vous avez perdu la raison.</p>
+  </div>
+
+  <h3>Activité 5 · Débat</h3>
+  <div class="box">
+    <p>En petits groupes, choisissez une question. Préparez trois arguments et un exemple.</p>
+    <ul class="clean">
+      <li><b>a)</b> « Aya Nakamura parle mal français. » Êtes-vous d'accord ? Qu'est-ce que « bien parler » une langue ?</li>
+      <li><b>b)</b> « Djadja » est-elle une chanson féministe ?</li>
+      <li><b>c)</b> Peut-on apprendre le français avec des chansons comme celle-ci ?</li>
+      <li><b>d)</b> Les rumeurs sur les réseaux sociaux : comment se défendre ?</li>
+    </ul>
+    <p style="font-size:.92rem;color:var(--muted)">Utilisez : à mon avis… · il me semble que… · d'un côté… de l'autre… · je ne suis pas d'accord avec… · il faut que (+ subjonctif)…</p>
+  </div>
+</section>
+
+<!-- ============ 4. ARTICLE ============ -->
+<section id="article">
+  <h2>L'article de <i>Libération</i></h2>
+  <div class="box gold">
+    <p><b>« Une femme noire peut-elle incarner la France ? Avec Aya Nakamura, ce n'est plus une question, c'est une réalité »</b></p>
+    <p>Un entretien avec <b>Christelle Bakima Poundza</b> : autrice, critique, podcasteuse et réalisatrice. Elle a écrit l'essai <i>Aya pour l'exemple. Portrait d'une France aux rêves illimités</i> (Seuil).</p>
+    <p>📄 Votre professeur·e vous distribue l'article. Lisez-le une première fois en entier, puis travaillez le lexique et les notes ci-dessous avant de répondre au questionnaire.</p>
+  </div>
+
+  <h3>Comment le texte est-il construit ?</h3>
+  <ul class="clean">
+    <li><b>Un genre : l'entretien.</b> Le titre est une citation de l'autrice, entre guillemets. Un chapeau présente le livre. Ensuite viennent les questions du journaliste (en gras) et les réponses de l'autrice.</li>
+    <li><b>Un fil conducteur : le paradoxe.</b> Aya est célébrée à l'étranger mais critiquée en France.</li>
+    <li><b>Quatre parties</b>, une par question :
+      <ul class="clean">
+        <li>son parcours (Mali, Montreuil, Aulnay) ;</li>
+        <li>l'histoire coloniale et migratoire ;</li>
+        <li>la musique comme éducation populaire ;</li>
+        <li>le concept de « misogynoir ».</li>
+      </ul>
+    </li>
+    <li><b>Une argumentation appuyée sur des références :</b> une chercheuse (Maboula Soumahoro), une étude (OCDE), un sociologue (Abdelmalek Sayad), une chercheuse américaine (Moya Bailey), des rappeurs (Sniper, 113, Youssoupha) et une anecdote personnelle.</li>
+    <li><b>Une voix personnelle :</b> l'autrice dit « je », « pour moi », « notre rêve ». Elle mélange analyse universitaire et témoignage.</li>
+    <li><b>Des procédés de style :</b>
+      <ul class="clean">
+        <li>une question rhétorique (« Mais pour qui se prend-elle ? ») ;</li>
+        <li>des citations d'Aya ;</li>
+        <li>une répétition à la fin (« Elle ne va pas… »), qui insiste sur le refus d'Aya.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>Les connecteurs de l'argumentation</h3>
+  <div class="cards">
+    <div class="card"><h4>Opposition</h4><p><i>pourtant, et pourtant, à l'inverse, malgré</i></p><p class="ex">Ces connecteurs montrent le paradoxe : origine modeste et pourtant réussite.</p></div>
+    <div class="card"><h4>Cause et précision</h4><p><i>compte tenu de, notamment, ainsi</i></p><p class="ex">« Compte tenu de » = si l'on considère, en raison de.</p></div>
+  </div>
+
+  <h3>Lexique de l'article</h3>
+  <div class="cards" id="lexArt"></div>
+
+  <h3>Notes culturelles</h3>
+  <div class="cards" id="notesArt"></div>
+
+  <div class="box accent">
+    <h4>Deux registres, une même artiste</h4>
+    <p>Comparez la langue de « Djadja » (<i>y a R, t'es taré, tit-pe</i>) et celle de l'article (<i>incarner, faire allégeance, subversif</i>). Le français familier des jeunes et le français soutenu de l'université parlent de la même personne. Selon vous, est-ce que l'un vaut plus que l'autre ?</p>
+  </div>
+  <div class="btnrow"><button class="btn" data-goto="quiz">Aller au questionnaire →</button></div>
+</section>
+
+<!-- ============ 5. QUESTIONNAIRE ============ -->
+<section id="quiz">
+  <h2>Questionnaire de compréhension écrite</h2>
+  <p>Relisez l'article. Choisissez une réponse : vous voyez tout de suite si elle est juste, avec une explication.</p>
+  <div class="progress" aria-hidden="true"><div id="quizBar"></div></div>
+  <div id="quizBox"></div>
+  <div class="sticky-score" id="quizLive">0 / 10</div>
+  <div class="result" id="quizResult">
+    <div class="big" id="quizFinal"></div>
+    <p id="quizMsg"></p>
+    <div class="btnrow"><button class="btn" id="quizRestart">Recommencer</button></div>
+  </div>
+</section>
+
+</main>
+
+<footer>Niveau 6 · ENALLT, UNAM · Conception pédagogique : Nadia Aguilar Neri</footer>
+
+<script>
+(function(){
+  "use strict";
+  var L=["a","b","c","d"];
+
+  /* ---------- Lexique de la chanson ---------- */
+  var LEX_SONG=[
+    ["Djadja","un menteur, un homme qui invente des rumeurs","mot inventé","Surnom péjoratif. Selon Aya : « un mec lambda, ça pourrait être ton pote, ton frère »."],
+    ["Hello papi / qué pasa","bonjour mon petit / qu'est-ce qui se passe ?","emprunts (anglais, espagnol)","Au Mexique, on connaît bien « papi » !"],
+    ["des bails","des trucs, des histoires (ici : des rumeurs)","argot","« Des bails atroces » = des rumeurs horribles."],
+    ["taré","fou","familier","« T'es taré ? » = tu es fou ?"],
+    ["tit-pe","petit","verlan","« Le monde est petit » en verlan."],
+    ["afficher quelqu'un","l'exposer publiquement, l'humilier (souvent sur les réseaux)","sens familier","En standard, « afficher » = coller une affiche."],
+    ["une catin","une prostituée (insulte)","mot ancien, littéraire <span class='tag warn'>vulgaire</span>","Un mot très ancien dans une chanson moderne : c'est rare et surprenant."],
+    ["en catchana","une position sexuelle","mot inventé ou argot <span class='tag warn'>vulgaire</span>","Aya dit que c'est « une position sexuelle dont je tairai le nom »."],
+    ["tu dead ça","tu le fais très bien","emprunt à l'anglais (to dead = « tuer »)","Selon Aya : « tu l'as fait trop bien ». Ici c'est ironique : elle se moque de ses vantardises."],
+    ["la daronne","la mère","argot ancien","« Daron, daronne » existent depuis des siècles. On dit aussi « mes darons » (mes parents)."],
+    ["y a R","il n'y a rien ; ça ne me fait rien","abréviation (R = « rien »)","« Ils parlent sur moi ? Y a R. » = ça ne me touche pas."],
+    ["parler sur quelqu'un","dire du mal de quelqu'un","usage d'Afrique et des banlieues","En standard : parler de quelqu'un, dire du mal de quelqu'un."],
+    ["faire de l'argent","gagner de l'argent","calque de l'anglais (to make money)","Courant aussi au Québec et en Afrique."],
+    ["jouer le grand frère","faire semblant de protéger, de faire la morale","expression","Rappel : la figure du grand frère chez Rohff."],
+    ["tchouffer","se défiler ? détourner le regard ?","argot <span class='tag new'>à discuter</span>","Sens incertain. Il est peut-être lié à « chouf » (regarder, en arabe). Faites des hypothèses avec le contexte."],
+    ["t'façon","de toute façon","troncation",""],
+    ["déconner","faire n'importe quoi, exagérer","familier","« Putain » (juron) est vulgaire."],
+    ["coucher (quelqu'un)","avoir une relation sexuelle avec","familier <span class='tag warn'>vulgaire</span>","En standard : coucher avec quelqu'un. Ici, c'est la vantardise de Djadja."]
+  ];
+
+  /* ---------- Activités sur la chanson ---------- */
+  var ACT1=[
+    {q:"Qui est Djadja ?",o:["Le petit ami d'Aya.","Un homme qui raconte des mensonges sur Aya.","Le frère d'Aya."],r:1,e:"Djadja est un menteur : il raconte qu'il a couché avec Aya."},
+    {q:"Que dit Djadja ?",o:["Qu'Aya lui court après et qu'il a couché avec elle.","Qu'Aya chante mal.","Qu'Aya lui doit de l'argent."],r:0,e:"Il se vante : il prétend qu'Aya lui court après et qu'elle a passé la nuit avec lui."},
+    {q:"Comment réagit Aya ?",o:["Elle pleure et elle a honte.","Elle demande pardon.","Elle dément et se moque de lui."],r:2,e:"Elle refuse (« y a pas moyen »), elle dément et elle le ridiculise : les rumeurs ne lui font rien."},
+    {q:"Qu'est-ce qui intéresse Aya ?",o:["Faire de l'argent, son travail.","Se marier avec Djadja.","Se venger avec violence."],r:0,e:"Elle oppose les deux personnages : lui pense à elle, elle pense à faire de l'argent."},
+    {q:"Le ton de la chanson est plutôt…",o:["triste et nostalgique.","provocateur et sûr de soi.","calme et poli."],r:1,e:"Le ton est provocateur et confiant : elle ne se laisse pas faire."}
+  ];
+  var CATS=["Verlan","Troncation ou abréviation","Emprunt à une autre langue","Argot, familier ou mot ancien"];
+  var ACT2=[
+    {w:"tit-pe",c:0,e:"Verlan de « petit » : pe-tit → tit-pe."},
+    {w:"t'façon",c:1,e:"Troncation de « de toute façon »."},
+    {w:"y a R",c:1,e:"Abréviation : R = « rien »."},
+    {w:"qué pasa",c:2,e:"Emprunt à l'espagnol : « qu'est-ce qui se passe ? »."},
+    {w:"tu dead ça",c:2,e:"Emprunt à l'anglais « dead »."},
+    {w:"baby",c:2,e:"Emprunt à l'anglais."},
+    {w:"la daronne",c:3,e:"Argot ancien : la mère."},
+    {w:"une catin",c:3,e:"Mot ancien et littéraire, péjoratif."},
+    {w:"des bails",c:3,e:"Argot : des trucs, des histoires."},
+    {w:"taré",c:3,e:"Mot familier : fou."}
+  ];
+  var ACT3=[
+    {q:"« Ce mec raconte des bails atroces sur ma copine. »",o:["Cet homme raconte des rumeurs horribles sur mon amie.","Cet homme raconte des blagues drôles sur mon amie.","Cet homme raconte des histoires d'amour à mon amie."],r:0,e:"Bails = histoires, rumeurs ; atroces = horribles."},
+    {q:"« Toi ici ? Le monde est tit-pe ! »",o:["Le monde est grand !","Le monde est petit !","Le monde est triste !"],r:1,e:"Tit-pe = petit en verlan. C'est l'expression « le monde est petit »."},
+    {q:"« Au lycée, ils parlent sur toi ? Y a R. »",o:["Au lycée, ils parlent avec toi ? D'accord.","Au lycée, ils disent du mal de toi ? Ce n'est rien, ne t'inquiète pas.","Au lycée, ils parlent de toi ? Il y a un problème."],r:1,e:"Parler sur = dire du mal de ; y a R = il n'y a rien, ça ne me touche pas."},
+    {q:"« Écoute, j'suis pas ta daronne, débrouille-toi ! »",o:["Écoute, je ne suis pas ta sœur, aide-moi !","Écoute, je ne suis pas ta mère, débrouille-toi tout seul !","Écoute, je ne suis pas ta prof, corrige-toi !"],r:1,e:"Daronne = mère. Remarquez aussi le « ne » de la négation, qui revient en français standard."},
+    {q:"« Sortir à trois heures du matin ? T'es taré ! »",o:["Sortir à trois heures du matin ? Tu es fou !","Sortir à trois heures du matin ? Tu es en retard !","Sortir à trois heures du matin ? Tu es fatigué !"],r:0,e:"Taré = fou (familier). Attention, ce n'est pas « en retard » !"},
+    {q:"« Elle pense surtout à faire de l'argent. »",o:["Elle pense à fabriquer des billets.","Elle pense à gagner de l'argent.","Elle pense à dépenser son argent."],r:1,e:"« Faire de l'argent » est un calque de l'anglais « to make money ». En standard, on dit gagner de l'argent."}
+  ];
+
+  /* ---------- Article : lexique et notes ---------- */
+  var LEX_ART=[
+    ["incarner","représenter, être le symbole vivant de quelque chose.","Aya incarne une contradiction ; elle peut incarner la France."],
+    ["battre des records","faire mieux que tous les résultats précédents.","Elle bat des records de streaming."],
+    ["rester la cible de","continuer à être visé·e par (des critiques, des attaques).","Elle reste la cible de polémiques."],
+    ["un paradoxe","une contradiction surprenante.","Célébrée à l'étranger, critiquée en France."],
+    ["une trajectoire","un parcours de vie.","La trajectoire de l'artiste."],
+    ["(n'avoir) rien d'anodin","anodin = sans importance. « N'avoir rien d'anodin » = être important, significatif.","Ce parcours n'a rien d'anodin."],
+    ["un haut lieu de","un endroit très important, symbolique pour quelque chose.","Montreuil, haut lieu de la diaspora malienne."],
+    ["le déclassement","la perte de sa position sociale.","Médecin au pays, ouvrier en France."],
+    ["made in France","anglicisme : fabriqué en France. Ici : un produit de l'histoire française.","Le parcours d'Aya est made in France."],
+    ["faire allégeance","se soumettre, jurer fidélité à une autorité.","Elle ne va pas faire allégeance."],
+    ["subversif, subversive","qui remet en question l'ordre établi, les règles.","C'est aussi ça qui est subversif."],
+    ["« Pour qui se prend-elle ? »","reproche : elle se croit plus importante qu'elle ne l'est.","Question rhétorique : pas de réponse attendue."]
+  ];
+  var NOTES=[
+    ["Montreuil","Ville de Seine-Saint-Denis, juste à l'est de Paris. Elle abrite une très grande communauté malienne, avec des foyers de travailleurs organisés par village d'origine. Le foyer Bara est considéré comme le cœur politique de la diaspora malienne en France."],
+    ["La Seine-Saint-Denis (le « 93 »)","Département au nord-est de Paris, le plus jeune et l'un des plus pauvres de France métropolitaine. Il a une longue histoire ouvrière et d'immigration."],
+    ["Le quartier des 3000","Cité de la Rose-des-Vents, au nord d'Aulnay-sous-Bois : environ 3 000 logements construits en 1969-1970, en grande partie pour loger les ouvriers de la nouvelle usine Citroën toute proche. C'est aujourd'hui un « quartier prioritaire » : il reçoit des aides publiques parce que ses habitants ont des revenus faibles."],
+    ["PSA (1972-2014)","PSA est le groupe Peugeot-Citroën (aujourd'hui Stellantis). Son usine d'Aulnay a fabriqué des Citroën à partir de 1973 et employait jusqu'à 5 000 personnes, dont beaucoup d'ouvriers immigrés. La dernière voiture est sortie en octobre 2013. La fermeture de l'usine est un symbole de la désindustrialisation."],
+    ["Abdelmalek Sayad (1933-1998)","Sociologue algérien, spécialiste de l'immigration. Le « mythe du retour » : l'idée que l'immigré repartira un jour au pays, ce qui l'empêche souvent de s'installer vraiment."],
+    ["L'étude de l'OCDE","Une étude de 2018 sur l'« ascenseur social ». En France, il faut en moyenne six générations à une famille modeste pour atteindre le revenu moyen."],
+    ["« Misogynoir »","Concept créé par la chercheuse américaine Moya Bailey : le racisme et le sexisme qui visent en même temps les femmes noires."],
+    ["Sniper, 113, Youssoupha","Groupes et rappeurs français des années 2000. 113 vient de Vitry-sur-Seine, la ville de Rohff. Leurs chansons racontent la vie dans les quartiers populaires."],
+    ["L'éducation populaire","Une tradition française : apprendre en dehors de l'école, tout au long de la vie, pour devenir un citoyen libre (associations, maisons de quartier…)."]
+  ];
+
+  /* ---------- Questionnaire (10 questions) ---------- */
+  var QUIZ=[
+    {q:"Quel est le paradoxe d'Aya Nakamura, selon l'introduction ?",
+     o:["Elle est très célèbre en France mais inconnue à l'étranger.","Elle est célébrée à l'étranger mais critiquée et rejetée par une partie de la France.","Elle vend beaucoup de disques mais personne ne l'écoute sur Internet."],r:1,
+     f:["Non : c'est l'inverse. À l'étranger, elle bat des records et représente la France.","",
+        "Non : elle bat justement des records de streaming."],
+     e:"À l'international, elle est un visage culturel de la France ; en France, elle reste la cible de polémiques."},
+    {q:"L'essai appartient aux « celebrity studies ». Qu'est-ce que cela veut dire ?",
+     o:["Le livre raconte les secrets de la vie privée des stars.","Le livre donne des conseils pour devenir célèbre.","Le livre étudie la célébrité avec les outils des sciences sociales."],r:2,
+     f:["Non : ce n'est pas un livre de magazine people. L'autrice utilise la sociologie et les études sur la race et le genre.","Non : c'est un essai d'analyse, pas un guide pratique.",""],
+     e:"C'est un champ universitaire, très apprécié aux États-Unis : on étudie ce que la célébrité dit d'une société."},
+    {q:"Pourquoi le parcours d'Aya (Montreuil, Aulnay) « n'a rien d'anodin » ?",
+     o:["Parce que ces villes portent l'histoire de l'immigration et de la classe ouvrière.","Parce que ce sont des quartiers riches de Paris.","Parce qu'Aya y a tourné le clip de « Djadja »."],r:0,
+     f:["","Non : ce sont des villes populaires de Seine-Saint-Denis, avec des quartiers prioritaires.","Non : le texte ne parle pas du clip. « Rien d'anodin » = c'est important, significatif."],
+     e:"Montreuil est un haut lieu de la diaspora malienne ; Aulnay a été marquée par l'usine PSA et compte plus de vingt nationalités."},
+    {q:"Que signifie le « processus de déclassement » ?",
+     o:["Des élèves qui redoublent une classe à l'école.","Des immigrés qui avaient une position sociale élevée dans leur pays et la perdent en France.","Une chanteuse qui descend dans les classements de ventes."],r:1,
+     f:["Non : il ne s'agit pas de l'école. Relisez la partie sur les anciennes colonies.","","Non : il s'agit de la position sociale, pas des classements musicaux."],
+     e:"Médecins, diplômés ou personnes reconnues dans leur pays, leur parcours est en grande partie « effacé » en arrivant en France."},
+    {q:"Selon l'étude de l'OCDE, combien de temps faut-il en moyenne pour qu'un enfant de famille défavorisée atteigne le revenu moyen ?",
+     o:["Une génération, comme Aya.","Six générations, environ 180 ans.","Trois générations, environ 90 ans."],r:1,
+     f:["Non : Aya est justement une exception. Elle a retrouvé la position sociale de ses parents en une seule génération.","","Non : relisez le chiffre exact dans la deuxième réponse de l'autrice."],
+     e:"Six générations, soit environ 180 ans. Ce chiffre montre à quel point la trajectoire d'Aya est exceptionnelle."},
+    {q:"Pour la génération d'Aya, que devient le « mythe du retour » ?",
+     o:["Il est plus fort : il faut absolument rentrer au pays.","On ne peut plus du tout aller au pays d'origine.","Le retour n'est plus une obligation : on peut y aller, ou pas, et rêver pour soi."],r:2,
+     f:["Non : c'était le rêve des générations précédentes, qui construisaient une maison pour repartir.","Non : on peut y retourner en vacances, ou même avoir envie d'y vivre.",""],
+     e:"L'autrice parle d'un « poids hérité » dont on peut se libérer pour rêver pour soi."},
+    {q:"Pourquoi l'autrice dit-elle que la musique est un outil d'« éducation populaire » ?",
+     o:["Parce qu'on a appris des réalités sociales en écoutant des artistes comme Sniper ou 113.","Parce que les chansons d'Aya sont étudiées dans toutes les écoles.","Parce que les rappeurs sont des sociologues diplômés."],r:0,
+     f:["","Non : le texte ne parle pas de programmes scolaires.","Non : au contraire, elle précise qu'ils ne sont « ni sociologues ni anthropologues »."],
+     e:"Les artistes racontent leur vision du monde et leur vécu : on apprend en les écoutant."},
+    {q:"Que montre l'anecdote de l'homme d'Auxerre ?",
+     o:["Qu'Aya est surtout populaire chez les jeunes de Paris.","Qu'aimer Aya peut révéler le racisme de son entourage.","Que les fans d'Aya se disputent souvent entre eux."],r:1,
+     f:["Non : cet homme a une quarantaine d'années et il vient d'Auxerre, en province.","","Non : il a perdu des amis à cause de leur racisme, pas à cause d'une dispute entre fans."],
+     e:"Il a perdu des amis en découvrant leur racisme quand il a dit qu'il admirait Aya. Il ne pensait pas que cela existait encore."},
+    {q:"Selon l'autrice, pourquoi critique-t-on l'« arrogance » d'Aya ?",
+     o:["Parce qu'Aya insulte souvent ses fans.","Parce qu'elle refuse de chanter en français.","Parce que, venant d'un milieu populaire, née à l'étranger et sans diplôme, on attend d'elle qu'elle reste « en bas »."],r:2,
+     f:["Non : au contraire, les seules personnes qu'elle remercie sont ses fans et ses équipes.","Non : le texte ne parle pas de cela.",""],
+     e:"Derrière « arrogante », il y a le sous-texte « Mais pour qui se prend-elle ? ». C'est ce que l'autrice appelle la « misogynoir » : racisme et sexisme ensemble. Un homme n'aurait pas reçu les mêmes critiques."},
+    {q:"Pourquoi l'attitude d'Aya est-elle « subversive », selon l'autrice ?",
+     o:["Parce qu'elle refuse de se comporter comme on l'attend : elle ne sourit pas, ne dit pas merci à la France et ne demande pas à être sauvée.","Parce qu'elle participe à des manifestations politiques.","Parce qu'elle chante des chansons interdites à la radio."],r:0,
+     f:["","Non : le texte ne parle pas de manifestations.","Non : ce n'est pas une question de censure."],
+     e:"Elle affirme « Moi, je sais qui je suis » et refuse de faire allégeance. C'est ce refus des attentes qui remet en question l'ordre établi."}
+  ];
+  var MSG=[
+    [10,"Parfait ! Vous avez compris l'article dans ses moindres détails. Bravo !"],
+    [8,"Excellent travail ! Relisez les explications des erreurs : vous y êtes presque."],
+    [6,"Bon travail ! Vous avez compris l'essentiel. Relisez les passages des questions ratées et recommencez."],
+    [4,"C'est un bon début. Le texte est exigeant : retravaillez le lexique et les notes culturelles (onglet 4), puis réessayez."],
+    [0,"Ne vous découragez pas : ce texte est difficile. Relisez-le avec le lexique et les notes, puis recommencez. Vous allez progresser !"]
+  ];
+
+  /* ---------- Utilitaires ---------- */
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function el(t,c,h){var n=document.createElement(t);if(c)n.className=c;if(h!=null)n.innerHTML=h;return n;}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  function typo(root){
+    var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(t){var p=t.parentNode&&t.parentNode.nodeName;return(p==="SCRIPT"||p==="STYLE")?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;}}),n;
+    while((n=w.nextNode())){var v=n.nodeValue;var nv=v.replace(/ ([?!:;»])/g," $1").replace(/« /g,"« ");if(nv!==v)n.nodeValue=nv;}
+  }
+
+  /* ---------- Onglets ---------- */
+  var tabs=document.querySelectorAll("nav button[data-tab]");
+  function openTab(id){
+    tabs.forEach(function(b){b.setAttribute("aria-selected",b.dataset.tab===id?"true":"false");});
+    document.querySelectorAll("main section").forEach(function(s){s.classList.toggle("active",s.id===id);});
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+  tabs.forEach(function(b){b.addEventListener("click",function(){openTab(b.dataset.tab);});});
+  document.querySelectorAll("[data-goto]").forEach(function(b){b.addEventListener("click",function(){openTab(b.getAttribute("data-goto"));});});
+
+  /* ---------- Rendu du lexique ---------- */
+  document.getElementById("lexSong").innerHTML=LEX_SONG.map(function(r){
+    return "<div class='card'><h4>"+esc(r[0])+"</h4><p><span class='tag'>"+r[2].replace(/ <span/,"</span> <span")+(r[2].indexOf("<span")<0?"</span>":"")+"</p><p><b>Sens :</b> "+esc(r[1])+"</p>"+(r[3]?"<p class='ex'>"+esc(r[3])+"</p>":"")+"</div>";
+  }).join("");
+  document.getElementById("lexArt").innerHTML=LEX_ART.map(function(r){return "<div class='card'><h4>"+esc(r[0])+"</h4><p>"+esc(r[1])+"</p><p class='ex'>"+esc(r[2])+"</p></div>";}).join("");
+  document.getElementById("notesArt").innerHTML=NOTES.map(function(r){return "<div class='card note'><h4>"+esc(r[0])+"</h4><p>"+esc(r[1])+"</p></div>";}).join("");
+
+  /* ---------- QCM simple (activités 1 et 3) ---------- */
+  function buildQCM(boxId,scoreId,data){
+    var box=document.getElementById(boxId),score=document.getElementById(scoreId),done=0,good=0;
+    box.innerHTML="";score.textContent="";
+    data.forEach(function(it,i){
+      var ex=el("div","ex-block");
+      ex.appendChild(el("p","stem","<span class='n'>"+(i+1)+".</span>"+esc(it.q)));
+      var opts=el("div","opts"),fb=el("div","fb");
+      it.o.forEach(function(o,j){
+        var b=el("button","opt","<span class='l'>"+L[j]+")</span>"+esc(o));b.type="button";
+        b.addEventListener("click",function(){
+          var all=opts.querySelectorAll(".opt");all.forEach(function(x){x.disabled=true;});
+          all[it.r].classList.add("ok");
+          if(j===it.r){good++;fb.className="fb show ok";fb.textContent="✓ Bravo ! "+it.e;}
+          else{b.classList.add("ko");fb.className="fb show ko";fb.textContent="✗ La bonne réponse est "+L[it.r]+"). "+it.e;}
+          typo(fb);done++;
+          if(done===data.length)score.textContent="Score : "+good+" / "+data.length;
+        });
+        opts.appendChild(b);
+      });
+      ex.appendChild(opts);ex.appendChild(fb);box.appendChild(ex);
+    });
+    typo(box);
+  }
+
+  /* ---------- Classement (activité 2) ---------- */
+  function buildCat(){
+    var box=document.getElementById("act2"),score=document.getElementById("act2Score"),done=0,good=0;
+    box.innerHTML="";score.textContent="";
+    var items=shuffle(ACT2);
+    items.forEach(function(it,i){
+      var ex=el("div","ex-block");
+      ex.appendChild(el("p","stem","<span class='n'>"+(i+1)+".</span><span class='item-word'>"+esc(it.w)+"</span>"));
+      var chips=el("div","chips"),fb=el("div","fb");
+      CATS.forEach(function(c,j){
+        var b=el("button","chip",L[j]+") "+esc(c));b.type="button";
+        b.addEventListener("click",function(){
+          var all=chips.querySelectorAll(".chip");all.forEach(function(x){x.disabled=true;});
+          all[it.c].classList.add("ok");
+          if(j===it.c){good++;fb.className="fb show ok";fb.textContent="✓ "+it.e;}
+          else{b.classList.add("ko");fb.className="fb show ko";fb.textContent="✗ Réponse "+L[it.c]+") "+CATS[it.c]+". "+it.e;}
+          typo(fb);done++;
+          if(done===items.length)score.textContent="Score : "+good+" / "+items.length;
+        });
+        chips.appendChild(b);
+      });
+      ex.appendChild(chips);ex.appendChild(fb);box.appendChild(ex);
+    });
+    typo(box);
+  }
+  function buildActs(){buildQCM("act1","act1Score",ACT1);buildCat();buildQCM("act3","act3Score",ACT3);}
+  document.getElementById("resetActs").addEventListener("click",function(){buildActs();window.scrollTo({top:document.getElementById("activites").offsetTop,behavior:"smooth"});});
+
+  /* ---------- Questionnaire ---------- */
+  function buildQuiz(){
+    var box=document.getElementById("quizBox"),done=0,good=0;
+    var live=document.getElementById("quizLive"),bar=document.getElementById("quizBar"),res=document.getElementById("quizResult");
+    box.innerHTML="";res.classList.remove("show");live.style.display="";live.textContent="0 / "+QUIZ.length;bar.style.width="0";
+    QUIZ.forEach(function(it,i){
+      var ex=el("div","ex-block");
+      ex.appendChild(el("p","stem","<span class='n'>"+(i+1)+".</span>"+esc(it.q)));
+      var opts=el("div","opts"),fb=el("div","fb");
+      it.o.forEach(function(o,j){
+        var b=el("button","opt","<span class='l'>"+L[j]+")</span>"+esc(o));b.type="button";
+        b.addEventListener("click",function(){
+          var all=opts.querySelectorAll(".opt");all.forEach(function(x){x.disabled=true;});
+          all[it.r].classList.add("ok");
+          if(j===it.r){good++;fb.className="fb show ok";fb.textContent="✓ Exact ! "+it.e;}
+          else{b.classList.add("ko");fb.className="fb show ko";fb.textContent="✗ "+it.f[j]+" La bonne réponse est "+L[it.r]+"). "+it.e;}
+          typo(fb);done++;
+          live.textContent=good+" / "+QUIZ.length;bar.style.width=(done/QUIZ.length*100)+"%";
+          if(done===QUIZ.length){
+            document.getElementById("quizFinal").textContent=good+" / "+QUIZ.length;
+            var m=MSG.find(function(x){return good>=x[0];});
+            document.getElementById("quizMsg").textContent=m[1];
+            typo(res);res.classList.add("show");live.style.display="none";
+            setTimeout(function(){res.scrollIntoView({behavior:"smooth",block:"center"});},300);
+          }
+        });
+        opts.appendChild(b);
+      });
+      ex.appendChild(opts);ex.appendChild(fb);box.appendChild(ex);
+    });
+    typo(box);
+  }
+  document.getElementById("quizRestart").addEventListener("click",function(){buildQuiz();window.scrollTo({top:0,behavior:"smooth"});});
+
+  /* ---------- Initialisation ---------- */
+  buildActs();buildQuiz();typo(document.body);
+})();
+</script>
+</body>
+</html>
