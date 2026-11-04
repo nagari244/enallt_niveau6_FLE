@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Activité 8 - Aya Nakamura | ENALLT - UNAM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        unam: {
+                            blue: '#002B5C',
+                            gold: '#D4AF37',
+                            light: '#F4F6F8',
+                            accent: '#E0B54A'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-unam-light text-slate-800 flex flex-col min-h-screen">
+
+    <!-- En-tête officiel ENALLT -->
+    <header class="bg-unam-blue text-white py-5 md:py-6 shadow-md border-b-4 border-unam-gold sticky top-0 z-50">
+        <div class="container mx-auto px-4 max-w-5xl flex items-center justify-between">
+            <div>
+                <a href="index.html" class="inline-flex items-center text-xs font-semibold text-unam-gold hover:underline mb-1">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    Retour au sommaire
+                </a>
+                <h1 class="text-xl md:text-2xl font-black uppercase tracking-tight">Activité 8 : Djadja</h1>
+                <p class="text-xs text-slate-300 font-light">Compréhension orale (B1) & Francophonie contemporaine</p>
+            </div>
+            <span class="bg-unam-gold text-unam-blue text-xs font-black px-3 py-1.5 rounded-full uppercase tracking-wider hidden sm:inline-block">Niveau B1 / B2</span>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-6 md:py-10 max-w-5xl space-y-8">
+
+        <!-- Section 1 : Biographie & Portrait -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="bg-slate-50 border-b border-slate-200 px-5 py-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-unam-blue">Repère biographique</span>
+                <h2 class="text-xl md:text-2xl font-bold text-slate-900 mt-0.5">Aya Nakamura : voix planétaire</h2>
+            </div>
+            <div class="p-5 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8 items-center md:items-start">
+                <div class="w-44 md:w-56 shrink-0 rounded-2xl overflow-hidden shadow-md border border-slate-100">
+                    <!-- Photo : placer Aya.png dans le même répertoire GitHub -->
+                    <img src="Aya.png" alt="Aya Nakamura" class="w-full h-auto object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x400/002B5C/D4AF37?text=Aya+Nakamura';">
+                </div>
+                <div class="text-sm md:text-base text-slate-700 space-y-3 leading-relaxed">
+                    <p>
+                        <strong>Aya Danioko</strong>, dite <strong>Aya Nakamura</strong>, est née en 1995 à Bamako (Mali) au sein d’une famille de griots. Arrivée très jeune en France, elle grandit à Aulnay-sous-Bois (Seine-Saint-Denis). Elle choisit son pseudonyme en hommage au personnage Hiro Nakamura de la série télévisée <em>Heroes</em>.
+                    </p>
+                    <p>
+                        Mêlant RnB contemporain, sonorités afro-pop, zouk et argot francophone multiculturel, elle devient en 2018 un phénomène mondial grâce au morceau <em>Djadja</em>. Elle est aujourd'hui l'artiste francophone féminine la plus écoutée à l'international, brisant les frontières linguistiques et bousculant les codes traditionnels de la chanson française.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2 : Clip officiel YouTube -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="bg-slate-50 border-b border-slate-200 px-5 py-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-unam-blue">Support audiovisuel</span>
+                <h2 class="text-xl font-bold text-slate-900 mt-0.5">Clip officiel : Aya Nakamura - Djadja</h2>
+            </div>
+            <div class="p-4 md:p-6 flex justify-center bg-slate-900">
+                <div class="w-full max-w-3xl aspect-video rounded-xl overflow-hidden shadow-lg">
+                    <iframe 
+                        class="w-full h-full" 
+                        src="https://www.youtube.com/embed/iPGgnzc34tY" 
+                        title="Aya Nakamura - Djadja (Clip officiel)" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3 : Activité originale (Paroles & Lexique) -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="bg-slate-50 border-b border-slate-200 px-5 py-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-unam-blue">Matériel linguistique original</span>
+                <h2 class="text-xl font-bold text-slate-900 mt-0.5">Paroles intégrales & Glossaire</h2>
+            </div>
+            <div class="p-5 md:p-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                
+                <!-- Colonne paroles -->
+                <div class="bg-slate-900 text-slate-200 p-6 rounded-2xl shadow-inner">
+                    <h3 class="text-white font-bold text-lg mb-4 pb-2 border-b border-slate-700 flex items-center justify-between">
+                        <span>Paroles : Djadja</span>
+                        <span class="text-xs font-mono text-unam-gold">2018</span>
+                    </h3>
+                    <pre class="text-xs md:text-sm font-sans whitespace-pre-wrap leading-relaxed italic border-l-2 border-unam-gold pl-4 max-h-[460px] overflow-y-auto custom-scrollbar">Hello papi, mais qué pasa? (Mais qué pasa?)
+J'entends des bails atroces sur moi
+À c'qu'il paraît, j'te cours après? (Oh yeah, yeah, yeah)
+Mais ça va pas? mais t'es taré, oh ouais
+Mais comment ça, le monde est tit-pe? (Eh)
+Tu croyais quoi, qu'on s'verrait plus jamais?
+J'pourrais t'afficher mais c'est pas mon délire
+D'après les rumeurs, tu m'as eue dans ton lit
+
+Oh, Djadja
+Y a pas moyen, Djadja
+J'suis pas ta catin, Djadja, genre, en catchana baby, tu dead ça
+Oh, Djadja
+Y a pas moyen, Djadja
+J'suis pas ta catin, Djadja, genre, en catchana baby, tu dead ça
+
+Tu penses à moi, j'pense à faire de l'argent
+J'suis pas ta daronne, j'te ferai pas la morale
+Tu parles sur moi, y a R
+Crache encore, y a R
+Tu voulais m'avoir, tu savais pas comment faire
+Tu jouais un rôle, tu finiras aux enfers
+
+"T'façon, Nakamura, je l'ai couchée"
+Le jour où on se croise, faut pas tchouffer
+Tu jouais le grand frère pour me salir
+Tu cherches des problèmes sans faire exprès
+
+Putain, mais tu déconnes
+C'est pas comme ça qu'on fait les choses
+Putain, mais tu déconnes
+C'est pas comme ça qu'on fait les choses
+Putain, mais tu déconnes
+C'est pas comme ça qu'on fait les choses
+
+Oh, Djadja
+Y a pas moyen, Djadja
+J'suis pas ta catin, Djadja, genre, en catchana baby, tu dead ça
+Oh, Djadja
+Y a pas moyen, Djadja
+J'suis pas ta catin, Djadja, genre, en catchana baby, tu dead ça
+Oh, Djadja
+Y a pas moyen, Djadja
+J'suis pas ta catin, Djadja, genre, en catchana baby, tu dead ça
+Oh, Djadja
+Y a pas moyen, Djadja
+J'suis pas ta catin, Djadja, genre, en catchana baby, tu dead ça
+Oh, Djadja, j'suis pas ta catin, Djadja, non
+Y a pas moyen, Djadja, ouais, en catchana baby, tu dead ça, yeah
+Oh, Djadja, j'suis pas ta catin, Djadja, non
+Y a pas moyen, Djadja, ouais, en catchana baby, tu dead ça, d'après toi
+En catchana, baby tu dead ça, en catchana, baby
+En catchana, baby tu dead ça, en catchana, baby
+Oh, Djadja
+Oh, Djadja
+Oh, Djadja</pre>
+                </div>
+
+                <!-- Colonne Lexique -->
+                <div class="space-y-4">
+                    <h3 class="font-bold text-unam-blue text-lg flex items-center justify-between pb-2 border-b border-slate-200">
+                        <span>Lexique & Expressions urbaines</span>
+                        <span class="text-xs text-slate-500 font-normal">12 entrées</span>
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2.5 max-h-[460px] overflow-y-auto pr-1 custom-scrollbar">
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-unam-blue text-sm">Qué pasa ?</span>
+                            <p class="text-xs text-slate-600 mt-0.5">Qu'est-ce qui se passe ? (Emprunt à l'espagnol).</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-unam-blue text-sm">Bails</span>
+                            <p class="text-xs text-slate-600 mt-0.5">Affaires, histoires, dossiers ou rumeurs.</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-unam-blue text-sm">Taré</span>
+                            <p class="text-xs text-slate-600 mt-0.5">Fou, insensé, déraisonnable.</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-unam-blue text-sm">Tit-pe</span>
+                            <p class="text-xs text-slate-600 mt-0.5">Petit (verlan de « petit » : pe-tit -> tit-pe).</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-unam-blue text-sm">Afficher</span>
+                            <p class="text-xs text-slate-600 mt-0.5">Humilier ou dénoncer publiquement quelqu'un.</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-unam-blue text-sm">Catin</span>
+                            <p class="text-xs text-slate-600 mt-0.5">(Péjoratif) Fille facile / objet.</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-unam-blue text-sm">En catchana</span>
+                            <p class="text-xs text-slate-600 mt-0.5">Argot sexuel (allusion à une position).</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-unam-blue text-sm">Tu dead ça</span>
+                            <p class="text-xs text-slate-600 mt-0.5">Tu assures, tu gères parfaitement (calque de l'anglais « to kill it »).</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-unam-blue text-sm">Daronne</span>
+                            <p class="text-xs text-slate-600 mt-0.5">La mère (registre familier).</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-unam-blue text-sm">Y a R</span>
+                            <p class="text-xs text-slate-600 mt-0.5">« Il n'y a rien » (R = Rien) / Aucun souci.</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-unam-blue text-sm">Tchouffer</span>
+                            <p class="text-xs text-slate-600 mt-0.5">Se dégonfler, avoir honte, esquiver ou rater.</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <span class="font-bold text-unam-blue text-sm">Déconner</span>
+                            <p class="text-xs text-slate-600 mt-0.5">Agir de manière stupide ou inappropriée.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 4 : Article de Libération -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="bg-slate-50 border-b border-slate-200 px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-unam-blue">Lecture critique</span>
+                    <h2 class="text-xl font-bold text-slate-900 mt-0.5">Entretien : Christelle Bakima Poundza</h2>
+                </div>
+                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md font-semibold self-start sm:self-auto">Libération</span>
+            </div>
+            <div class="p-5 md:p-8 space-y-5 text-sm md:text-base text-slate-700 leading-relaxed border-l-4 border-unam-blue">
+                <blockquote class="italic text-base md:text-lg text-slate-900 font-semibold border-b border-slate-200 pb-3">
+                    « Une femme noire peut-elle incarner la France ? Avec Aya Nakamura, ce n’est plus une question, c’est une réalité »
+                </blockquote>
+                <p>
+                    Derrière le phénomène Aya Nakamura se jouent des questions de légitimité culturelle et d’appartenance nationale. Dans <em>Aya pour l’exemple. Portrait d’une France aux rêves illimités</em> (Seuil), Christelle Bakima Poundza décrypte ce que le succès de la chanteuse révèle des tensions qui traversent la société française contemporaine.
+                </p>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+                    <h4 class="font-bold text-slate-900 text-sm md:text-base">Points clés de l'analyse sociologique :</h4>
+                    <ul class="list-disc pl-5 text-xs md:text-sm space-y-2">
+                        <li><strong>Trajectoire et ancrage populaire :</strong> Née au Mali, arrivée enfant en France, elle a grandi à Aulnay-sous-Bois (quartier des 3000), lieu marqué par l’histoire ouvrière (usines PSA) et l’immigration plurielle.</li>
+                        <li><strong>Dépassement du « mythe du retour » :</strong> Contrairement aux générations antérieures théorisées par Abdelmalek Sayad, la nouvelle génération revendique son enracinement et son droit à rêver pour soi en France sans contrainte d’exil inversé.</li>
+                        <li><strong>Éducation populaire et autonomie :</strong> À l'instar de groupes comme Sniper, 113 ou Youssoupha, sa musique documente un vécu sans attendre la validation institutionnelle de l'industrie.</li>
+                        <li><strong>Le concept de « misogynoir » :</strong> Forgé par Moya Bailey, ce terme explique pourquoi les critiques récurrentes ciblant son « arrogance » ou son refus d'allégeance constituent une intersection spécifique de sexisme et de racisme.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5 : Compréhension Orale DELF B1 (10 Points) -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden" id="quiz-section">
+            <div class="bg-unam-blue text-white px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-unam-gold">Évaluation formative</span>
+                    <h2 class="text-xl font-bold mt-0.5">Compréhension auditive : « Djadja »</h2>
+                </div>
+                <div class="text-xs bg-white/10 px-3 py-1 rounded-full border border-white/20 self-start sm:self-auto font-semibold">Barème : 10 points</div>
+            </div>
+
+            <form id="quizForm" class="p-5 md:p-8 space-y-6">
+
+                <!-- Q1 -->
+                <div class="quiz-item p-4 rounded-xl border border-slate-200 bg-slate-50/50" data-answer="b">
+                    <p class="font-bold text-sm md:text-base text-slate-900 mb-2">1. Au tout début de la chanson, qu'apprend la narratrice au sujet des rumeurs ? (1 pt)</p>
+                    <div class="space-y-1.5 text-xs md:text-sm">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q1" value="a"> Qu'elle a quitté le pays sans prévenir.</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q1" value="b"> Qu'elle courrait après son prétendant et qu'il aurait dormi avec elle.</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q1" value="c"> Qu'elle lui a volé de l'argent lors d'une fête.</label>
+                    </div>
+                    <div class="feedback mt-2 text-xs font-semibold hidden"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="quiz-item p-4 rounded-xl border border-slate-200 bg-slate-50/50" data-answer="a">
+                    <p class="font-bold text-sm md:text-base text-slate-900 mb-2">2. Dans le refrain, quel message central est adressé à « Djadja » ? (1 pt)</p>
+                    <div class="space-y-1.5 text-xs md:text-sm">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q2" value="a"> Elle refuse catégoriquement d'être prise pour une femme facile (« Y a pas moyen »).</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q2" value="b"> Elle lui demande une deuxième chance amoureuse.</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q2" value="c"> Elle lui propose de s'associer dans ses affaires commerciales.</label>
+                    </div>
+                    <div class="feedback mt-2 text-xs font-semibold hidden"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="quiz-item p-4 rounded-xl border border-slate-200 bg-slate-50/50" data-answer="c">
+                    <p class="font-bold text-sm md:text-base text-slate-900 mb-2">3. Dans le vers « J'pourrais t'afficher mais c'est pas mon délire », que signifie le verbe <em>afficher</em> ? (1 pt)</p>
+                    <div class="space-y-1.5 text-xs md:text-sm">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q3" value="a"> Coller sa photo sur les murs du quartier.</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q3" value="b"> L'inviter sur scène lors d'un concert public.</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q3" value="c"> L'humilier ou révéler son comportement devant tout le monde.</label>
+                    </div>
+                    <div class="feedback mt-2 text-xs font-semibold hidden"></div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="quiz-item p-4 rounded-xl border border-slate-200 bg-slate-50/50" data-answer="b">
+                    <p class="font-bold text-sm md:text-base text-slate-900 mb-2">4. Quelle est la priorité déclarée de la chanteuse dans le couplet suivant ? (1 pt)</p>
+                    <div class="space-y-1.5 text-xs md:text-sm">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q4" value="a"> Trouver un logement à Paris.</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q4" value="b"> Gagner son indépendance financière (« j'pense à faire de l'argent »).</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q4" value="c"> Devenir actrice de cinéma.</label>
+                    </div>
+                    <div class="feedback mt-2 text-xs font-semibold hidden"></div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="quiz-item p-4 rounded-xl border border-slate-200 bg-slate-50/50" data-answer="b">
+                    <p class="font-bold text-sm md:text-base text-slate-900 mb-2">5. Que veut dire l'expression familière « J'suis pas ta daronne » ? (1 pt)</p>
+                    <div class="space-y-1.5 text-xs md:text-sm">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q5" value="a"> Je ne suis pas ton amie d'enfance.</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q5" value="b"> Je ne suis pas ta mère, je ne vais pas t'éduquer ni te faire la leçon.</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q5" value="c"> Je n'appartiens pas à la même tranche d'âge que toi.</label>
+                    </div>
+                    <div class="feedback mt-2 text-xs font-semibold hidden"></div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="quiz-item p-4 rounded-xl border border-slate-200 bg-slate-50/50" data-answer="a">
+                    <p class="font-bold text-sm md:text-base text-slate-900 mb-2">6. Que signifie la formule abrégée « y a R » ? (1 pt)</p>
+                    <div class="space-y-1.5 text-xs md:text-sm">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q6" value="a"> Il n'y a rien (les attaques n'ont aucun effet).</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q6" value="b"> Il y a une raison valable.</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q6" value="c"> Il y a un rendez-vous urgent.</label>
+                    </div>
+                    <div class="feedback mt-2 text-xs font-semibold hidden"></div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="quiz-item p-4 rounded-xl border border-slate-200 bg-slate-50/50" data-answer="c">
+                    <p class="font-bold text-sm md:text-base text-slate-900 mb-2">7. Quelle attitude Djadja adoptait-il hypocritement d'après Aya ? (1 pt)</p>
+                    <div class="space-y-1.5 text-xs md:text-sm">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q7" value="a"> Il se faisait passer pour son manager musical.</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q7" value="b"> Il faisait semblant de ne pas parler français.</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q7" value="c"> Il jouait le rôle bienveillant du « grand frère » tout en colportant des ragots.</label>
+                    </div>
+                    <div class="feedback mt-2 text-xs font-semibold hidden"></div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="quiz-item p-4 rounded-xl border border-slate-200 bg-slate-50/50" data-answer="b">
+                    <p class="font-bold text-sm md:text-base text-slate-900 mb-2">8. Lorsque l'artiste chante « faut pas tchouffer », quel avertissement formule-t-elle ? (1 pt)</p>
+                    <div class="space-y-1.5 text-xs md:text-sm">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q8" value="a"> Il ne faudra pas trébucher physiquement en marchant.</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q8" value="b"> Il ne faudra pas fuir ou avoir honte le jour où ils se croiseront en face à face.</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q8" value="c"> Il ne faudra pas oublier de payer ses dettes.</label>
+                    </div>
+                    <div class="feedback mt-2 text-xs font-semibold hidden"></div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="quiz-item p-4 rounded-xl border border-slate-200 bg-slate-50/50" data-answer="a">
+                    <p class="font-bold text-sm md:text-base text-slate-900 mb-2">9. Quel sentiment dominant ressort du refrain « Putain, mais tu déconnes » ? (1 pt)</p>
+                    <div class="space-y-1.5 text-xs md:text-sm">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q9" value="a"> L'agacement et la dénonciation d'un comportement déloyal et immature.</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q9" value="b"> Une tristesse profonde et le regret d'un amour perdu.</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q9" value="c"> Une envie d'organiser une réconciliation festive.</label>
+                    </div>
+                    <div class="feedback mt-2 text-xs font-semibold hidden"></div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="quiz-item p-4 rounded-xl border border-slate-200 bg-slate-50/50" data-answer="c">
+                    <p class="font-bold text-sm md:text-base text-slate-900 mb-2">10. Sur le plan socioculturel, quel rôle joue ce morceau selon l'analyse de Libération ? (1 pt)</p>
+                    <div class="space-y-1.5 text-xs md:text-sm">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q10" value="a"> Un simple tube commercial sans portée politique.</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q10" value="b"> Une tentative d'imposer l'anglais dans la chanson française.</label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-white cursor-pointer"><input type="radio" name="q10" value="c"> Une affirmation d'autonomie féminine issue des quartiers, transformant le français parlé en éducation populaire.</label>
+                    </div>
+                    <div class="feedback mt-2 text-xs font-semibold hidden"></div>
+                </div>
+
+                <!-- Boutons d'action -->
+                <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-slate-200">
+                    <button type="button" onclick="corrigerQuiz()" class="w-full sm:w-auto px-6 py-3 bg-unam-blue text-white font-bold rounded-xl shadow-md hover:bg-blue-900 transition-colors">
+                        Corriger l'activité
+                    </button>
+                    <button type="button" onclick="reinitialiserQuiz()" class="w-full sm:w-auto px-6 py-3 bg-slate-200 text-slate-700 font-bold rounded-xl hover:bg-slate-300 transition-colors">
+                        Recommencer
+                    </button>
+                </div>
+
+                <!-- Bloc Score -->
+                <div id="scoreBox" class="hidden p-4 rounded-xl text-center font-bold text-base md:text-lg"></div>
+
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="bg-unam-blue text-white text-center py-6 border-t-4 border-unam-gold mt-auto">
+        <p class="text-xs md:text-sm opacity-90">&copy; 2026 ENALLT - UNAM · Cours de français Niveau 6 / B1-B2</p>
+        <p class="text-[11px] text-unam-gold mt-1">Conception didactique : Nadia Aguilar Neri</p>
+    </footer>
+
+    <script>
+        function corrigerQuiz() {
+            const items = document.querySelectorAll('.quiz-item');
+            let score = 0;
+            let answeredCount = 0;
+
+            items.forEach((item, index) => {
+                const answer = item.getAttribute('data-answer');
+                const selected = item.querySelector(`input[name="q${index + 1}"]:checked`);
+                const feedback = item.querySelector('.feedback');
+                feedback.classList.remove('hidden', 'text-green-700', 'text-red-700');
+
+                if (selected) {
+                    answeredCount++;
+                    if (selected.value === answer) {
+                        score++;
+                        item.classList.add('bg-green-50', 'border-green-300');
+                        item.classList.remove('bg-red-50', 'border-red-300', 'bg-slate-50/50');
+                        feedback.textContent = "✓ Bonne réponse !";
+                        feedback.classList.add('text-green-700');
+                    } else {
+                        item.classList.add('bg-red-50', 'border-red-300');
+                        item.classList.remove('bg-green-50', 'border-green-300', 'bg-slate-50/50');
+                        feedback.textContent = `✗ Incorrect. La réponse attendue était (${answer.toUpperCase()}).`;
+                        feedback.classList.add('text-red-700');
+                    }
+                } else {
+                    item.classList.add('bg-red-50', 'border-red-300');
+                    item.classList.remove('bg-green-50', 'border-green-300', 'bg-slate-50/50');
+                    feedback.textContent = `Non répondu. La réponse attendue était (${answer.toUpperCase()}).`;
+                    feedback.classList.add('text-red-700');
+                }
+            });
+
+            const scoreBox = document.getElementById('scoreBox');
+            scoreBox.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-amber-100', 'text-amber-800', 'bg-red-100', 'text-red-800');
+
+            if (score >= 8) {
+                scoreBox.classList.add('bg-green-100', 'text-green-800');
+                scoreBox.innerHTML = `Excellent résultat : ${score} / 10 points. Maîtrise solide du document sonore et du lexique.`;
+            } else if (score >= 5) {
+                scoreBox.classList.add('bg-amber-100', 'text-amber-800');
+                scoreBox.innerHTML = `Résultat moyen : ${score} / 10 points. Revoyez le glossaire et réécoutez les passages complexes.`;
+            } else {
+                scoreBox.classList.add('bg-red-100', 'text-red-800');
+                scoreBox.innerHTML = `Score obtenu : ${score} / 10 points. Prenez appui sur la transcription textuelle pour valider le sens.`;
+            }
+
+            scoreBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function reinitialiserQuiz() {
+            document.getElementById('quizForm').reset();
+            const items = document.querySelectorAll('.quiz-item');
+            items.forEach((item) => {
+                item.classList.remove('bg-green-50', 'border-green-300', 'bg-red-50', 'border-red-300');
+                item.classList.add('bg-slate-50/50', 'border-slate-200');
+                const feedback = item.querySelector('.feedback');
+                feedback.classList.add('hidden');
+                feedback.textContent = '';
+            });
+            const scoreBox = document.getElementById('scoreBox');
+            scoreBox.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
