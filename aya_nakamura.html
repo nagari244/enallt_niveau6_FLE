@@ -93,6 +93,7 @@
   .opt .l{font-weight:700;margin-right:6px}
   .opt.ok{border-color:var(--ok);background:var(--ok-bg)}
   .opt.ko{border-color:var(--ko);background:var(--ko-bg)}
+  .opt.sel,.chip.sel{border-color:var(--accent);background:var(--accent-soft)}
   .opt:disabled{cursor:default}
   .fb{margin-top:8px;font-size:.95rem;display:none;border-radius:8px;padding:8px 10px}
   .fb.show{display:block}
@@ -291,21 +292,20 @@
   </div>
 
   <h3>Activité 1 · Compréhension globale</h3>
-  <p>Écoutez la chanson avec les paroles, puis répondez.</p>
+  <p>Écoutez la chanson avec les paroles. Choisissez vos réponses, puis appuyez sur <b>Vérifier</b>.</p>
   <div id="act1"></div>
   <div class="score" id="act1Score"></div>
 
   <h3>Activité 2 · D'où vient ce mot ?</h3>
-  <p>Pour chaque mot, choisissez le procédé. Vous avez vu ces procédés avec la vidéo des expressions de jeunes.</p>
+  <p>Pour chaque mot, choisissez le procédé, puis appuyez sur <b>Vérifier</b>. Vous avez vu ces procédés avec la vidéo des expressions de jeunes.</p>
   <div id="act2"></div>
   <div class="score" id="act2Score"></div>
 
   <h3>Activité 3 · Du familier au standard</h3>
-  <p>Ces phrases utilisent des mots de la chanson. Choisissez l'équivalent en français standard.</p>
+  <p>Ces phrases utilisent des mots de la chanson. Choisissez l'équivalent en français standard, puis appuyez sur <b>Vérifier</b>.</p>
   <div id="act3"></div>
   <div class="score" id="act3Score"></div>
 
-  <div class="btnrow"><button class="btn ghost" id="resetActs">Recommencer les activités</button></div>
 
   <h3>Activité 4 · Débat</h3>
   <div class="box">
@@ -565,59 +565,60 @@
   document.getElementById("lexArt").innerHTML=LEX_ART.map(function(r){return "<div class='card'><h4>"+esc(r[0])+"</h4><p>"+esc(r[1])+"</p><p class='ex'>"+esc(r[2])+"</p></div>";}).join("");
   document.getElementById("notesArt").innerHTML=NOTES.map(function(r){return "<div class='card note'><h4>"+esc(r[0])+"</h4><p>"+esc(r[1])+"</p></div>";}).join("");
 
-  /* ---------- QCM simple (activités 1 et 3) ---------- */
-  function buildQCM(boxId,scoreId,data){
-    var box=document.getElementById(boxId),score=document.getElementById(scoreId),done=0,good=0;
+  /* ---------- Activités avec bouton « Vérifier » ---------- */
+  // getItems() renvoie les questions ; cfg décrit l'affichage et la correction.
+  function buildCheck(boxId,scoreId,getItems,cfg){
+    var box=document.getElementById(boxId),score=document.getElementById(scoreId);
+    var items=getItems(),sel=items.map(function(){return -1;}),checked=false,groups=[];
     box.innerHTML="";score.textContent="";
-    data.forEach(function(it,i){
-      var ex=el("div","ex-block");
-      ex.appendChild(el("p","stem","<span class='n'>"+(i+1)+".</span>"+esc(it.q)));
-      var opts=el("div","opts"),fb=el("div","fb");
-      it.o.forEach(function(o,j){
-        var b=el("button","opt","<span class='l'>"+L[j]+")</span>"+esc(o));b.type="button";
-        b.addEventListener("click",function(){
-          var all=opts.querySelectorAll(".opt");all.forEach(function(x){x.disabled=true;});
-          all[it.r].classList.add("ok");
-          if(j===it.r){good++;fb.className="fb show ok";fb.textContent="✓ Bravo ! "+it.e;}
-          else{b.classList.add("ko");fb.className="fb show ko";fb.textContent="✗ La bonne réponse est "+L[it.r]+"). "+it.e;}
-          typo(fb);done++;
-          if(done===data.length)score.textContent="Score : "+good+" / "+data.length;
-        });
-        opts.appendChild(b);
-      });
-      ex.appendChild(opts);ex.appendChild(fb);box.appendChild(ex);
-    });
-    typo(box);
-  }
-
-  /* ---------- Classement (activité 2) ---------- */
-  function buildCat(){
-    var box=document.getElementById("act2"),score=document.getElementById("act2Score"),done=0,good=0;
-    box.innerHTML="";score.textContent="";
-    var items=shuffle(ACT2);
     items.forEach(function(it,i){
       var ex=el("div","ex-block");
-      ex.appendChild(el("p","stem","<span class='n'>"+(i+1)+".</span><span class='item-word'>"+esc(it.w)+"</span>"));
-      var chips=el("div","chips"),fb=el("div","fb");
-      CATS.forEach(function(c,j){
-        var b=el("button","chip",L[j]+") "+esc(c));b.type="button";
+      ex.appendChild(el("p","stem","<span class='n'>"+(i+1)+".</span>"+cfg.stem(it)));
+      var wrap=el("div",cfg.wrap),fb=el("div","fb"),btns=[];
+      cfg.labels(it).forEach(function(t,j){
+        var b=el("button",cfg.cls,"<span class='l'>"+L[j]+")</span>"+esc(t));b.type="button";
         b.addEventListener("click",function(){
-          var all=chips.querySelectorAll(".chip");all.forEach(function(x){x.disabled=true;});
-          all[it.c].classList.add("ok");
-          if(j===it.c){good++;fb.className="fb show ok";fb.textContent="✓ "+it.e;}
-          else{b.classList.add("ko");fb.className="fb show ko";fb.textContent="✗ Réponse "+L[it.c]+") "+CATS[it.c]+". "+it.e;}
-          typo(fb);done++;
-          if(done===items.length)score.textContent="Score : "+good+" / "+items.length;
+          if(checked)return;
+          sel[i]=j;btns.forEach(function(x){x.classList.remove("sel");});b.classList.add("sel");
         });
-        chips.appendChild(b);
+        btns.push(b);wrap.appendChild(b);
       });
-      ex.appendChild(chips);ex.appendChild(fb);box.appendChild(ex);
+      ex.appendChild(wrap);ex.appendChild(fb);box.appendChild(ex);
+      groups.push({btns:btns,fb:fb});
     });
+    var row=el("div","btnrow"),v=el("button","btn","✓ Vérifier"),r=el("button","btn ghost","↺ Recommencer");
+    v.type=r.type="button";
+    v.addEventListener("click",function(){
+      if(checked)return;
+      var good=0;
+      items.forEach(function(it,i){
+        var g=groups[i],c=cfg.correct(it),s=sel[i];
+        g.btns.forEach(function(x){x.disabled=true;x.classList.remove("sel");});
+        g.btns[c].classList.add("ok");
+        if(s===c){good++;g.fb.className="fb show ok";g.fb.textContent=cfg.okText(it);}
+        else{
+          if(s>=0)g.btns[s].classList.add("ko");
+          g.fb.className="fb show ko";g.fb.textContent=(s<0?"Pas de réponse. ":"")+cfg.koText(it);
+        }
+        typo(g.fb);
+      });
+      checked=true;v.disabled=true;
+      var n=items.length,ratio=good/n,msg=ratio===1?"Parfait !":ratio>=.7?"Très bien !":ratio>=.5?"Bon travail : relisez les explications des erreurs.":"Relisez les explications et recommencez : vous allez progresser !";
+      score.textContent="Score : "+good+" / "+n+" · "+msg;typo(score);
+    });
+    r.addEventListener("click",function(){
+      buildCheck(boxId,scoreId,getItems,cfg);
+      window.scrollTo({top:box.getBoundingClientRect().top+window.pageYOffset-120,behavior:"smooth"});
+    });
+    row.appendChild(v);row.appendChild(r);box.appendChild(row);
     typo(box);
   }
-  function buildActs(){buildQCM("act1","act1Score",ACT1);buildCat();buildQCM("act3","act3Score",ACT3);}
-  buildQCM("krQuiz","krScore",KR);
-  document.getElementById("resetActs").addEventListener("click",function(){buildActs();window.scrollTo({top:document.getElementById("activites").offsetTop,behavior:"smooth"});});
+  var QCM_CFG={wrap:"opts",cls:"opt",
+    stem:function(it){return esc(it.q);},labels:function(it){return it.o;},correct:function(it){return it.r;},
+    okText:function(it){return "✓ Bravo ! "+it.e;},koText:function(it){return "✗ La bonne réponse est "+L[it.r]+"). "+it.e;}};
+  var CAT_CFG={wrap:"chips",cls:"chip",
+    stem:function(it){return "<span class='item-word'>"+esc(it.w)+"</span>";},labels:function(){return CATS;},correct:function(it){return it.c;},
+    okText:function(it){return "✓ "+it.e;},koText:function(it){return "✗ Réponse "+L[it.c]+") "+CATS[it.c]+". "+it.e;}};
 
   /* ---------- Questionnaire ---------- */
   function buildQuiz(){
@@ -654,7 +655,11 @@
   document.getElementById("quizRestart").addEventListener("click",function(){buildQuiz();window.scrollTo({top:0,behavior:"smooth"});});
 
   /* ---------- Initialisation ---------- */
-  buildActs();buildQuiz();typo(document.body);
+  buildCheck("act1","act1Score",function(){return ACT1;},QCM_CFG);
+  buildCheck("act2","act2Score",function(){return shuffle(ACT2);},CAT_CFG);
+  buildCheck("act3","act3Score",function(){return ACT3;},QCM_CFG);
+  buildCheck("krQuiz","krScore",function(){return KR;},QCM_CFG);
+  buildQuiz();typo(document.body);
 })();
 </script>
 </body>
