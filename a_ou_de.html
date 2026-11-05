@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>À ou DE ? Pronoms et impératif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#102a43; --blue:#0066a6; --blue-soft:#e3f0f8; --yellow:#f6c945; --yellow-soft:#fdf3cf;
+    --wine:#7d1f35; --wine-soft:#f8e4e8; --paper:#ffffff; --muted:#52606d; --line:#d9dee4;
+    --ok:#157345; --ok-bg:#ddf2e5; --ko:#a12a35; --ko-bg:#fde3e0;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.55}
+  button{font:inherit;color:inherit}
+  .frame{max-width:980px;margin:0 auto;padding:16px 16px 60px}
+  .back{display:inline-block;font-size:.9rem;font-weight:700;color:var(--blue);text-decoration:none;margin-bottom:8px}
+
+  /* En-tête */
+  .topbar{border-bottom:3px solid var(--ink);padding-bottom:14px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:flex-end}
+  .brand{display:flex;align-items:center;gap:12px}
+  .dots{width:14px;height:14px;border-radius:50%;background:var(--wine);box-shadow:20px 0 0 var(--yellow),40px 0 0 var(--blue);margin-right:40px;flex:0 0 auto}
+  .kicker{margin:0;text-transform:uppercase;letter-spacing:.13em;font-weight:700;font-size:.78rem}
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif;letter-spacing:-.02em;line-height:1.1}
+  h1{margin:10px 0 0;font-size:clamp(1.7rem,5vw,2.6rem)}
+  .status{min-width:190px;flex:1 1 190px;max-width:320px}
+  .status .row{display:flex;justify-content:space-between;font-weight:700;font-size:.88rem;margin-bottom:6px}
+  .track{height:9px;background:var(--line);border-radius:99px;overflow:hidden}
+  .fill{height:100%;width:0;background:var(--wine);border-radius:inherit;transition:width .4s ease}
+
+  /* Écrans */
+  .screen{display:none;animation:rise .35s ease both}
+  .screen.active{display:block}
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .card{border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);background:var(--paper);padding:clamp(18px,4vw,36px);margin-top:26px}
+  .card.hero{background:var(--blue);color:#fff}
+  .card.lesson{background:#fff}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;text-transform:uppercase;font-size:.75rem;font-weight:700;letter-spacing:.12em;margin:0}
+  .eyebrow::before{content:"";width:26px;height:4px;background:currentColor;display:block}
+  .card h2{margin:12px 0 10px;font-size:clamp(1.4rem,4vw,2rem)}
+  .lead{font-size:1.05rem;margin:4px 0 14px}
+
+  /* Accueil : choix du parcours */
+  .modules{display:grid;grid-template-columns:1fr;gap:16px;margin-top:22px}
+  @media(min-width:720px){.modules{grid-template-columns:1fr 1fr}}
+  .module{border:3px solid var(--ink);background:#fff;color:var(--ink);padding:18px;text-align:left;cursor:pointer;box-shadow:5px 5px 0 var(--yellow);transition:transform .15s,box-shadow .15s}
+  .module:hover,.module:focus-visible{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--yellow);outline:none}
+  .module .tag{display:inline-block;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border:2px solid var(--ink);margin-bottom:8px}
+  .module h3{margin:4px 0 6px;font-size:1.35rem}
+  .module p{margin:0;color:var(--muted);font-size:.95rem}
+  .module .done{display:block;margin-top:8px;font-weight:700;color:var(--ok)}
+
+  /* Éléments de leçon */
+  .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+  .pill{border:2px solid var(--ink);padding:6px 11px;font-weight:600;font-size:.92rem;background:#fff}
+  .pill.cod{background:var(--blue-soft);border-color:var(--blue)}
+  .pill.coi{background:var(--wine-soft);border-color:var(--wine)}
+  .pill.de{background:var(--yellow-soft);border-color:#b48a14}
+  .two{display:grid;grid-template-columns:1fr;gap:14px;margin:12px 0}
+  @media(min-width:680px){.two{grid-template-columns:1fr 1fr}}
+  .panel{border:2px solid var(--ink);padding:14px 16px}
+  .panel.cod{background:var(--blue-soft);border-color:var(--blue)}
+  .panel.coi{background:var(--wine-soft);border-color:var(--wine)}
+  .panel.de{background:var(--yellow-soft);border-color:#b48a14}
+  .panel h4{margin:0 0 6px;font-size:1.02rem}
+  .panel p{margin:4px 0}
+  .ex{margin:6px 0;font-size:1.02rem}
+  .ex b{white-space:nowrap}
+  .arrow{color:var(--muted);margin:0 6px}
+  .c-cod{color:var(--blue);font-weight:700}
+  .c-coi{color:var(--wine);font-weight:700}
+  .c-de{color:#8a6a0c;font-weight:700}
+  .tip{border-left:6px solid var(--yellow);background:var(--yellow-soft);padding:10px 14px;margin:14px 0 0;font-weight:500}
+  table.rules{border-collapse:collapse;width:100%;margin:10px 0;font-size:.97rem}
+  table.rules th,table.rules td{border:2px solid var(--ink);padding:8px 10px;text-align:left;vertical-align:top}
+  table.rules th{background:var(--yellow-soft)}
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+  /* Quiz */
+  .qcount{font-weight:700;color:var(--wine)}
+  .prompt{font-size:clamp(1.15rem,3.5vw,1.45rem);font-weight:700;margin:6px 0 4px}
+  .help{color:var(--muted);margin:0 0 6px}
+  .choices{display:grid;gap:12px;margin-top:18px}
+  .choices.grid{grid-template-columns:1fr 1fr}
+  @media(min-width:700px){.choices.grid{grid-template-columns:repeat(3,1fr)}}
+  .choice{display:flex;gap:12px;align-items:center;min-height:58px;border:2px solid var(--ink);background:#fff;padding:12px 14px;text-align:left;font-weight:600;cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s}
+  .choice:hover:not(:disabled),.choice:focus-visible:not(:disabled){transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--yellow);outline:none}
+  .choice:disabled{cursor:default}
+  .choice .l{flex:0 0 auto;display:grid;place-items:center;min-width:30px;height:30px;padding:0 6px;background:var(--ink);color:#fff;border-radius:999px;font-size:.85rem;font-weight:700}
+  .choice.correct{background:var(--ok-bg);border-color:var(--ok)}
+  .choice.correct .l{background:var(--ok)}
+  .choice.wrong{background:var(--ko-bg);border-color:var(--ko)}
+  .choice.wrong .l{background:var(--ko)}
+  .feedback{display:none;margin-top:18px;padding:13px 16px;border-left:7px solid var(--ko);background:var(--ko-bg);font-weight:600}
+  .feedback.show{display:block;animation:rise .25s ease both}
+  .feedback.good{border-color:var(--ok);background:var(--ok-bg)}
+  .nav{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-top:20px}
+  .btn{border:2px solid var(--ink);background:var(--yellow);color:var(--ink);padding:12px 18px;min-height:50px;font-weight:700;cursor:pointer;box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+  .btn:hover:not(:disabled),.btn:focus-visible{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink);outline:none}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+  .btn.ghost{background:#fff}
+  .linkbtn{background:none;border:0;padding:6px 0;font-weight:700;color:var(--blue);cursor:pointer;text-decoration:underline}
+
+  /* Animation d'erreur */
+  .shake{animation:shake .45s ease}
+  @keyframes shake{0%,100%{transform:none}20%{transform:translateX(-9px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(4px)}}
+  .flash{position:fixed;inset:0;pointer-events:none;background:rgba(161,42,53,.14);opacity:0;z-index:40}
+  .flash.on{animation:flash .5s ease}
+  @keyframes flash{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+  .pop{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%) scale(.6);font-family:"Fraunces",serif;font-size:3.2rem;font-weight:700;pointer-events:none;opacity:0;z-index:41}
+  .pop.ok{color:var(--ok)} .pop.ko{color:var(--ko)}
+  .pop.on{animation:pop .8s ease}
+  @keyframes pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}30%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}100%{opacity:0;transform:translate(-50%,-60%) scale(1)}}
+  #confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
+
+  /* Résultats */
+  .score-big{font-family:"Fraunces",serif;font-size:clamp(3.5rem,12vw,6.5rem);color:var(--yellow);line-height:.95;margin:16px 0}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  footer{max-width:980px;margin:0 auto;padding:0 16px 30px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div class="flash" id="flash" aria-hidden="true"></div>
+<div class="pop" id="pop" aria-hidden="true"></div>
+
+<div class="frame">
+  <a class="back" href="index.html">← Matériel didactique</a>
+  <header class="topbar">
+    <div>
+      <div class="brand"><span class="dots" aria-hidden="true"></span><p class="kicker">Niveau 6 · Grammaire</p></div>
+      <h1>À ou DE ? Pronoms et impératif</h1>
+    </div>
+    <div class="status" aria-label="Progression">
+      <div class="row"><span id="stepLabel">Prêt·e ?</span><span id="scoreLabel">Score : 0</span></div>
+      <div class="track"><div class="fill" id="fill"></div></div>
+    </div>
+  </header>
+
+  <main id="main" aria-live="polite"></main>
+</div>
+<footer>Niveau 6 · ENALLT, UNAM · Conception pédagogique : Nadia Aguilar Neri</footer>
+
+<script>
+(function(){
+  "use strict";
+  var L="abcdefgh";
+
+  /* ================= CONTENU ================= */
+  /* Types d'étapes :
+     lesson : {t:"lesson", eyebrow, title, html}
+     quiz   : {t:"quiz", kind:"intrus"|"qcm"|"vf", q, help, o:[...], r:index, good, bad} */
+
+  var MOD_A={id:"a",tag:"Parcours 1",title:"Avec « à » : le, la ou lui ?",desc:"Les verbes de communication et d'échange, les pièges COD/COI et l'impératif.",color:"var(--wine)",steps:[
+    {t:"lesson",eyebrow:"Leçon 1",title:"COD ou COI : la question à se poser",html:
+      '<div class="two"><div class="panel cod"><h4>COD : verbe + quelqu\'un</h4><p class="ex">J\'écoute Aya.<span class="arrow">→</span><b class="c-cod">Je l\'écoute.</b></p><p>Pronoms : <b>le, la, l\', les</b></p></div>'+
+      '<div class="panel coi"><h4>COI : verbe + à + quelqu\'un</h4><p class="ex">Je parle à Aya.<span class="arrow">→</span><b class="c-coi">Je lui parle.</b></p><p>Pronoms : <b>lui, leur</b></p></div></div>'+
+      '<p class="tip">Le test : peut-on dire « à quelqu\'un » après le verbe ? Oui → <b>lui, leur</b>. Non → <b>le, la, les</b>.</p>'},
+    {t:"quiz",kind:"intrus",q:"Quel verbe de cette liste n'utilise pas « à » ?",help:"Cinq verbes se construisent avec « à quelqu'un ». Trouvez l'intrus !",o:["téléphoner","sourire","aider","plaire","obéir","mentir"],r:2,
+     good:"Bravo ! On aide quelqu'un : « Je l'aide ».",bad:"L'intrus est « aider » : on aide quelqu'un, sans « à ». → Je l'aide."},
+    {t:"quiz",kind:"qcm",q:"Djadja ment. Ne ___ crois pas !",o:["le","lui","leur"],r:0,
+     good:"Exact ! On croit quelqu'un (COD) : ne le crois pas.",bad:"On croit quelqu'un, sans « à » : c'est un COD. → Ne le crois pas !"},
+    {t:"quiz",kind:"vf",q:"Qu'en dites-vous ? « Je lui appelle ce soir. »",o:["La phrase est correcte.","La phrase est incorrecte."],r:1,
+     good:"Bien vu ! On appelle quelqu'un : « Je l'appelle ce soir ».",bad:"Attention : on appelle quelqu'un (COD). On dit « Je l'appelle ce soir »."},
+
+    {t:"lesson",eyebrow:"Leçon 2",title:"Quelque chose à quelqu'un : la double construction",html:
+      '<p class="lead">verbe + <span class="c-cod">quelque chose</span> (COD) + à + <span class="c-coi">quelqu\'un</span> (COI)</p>'+
+      '<div class="pill-row">'+["dire","demander","donner","envoyer","écrire","expliquer","montrer","raconter","répondre","prêter","rendre","offrir","promettre","conseiller","annoncer","proposer"].map(function(v){return '<span class="pill">'+v+'</span>';}).join("")+'</div>'+
+      '<p class="ex">Aya dit <span class="c-cod">la vérité</span> à <span class="c-coi">ses amies</span>.<span class="arrow">→</span><b>Elle <span class="c-cod">la</span> <span class="c-coi">leur</span> dit.</b></p>'+
+      '<p class="ex">Elle montre <span class="c-cod">les messages</span> à <span class="c-coi">la police</span>.<span class="arrow">→</span><b>Elle <span class="c-cod">les</span> <span class="c-coi">lui</span> montre.</b></p>'+
+      '<p class="tip">Dans la phrase : <b>le, la, les</b> avant <b>lui, leur</b>.</p>'},
+    {t:"quiz",kind:"intrus",q:"Quel verbe de cette liste n'utilise pas « à quelqu'un » ?",help:"Cinq verbes : quelque chose à quelqu'un. Un seul est différent.",o:["dire","montrer","envoyer","écouter","raconter","prêter"],r:3,
+     good:"Oui ! On écoute quelqu'un ou quelque chose, sans « à ».",bad:"L'intrus est « écouter » : on écoute quelqu'un, sans « à ». → Je l'écoute."},
+    {t:"quiz",kind:"qcm",q:"Aya montre les messages à la police. → Aya ___ montre.",o:["les lui","lui les","leur les"],r:0,
+     good:"Parfait ! Le COD (les) avant le COI (lui).",bad:"Ordre : le, la, les AVANT lui, leur. → Aya les lui montre."},
+    {t:"quiz",kind:"qcm",q:"Tes amies veulent la vérité ? Dis-___ !",o:["la-leur","leur-la","les-leur"],r:0,
+     good:"Excellent ! À l'impératif aussi : COD puis COI. → Dis-la-leur !",bad:"La vérité = la ; tes amies = leur. COD puis COI : Dis-la-leur !"},
+
+    {t:"lesson",eyebrow:"Leçon 3",title:"Seulement « à quelqu'un » : les verbes à COI",html:
+      '<div class="pill-row">'+["téléphoner à","sourire à","plaire à","parler à","répondre à","obéir à","désobéir à","mentir à","ressembler à","faire confiance à","nuire à","rendre visite à"].map(function(v){return '<span class="pill coi">'+v+' qqn</span>';}).join("")+'</div>'+
+      '<p class="ex">Djadja sourit à Aya.<span class="arrow">→</span><b class="c-coi">Djadja lui sourit.</b></p>'+
+      '<p class="ex">Ses mensonges ne plaisent pas à Aya.<span class="arrow">→</span><b class="c-coi">Ils ne lui plaisent pas.</b></p>'+
+      '<p class="ex">Elle ne fait plus confiance à ses voisins.<span class="arrow">→</span><b class="c-coi">Elle ne leur fait plus confiance.</b></p>'+
+      '<p class="tip">Avec <b>plaire</b>, le sujet est la chose qui plaît : Ce film plaît à Aya → Ce film lui plaît.</p>'},
+    {t:"quiz",kind:"intrus",q:"Quel verbe de cette liste n'utilise pas « à » ?",help:"Cherchez le verbe qui prend un COD.",o:["parler","répondre","ressembler","remercier","faire confiance","nuire"],r:3,
+     good:"Bravo ! On remercie quelqu'un : « Je la remercie ».",bad:"L'intrus est « remercier » : on remercie quelqu'un, sans « à ». → Je la remercie."},
+    {t:"quiz",kind:"qcm",q:"Ce film plaît à Aya. → Ce film ___ plaît.",o:["la","lui","le"],r:1,
+     good:"Exact ! Plaire à quelqu'un → lui.",bad:"On dit « plaire à quelqu'un » : c'est un COI. → Ce film lui plaît."},
+    {t:"quiz",kind:"vf",q:"Qu'en dites-vous ? « Djadja la sourit dans la rue. »",o:["La phrase est correcte.","La phrase est incorrecte."],r:1,
+     good:"Bien vu ! Sourire à quelqu'un → Djadja lui sourit.",bad:"On sourit à quelqu'un (COI). → Djadja lui sourit dans la rue."},
+
+    {t:"lesson",eyebrow:"Leçon 4",title:"Attention ! Même idée, construction différente",html:
+      '<p class="lead">Ces verbes prennent un <span class="c-cod">COD</span> : appeler, aider, remercier, écouter, attendre, croire, prévenir, inviter, féliciter, soutenir, ignorer.</p>'+
+      '<div class="tablewrap"><table class="rules"><thead><tr><th>COD → le, la, les</th><th>COI → lui, leur</th></tr></thead><tbody>'+
+      '<tr><td>appeler qqn → <b class="c-cod">Appelle-la !</b></td><td>téléphoner à qqn → <b class="c-coi">Téléphone-lui !</b></td></tr>'+
+      '<tr><td>remercier qqn → <b class="c-cod">Remercie-la !</b></td><td>dire merci à qqn → <b class="c-coi">Dis-lui merci !</b></td></tr>'+
+      '<tr><td>écouter qqn → <b class="c-cod">Écoute-le !</b></td><td>obéir à qqn → <b class="c-coi">Obéis-lui !</b></td></tr>'+
+      '<tr><td>aider qqn → <b class="c-cod">Aide-le !</b></td><td>rendre service à qqn → <b class="c-coi">Rends-lui service !</b></td></tr>'+
+      '</tbody></table></div>'},
+    {t:"quiz",kind:"intrus",q:"Cette fois, quel verbe de la liste utilise « à » ?",help:"Cinq verbes prennent un COD. Un seul prend « à ».",o:["appeler","aider","inviter","téléphoner","prévenir","féliciter"],r:3,
+     good:"Oui ! Téléphoner à quelqu'un → Téléphone-lui !",bad:"C'est « téléphoner » : on téléphone à quelqu'un. Les autres prennent un COD."},
+    {t:"quiz",kind:"qcm",q:"Ta mère t'a appelée trois fois. ___ !",o:["Rappelle-lui","Rappelle-la","La rappelle"],r:1,
+     good:"Parfait ! Rappeler quelqu'un (COD) : Rappelle-la !",bad:"Rappeler quelqu'un = COD, et à l'affirmatif le pronom va après le verbe : Rappelle-la !"},
+    {t:"quiz",kind:"qcm",q:"Ses amies ___ aident beaucoup.",o:["l'","lui","leur"],r:0,
+     good:"Exact ! Aider quelqu'un → Ses amies l'aident.",bad:"Aider quelqu'un est un COD : Ses amies l'aident."},
+
+    {t:"lesson",eyebrow:"Leçon 5",title:"Encore un piège : à lui, à elle, à eux",html:
+      '<p class="lead">Avec ces verbes, on garde « à » et on utilise un <b>pronom tonique</b> pour une personne :</p>'+
+      '<div class="pill-row">'+["penser à","s'intéresser à","faire attention à","s'habituer à","tenir à","s'adresser à"].map(function(v){return '<span class="pill de">'+v+' qqn</span>';}).join("")+'</div>'+
+      '<p class="ex">Aya pense encore à Djadja.<span class="arrow">→</span><b>Elle pense encore à lui.</b></p>'+
+      '<p class="ex">Elle tient à ses amies.<span class="arrow">→</span><b>Elle tient à elles.</b></p>'+
+      '<p class="tip">On ne dit pas « je lui pense ». Pour une chose : <b>j\'y pense</b>.</p>'},
+    {t:"quiz",kind:"qcm",q:"Tu penses encore à Djadja ? Ne pense plus ___ !",o:["lui","à lui","le"],r:1,
+     good:"Bravo ! Penser à quelqu'un → à lui.",bad:"Avec « penser à », on garde « à » + pronom tonique : Ne pense plus à lui !"},
+    {t:"quiz",kind:"vf",q:"Qu'en dites-vous ? « Elle s'intéresse à lui. »",o:["La phrase est correcte.","La phrase est incorrecte."],r:0,
+     good:"Oui ! S'intéresser à quelqu'un → à lui.",bad:"La phrase est correcte : avec « s'intéresser à », on dit « à lui »."},
+    {t:"quiz",kind:"intrus",q:"Quel verbe utilise « lui » et non « à lui » ?",help:"Cinq verbes gardent « à lui ». Un seul prend « lui ».",o:["penser","s'intéresser","tenir","téléphoner","faire attention","s'habituer"],r:3,
+     good:"Exact ! Je lui téléphone, mais je pense à lui.",bad:"C'est « téléphoner » : je lui téléphone. Avec les autres : à lui."},
+
+    {t:"lesson",eyebrow:"Leçon 6",title:"L'impératif avec les pronoms",html:
+      '<div class="two"><div class="panel"><h4>Affirmatif : APRÈS le verbe, avec trait d\'union</h4>'+
+      '<p class="ex"><b>Ignore-le ! Réponds-lui !</b></p><p class="ex"><b>Écoute-moi ! Calme-toi !</b></p><p class="ex"><b>Dis-le-lui ! Montre-les-leur !</b></p>'+
+      '<p>me, te → <b>moi, toi</b> · ordre : verbe – le/la/les – lui/leur</p></div>'+
+      '<div class="panel"><h4>Négatif : AVANT le verbe</h4>'+
+      '<p class="ex"><b>Ne l\'ignore pas ! Ne lui réponds pas !</b></p><p class="ex"><b>Ne m\'écoute pas ! Ne t\'inquiète pas !</b></p><p class="ex"><b>Ne le lui dis pas !</b></p>'+
+      '<p>ordre : ne – me/te – le/la/les – lui/leur – verbe – pas</p></div></div>'},
+    {t:"quiz",kind:"qcm",q:"Djadja t'écrit un message. ___ !",o:["Ne lui réponds pas","Ne réponds-lui pas","Lui ne réponds pas"],r:0,
+     good:"Parfait ! Au négatif, le pronom va avant le verbe.",bad:"Au négatif : ne + pronom + verbe + pas. → Ne lui réponds pas !"},
+    {t:"quiz",kind:"qcm",q:"Tu es très énervée. ___ !",o:["Calme-te","Calme-toi","Te calme"],r:1,
+     good:"Bravo ! À l'affirmatif, te devient toi.",bad:"À l'affirmatif, « te » devient « toi » : Calme-toi !"},
+    {t:"quiz",kind:"qcm",q:"Tu as des captures d'écran. Montre-les à la police ! → ___",o:["Montre-les-lui !","Montre-lui-les !","Les lui montre !"],r:0,
+     good:"Excellent ! Verbe – COD – COI : Montre-les-lui !",bad:"Ordre à l'affirmatif : verbe – le/la/les – lui/leur. → Montre-les-lui !"}
+  ]};
+
+  var MOD_DE={id:"de",tag:"Parcours 2",title:"Avec « de » : en !",desc:"Les verbes avec « de », le pronom en, de lui / d'elle et l'impératif.",color:"#8a6a0c",steps:[
+    {t:"lesson",eyebrow:"Leçon 1",title:"Les verbes qui se construisent avec « de »",html:
+      '<div class="pill-row">'+["parler de","discuter de","avoir besoin de","avoir envie de","avoir peur de","avoir honte de","se souvenir de","s'occuper de","rêver de","se moquer de","profiter de","se plaindre de","se méfier de","être fier de","être content de","s'excuser de"].map(function(v){return '<span class="pill de">'+v+'</span>';}).join("")+'</div>'+
+      '<p class="ex">Aya parle <span class="c-de">de la rumeur</span>.</p><p class="ex">Elle a besoin <span class="c-de">de calme</span>.</p><p class="ex">Elle a envie <span class="c-de">de partir</span> en vacances.</p>'},
+    {t:"quiz",kind:"intrus",q:"Quel verbe de cette liste n'utilise pas « de » ?",help:"Cinq verbes se construisent avec « de ». Trouvez l'intrus !",o:["parler","rêver","se souvenir","regarder","avoir peur","profiter"],r:3,
+     good:"Bravo ! On regarde quelque chose, sans « de ».",bad:"L'intrus est « regarder » : on regarde quelque chose (COD)."},
+    {t:"quiz",kind:"vf",q:"Qu'en dites-vous ? « J'ai besoin ton aide. »",o:["La phrase est correcte.","La phrase est incorrecte."],r:1,
+     good:"Exact ! Avoir besoin DE : J'ai besoin de ton aide.",bad:"Il manque « de » : J'ai besoin de ton aide."},
+    {t:"quiz",kind:"intrus",q:"Encore un intrus : quel verbe n'utilise pas « de » ?",help:"Attention aux faux amis…",o:["s'occuper","avoir envie","se moquer","attendre","se plaindre","discuter"],r:3,
+     good:"Oui ! On attend quelqu'un ou quelque chose, sans « de ».",bad:"L'intrus est « attendre » : on attend quelque chose (COD)."},
+
+    {t:"lesson",eyebrow:"Leçon 2",title:"La règle : de + chose ou idée → EN",html:
+      '<p class="lead">Tout ce qui est introduit par <b>de</b> (une chose, une idée, un infinitif) devient <b class="c-de">en</b>.</p>'+
+      '<p class="ex">Aya parle de la rumeur.<span class="arrow">→</span><b class="c-de">Elle en parle.</b></p>'+
+      '<p class="ex">Elle a peur des réseaux sociaux.<span class="arrow">→</span><b class="c-de">Elle en a peur.</b></p>'+
+      '<p class="ex">Elle a envie de partir.<span class="arrow">→</span><b class="c-de">Elle en a envie.</b></p>'+
+      '<p class="ex">Djadja raconte beaucoup de mensonges.<span class="arrow">→</span><b class="c-de">Il en raconte beaucoup.</b></p>'+
+      '<div class="tablewrap"><table class="rules"><thead><tr><th>Où placer « en » ?</th><th>Exemple</th></tr></thead><tbody>'+
+      '<tr><td>avant le verbe conjugué</td><td>Elle <b>en</b> parle.</td></tr>'+
+      '<tr><td>avant l\'auxiliaire au passé composé</td><td>Elle <b>en</b> a parlé.</td></tr>'+
+      '<tr><td>avant l\'infinitif</td><td>Elle va <b>en</b> parler.</td></tr>'+
+      '<tr><td>au négatif</td><td>Elle n\'<b>en</b> parle pas.</td></tr></tbody></table></div>'},
+    {t:"quiz",kind:"qcm",q:"Aya a besoin de calme. → Aya ___ a besoin.",o:["en","le","y"],r:0,
+     good:"Bravo ! Avoir besoin de quelque chose → en.",bad:"De + chose → en : Aya en a besoin."},
+    {t:"quiz",kind:"qcm",q:"Djadja raconte beaucoup de mensonges. → Il ___ raconte beaucoup.",o:["les","en","leur"],r:1,
+     good:"Exact ! Avec une quantité (beaucoup de…), on utilise en.",bad:"Beaucoup de mensonges → en : Il en raconte beaucoup."},
+    {t:"quiz",kind:"qcm",q:"Elle va parler de la rumeur. → Elle ___.",o:["en va parler","va en parler","va parler en"],r:1,
+     good:"Parfait ! « en » se place devant l'infinitif.",bad:"Avec un infinitif, « en » va devant l'infinitif : Elle va en parler."},
+
+    {t:"lesson",eyebrow:"Leçon 3",title:"Et pour une personne ? de lui, d'elle",html:
+      '<p class="lead">Pour une <b>personne</b>, on garde « de » + un pronom tonique :</p>'+
+      '<div class="pill-row"><span class="pill">de moi</span><span class="pill">de toi</span><span class="pill">de lui</span><span class="pill">d\'elle</span><span class="pill">de nous</span><span class="pill">de vous</span><span class="pill">d\'eux</span><span class="pill">d\'elles</span></div>'+
+      '<p class="ex">Aya parle de Djadja.<span class="arrow">→</span><b>Elle parle de lui.</b></p>'+
+      '<p class="ex">Elle se méfie de ses voisins.<span class="arrow">→</span><b>Elle se méfie d\'eux.</b></p>'+
+      '<p class="ex">Elle est fière de ses amies.<span class="arrow">→</span><b>Elle est fière d\'elles.</b></p>'+
+      '<p class="tip">À l\'oral, on entend parfois « en » pour une personne. À l\'écrit et dans un registre standard, préférez <b>de lui, d\'elle</b>.</p>'},
+    {t:"quiz",kind:"qcm",q:"Aya se moque de Djadja. → Aya se moque ___.",o:["en","de lui","lui"],r:1,
+     good:"Bravo ! Pour une personne : de lui.",bad:"Djadja est une personne : on dit « de lui ». → Aya se moque de lui."},
+    {t:"quiz",kind:"qcm",q:"Tu te souviens de ce concert ? → Oui, je ___ souviens.",o:["m'en","me de lui","m'y"],r:0,
+     good:"Exact ! Un concert est une chose : je m'en souviens.",bad:"Se souvenir de + chose → en : je m'en souviens."},
+    {t:"quiz",kind:"vf",q:"Qu'en dites-vous ? « Il parle de son travail. → Il en parle. »",o:["La transformation est correcte.","La transformation est incorrecte."],r:0,
+     good:"Oui ! Son travail est une chose : il en parle.",bad:"La transformation est correcte : de + chose → en. Il en parle."},
+
+    {t:"lesson",eyebrow:"Leçon 4",title:"L'impératif avec « en »",html:
+      '<div class="two"><div class="panel de"><h4>Affirmatif</h4>'+
+      '<p class="ex"><b>Parles-en !</b> <b>Profites-en !</b> <b>Prends-en !</b></p>'+
+      '<p>Le <b>s</b> revient devant « en » pour les verbes en -er : parle → parle<b>s</b>-en. Même chose avec « y » : va<b>s</b>-y !</p>'+
+      '<p class="ex">Verbes pronominaux : toi + en → <b>t\'en</b></p>'+
+      '<p class="ex"><b>Occupe-t\'en ! Souviens-t\'en ! Va-t\'en !</b></p></div>'+
+      '<div class="panel"><h4>Négatif</h4>'+
+      '<p class="ex"><b>N\'en parle pas !</b> <b>N\'en profite pas !</b></p>'+
+      '<p class="ex"><b>Ne t\'en occupe pas !</b> <b>Ne t\'en va pas !</b></p>'+
+      '<p>Avec un COI : <b>Parle-lui-en !</b> · <b>Ne lui en parle pas !</b></p></div></div>'},
+    {t:"quiz",kind:"qcm",q:"Tu as un problème ? ___ à tes amies !",o:["Parle-en","Parles-en","En parle"],r:1,
+     good:"Parfait ! Le s revient devant en : Parles-en !",bad:"Devant « en », le s revient : Parles-en à tes amies !"},
+    {t:"quiz",kind:"qcm",q:"La rumeur ? ___ !",o:["N'en parle pas","Ne parles-en pas","Ne parle pas en"],r:0,
+     good:"Bravo ! Au négatif : n'en + verbe + pas.",bad:"Au négatif, « en » va avant le verbe : N'en parle pas !"},
+    {t:"quiz",kind:"qcm",q:"Ce problème ? Occupe-toi de ce problème ! → ___",o:["Occupe-toi-en !","Occupe-t'en !","T'en occupe !"],r:1,
+     good:"Excellent ! toi + en → t'en : Occupe-t'en !",bad:"Toi + en devient t'en : Occupe-t'en !"},
+
+    {t:"lesson",eyebrow:"Bilan",title:"À ou DE : le tableau récapitulatif",html:
+      '<div class="tablewrap"><table class="rules"><thead><tr><th>Construction</th><th>Pronom</th><th>Exemple</th></tr></thead><tbody>'+
+      '<tr><td>verbe + quelqu\'un / quelque chose</td><td><b class="c-cod">le, la, les</b></td><td>Je l\'appelle.</td></tr>'+
+      '<tr><td>à + personne</td><td><b class="c-coi">lui, leur</b></td><td>Je lui téléphone.</td></tr>'+
+      '<tr><td>à + personne (penser à, tenir à…)</td><td><b>à lui, à elle</b></td><td>Je pense à lui.</td></tr>'+
+      '<tr><td>à + chose ou lieu</td><td><b>y</b></td><td>J\'y pense. J\'y vais.</td></tr>'+
+      '<tr><td>de + chose, idée, quantité</td><td><b class="c-de">en</b></td><td>J\'en parle. J\'en ai besoin.</td></tr>'+
+      '<tr><td>de + personne</td><td><b>de lui, d\'elle</b></td><td>Je parle de lui.</td></tr></tbody></table></div>'},
+    {t:"quiz",kind:"qcm",q:"Tu penses à ton examen ? → Oui, j'___ pense.",o:["y","en","lui"],r:0,
+     good:"Bravo ! À + chose → y.",bad:"Penser à + chose → y : J'y pense."},
+    {t:"quiz",kind:"qcm",q:"Tu parles de ton examen à ta mère ? → Oui, je ___ parle.",o:["lui en","en lui","la en"],r:0,
+     good:"Parfait ! lui (à ta mère) + en (de l'examen).",bad:"À ta mère → lui ; de ton examen → en. Ordre : lui avant en. → Je lui en parle."},
+    {t:"quiz",kind:"qcm",q:"C'est les vacances ! ___ !",o:["Profites-en","Profite-en","En profite"],r:0,
+     good:"Excellent ! Profites-en : le s revient devant en.",bad:"Devant « en », le s revient : Profites-en !"}
+  ]};
+
+  var MODS=[MOD_A,MOD_DE];
+
+  /* ================= ÉTAT ================= */
+  var state={mod:null,i:0,score:0,total:0,done:{}};
+  var main=document.getElementById("main");
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function typo(root){
+    var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),n;
+    while((n=w.nextNode())){var v=n.nodeValue,nv=v.replace(/ ([?!:;»])/g," $1").replace(/« /g,"« ");if(nv!==v)n.nodeValue=nv;}
+  }
+  function status(label,pct){
+    document.getElementById("stepLabel").textContent=label;
+    document.getElementById("scoreLabel").textContent="Score : "+state.score+(state.mod?" / "+state.total:"");
+    document.getElementById("fill").style.width=(pct||0)+"%";
+  }
+  function render(html){main.innerHTML=html;typo(main);window.scrollTo({top:0,behavior:"smooth"});}
+
+  /* ================= ACCUEIL ================= */
+  function home(){
+    state.mod=null;state.score=0;
+    status("Prêt·e ?",0);
+    render('<section class="screen active"><div class="card hero">'+
+      '<p class="eyebrow">Activité 9</p><h2>Le, la, lui… ou en ?</h2>'+
+      '<p class="lead">Des mini-leçons, et entre chaque leçon trois quiz rapides. Choisissez votre parcours.</p></div>'+
+      '<div class="modules">'+MODS.map(function(m){
+        var q=m.steps.filter(function(s){return s.t==="quiz";}).length;
+        var d=state.done[m.id];
+        return '<button class="module" type="button" data-mod="'+m.id+'"><span class="tag" style="color:'+m.color+'">'+m.tag+'</span>'+
+          '<h3>'+esc(m.title)+'</h3><p>'+esc(m.desc)+' · '+q+' quiz</p>'+(d?'<span class="done">✓ Dernier score : '+d+'</span>':'')+'</button>';
+      }).join("")+'</div></section>');
+    main.querySelectorAll("[data-mod]").forEach(function(b){b.addEventListener("click",function(){start(b.getAttribute("data-mod"));});});
+  }
+
+  function start(id){
+    state.mod=MODS.filter(function(m){return m.id===id;})[0];
+    state.i=0;state.score=0;
+    state.total=state.mod.steps.filter(function(s){return s.t==="quiz";}).length;
+    step();
+  }
+
+  /* ================= ÉTAPES ================= */
+  function step(){
+    var m=state.mod,s=m.steps[state.i];
+    var pct=Math.round(state.i/m.steps.length*100);
+    var quizNo=m.steps.slice(0,state.i+1).filter(function(x){return x.t==="quiz";}).length;
+    if(s.t==="lesson"){
+      status(m.tag+" · "+s.eyebrow,pct);
+      render('<section class="screen active"><div class="card lesson"><p class="eyebrow" style="color:'+m.color+'">'+esc(s.eyebrow)+'</p><h2>'+esc(s.title)+'</h2>'+s.html+
+        '<div class="nav"><button class="linkbtn" type="button" id="menu">← Menu</button><button class="btn" type="button" id="next">Aux quiz →</button></div></div></section>');
+      if(state.i+1>=m.steps.length||m.steps[state.i+1].t!=="quiz")document.getElementById("next").textContent="Continuer →";
+    }else{
+      status("Quiz "+quizNo+" / "+state.total,pct);
+      var grid=s.kind==="intrus";
+      var label=s.kind==="intrus"?"Trouvez l'intrus":s.kind==="vf"?"Qu'en dites-vous ?":"Choisissez";
+      render('<section class="screen active"><div class="card" id="qcard"><p class="eyebrow" style="color:'+m.color+'">Quiz '+quizNo+' · '+label+'</p>'+
+        '<p class="prompt">'+esc(s.q)+'</p>'+(s.help?'<p class="help">'+esc(s.help)+'</p>':'')+
+        '<div class="choices'+(grid?' grid':'')+'">'+s.o.map(function(o,j){return '<button class="choice" type="button" data-j="'+j+'"><span class="l">'+L[j]+')</span><span>'+esc(o)+'</span></button>';}).join("")+'</div>'+
+        '<div class="feedback" id="fb"></div>'+
+        '<div class="nav"><button class="linkbtn" type="button" id="menu">← Menu</button><button class="btn" type="button" id="next" disabled>Suivant →</button></div></div></section>');
+      main.querySelectorAll(".choice").forEach(function(b){b.addEventListener("click",function(){answer(b,s);});});
+    }
+    document.getElementById("menu").addEventListener("click",home);
+    document.getElementById("next").addEventListener("click",function(){
+      state.i++;
+      if(state.i>=state.mod.steps.length)results();else step();
+    });
+  }
+
+  function answer(btn,s){
+    var card=document.getElementById("qcard");
+    if(card.dataset.answered)return;
+    card.dataset.answered="1";
+    var j=+btn.getAttribute("data-j"),ok=j===s.r,all=card.querySelectorAll(".choice");
+    all.forEach(function(b){b.disabled=true;});
+    all[s.r].classList.add("correct");
+    var fb=document.getElementById("fb");
+    if(ok){state.score++;btn.classList.add("correct");fb.className="feedback show good";fb.textContent="✓ "+s.good;confetti(btn);popup("Bravo !","ok");}
+    else{btn.classList.add("wrong");fb.className="feedback show";fb.textContent="✗ "+s.bad;oops(card);}
+    typo(fb);
+    status(document.getElementById("stepLabel").textContent,Math.round((state.i+1)/state.mod.steps.length*100));
+    var nx=document.getElementById("next");nx.disabled=false;
+    if(state.i+1>=state.mod.steps.length)nx.textContent="Voir mon score →";
+    setTimeout(function(){fb.scrollIntoView({behavior:"smooth",block:"nearest"});},150);
+  }
+
+  function results(){
+    var m=state.mod,sc=state.score,t=state.total,r=sc/t;
+    state.done[m.id]=sc+" / "+t;
+    var msg=r===1?"Parfait ! Vous maîtrisez ces pronoms comme un·e francophone.":r>=.8?"Excellent travail ! Encore un petit effort sur les pièges et ce sera parfait.":r>=.6?"Bon travail ! Relisez les leçons où vous avez hésité, puis recommencez.":"Ne vous découragez pas : ces constructions sont difficiles. Relisez les leçons et recommencez, vous allez progresser !";
+    status(m.tag+" terminé",100);
+    var other=MODS.filter(function(x){return x.id!==m.id;})[0];
+    render('<section class="screen active"><div class="card hero" style="text-align:center"><p class="eyebrow" style="justify-content:center">'+esc(m.tag)+' · bilan</p>'+
+      '<h2>'+esc(m.title)+'</h2><div class="score-big">'+sc+' / '+t+'</div><p class="lead">'+esc(msg)+'</p>'+
+      '<div class="nav" style="justify-content:center"><button class="btn" type="button" id="again">↺ Recommencer</button><button class="btn ghost" type="button" id="other">'+esc(other.tag)+' →</button><button class="btn ghost" type="button" id="menu">Menu</button></div></div></section>');
+    if(r>=.8)setTimeout(function(){confetti(null,220);},250);
+    document.getElementById("again").addEventListener("click",function(){start(m.id);});
+    document.getElementById("other").addEventListener("click",function(){start(other.id);});
+    document.getElementById("menu").addEventListener("click",home);
+  }
+
+  /* ================= ANIMATIONS ================= */
+  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var cv=document.getElementById("confetti"),cx=cv.getContext("2d"),parts=[],raf=null;
+  function size(){cv.width=window.innerWidth*devicePixelRatio;cv.height=window.innerHeight*devicePixelRatio;cx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);}
+  size();window.addEventListener("resize",size);
+  function confetti(el,count){
+    if(reduce)return;
+    var r=el?el.getBoundingClientRect():{left:window.innerWidth/2-1,top:window.innerHeight/3,width:2,height:2};
+    var x0=r.left+r.width/2,y0=r.top+r.height/2,cols=["#7d1f35","#f6c945","#0066a6","#157345","#102a43"];
+    for(var i=0;i<(count||90);i++){
+      var a=Math.random()*Math.PI*2,v=4+Math.random()*7;
+      parts.push({x:x0,y:y0,vx:Math.cos(a)*v,vy:Math.sin(a)*v-5,w:6+Math.random()*6,h:4+Math.random()*4,rot:Math.random()*6,vr:(Math.random()-.5)*.3,c:cols[i%cols.length],life:0});
+    }
+    if(!raf)raf=requestAnimationFrame(tick);
+  }
+  function tick(){
+    cx.clearRect(0,0,cv.width,cv.height);
+    parts=parts.filter(function(p){return p.life<120&&p.y<window.innerHeight+40;});
+    parts.forEach(function(p){
+      p.vy+=.25;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.rot+=p.vr;p.life++;
+      cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot);cx.globalAlpha=Math.max(0,1-p.life/120);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore();
+    });
+    raf=parts.length?requestAnimationFrame(tick):null;
+    if(!raf)cx.clearRect(0,0,cv.width,cv.height);
+  }
+  function popup(text,kind){
+    if(reduce)return;
+    var p=document.getElementById("pop");p.textContent=text;p.className="pop "+kind;void p.offsetWidth;p.className="pop "+kind+" on";
+  }
+  function oops(card){
+    if(reduce)return;
+    card.classList.remove("shake");void card.offsetWidth;card.classList.add("shake");
+    var f=document.getElementById("flash");f.classList.remove("on");void f.offsetWidth;f.classList.add("on");
+    popup("Oups…","ko");
+  }
+
+  home();
+})();
+</script>
+</body>
+</html>
