@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le subjonctif présent · Révision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --surface:#f6f7f9; --line:#dfe3e8; --text:#1f2933; --muted:#5b6673;
+    --accent:#002B5C; --accent-soft:#eaf0f7; --gold:#b8892a; --gold-soft:#faf4e6;
+    --ind:#1d5fa8; --ind-soft:#e8f1fb; --sub:#7a3e8c; --sub-soft:#f4ecf7; --inf:#8a6a0c; --inf-soft:#faf3df;
+    --ok:#1d6b45; --ok-bg:#e3f3ea; --ko:#b3403a; --ko-bg:#fbecea;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:'Source Sans 3',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:17px;line-height:1.55}
+  a{color:var(--accent)}
+  header{padding:18px 16px 10px;max-width:1000px;margin:0 auto}
+  .back{display:inline-block;margin-bottom:6px;font-size:.9rem;font-weight:600;text-decoration:none}
+  .kicker{font-size:.82rem;font-weight:700;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+  header h1{margin:4px 0 4px;font-size:1.8rem;line-height:1.2;color:var(--accent)}
+  header p{margin:0;color:var(--muted)}
+  nav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+  nav .inner{max-width:1000px;margin:0 auto;display:flex;gap:2px;overflow-x:auto;padding:0 8px;scrollbar-width:none}
+  nav .inner::-webkit-scrollbar{display:none}
+  nav button{flex:0 0 auto;border:0;background:none;font:inherit;font-weight:600;color:var(--muted);padding:12px 11px;min-height:48px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+  nav button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--gold)}
+  main{max-width:1000px;margin:0 auto;padding:18px 16px 70px}
+  section{display:none} section.active{display:block}
+  h2{font-size:1.4rem;margin:4px 0 10px;color:var(--accent)}
+  h3{font-size:1.14rem;margin:26px 0 8px;color:var(--accent)}
+  h4{margin:0 0 6px;font-size:1.02rem}
+  p{margin:8px 0}
+  .box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}
+  .box.tip{background:var(--accent-soft);border-color:#cfdbe8}
+  .box.warn{background:var(--gold-soft);border-color:#ecdcb4}
+  .box > :first-child{margin-top:0}.box > :last-child{margin-bottom:0}
+  ul.clean{margin:6px 0;padding-left:20px} ul.clean li{margin:4px 0}
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0}
+  table.t{border-collapse:collapse;width:100%;font-size:.96rem}
+  table.t th,table.t td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left;vertical-align:top}
+  table.t th{background:var(--accent-soft);color:var(--accent);font-size:.9rem}
+  table.t.conj{min-width:560px} table.t.conj td,table.t.conj th{text-align:center}
+  table.t.conj td:first-child{font-weight:700;text-align:left}
+  .hl{color:var(--sub);font-weight:700}
+  .two{display:grid;grid-template-columns:1fr;gap:12px;margin:12px 0}
+  @media(min-width:720px){.two{grid-template-columns:1fr 1fr}}
+  .panel{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff}
+  .panel.ind{background:var(--ind-soft);border-color:#c5daf0}
+  .panel.sub{background:var(--sub-soft);border-color:#dfcbe6}
+  .panel.inf{background:var(--inf-soft);border-color:#ecdcae}
+  .panel h4.ind{color:var(--ind)} .panel h4.sub{color:var(--sub)} .panel h4.inf{color:var(--inf)}
+  .panel ul{margin:4px 0;padding-left:18px} .panel li{margin:3px 0}
+  .c-ind{color:var(--ind);font-weight:700} .c-sub{color:var(--sub);font-weight:700} .c-inf{color:var(--inf);font-weight:700}
+
+  /* Exercices */
+  .exo{border:1px solid var(--line);border-radius:12px;padding:6px 14px 14px;margin:14px 0;background:#fff}
+  .item{padding:12px 0;border-bottom:1px solid var(--line)}
+  .item:last-of-type{border-bottom:0}
+  .item .n{font-weight:700;color:var(--accent);margin-right:6px}
+  .item input[type=text]{font:inherit;width:9.5em;max-width:100%;padding:6px 8px;border:1.5px solid #b9c2cc;border-radius:8px;text-align:center;margin:2px 2px;background:#fff;color:var(--text)}
+  .item input.ok{border-color:var(--ok);background:var(--ok-bg)}
+  .item input.ko{border-color:var(--ko);background:var(--ko-bg)}
+  .hint{display:inline-block;font-size:.85rem;color:var(--muted);margin-left:4px}
+  .fb{font-size:.93rem;margin-top:6px;display:none;border-radius:8px;padding:6px 10px}
+  .fb.show{display:block}
+  .fb.ok{color:var(--ok);background:var(--ok-bg)} .fb.ko{color:var(--ko);background:var(--ko-bg)} .fb.warn{color:#7a5a12;background:var(--gold-soft)}
+  .opts{display:grid;gap:8px;margin-top:8px}
+  @media(min-width:640px){.opts.two-col{grid-template-columns:1fr 1fr}}
+  .opt{font:inherit;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;min-height:46px;cursor:pointer;color:var(--text)}
+  .opt .l{font-weight:700;margin-right:6px}
+  .opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+  .opt.ok{border-color:var(--ok);background:var(--ok-bg)} .opt.ko{border-color:var(--ko);background:var(--ko-bg)}
+  .opt:disabled{cursor:default}
+  .texte{line-height:2.3;font-size:1.03rem}
+  .texte select{font:inherit;font-size:.95rem;max-width:100%;padding:4px 6px;border:1.5px solid #b9c2cc;border-radius:8px;background:#fff;color:var(--text);margin:0 2px}
+  .texte select.ok{border-color:var(--ok);background:var(--ok-bg)} .texte select.ko{border-color:var(--ko);background:var(--ko-bg)}
+  .texte .gn{font-size:.75rem;font-weight:700;color:var(--muted);vertical-align:super;margin-left:2px}
+  .explain{margin-top:12px;display:none}
+  .explain.show{display:block}
+  .explain li{margin:4px 0;font-size:.94rem}
+  .btnrow{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px}
+  .btn{font:inherit;font-weight:600;border-radius:10px;padding:11px 16px;min-height:46px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  .btn.ghost{background:#fff;color:var(--accent)}
+  .score{font-weight:700;color:var(--accent);margin-top:8px}
+  .bar{height:8px;background:var(--line);border-radius:999px;overflow:hidden;margin-top:6px}
+  .bar > div{height:100%;width:0;background:var(--accent);transition:width .4s}
+
+  /* Débats */
+  .cards{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:720px){.cards{grid-template-columns:1fr 1fr}}
+  .card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff}
+  .card h4{color:var(--accent);font-size:1.08rem}
+  .pour,.contre{border-radius:10px;padding:8px 12px;margin-top:8px;font-size:.95rem}
+  .pour{background:var(--ind-soft)} .contre{background:var(--sub-soft)}
+  .pour b{color:var(--ind)} .contre b{color:var(--sub)}
+  .pour ul,.contre ul{margin:4px 0;padding-left:18px}
+  footer{max-width:1000px;margin:0 auto;padding:0 16px 30px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="index.html">← Matériel didactique</a>
+  <div class="kicker">Niveau 6 · B1 · Grammaire</div>
+  <h1>Le subjonctif présent · Révision</h1>
+  <p>Emplois, formation, infinitif ou subjonctif, indicatif ou subjonctif, connecteurs et débats.</p>
+</header>
+<nav aria-label="Sections"><div class="inner" role="tablist">
+  <button role="tab" data-tab="emplois" aria-selected="true">1. Emplois</button>
+  <button role="tab" data-tab="irreg" aria-selected="false">2. Irréguliers</button>
+  <button role="tab" data-tab="formation" aria-selected="false">3. Formation</button>
+  <button role="tab" data-tab="infinitif" aria-selected="false">4. Ou infinitif ?</button>
+  <button role="tab" data-tab="indicatif" aria-selected="false">5. Ou indicatif ?</button>
+  <button role="tab" data-tab="textes" aria-selected="false">6. Textes</button>
+  <button role="tab" data-tab="connecteurs" aria-selected="false">7. Connecteurs</button>
+  <button role="tab" data-tab="debats" aria-selected="false">8. Débats</button>
+</div></nav>
+
+<main>
+<!-- 1. EMPLOIS -->
+<section id="emplois" class="active">
+  <h2>Quand utilise-t-on le subjonctif ?</h2>
+  <p>On l'utilise surtout après <b>que</b>, quand la phrase exprime une nécessité, une volonté, un sentiment, un doute ou un jugement.</p>
+  <div class="tablewrap"><table class="t">
+    <thead><tr><th>Catégorie</th><th>Expressions</th><th>Exemple</th></tr></thead>
+    <tbody>
+      <tr><td><b>Nécessité, obligation</b></td><td>il faut que, il est nécessaire que, il est indispensable que, il est essentiel que</td><td>Il faut que tu <span class="hl">fasses</span> tes devoirs.</td></tr>
+      <tr><td><b>Volonté, souhait</b></td><td>je veux que, je souhaite que, je préfère que, j'aimerais que, je demande que</td><td>Je souhaite qu'il <span class="hl">réussisse</span>.</td></tr>
+      <tr><td><b>Sentiments</b></td><td>je suis content(e) que, j'ai peur que, je regrette que, ça m'étonne que</td><td>Je suis contente que vous <span class="hl">soyez</span> là.</td></tr>
+      <tr><td><b>Doute, possibilité</b></td><td>je doute que, il est possible que, il se peut que, il est peu probable que</td><td>Je doute qu'il <span class="hl">puisse</span> venir.</td></tr>
+      <tr><td><b>Jugement</b></td><td>il est important que, il vaut mieux que, c'est dommage que, c'est normal que</td><td>Il vaut mieux que nous <span class="hl">partions</span> tôt.</td></tr>
+      <tr><td><b>Opinion au négatif</b></td><td>je ne pense pas que, je ne crois pas que, je ne trouve pas que</td><td>Je ne pense pas qu'il <span class="hl">ait</span> raison.</td></tr>
+      <tr><td><b>Attente</b></td><td>j'attends que, en attendant que</td><td>J'attends qu'elle <span class="hl">finisse</span>.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box tip"><h4>💡 Pour retenir</h4><p>Le subjonctif exprime ce qui est <b>subjectif</b> : un désir, un doute, une émotion, un jugement. L'indicatif exprime ce qui est <b>objectif</b> : un fait, une certitude.</p></div>
+</section>
+
+<!-- 2. IRRÉGULIERS -->
+<section id="irreg">
+  <h2>Les verbes irréguliers</h2>
+  <div class="tablewrap"><table class="t conj">
+    <thead><tr><th>Verbe</th><th>que je</th><th>que tu</th><th>qu'il / elle</th><th>que nous</th><th>que vous</th><th>qu'ils / elles</th></tr></thead>
+    <tbody id="irregTable"></tbody>
+  </table></div>
+  <div class="box warn"><p><b>⚠️ Attention :</b> pour <i>vouloir</i> et <i>aller</i>, les formes <b>nous</b> et <b>vous</b> reprennent le radical de l'imparfait : que nous <b>voulions</b>, que vous <b>alliez</b>.</p></div>
+  <h3>Exercice 1 · Conjuguez au subjonctif</h3>
+  <p>Écrivez le verbe entre parenthèses au subjonctif présent.</p>
+  <div class="exo" id="ex-irreg"></div>
+</section>
+
+<!-- 3. FORMATION -->
+<section id="formation">
+  <h2>La formation du subjonctif présent</h2>
+  <div class="box tip">
+    <h4>La méthode</h4>
+    <ol style="margin:4px 0;padding-left:22px">
+      <li><b>je, tu, il, ils</b> : on prend le radical de <b>ils</b> au présent (ils <u>finiss</u>ent, ils <u>prenn</u>ent) et on ajoute <b>-e, -es, -e, -ent</b>.</li>
+      <li><b>nous, vous</b> : on prend la forme de l'<b>imparfait</b> (nous finissions, vous preniez).</li>
+    </ol>
+  </div>
+  <div class="tablewrap"><table class="t conj">
+    <thead><tr><th></th><th>parler</th><th>finir</th><th>prendre</th><th>venir</th></tr></thead>
+    <tbody>
+      <tr><td>radical de « ils »</td><td>parl-</td><td>finiss-</td><td>prenn-</td><td>vienn-</td></tr>
+      <tr><td>que je</td><td>parle</td><td>finisse</td><td>prenne</td><td>vienne</td></tr>
+      <tr><td>que tu</td><td>parles</td><td>finisses</td><td>prennes</td><td>viennes</td></tr>
+      <tr><td>qu'il / elle</td><td>parle</td><td>finisse</td><td>prenne</td><td>vienne</td></tr>
+      <tr><td>que nous</td><td class="hl">parlions</td><td class="hl">finissions</td><td class="hl">prenions</td><td class="hl">venions</td></tr>
+      <tr><td>que vous</td><td class="hl">parliez</td><td class="hl">finissiez</td><td class="hl">preniez</td><td class="hl">veniez</td></tr>
+      <tr><td>qu'ils / elles</td><td>parlent</td><td>finissent</td><td>prennent</td><td>viennent</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box warn"><p><b>⚠️ Pièges :</b> que nous <b>étudiions</b>, que vous <b>riiez</b> (deux i) ; que nous <b>voyions</b>, que vous <b>croyiez</b> (y + i).</p></div>
+  <h3>Exercice 2 · Les trois groupes</h3>
+  <p>Écrivez le verbe entre parenthèses au subjonctif présent.</p>
+  <div class="exo" id="ex-conj"></div>
+</section>
+
+<!-- 4. INFINITIF -->
+<section id="infinitif">
+  <h2>Subjonctif ou infinitif ?</h2>
+  <div class="two">
+    <div class="panel inf"><h4 class="inf">Même sujet → infinitif</h4><p><b>Je</b> veux <span class="c-inf">partir</span>.</p><p><b>Elle</b> a peur <span class="c-inf">de se tromper</span>.</p><p style="font-size:.92rem;color:var(--muted)">C'est la même personne qui veut et qui part.</p></div>
+    <div class="panel sub"><h4 class="sub">Sujets différents → que + subjonctif</h4><p><b>Je</b> veux qu'<b>il</b> <span class="c-sub">parte</span>.</p><p><b>Elle</b> a peur que <b>nous</b> <span class="c-sub">nous trompions</span>.</p><p style="font-size:.92rem;color:var(--muted)">Deux personnes différentes.</p></div>
+  </div>
+  <div class="tablewrap"><table class="t">
+    <thead><tr><th>Même sujet → infinitif</th><th>Sujets différents → subjonctif</th></tr></thead>
+    <tbody>
+      <tr><td>Je suis content <span class="c-inf">d'être</span> ici.</td><td>Je suis content que tu <span class="c-sub">sois</span> ici.</td></tr>
+      <tr><td>Nous préférons <span class="c-inf">rester</span>.</td><td>Nous préférons qu'ils <span class="c-sub">restent</span>.</td></tr>
+      <tr><td>Elle regrette <span class="c-inf">de ne pas pouvoir</span> venir.</td><td>Elle regrette que vous ne <span class="c-sub">puissiez</span> pas venir.</td></tr>
+      <tr><td>Je travaille <span class="c-inf">pour réussir</span>.</td><td>Je t'aide <span class="c-sub">pour que tu réussisses</span>.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box warn"><p><b>⚠️ Les prépositions :</b> être content <b>de</b>, avoir peur <b>de</b>, regretter <b>de</b> + infinitif ; mais vouloir, préférer, aimer + infinitif <b>sans préposition</b>.</p>
+  <p><b>Avec une expression impersonnelle</b> (il est important, il faut…) : sans sujet précis → infinitif (<i>Il est important de dormir</i>) ; avec un sujet précis → subjonctif (<i>Il est important que tu dormes</i>).</p></div>
+  <h3>Exercice 3 · Infinitif ou subjonctif ?</h3>
+  <p>Choisissez la bonne forme. Les indications entre parenthèses donnent le verbe et, parfois, le sujet.</p>
+  <div class="exo" id="ex-inf"></div>
+</section>
+
+<!-- 5. INDICATIF -->
+<section id="indicatif">
+  <h2>Indicatif ou subjonctif ?</h2>
+  <div class="two">
+    <div class="panel ind"><h4 class="ind">📘 Indicatif : la réalité, la certitude</h4>
+      <ul>
+        <li><b>Opinion affirmative</b> : je pense, je crois, je trouve que… Je pense qu'il <span class="c-ind">a</span> raison.</li>
+        <li><b>Certitude</b> : je suis sûr(e), il est évident, il est vrai, il est clair que… Je suis sûre qu'elle <span class="c-ind">viendra</span>.</li>
+        <li><b>Probabilité</b> : il est probable, il paraît, il me semble que… Il paraît qu'elle <span class="c-ind">est</span> malade.</li>
+        <li><b>Constat, déclaration</b> : je vois, je constate, je sais, il affirme que… Je vois qu'il <span class="c-ind">travaille</span>.</li>
+        <li><b>Espérer</b> : J'espère que tu <span class="c-ind">vas</span> bien.</li>
+      </ul></div>
+    <div class="panel sub"><h4 class="sub">📙 Subjonctif : le subjectif, l'incertain</h4>
+      <ul>
+        <li><b>Opinion négative</b> : je ne pense pas, je ne crois pas que… Je ne crois pas qu'elle <span class="c-sub">vienne</span>.</li>
+        <li><b>Doute</b> : je doute, il n'est pas certain, il est peu probable que… Je doute qu'il <span class="c-sub">réussisse</span>.</li>
+        <li><b>Jugement</b> : c'est dommage, c'est normal, il est étrange que… C'est dommage qu'elle <span class="c-sub">parte</span>.</li>
+        <li><b>Possibilité, nécessité</b> : il est possible, il se peut, il faut que… Il est possible qu'il <span class="c-sub">pleuve</span>.</li>
+      </ul></div>
+  </div>
+  <div class="box tip"><h4>💡 La question à se poser</h4><p>Est-ce un <b>fait</b> ou une certitude ? → indicatif. Est-ce une <b>opinion négative</b>, un <b>doute</b>, une <b>émotion</b> ou un <b>jugement</b> ? → subjonctif.</p>
+  <p style="font-size:.93rem"><b>À l'oral :</b> à la forme interrogative (« Tu crois qu'il viendra ? »), on utilise souvent l'indicatif. « Crois-tu qu'il vienne ? » est plus soutenu.</p></div>
+  <p>👉 Pour vous entraîner, faites aussi l'activité <a href="indicatif_ou_subjonctif.html">« Indicatif ou subjonctif ? »</a> en binôme.</p>
+</section>
+
+<!-- 6. TEXTES -->
+<section id="textes">
+  <h2>Deux textes pour pratiquer</h2>
+  <p>Pour chaque verbe, choisissez la forme qui convient : <span class="c-ind">indicatif</span>, <span class="c-sub">subjonctif</span> ou <span class="c-inf">infinitif</span>. Puis appuyez sur <b>Vérifier</b>.</p>
+  <h3>Texte 1 · Le télétravail</h3>
+  <div class="exo"><div class="texte" id="t1"></div><div id="t1-ctl"></div></div>
+  <h3>Texte 2 · L'intelligence artificielle</h3>
+  <div class="exo"><div class="texte" id="t2"></div><div id="t2-ctl"></div></div>
+</section>
+
+<!-- 7. CONNECTEURS -->
+<section id="connecteurs">
+  <h2>Les connecteurs et les modes</h2>
+  <div class="tablewrap"><table class="t">
+    <thead><tr><th>Sens</th><th>+ subjonctif (sujets différents)</th><th>+ infinitif (même sujet)</th></tr></thead>
+    <tbody>
+      <tr><td><b>But</b></td><td>pour que, afin que</td><td>pour, afin de</td></tr>
+      <tr><td><b>Crainte</b></td><td>de peur que, de crainte que</td><td>de peur de, de crainte de</td></tr>
+      <tr><td><b>Concession</b></td><td>bien que, quoique</td><td>—</td></tr>
+      <tr><td><b>Condition</b></td><td>à condition que, pourvu que, à moins que (= sauf si)</td><td>à condition de, à moins de</td></tr>
+      <tr><td><b>Temps</b></td><td>avant que, jusqu'à ce que, en attendant que</td><td>avant de, en attendant de</td></tr>
+      <tr><td><b>Manière</b></td><td>sans que</td><td>sans</td></tr>
+    </tbody>
+  </table></div>
+  <div class="panel ind"><h4 class="ind">Ces connecteurs prennent l'indicatif</h4>
+    <ul>
+      <li><b>Opposition</b> : même si, alors que, tandis que</li>
+      <li><b>Temps</b> : quand, lorsque, dès que, pendant que, depuis que, <b>après que</b> (⚠️ indicatif, contrairement à « avant que »)</li>
+      <li><b>Cause</b> : parce que, puisque, comme, étant donné que</li>
+    </ul></div>
+  <h3>Exercice 4 · Quel mode après le connecteur ?</h3>
+  <p>Écrivez le verbe à la forme qui convient (subjonctif ou indicatif).</p>
+  <div class="exo" id="ex-connect"></div>
+  <p>👉 Pour aller plus loin, faites l'activité <a href="conjonctions_subjonctif.html">« Les conjonctions + subjonctif »</a>.</p>
+</section>
+
+<!-- 8. DÉBATS -->
+<section id="debats">
+  <h2>Production orale : débats</h2>
+  <div class="box tip"><p>En petits groupes, choisissez une fiche. Préparez trois arguments <b>pour</b> et trois arguments <b>contre</b> avec les expressions proposées. Variez les modes : subjonctif, indicatif et infinitif.</p>
+  <p style="font-size:.93rem">Pendant le débat, un·e observateur·trice note les phrases au subjonctif et vérifie la forme du verbe.</p></div>
+  <div class="cards" id="fiches"></div>
+</section>
+</main>
+<footer>Niveau 6 · ENALLT, UNAM · Conception pédagogique : Nadia Aguilar Neri</footer>
+
+<script>
+(function(){
+  "use strict";
+  var L="abcdefgh";
+  /* ---------- Données ---------- */
+  var IRREG=[["être","sois","sois","soit","soyons","soyez","soient"],["avoir","aie","aies","ait","ayons","ayez","aient"],["faire","fasse","fasses","fasse","fassions","fassiez","fassent"],["aller","aille","ailles","aille","allions","alliez","aillent"],["pouvoir","puisse","puisses","puisse","puissions","puissiez","puissent"],["savoir","sache","saches","sache","sachions","sachiez","sachent"],["vouloir","veuille","veuilles","veuille","voulions","vouliez","veuillent"],["falloir","—","—","faille","—","—","—"],["pleuvoir","—","—","pleuve","—","—","—"]];
+
+  var EX_IRREG=[
+    ["Il faut que tu ___ (être) plus attentif en classe.","sois"],
+    ["Je souhaite qu'ils ___ (avoir) plus de temps libre.","aient"],
+    ["Il est nécessaire que nous ___ (savoir) la vérité.","sachions"],
+    ["Je doute qu'elle ___ (pouvoir) terminer à temps.","puisse"],
+    ["Il est important que vous ___ (faire) attention.","fassiez"],
+    ["Je ne crois pas qu'il ___ (vouloir) partir.","veuille"],
+    ["Il est possible qu'elles ___ (aller) au cinéma ce soir.","aillent"],
+    ["Il est possible qu'il ___ (falloir) partir plus tôt.","faille"],
+    ["Je préfère que tu ___ (être) honnête avec moi.","sois"],
+    ["C'est dommage que vous n'___ (avoir) pas le temps.","ayez"],
+    ["Je vais lui expliquer pour qu'il ___ (savoir) la réponse.","sache"],
+    ["Bien qu'ils ___ (pouvoir) venir, ils préfèrent rester chez eux.","puissent"],
+    ["J'aimerais que nous ___ (faire) ce voyage ensemble.","fassions"],
+    ["Pourvu qu'elle ___ (vouloir) bien nous aider !","veuille"],
+    ["Avant que tu ___ (aller) au travail, je te prépare un café.","ailles"]
+  ];
+  var EX_CONJ=[
+    ["Il est essentiel que tu ___ (parler) français tous les jours.","parles"],
+    ["Je veux qu'elle ___ (finir) son travail avant midi.","finisse"],
+    ["Il faut que nous ___ (prendre) une décision rapidement.","prenions"],
+    ["Je doute qu'ils ___ (comprendre) la situation.","comprennent"],
+    ["Il est important que vous ___ (choisir) bien vos mots.","choisissiez"],
+    ["Bien qu'il ___ (travailler) beaucoup, il a des difficultés en maths.","travaille"],
+    ["Je souhaite que tu ___ (réussir) ton examen.","réussisses"],
+    ["Il est possible qu'elle ___ (vendre) sa voiture.","vende"],
+    ["Pour que nous ___ (manger) bien, papa cuisine tous les jours.","mangions"],
+    ["Je ne pense pas qu'ils ___ (écrire) souvent à leurs parents.","écrivent"],
+    ["Il est nécessaire que vous ___ (étudier) chaque jour.","étudiiez"],
+    ["Avant qu'il ___ (partir), dis-lui au revoir.","parte"],
+    ["Je suis contente que tu ___ (venir) à ma fête.","viennes"],
+    ["Il faut que je ___ (lire) ce livre pour lundi.","lise"],
+    ["Pourvu qu'elle ___ (arriver) à l'heure !","arrive"],
+    ["Je préfère que nous ___ (attendre) un peu.","attendions"],
+    ["Il est rare qu'ils ___ (obéir) aux règles.","obéissent"],
+    ["Il faut que vous ___ (remplir) ce formulaire.","remplissiez"],
+    ["Il est temps que vous ___ (répondre) à la question.","répondiez"],
+    ["Je ne crois pas que nous ___ (voir) le film ce soir.","voyions"]
+  ];
+  var EX_INF=[
+    ["Je suis content ___ ici. (être)",["d'être","que je sois"],0,"Même sujet (je) → infinitif avec « de »."],
+    ["Elle souhaite ___ plus de temps. (avoir)",["avoir","qu'elle ait"],0,"Même sujet (elle) → infinitif."],
+    ["Je veux ___ la vérité. (savoir · tu)",["savoir","que tu saches"],1,"Sujets différents (je / tu) → subjonctif."],
+    ["Nous préférons ___ tôt. (partir)",["partir","que nous partions"],0,"Même sujet (nous) → infinitif."],
+    ["Il a peur ___ son examen. (rater · il)",["de rater","qu'il rate"],0,"Même sujet (il) → infinitif avec « de »."],
+    ["Je doute ___ capable de le faire. (être · elle)",["d'être","qu'elle soit"],1,"Sujets différents (je / elle) → subjonctif."],
+    ["Elle est triste ___ seule. (être)",["d'être","qu'elle soit"],0,"Même sujet (elle) → infinitif avec « de »."],
+    ["Je souhaite ___ heureux. (être · vous)",["être","que vous soyez"],1,"Sujets différents (je / vous) → subjonctif."],
+    ["Tu as peur ___ à l'heure. (ne pas arriver · ils)",["de ne pas arriver","qu'ils n'arrivent pas"],1,"Sujets différents (tu / ils) → subjonctif."],
+    ["Nous sommes contents ___ ensemble. (travailler)",["de travailler","que nous travaillions"],0,"Même sujet (nous) → infinitif avec « de »."],
+    ["Il est important ___ bien. (manger · tu)",["de manger","que tu manges"],1,"Expression impersonnelle + sujet précis (tu) → subjonctif."],
+    ["Elle regrette ___ venir à la fête. (ne pas pouvoir)",["de ne pas pouvoir","qu'elle ne puisse pas"],0,"Même sujet (elle) → infinitif avec « de »."]
+  ];
+  // Textes : [texte avant, {ind, subj, inf}, réponse, explication]
+  var T1=[
+    ["De nombreuses entreprises pensent que le télétravail",{ind:"est",subj:"soit",inf:"être"},"ind","Opinion affirmative (penser que) → indicatif."],
+    ["efficace. Cependant, certains managers ne croient pas que les employés",{ind:"peuvent",subj:"puissent",inf:"pouvoir"},"subj","Opinion négative (ne pas croire que) → subjonctif."],
+    ["être aussi productifs à la maison. Il est évident que le télétravail",{ind:"permet",subj:"permette",inf:"permettre"},"ind","Certitude (il est évident que) → indicatif."],
+    ["de gagner du temps. Beaucoup d'employés souhaitent",{ind:"ont",subj:"aient",inf:"avoir"},"inf","Même sujet (les employés souhaitent / ont) → infinitif."],
+    ["plus de flexibilité. Il est nécessaire que les entreprises",{ind:"adaptent",subj:"adaptent",inf:"adapter"},"subj","Nécessité (il est nécessaire que) → subjonctif. La forme est la même qu'à l'indicatif : c'est le mode qui compte !"],
+    ["leurs méthodes. Je constate que de plus en plus de personnes",{ind:"préfèrent",subj:"préfèrent",inf:"préférer"},"ind","Constat (je constate que) → indicatif."],
+    ["travailler depuis chez elles. C'est dommage que certaines entreprises",{ind:"refusent",subj:"refusent",inf:"refuser"},"subj","Jugement (c'est dommage que) → subjonctif."],
+    ["ce changement. Les syndicats demandent que les droits des télétravailleurs",{ind:"sont",subj:"soient",inf:"être"},"subj","Volonté (demander que) → subjonctif."],
+    ["respectés. Bien que le télétravail",{ind:"a",subj:"ait",inf:"avoir"},"subj","Concession (bien que) → subjonctif."],
+    ["des avantages, il présente aussi des défis. Je suis sûr que nous",{ind:"trouverons",subj:"trouvions",inf:"trouver"},"ind","Certitude (je suis sûr que) → indicatif."],
+    ["des solutions. Il est peu probable que toutes les entreprises",{ind:"acceptent",subj:"acceptent",inf:"accepter"},"subj","Doute (il est peu probable que) → subjonctif."],
+    ["le 100 % télétravail. Pour que le système",{ind:"fonctionne",subj:"fonctionne",inf:"fonctionner"},"subj","But (pour que) → subjonctif."],
+    [", il faut que managers et employés",{ind:"communiquent",subj:"communiquent",inf:"communiquer"},"subj","Nécessité (il faut que) → subjonctif."],
+    ["régulièrement. Les experts affirment que le modèle hybride",{ind:"est",subj:"soit",inf:"être"},"ind","Déclaration (affirmer que) → indicatif."],
+    ["la meilleure solution. Il est important",{ind:"respecte",subj:"respecte",inf:"de respecter"},"inf","Expression impersonnelle sans sujet précis → infinitif."],
+    ["l'équilibre entre vie professionnelle et vie personnelle. Je ne pense pas que le travail au bureau",{ind:"disparaîtra",subj:"disparaisse",inf:"disparaître"},"subj","Opinion négative → subjonctif."],
+    ["complètement. Après que la pandémie",{ind:"a transformé",subj:"ait transformé",inf:"avoir transformé"},"ind","Après que → indicatif (contrairement à « avant que »)."],
+    ["nos habitudes, nous devons",{ind:"adaptons",subj:"adaptions",inf:"nous adapter"},"inf","Devoir + infinitif."],
+    [". Il se peut que le bureau traditionnel",{ind:"évoluera",subj:"évolue",inf:"évoluer"},"subj","Possibilité (il se peut que) → subjonctif."],
+    ["vers un espace de collaboration. Tout le monde espère que l'avenir",{ind:"apportera",subj:"apporte",inf:"apporter"},"ind","Espérer que → indicatif (exception à retenir)."]
+  ];
+  var T2=[
+    ["L'intelligence artificielle révolutionne notre société. Il est certain que cette technologie",{ind:"change",subj:"change",inf:"changer"},"ind","Certitude (il est certain que) → indicatif."],
+    ["nos vies. Cependant, je doute que tout le monde",{ind:"comprend",subj:"comprenne",inf:"comprendre"},"subj","Doute (douter que) → subjonctif."],
+    ["ses conséquences. Les experts affirment que l'IA",{ind:"peut",subj:"puisse",inf:"pouvoir"},"ind","Déclaration (affirmer que) → indicatif."],
+    ["résoudre de nombreux problèmes. Il est essentiel que les gouvernements",{ind:"régulent",subj:"régulent",inf:"réguler"},"subj","Nécessité (il est essentiel que) → subjonctif."],
+    ["cette technologie. Beaucoup de gens ont peur",{ind:"perdent",subj:"perdent",inf:"de perdre"},"inf","Même sujet (les gens ont peur / perdent) → infinitif."],
+    ["leur emploi. Il est incroyable que les machines",{ind:"sont",subj:"soient",inf:"être"},"subj","Jugement (il est incroyable que) → subjonctif."],
+    ["capables de créer des images. Je pense que la créativité humaine",{ind:"reste",subj:"reste",inf:"rester"},"ind","Opinion affirmative (je pense que) → indicatif."],
+    ["irremplaçable. Bien que l'IA",{ind:"progresse",subj:"progresse",inf:"progresser"},"subj","Concession (bien que) → subjonctif."],
+    ["rapidement, elle a des limites. Il est possible que les robots",{ind:"deviendront",subj:"deviennent",inf:"devenir"},"subj","Possibilité (il est possible que) → subjonctif."],
+    ["nos assistants quotidiens. Les chercheurs souhaitent",{ind:"développent",subj:"développent",inf:"développer"},"inf","Même sujet → infinitif."],
+    ["une IA éthique. Pour que cette technologie",{ind:"bénéficie",subj:"bénéficie",inf:"bénéficier"},"subj","But (pour que) → subjonctif."],
+    ["à tous, il faut que nous",{ind:"réfléchissons",subj:"réfléchissions",inf:"réfléchir"},"subj","Nécessité (il faut que) → subjonctif."],
+    ["aux conséquences. Je constate que les entreprises",{ind:"investissent",subj:"investissent",inf:"investir"},"ind","Constat (je constate que) → indicatif."],
+    ["beaucoup. C'est dommage que certains pays",{ind:"n'ont pas",subj:"n'aient pas",inf:"ne pas avoir"},"subj","Jugement (c'est dommage que) → subjonctif."],
+    ["accès à ces technologies. Même si l'IA",{ind:"présente",subj:"présente",inf:"présenter"},"ind","Même si → indicatif."],
+    ["des risques, ses avantages sont nombreux. Je ne crois pas que les machines",{ind:"remplaceront",subj:"remplacent",inf:"remplacer"},"subj","Opinion négative → subjonctif."],
+    ["complètement les humains. Il est évident que nous devons",{ind:"apprenons",subj:"apprenions",inf:"apprendre"},"inf","Devoir + infinitif."],
+    ["à vivre avec l'IA. Avant que cette révolution",{ind:"va",subj:"aille",inf:"aller"},"subj","Avant que → subjonctif."],
+    ["trop loin, établissons des règles. Il me semble que le futur",{ind:"appartient",subj:"appartienne",inf:"appartenir"},"ind","Il me semble que → indicatif."],
+    ["à ceux qui sauront s'adapter. J'espère que l'humanité",{ind:"réussira",subj:"réussisse",inf:"réussir"},"ind","Espérer que → indicatif."]
+  ];
+  var T_END={t1:"de bonnes surprises.",t2:"à relever ce défi."};
+  var EX_CONNECT=[
+    ["Bien qu'il ___ (pleuvoir), nous sortirons.",["pleuve"],"bien que → subjonctif"],
+    ["Même si elle ___ (être) fatiguée, elle continue.",["est"],"même si → indicatif"],
+    ["Je vais t'expliquer pour que tu ___ (comprendre).",["comprennes"],"pour que → subjonctif"],
+    ["Parce qu'il ___ (faire) beau, nous pique-niquons.",["fait"],"parce que → indicatif"],
+    ["Avant qu'elle ___ (partir), embrasse-la.",["parte"],"avant que → subjonctif"],
+    ["Depuis qu'il ___ (travailler) ici, il est heureux.",["travaille"],"depuis que → indicatif"],
+    ["Révisons ensemble afin que nous ___ (réussir) l'examen.",["réussissions"],"afin que → subjonctif"],
+    ["Pendant qu'elle ___ (dormir), je lis.",["dort"],"pendant que → indicatif"],
+    ["J'ai tout organisé sans qu'il le ___ (savoir).",["sache"],"sans que → subjonctif"],
+    ["Quand il ___ (arriver), préviens-moi.",["arrivera","arrive"],"quand → indicatif (ici, au futur)"],
+    ["Je viendrai à la fête, à moins que mon chef ___ (vouloir) que je travaille.",["veuille"],"à moins que → subjonctif"],
+    ["Après qu'il ___ (finir) ses devoirs, il regarde la télé.",["a fini"],"après que → indicatif (passé composé)"]
+  ];
+  var FICHES=[
+    ["📱 Les smartphones interdits à l'école","Interdire totalement les téléphones portables dans les établissements scolaires.",["Il est nécessaire que…","Pour que les élèves se concentrent…","Il est évident que… (indicatif)","Afin que l'apprentissage soit efficace…"],["Je doute que…","Il est excessif que…","Bien que les distractions existent…","Il n'est pas certain que…"]],
+    ["🎮 Pas de réseaux sociaux avant 16 ans","Interdire les réseaux sociaux aux moins de 16 ans.",["Il faut absolument que…","Pour que les jeunes soient protégés…","Il est urgent que…","Afin d'éviter les dangers… (infinitif)"],["Il est illusoire de croire que…","Je doute que cette mesure…","Sans que les parents puissent décider…","Je ne pense pas que…"]],
+    ["🚗 Les voitures interdites en centre-ville","Interdire les voitures particulières dans les centres-villes.",["Il est urgent que…","Pour que l'air soit plus pur…","Il est essentiel que…","Afin de réduire la pollution… (infinitif)"],["Il est impossible que…","Je ne crois pas que…","Sans que les commerçants soient consultés…","Il est irréaliste de penser que…"]],
+    ["🎓 L'université gratuite pour tous","Rendre l'enseignement universitaire totalement gratuit.",["Il est juste que…","Pour que tous aient accès aux études…","Il est indispensable que…","Afin que l'éducation soit plus démocratique…"],["Il est peu probable que…","Je doute que l'État puisse…","Bien que l'idée soit généreuse…","Il n'est pas réaliste que…"]],
+    ["🌿 La semaine de quatre jours","Réduire la semaine de travail à quatre jours pour tous les salariés.",["Il est temps que…","Pour que l'équilibre vie / travail soit meilleur…","C'est souhaitable que…","Afin d'améliorer le bien-être… (infinitif)"],["Je ne suis pas convaincu(e) que…","Il est douteux que…","Bien que l'intention soit bonne…","Il est peu probable que…"]],
+    ["🥩 Une taxe sur la viande","Créer une taxe environnementale sur la consommation de viande.",["Il est nécessaire que…","Pour que l'impact environnemental diminue…","Il est important que…","Afin de réduire les émissions… (infinitif)"],["Il est injuste que…","Je ne trouve pas que…","Sans que les agriculteurs soient aidés…","Il est exagéré que…"]],
+    ["🗳️ Le vote obligatoire","Rendre le vote obligatoire sous peine d'amende.",["Il est essentiel que…","Pour que la démocratie soit plus forte…","C'est normal que…","Afin que tous participent…"],["Je ne pense pas que…","Il est inacceptable que…","Bien que la participation soit importante…","Il est antidémocratique que…"]],
+    ["💰 Le revenu universel","Créer un revenu de base pour tous les citoyens, sans condition.",["Il est temps que…","Pour que la pauvreté diminue…","C'est une bonne chose que…","Afin de garantir la dignité… (infinitif)"],["Il est utopique de croire que…","Je ne crois pas que…","Bien que l'idée soit séduisante…","Il est peu probable que…"]]
+  ];
+
+  /* ---------- Utilitaires ---------- */
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+  function typo(root){var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),n;while((n=w.nextNode())){var v=n.nodeValue,nv=v.replace(/ ([?!:;»])/g," $1").replace(/« /g,"« ");if(nv!==v)n.nodeValue=nv;}}
+  function norm(s){return s.toLowerCase().replace(/[’']/g,"'").replace(/\s+/g," ").trim();}
+  function bare(s){return norm(s).normalize("NFD").replace(/[̀-ͯ]/g,"");}
+  function el(t,c,h){var n=document.createElement(t);if(c)n.className=c;if(h!=null)n.innerHTML=h;return n;}
+  function msg(r){return r===1?"Parfait !":r>=.8?"Excellent travail !":r>=.6?"Bon travail : relisez les explications des erreurs.":"Relisez la règle et recommencez : vous allez progresser !";}
+  function controls(box,onCheck,onReset){
+    var row=el("div","btnrow"),v=el("button","btn","✓ Vérifier"),r=el("button","btn ghost","↺ Recommencer");
+    v.type=r.type="button";var sc=el("div","score"),bar=el("div","bar","<div></div>");bar.style.display="none";
+    v.addEventListener("click",function(){var res=onCheck();sc.textContent="Score : "+res[0]+" / "+res[1]+" · "+msg(res[0]/res[1]);typo(sc);bar.style.display="";bar.firstChild.style.width=(res[0]/res[1]*100)+"%";});
+    r.addEventListener("click",function(){onReset();sc.textContent="";bar.style.display="none";});
+    row.appendChild(v);row.appendChild(r);box.appendChild(row);box.appendChild(sc);box.appendChild(bar);
+  }
+
+  /* ---------- Onglets ---------- */
+  var tabs=document.querySelectorAll("nav button[data-tab]");
+  function openTab(id){tabs.forEach(function(b){b.setAttribute("aria-selected",b.dataset.tab===id?"true":"false");});document.querySelectorAll("main section").forEach(function(s){s.classList.toggle("active",s.id===id);});window.scrollTo({top:0,behavior:"smooth"});}
+  tabs.forEach(function(b){b.addEventListener("click",function(){openTab(b.dataset.tab);});});
+
+  /* ---------- Tableau des irréguliers ---------- */
+  document.getElementById("irregTable").innerHTML=IRREG.map(function(r){return "<tr>"+r.map(function(c,i){return "<td"+((i===4||i===5)&&c!=="—"?" class='hl'":"")+">"+esc(c)+"</td>";}).join("")+"</tr>";}).join("");
+
+  /* ---------- Exercices à écrire ---------- */
+  function buildTyping(id,data,getHint){
+    var box=document.getElementById(id);
+    function render(){
+      box.innerHTML="";
+      data.forEach(function(d,i){
+        var answers=Array.isArray(d[1])?d[1]:[d[1]];
+        var it=el("div","item");
+        var html=esc(d[0]).replace("___",'<input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Réponse '+(i+1)+'">');
+        it.innerHTML='<span class="n">'+(i+1)+'.</span>'+html+(getHint?'<span class="hint">'+esc(getHint(d))+'</span>':"")+'<div class="fb"></div>';
+        it.dataset.answers=JSON.stringify(answers);it.dataset.why=d[2]||"";
+        box.appendChild(it);
+      });
+      typo(box);
+      controls(box,check,render);
+    }
+    function check(){
+      var good=0,items=box.querySelectorAll(".item");
+      items.forEach(function(it){
+        var inp=it.querySelector("input"),fb=it.querySelector(".fb"),ans=JSON.parse(it.dataset.answers),v=inp.value;
+        var exact=ans.some(function(a){return norm(a)===norm(v);}),near=!exact&&v.trim()&&ans.some(function(a){return bare(a)===bare(v);});
+        inp.classList.remove("ok","ko");
+        if(exact){good++;inp.classList.add("ok");fb.className="fb show ok";fb.textContent="✓ Correct"+(it.dataset.why?" · "+it.dataset.why:"");}
+        else if(near){good++;inp.classList.add("ok");fb.className="fb show warn";fb.textContent="✓ Presque ! Attention aux accents : "+ans[0];}
+        else{inp.classList.add("ko");fb.className="fb show ko";fb.textContent=(v.trim()?"✗ ":"✗ Pas de réponse. ")+"Réponse : "+ans.join(" ou ")+(it.dataset.why?" · "+it.dataset.why:"");}
+        typo(fb);
+      });
+      return [good,items.length];
+    }
+    render();
+  }
+  buildTyping("ex-irreg",EX_IRREG);
+  buildTyping("ex-conj",EX_CONJ);
+  buildTyping("ex-connect",EX_CONNECT);
+
+  /* ---------- Exercice à choix (infinitif) ---------- */
+  (function(){
+    var box=document.getElementById("ex-inf"),sel=[],ord=[];
+    function render(){
+      box.innerHTML="";sel=EX_INF.map(function(){return -1;});
+      ord=EX_INF.map(function(){return Math.random()<.5?[0,1]:[1,0];});
+      EX_INF.forEach(function(d,i){
+        var it=el("div","item");it.innerHTML='<div><span class="n">'+(i+1)+'.</span>'+esc(d[0])+'</div>';
+        var opts=el("div","opts two-col");
+        ord[i].forEach(function(oi,j){var o=d[1][oi];var b=el("button","opt",'<span class="l">'+L[j]+')</span>'+esc(o));b.type="button";b.dataset.oi=oi;
+          b.addEventListener("click",function(){if(b.disabled)return;sel[i]=oi;opts.querySelectorAll(".opt").forEach(function(x){x.classList.remove("sel");});b.classList.add("sel");});opts.appendChild(b);});
+        it.appendChild(opts);it.appendChild(el("div","fb"));box.appendChild(it);
+      });
+      typo(box);controls(box,check,render);
+    }
+    function check(){
+      var good=0;box.querySelectorAll(".item").forEach(function(it,i){
+        var d=EX_INF[i],bs=it.querySelectorAll(".opt"),fb=it.querySelector(".fb");
+        var pos=function(oi){return ord[i].indexOf(oi);};
+        bs.forEach(function(b){b.disabled=true;b.classList.remove("sel");});bs[pos(d[2])].classList.add("ok");
+        if(sel[i]===d[2]){good++;fb.className="fb show ok";fb.textContent="✓ "+d[3];}
+        else{if(sel[i]>=0)bs[pos(sel[i])].classList.add("ko");fb.className="fb show ko";fb.textContent=(sel[i]<0?"✗ Pas de réponse. ":"✗ ")+"Réponse "+L[pos(d[2])]+") « "+d[1][d[2]]+" ». "+d[3];}
+        typo(fb);});
+      return [good,EX_INF.length];
+    }
+    render();
+  })();
+
+  /* ---------- Textes à trous ---------- */
+  function buildText(id,data){
+    var box=document.getElementById(id),ctl=document.getElementById(id+"-ctl");
+    function render(){
+      var h="";
+      data.forEach(function(d,i){
+        h+=(i&&!/^[.,;:]/.test(d[0])?" ":"")+esc(d[0])+' <select aria-label="Verbe '+(i+1)+'" data-i="'+i+'"><option value="">— '+(i+1)+' —</option>'+
+          '<option value="ind">a) '+esc(d[1].ind)+' · ind.</option><option value="subj">b) '+esc(d[1].subj)+' · subj.</option><option value="inf">c) '+esc(d[1].inf)+' · inf.</option></select>';
+      });
+      box.innerHTML=h+" "+esc(T_END[id]);typo(box);
+      ctl.innerHTML="";var ex=el("ol","explain");ctl.appendChild(ex);
+      controls(ctl,function(){
+        var good=0;ex.innerHTML="";
+        box.querySelectorAll("select").forEach(function(s,i){
+          var d=data[i],ok=s.value===d[2];s.classList.remove("ok","ko");s.classList.add(ok?"ok":"ko");if(ok)good++;
+          var li=el("li",null,(ok?"✓ ":"✗ ")+"<b>"+esc(d[1][d[2]])+"</b> : "+esc(d[3]));li.style.color=ok?"var(--ok)":"var(--ko)";ex.appendChild(li);
+        });
+        ex.classList.add("show");typo(ex);
+        return [good,data.length];
+      },render);
+    }
+    render();
+  }
+  buildText("t1",T1);buildText("t2",T2);
+
+  /* ---------- Fiches de débat ---------- */
+  document.getElementById("fiches").innerHTML=FICHES.map(function(f){
+    return '<div class="card"><h4>'+esc(f[0])+'</h4><p>'+esc(f[1])+'</p>'+
+      '<div class="pour"><b>✓ Pour</b><ul>'+f[2].map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+'</ul></div>'+
+      '<div class="contre"><b>✗ Contre</b><ul>'+f[3].map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+'</ul></div></div>';
+  }).join("");
+
+  typo(document.body);
+})();
+</script>
+</body>
+</html>
