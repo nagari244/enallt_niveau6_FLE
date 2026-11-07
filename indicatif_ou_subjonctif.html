@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indicatif ou subjonctif ?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --surface:#f6f7f9; --line:#dfe3e8; --text:#1f2933; --muted:#5b6673;
+    --accent:#002B5C; --accent-soft:#eaf0f7; --gold:#b8892a; --gold-soft:#faf4e6;
+    --ind:#1d5fa8; --ind-soft:#e8f1fb; --sub:#7a3e8c; --sub-soft:#f4ecf7;
+    --ok:#1d6b45; --ok-bg:#e3f3ea; --ko:#b3403a; --ko-bg:#fbecea;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:'Source Sans 3',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:17px;line-height:1.55}
+  a{color:var(--accent)}
+  .wrap{max-width:760px;margin:0 auto;padding:18px 16px 60px}
+  .back{display:inline-block;margin-bottom:6px;font-size:.9rem;font-weight:600;text-decoration:none}
+  .kicker{font-size:.82rem;font-weight:700;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+  h1{margin:4px 0 6px;font-size:1.8rem;line-height:1.2;color:var(--accent)}
+  h2{font-size:1.25rem;color:var(--accent);margin:22px 0 8px}
+  p{margin:8px 0}
+  .box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}
+  .box > :first-child{margin-top:0}.box > :last-child{margin-bottom:0}
+  .choose{display:grid;grid-template-columns:1fr;gap:12px;margin:14px 0}
+  @media(min-width:560px){.choose{grid-template-columns:1fr 1fr 1fr}}
+  .pick{font:inherit;text-align:left;border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff;cursor:pointer;min-height:84px;color:var(--text)}
+  .pick b{display:block;font-size:1.1rem;color:var(--accent)}
+  .pick span{font-size:.92rem;color:var(--muted)}
+  .pick:hover{border-color:var(--gold)}
+  .hidden{display:none!important}
+
+  .top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 10px}
+  .who{font-weight:700;color:var(--accent)}
+  .counts{display:flex;gap:8px;font-weight:700;font-size:.95rem}
+  .counts span{border-radius:999px;padding:3px 10px}
+  .c-ok{background:var(--ok-bg);color:var(--ok)} .c-ko{background:var(--ko-bg);color:var(--ko)}
+  .bar{height:8px;background:var(--line);border-radius:999px;overflow:hidden}
+  .bar > div{height:100%;width:0;background:var(--accent);transition:width .3s}
+  .qcard{border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin-top:14px;background:#fff}
+  .qnum{font-size:.85rem;font-weight:700;color:var(--muted)}
+  .qtype{display:inline-block;font-size:.8rem;font-weight:700;color:#7a5a12;background:var(--gold-soft);border-radius:999px;padding:2px 10px;margin-left:6px}
+  .sentence{font-size:1.4rem;line-height:1.5;text-align:center;margin:18px 0 20px}
+  .sentence .ex{color:var(--accent);font-weight:700}
+  .sentence .blank{display:inline-block;min-width:4.5em;border-bottom:2px dashed var(--gold);color:var(--accent);font-weight:700}
+  .sentence .blank.ok{color:var(--ok);border-bottom-color:var(--ok)}
+  .modes{display:grid;grid-template-columns:1fr;gap:10px}
+  @media(min-width:520px){.modes{grid-template-columns:1fr 1fr}}
+  .mode{font:inherit;border-radius:12px;padding:14px 12px;min-height:64px;cursor:pointer;border:2px solid transparent;text-align:center;color:var(--text)}
+  .mode .m{display:block;font-weight:700;letter-spacing:.04em;font-size:.95rem}
+  .mode .v{display:block;font-size:1.2rem;font-weight:600}
+  .mode.ind{background:var(--ind-soft)} .mode.ind .m{color:var(--ind)}
+  .mode.sub{background:var(--sub-soft)} .mode.sub .m{color:var(--sub)}
+  .mode.sel{border-color:var(--accent)}
+  .mode.ok{border-color:var(--ok);background:var(--ok-bg)} .mode.ko{border-color:var(--ko);background:var(--ko-bg)}
+  .mode:disabled{cursor:default}
+  .fb{margin-top:14px;border-radius:12px;padding:12px 14px;display:none}
+  .fb.show{display:block}
+  .fb.ok{background:var(--ok-bg);color:var(--ok)} .fb.ko{background:var(--ko-bg);color:var(--ko)}
+  .rule{margin-top:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:none;font-size:.96rem}
+  .rule.show{display:block}
+  .rule b{color:var(--accent)}
+  .btnrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;justify-content:flex-end}
+  .btn{font:inherit;font-weight:600;border-radius:10px;padding:11px 18px;min-height:46px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  .btn.ghost{background:#fff;color:var(--accent)}
+  .btn:disabled{opacity:.45;cursor:default}
+  .result{text-align:center}
+  .big{font-size:2.6rem;font-weight:700;color:var(--accent);margin:6px 0}
+  .errs{text-align:left;margin-top:14px}
+  .errs li{margin:8px 0;font-size:.96rem}
+  .two{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:640px){.two{grid-template-columns:1fr 1fr}}
+  .panel{border-radius:12px;padding:12px 14px}
+  .panel.ind{background:var(--ind-soft);border:1px solid #c5daf0} .panel.sub{background:var(--sub-soft);border:1px solid #dfcbe6}
+  .panel h3{margin:0 0 6px;font-size:1.05rem} .panel.ind h3{color:var(--ind)} .panel.sub h3{color:var(--sub)}
+  .panel ul{margin:0;padding-left:18px} .panel li{margin:4px 0;font-size:.96rem}
+  details{border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:18px 0;background:#fff}
+  summary{cursor:pointer;font-weight:700;color:var(--accent);min-height:30px}
+  footer{max-width:760px;margin:0 auto;padding:0 16px 30px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← Matériel didactique</a>
+  <div class="kicker">Niveau 6 · B1 · Grammaire · En binôme</div>
+  <h1>Indicatif ou subjonctif ?</h1>
+
+  <!-- ACCUEIL -->
+  <div id="home">
+    <div class="box">
+      <p><b>Comment jouer :</b> l'étudiant·e A fait la série A et l'étudiant·e B la série B (12 phrases chacun·e). Choisissez le mode, puis appuyez sur <b>Vérifier</b>.</p>
+      <p><b>Ensuite, à l'oral :</b> lisez à votre partenaire une phrase de votre série, sans le verbe. Il ou elle dit le mode et justifie : « C'est le subjonctif parce que… ».</p>
+    </div>
+    <div class="choose">
+      <button class="pick" type="button" data-set="A"><b>Étudiant·e A</b><span>12 phrases</span></button>
+      <button class="pick" type="button" data-set="B"><b>Étudiant·e B</b><span>12 phrases</span></button>
+      <button class="pick" type="button" data-set="all"><b>Seul·e</b><span>Les 24 phrases, dans le désordre</span></button>
+    </div>
+    <details>
+      <summary>📌 Aide-mémoire</summary>
+      <div id="memo1"></div>
+    </details>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" class="hidden">
+    <div class="top"><span class="who" id="who"></span><span class="counts"><span class="c-ok" id="nOk">✓ 0</span><span class="c-ko" id="nKo">✗ 0</span></span></div>
+    <div class="bar"><div id="prog"></div></div>
+    <div class="qcard">
+      <div><span class="qnum" id="qnum"></span><span class="qtype" id="qtype"></span></div>
+      <p class="sentence" id="sentence"></p>
+      <div class="modes">
+        <button class="mode ind" type="button" data-m="ind"><span class="m">a) INDICATIF</span><span class="v" id="vInd"></span></button>
+        <button class="mode sub" type="button" data-m="sub"><span class="m">b) SUBJONCTIF</span><span class="v" id="vSub"></span></button>
+      </div>
+      <div class="fb" id="fb"></div>
+      <div class="rule" id="rule"></div>
+      <div class="btnrow">
+        <button class="btn ghost" type="button" id="quit">Quitter</button>
+        <button class="btn" type="button" id="check" disabled>✓ Vérifier</button>
+        <button class="btn hidden" type="button" id="next">Suivant →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RÉSULTATS -->
+  <div id="result" class="hidden">
+    <div class="qcard result">
+      <div class="qnum" id="rWho"></div>
+      <div class="big" id="rScore"></div>
+      <p id="rMsg"></p>
+      <div class="errs" id="rErrs"></div>
+      <div class="btnrow" style="justify-content:center">
+        <button class="btn ghost" type="button" id="again">↺ Recommencer</button>
+        <button class="btn" type="button" id="home2">Changer de série</button>
+      </div>
+    </div>
+    <details open>
+      <summary>📌 Aide-mémoire</summary>
+      <div id="memo2"></div>
+    </details>
+  </div>
+</div>
+<footer>Niveau 6 · ENALLT, UNAM · Conception pédagogique : Nadia Aguilar Neri</footer>
+
+<template id="memoTpl">
+  <div class="two" style="margin-top:10px">
+    <div class="panel ind"><h3>INDICATIF : c'est réel, probable ou affirmé</h3><ul>
+      <li>il est vrai, il est certain, il est évident que</li>
+      <li>il est probable que</li>
+      <li>il paraît que (on rapporte une information)</li>
+      <li>il me / te / lui semble que (opinion personnelle)</li>
+      <li>je suppose que (verbe conjugué)</li>
+      <li>se douter que (= deviner, pressentir)</li>
+      <li>espérer que</li>
+    </ul></div>
+    <div class="panel sub"><h3>SUBJONCTIF : c'est incertain ou imaginé</h3><ul>
+      <li>douter que</li>
+      <li>il est possible que, il se peut que</li>
+      <li>il n'est pas certain / sûr que</li>
+      <li>il semble que (sans pronom : impression)</li>
+      <li>supposons que, supposez que, imaginons que (impératif : hypothèse)</li>
+    </ul></div>
+  </div>
+  <p style="font-size:.93rem;color:var(--muted)"><b>Pièges :</b> <i>douter</i> (subjonctif) ≠ <i>se douter</i> (indicatif) · <i>possible</i> (subjonctif) ≠ <i>probable</i> (indicatif) · <i>il semble que</i> (subjonctif) ≠ <i>il me semble que</i> (indicatif).</p>
+</template>
+
+<script>
+(function(){
+  "use strict";
+  // [expression, avant, après, indicatif, subjonctif, bonne réponse, type, règle]
+  var A=[
+    ["Il semble","qu'elle","malade.","est","soit","sub","Impression","« Il semble que », sans pronom, exprime une impression incertaine : on utilise en général le subjonctif."],
+    ["Il me semble","qu'elle","fatiguée.","est","soit","ind","Opinion personnelle","« Il me / te / lui semble que » présente une opinion personnelle, comme « je pense que » : indicatif."],
+    ["Supposons","qu'il","raison.","a","ait","sub","Hypothèse","« Supposons que », à l'impératif, imagine une situation : subjonctif."],
+    ["Je suppose","qu'il","demain.","viendra","vienne","ind","Supposition probable","« Je suppose que » (verbe conjugué) présente une hypothèse probable, presque une certitude : indicatif."],
+    ["Je doute","qu'il","capable de le faire.","est","soit","sub","Doute","« Douter que » met en question la réalité du fait : subjonctif."],
+    ["Je me doute","qu'il","en retard.","sera","soit","ind","Intuition","« Se douter que » = deviner, pressentir. C'est presque une certitude : indicatif. Attention : douter ≠ se douter !"],
+    ["Il est probable","qu'elle","en vacances.","est","soit","ind","Probabilité","« Il est probable que » exprime une forte probabilité : indicatif. Ne confondez pas avec « il est possible que »."],
+    ["Il est possible","qu'elle","déjà partie.","est","soit","sub","Possibilité","« Il est possible que » exprime une simple possibilité : subjonctif."],
+    ["Il n'est pas certain","qu'il","venir.","peut","puisse","sub","Certitude niée","La négation enlève la certitude : « il n'est pas certain que » + subjonctif (mais « il est certain que » + indicatif)."],
+    ["Il paraît","qu'ils","déménager bientôt.","vont","aillent","ind","Information rapportée","« Il paraît que » rapporte une information présentée comme vraie (= on dit que) : indicatif."],
+    ["Il est vrai","qu'elle","du talent.","a","ait","ind","Vérité","« Il est vrai que » affirme un fait : indicatif."],
+    ["J'espère","qu'il te","ce soir.","rappellera","rappelle","ind","Espoir","« Espérer que » est suivi de l'indicatif, souvent au futur. C'est une exception à retenir !"]
+  ];
+  var B=[
+    ["Il semble","que vous","tort.","avez","ayez","sub","Impression","« Il semble que », sans pronom, exprime une impression incertaine : subjonctif, quel que soit le sujet."],
+    ["Vous supposez","qu'elle","d'accord.","est","soit","ind","Supposition probable","« Vous supposez que » : le verbe est conjugué (ce n'est pas l'impératif « Supposez ! »). La supposition est présentée comme probable : indicatif."],
+    ["Je doute fortement","qu'il","la vérité.","dit","dise","sub","Doute","« Douter que » demande toujours le subjonctif, même avec « fortement »."],
+    ["Je me doute","que tu","de mauvaise humeur.","es","sois","ind","Intuition","« Se douter que » = deviner, pressentir : indicatif."],
+    ["Il est probable","qu'ils","arrivés hier.","sont","soient","ind","Probabilité","« Il est probable que » : forte probabilité, presque une certitude → indicatif."],
+    ["Il est possible","que le train","du retard.","a","ait","sub","Possibilité","« Il est possible que » : simple éventualité → subjonctif."],
+    ["Il n'est pas sûr","qu'elle","Paul.","connaît","connaisse","sub","Certitude niée","« Il n'est pas sûr que » : la négation crée le doute → subjonctif."],
+    ["Il paraît","qu'ils","un trésor.","ont trouvé","aient trouvé","ind","Information rapportée","« Il paraît que » présente l'information comme vraie : indicatif."],
+    ["Il est vrai","qu'il","trop tard maintenant.","est","soit","ind","Vérité","« Il est vrai que » affirme la réalité d'un fait : indicatif."],
+    ["J'espère","qu'il ne","pas trop tard.","sera","soit","ind","Espoir","« Espérer que » + indicatif, même à la forme négative dans la subordonnée."],
+    ["Supposez","qu'on","en 2100.","vit","vive","sub","Hypothèse","« Supposez que », à l'impératif, imagine une situation : subjonctif."],
+    ["Je doute","qu'il","honnête avec nous.","est","soit","sub","Doute","« Douter que » exprime le scepticisme : subjonctif."]
+  ];
+  var $=function(id){return document.getElementById(id);};
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function typo(root){var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),n;while((n=w.nextNode())){var v=n.nodeValue,nv=v.replace(/ ([?!:;»])/g," $1").replace(/« /g,"« ");if(nv!==v)n.nodeValue=nv;}}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+  var tpl=$("memoTpl");$("memo1").appendChild(tpl.content.cloneNode(true));$("memo2").appendChild(tpl.content.cloneNode(true));
+
+  var set,label,qs,idx,ok,ko,choice,errs;
+  function show(id){["home","quiz","result"].forEach(function(x){$(x).classList.toggle("hidden",x!==id);});window.scrollTo({top:0});}
+  function start(s){
+    set=s;label=s==="A"?"Étudiant·e A":s==="B"?"Étudiant·e B":"Seul·e · 24 phrases";
+    qs=s==="A"?A.slice():s==="B"?B.slice():shuffle(A.concat(B));
+    idx=0;ok=0;ko=0;errs=[];$("who").textContent=label;show("quiz");render();
+  }
+  function sentence(q,fill){
+    return '<span class="ex">'+esc(q[0])+'</span> '+esc(q[1])+(/'$/.test(q[1])?"":" ")+'<span class="blank'+(fill?' ok':'')+'">'+(fill?esc(fill):"______")+'</span> '+esc(q[2]);
+  }
+  function render(){
+    var q=qs[idx];choice=null;
+    $("qnum").textContent="Phrase "+(idx+1)+" / "+qs.length;$("qtype").textContent=q[6];
+    $("sentence").innerHTML=sentence(q);$("vInd").textContent=q[3];$("vSub").textContent=q[4];
+    document.querySelectorAll(".mode").forEach(function(b){b.disabled=false;b.classList.remove("sel","ok","ko");});
+    $("fb").className="fb";$("rule").className="rule";$("check").disabled=true;$("check").classList.remove("hidden");$("next").classList.add("hidden");
+    $("prog").style.width=(idx/qs.length*100)+"%";
+    $("nOk").textContent="✓ "+ok;$("nKo").textContent="✗ "+ko;typo($("quiz"));
+  }
+  document.querySelectorAll(".mode").forEach(function(b){b.addEventListener("click",function(){
+    if(b.disabled)return;choice=b.dataset.m;document.querySelectorAll(".mode").forEach(function(x){x.classList.toggle("sel",x===b);});$("check").disabled=false;});});
+  $("check").addEventListener("click",function(){
+    if(!choice)return;var q=qs[idx],good=choice===q[5],right=q[5]==="ind"?q[3]:q[4];
+    document.querySelectorAll(".mode").forEach(function(b){b.disabled=true;b.classList.remove("sel");if(b.dataset.m===q[5])b.classList.add("ok");else if(b.dataset.m===choice)b.classList.add("ko");});
+    if(good){ok++;$("fb").className="fb show ok";$("fb").textContent="✓ Bravo ! C'est "+(q[5]==="ind"?"l'indicatif":"le subjonctif")+".";}
+    else{ko++;errs.push(q);$("fb").className="fb show ko";$("fb").textContent="✗ Non, ici c'est "+(q[5]==="ind"?"l'indicatif":"le subjonctif")+".";}
+    $("sentence").innerHTML=sentence(q,right);
+    $("rule").innerHTML="<b>Règle à retenir :</b> "+esc(q[7]);$("rule").className="rule show";
+    $("check").classList.add("hidden");$("next").classList.remove("hidden");$("next").textContent=idx===qs.length-1?"Voir mon score →":"Suivant →";
+    $("nOk").textContent="✓ "+ok;$("nKo").textContent="✗ "+ko;$("prog").style.width=((idx+1)/qs.length*100)+"%";
+    typo($("quiz"));$("next").focus({preventScroll:true});
+  });
+  $("next").addEventListener("click",function(){idx++;if(idx<qs.length)render();else results();});
+  function results(){
+    var r=ok/qs.length;$("rWho").textContent=label;$("rScore").textContent=ok+" / "+qs.length;
+    $("rMsg").textContent=r===1?"Parfait ! Vous maîtrisez la différence.":r>=.8?"Excellent travail ! Relisez les quelques erreurs ci-dessous.":r>=.6?"Bon travail. Relisez l'aide-mémoire et les règles de vos erreurs.":"Courage ! Relisez l'aide-mémoire et recommencez : vous allez progresser.";
+    $("rErrs").innerHTML=errs.length?"<b>À revoir :</b><ol>"+errs.map(function(q){return "<li>"+sentence(q,q[5]==="ind"?q[3]:q[4])+"<br><span style='color:var(--muted)'>"+esc(q[7])+"</span></li>";}).join("")+"</ol>":"";
+    show("result");typo($("result"));
+  }
+  document.querySelectorAll(".pick").forEach(function(b){b.addEventListener("click",function(){start(b.dataset.set);});});
+  $("quit").addEventListener("click",function(){show("home");});
+  $("again").addEventListener("click",function(){start(set);});
+  $("home2").addEventListener("click",function(){show("home");});
+  typo(document.body);
+})();
+</script>
+</body>
+</html>

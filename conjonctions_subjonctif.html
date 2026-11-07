@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les conjonctions + subjonctif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --surface:#f6f7f9; --line:#dfe3e8; --text:#1f2933; --muted:#5b6673;
+    --accent:#002B5C; --accent-soft:#eaf0f7; --gold:#b8892a; --gold-soft:#faf4e6;
+    --sub:#7a3e8c; --sub-soft:#f4ecf7; --inf:#8a6a0c; --inf-soft:#faf3df;
+    --ok:#1d6b45; --ok-bg:#e3f3ea; --ko:#b3403a; --ko-bg:#fbecea;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:'Source Sans 3',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:17px;line-height:1.55}
+  a{color:var(--accent)}
+  header{padding:18px 16px 10px;max-width:900px;margin:0 auto}
+  .back{display:inline-block;margin-bottom:6px;font-size:.9rem;font-weight:600;text-decoration:none}
+  .kicker{font-size:.82rem;font-weight:700;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+  header h1{margin:4px 0 4px;font-size:1.8rem;line-height:1.2;color:var(--accent)}
+  header p{margin:0;color:var(--muted)}
+  nav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+  nav .inner{max-width:900px;margin:0 auto;display:flex;gap:2px;overflow-x:auto;padding:0 8px;scrollbar-width:none}
+  nav .inner::-webkit-scrollbar{display:none}
+  nav button{flex:0 0 auto;border:0;background:none;font:inherit;font-weight:600;color:var(--muted);padding:12px 11px;min-height:48px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+  nav button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--gold)}
+  main{max-width:900px;margin:0 auto;padding:18px 16px 70px}
+  section{display:none} section.active{display:block}
+  h2{font-size:1.4rem;margin:4px 0 10px;color:var(--accent)}
+  h3{font-size:1.12rem;margin:22px 0 8px;color:var(--accent)}
+  h4{margin:0 0 6px;font-size:1.02rem}
+  p{margin:8px 0}
+  .box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}
+  .box.tip{background:var(--accent-soft);border-color:#cfdbe8}
+  .box.warn{background:var(--gold-soft);border-color:#ecdcb4}
+  .box > :first-child{margin-top:0}.box > :last-child{margin-bottom:0}
+  .grid{display:grid;grid-template-columns:1fr;gap:12px;margin:12px 0}
+  @media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+  .sens{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff}
+  .sens h4{color:var(--sub)}
+  .sens .q{font-size:.88rem;color:var(--muted);margin:0 0 6px}
+  .sens ul{margin:0;padding-left:18px} .sens li{margin:5px 0}
+  .hl{color:var(--sub);font-weight:700}
+  .cj{font-weight:700;color:var(--accent)}
+
+  .exo{border:1px solid var(--line);border-radius:12px;padding:6px 14px 14px;margin:14px 0;background:#fff}
+  .bank{position:sticky;top:49px;z-index:10;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:10px 0;display:flex;flex-wrap:wrap;gap:8px}
+  .bank .lab{width:100%;font-size:.85rem;font-weight:700;color:var(--muted)}
+  .chip{font:inherit;font-weight:600;border:1.5px solid #c9b3d1;background:var(--sub-soft);color:var(--sub);border-radius:999px;padding:7px 13px;min-height:42px;cursor:pointer}
+  .chip.sel{background:var(--sub);color:#fff;border-color:var(--sub)}
+  .chip.used{display:none}
+  @media(max-width:639px){.bank{padding:8px 10px;gap:6px}.bank .lab{display:none}.chip{font-size:.92rem;padding:4px 10px;min-height:36px}}
+  .item{padding:12px 0;border-bottom:1px solid var(--line)}
+  .item:last-of-type{border-bottom:0}
+  .item .n{font-weight:700;color:var(--accent);margin-right:6px}
+  .slot{font:inherit;display:inline-block;min-width:8em;min-height:38px;padding:4px 10px;margin:2px 2px;border:1.5px dashed var(--gold);border-radius:8px;background:var(--gold-soft);color:var(--sub);font-weight:700;cursor:pointer;vertical-align:middle}
+  .slot.filled{border-style:solid;background:#fff}
+  .slot.ok{border-color:var(--ok);background:var(--ok-bg);color:var(--ok)} .slot.ko{border-color:var(--ko);background:var(--ko-bg);color:var(--ko)}
+  .tag{display:inline-block;font-size:.78rem;font-weight:700;color:var(--muted);background:var(--surface);border-radius:999px;padding:1px 8px;margin-left:4px}
+  .fb{font-size:.93rem;margin-top:6px;display:none;border-radius:8px;padding:6px 10px}
+  .fb.show{display:block}
+  .fb.ok{color:var(--ok);background:var(--ok-bg)} .fb.ko{color:var(--ko);background:var(--ko-bg)}
+  .opts{display:grid;gap:8px;margin-top:8px}
+  @media(min-width:640px){.opts{grid-template-columns:repeat(3,1fr)} .opts.two{grid-template-columns:1fr 1fr}}
+  .opt{font:inherit;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;min-height:46px;cursor:pointer;color:var(--text)}
+  .opt .l{font-weight:700;margin-right:6px}
+  .opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+  .opt.ok{border-color:var(--ok);background:var(--ok-bg)} .opt.ko{border-color:var(--ko);background:var(--ko-bg)}
+  .opt:disabled{cursor:default}
+  .btnrow{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px}
+  .btn{font:inherit;font-weight:600;border-radius:10px;padding:11px 16px;min-height:46px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  .btn.ghost{background:#fff;color:var(--accent)}
+  .score{font-weight:700;color:var(--accent);margin-top:8px}
+  .bar{height:8px;background:var(--line);border-radius:999px;overflow:hidden;margin-top:6px}
+  .bar > div{height:100%;width:0;background:var(--accent);transition:width .4s}
+  .tablewrap{overflow-x:auto;margin:10px 0}
+  table.t{border-collapse:collapse;width:100%;font-size:.96rem;min-width:480px}
+  table.t th,table.t td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left;vertical-align:top}
+  table.t th{background:var(--accent-soft);color:var(--accent);font-size:.9rem}
+  .c-inf{color:var(--inf);font-weight:700} .c-sub{color:var(--sub);font-weight:700}
+  footer{max-width:900px;margin:0 auto;padding:0 16px 30px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="index.html">← Matériel didactique</a>
+  <div class="kicker">Niveau 6 · B1 · Grammaire</div>
+  <h1>Les conjonctions + subjonctif</h1>
+  <p>But, concession, condition, temps, crainte et manière.</p>
+</header>
+<nav aria-label="Sections"><div class="inner" role="tablist">
+  <button role="tab" data-tab="theorie" aria-selected="true">1. Théorie</button>
+  <button role="tab" data-tab="pratique" aria-selected="false">2. Pratique</button>
+  <button role="tab" data-tab="renfo" aria-selected="false">3. Renforcement</button>
+  <button role="tab" data-tab="infinitif" aria-selected="false">4. Ou infinitif ?</button>
+</div></nav>
+
+<main>
+<!-- THÉORIE -->
+<section id="theorie" class="active">
+  <h2>Ces conjonctions sont toujours suivies du subjonctif</h2>
+  <div class="grid">
+    <div class="sens"><h4>🎯 Le but</h4><p class="q">Pourquoi ? Dans quel objectif ?</p><ul>
+      <li><span class="cj">pour que</span> : Je t'explique pour que tu <span class="hl">comprennes</span>.</li>
+      <li><span class="cj">afin que</span> (plus formel) : Parlez lentement afin que tout le monde vous <span class="hl">entende</span>.</li></ul></div>
+    <div class="sens"><h4>⚖️ La concession</h4><p class="q">Malgré quoi ? (un obstacle qui n'empêche rien)</p><ul>
+      <li><span class="cj">bien que</span> : Bien qu'il <span class="hl">soit</span> fatigué, il continue.</li>
+      <li><span class="cj">quoique</span> (= bien que) : Quoiqu'elle <span class="hl">ait</span> peu de temps, elle nous aide.</li>
+      <li><span class="cj">quoi que</span> (= peu importe ce que) : Quoi que tu <span class="hl">fasses</span>, je te soutiens.</li></ul></div>
+    <div class="sens"><h4>🔑 La condition</h4><p class="q">À quelle condition ?</p><ul>
+      <li><span class="cj">à condition que</span> : Tu peux sortir à condition que tu <span class="hl">rentres</span> avant minuit.</li>
+      <li><span class="cj">pourvu que</span> (= à condition que) : Je te prête mon vélo pourvu que tu en <span class="hl">prennes</span> soin.</li>
+      <li><span class="cj">à moins que</span> (= sauf si) : Nous sortirons, à moins qu'il (ne) <span class="hl">pleuve</span>.</li></ul></div>
+    <div class="sens"><h4>⏳ Le temps</h4><p class="q">Quand ? Jusqu'à quand ?</p><ul>
+      <li><span class="cj">avant que</span> : Rentre avant qu'il (ne) <span class="hl">fasse</span> nuit.</li>
+      <li><span class="cj">jusqu'à ce que</span> : J'attends jusqu'à ce que tu <span class="hl">reviennes</span>.</li>
+      <li><span class="cj">en attendant que</span> : Lis un peu en attendant que le film <span class="hl">commence</span>.</li></ul></div>
+    <div class="sens"><h4>😟 La crainte</h4><p class="q">Pour éviter quoi ?</p><ul>
+      <li><span class="cj">de peur que</span> : Il parle bas de peur que le bébé (ne) se <span class="hl">réveille</span>.</li>
+      <li><span class="cj">de crainte que</span> (plus formel) : Elle a tout noté de crainte qu'on (n')<span class="hl">oublie</span>.</li></ul></div>
+    <div class="sens"><h4>🤫 La manière</h4><p class="q">Comment ? Sans quoi ?</p><ul>
+      <li><span class="cj">sans que</span> : Il est parti sans que personne le <span class="hl">voie</span>.</li></ul></div>
+  </div>
+
+  <h3>Trois points délicats</h3>
+  <div class="box warn"><h4>1. « Pourvu que » a deux sens</h4>
+    <p><b>Un souhait</b>, en début de phrase exclamative : <i>Pourvu qu'il fasse beau demain !</i> (= j'espère vraiment que…)</p>
+    <p><b>Une condition</b>, au milieu de la phrase : <i>Tu peux venir pourvu que tu sois à l'heure.</i> (= à condition que)</p></div>
+  <div class="box warn"><h4>2. « Quoique » ou « quoi que » ?</h4>
+    <p><b>quoique</b> (un mot) = bien que : <i>Quoiqu'il soit riche, il vit simplement.</i></p>
+    <p><b>quoi que</b> (deux mots) = peu importe ce que : <i>Quoi qu'il dise, personne ne le croit.</i></p></div>
+  <div class="box warn"><h4>3. Le « ne » explétif</h4>
+    <p>Après <b>avant que, à moins que, de peur que, de crainte que</b>, on peut ajouter un <i>ne</i> qui n'est <b>pas</b> une négation : <i>Rentre avant qu'il ne pleuve</i> = Rentre avant qu'il pleuve. Il est facultatif et plutôt soutenu ; à l'oral, on l'omet souvent.</p></div>
+  <div class="box tip"><h4>💡 Et si le sujet est le même ?</h4>
+    <p>Avec le même sujet, on utilise une <b>préposition + infinitif</b> : <i>Je travaille <span class="c-inf">pour réussir</span></i> (et non « pour que je réussisse »). Voir la section 4.</p>
+    <p><b>Attention :</b> <i>même si</i> et <i>après que</i> sont suivis de l'<b>indicatif</b> : <i>Même s'il pleut, je sors. Après que tu as fini, tu peux sortir.</i></p></div>
+</section>
+
+<!-- PRATIQUE -->
+<section id="pratique">
+  <h2>Complétez avec la bonne conjonction</h2>
+  <p>Touchez une conjonction, puis touchez l'espace où vous voulez la placer. Pour l'enlever, touchez l'espace de nouveau. Chaque conjonction s'utilise une fois et disparaît de la liste.</p>
+  <div class="bank" id="bank"><span class="lab">Conjonctions</span></div>
+  <div class="exo" id="ex-bank"></div>
+</section>
+
+<!-- RENFORCEMENT -->
+<section id="renfo">
+  <h2>Choisissez la bonne conjonction</h2>
+  <p>Lisez la phrase et choisissez la conjonction qui donne le bon sens.</p>
+  <div class="exo" id="ex-qcm"></div>
+</section>
+
+<!-- INFINITIF -->
+<section id="infinitif">
+  <h2>Subjonctif ou infinitif ?</h2>
+  <div class="tablewrap"><table class="t">
+    <thead><tr><th>Même sujet → préposition + infinitif</th><th>Sujets différents → conjonction + subjonctif</th></tr></thead>
+    <tbody>
+      <tr><td>Je travaille <span class="c-inf">pour réussir</span>.</td><td>Je t'aide <span class="c-sub">pour que tu réussisses</span>.</td></tr>
+      <tr><td>Appelle-moi <span class="c-inf">avant de partir</span>.</td><td>Appelle-moi <span class="c-sub">avant qu'il parte</span>.</td></tr>
+      <tr><td>Elle est sortie <span class="c-inf">sans dire</span> au revoir.</td><td>Elle est sortie <span class="c-sub">sans que je le sache</span>.</td></tr>
+      <tr><td>Tu peux sortir <span class="c-inf">à condition de rentrer</span> tôt.</td><td>Tu peux sortir <span class="c-sub">à condition que ton frère t'accompagne</span>.</td></tr>
+      <tr><td>Il se tait <span class="c-inf">de peur de se tromper</span>.</td><td>Il se tait <span class="c-sub">de peur qu'on se moque de lui</span>.</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:.93rem;color:var(--muted)"><i>Bien que, quoique, jusqu'à ce que</i> et <i>pourvu que</i> n'ont pas d'équivalent avec l'infinitif : on garde le subjonctif, même avec le même sujet (<i>Bien que je sois fatigué, je travaille</i>).</p>
+  <h3>Exercice</h3>
+  <div class="exo" id="ex-inf"></div>
+</section>
+</main>
+<footer>Niveau 6 · ENALLT, UNAM · Conception pédagogique : Nadia Aguilar Neri</footer>
+
+<script>
+(function(){
+  "use strict";
+  var L="abcdefgh";
+  var CONJ=["pour que","bien que","pourvu que","avant que","de peur que","jusqu'à ce que","quoi que","à condition que","sans que","à moins que"];
+  // [avant, après, réponses acceptées, sens, explication]
+  var BANK=[
+    ["Je t'expliquerai tout","tu comprennes la situation.",["pour que"],"but","Le but : je t'explique dans l'objectif que tu comprennes."],
+    ["","le froid soit intense, elle refuse de porter un manteau.",["bien que"],"concession","Une concession : le froid n'empêche pas son refus."],
+    ["","nos amis arrivent à l'heure : le film commence à 20 h !",["pourvu que"],"souhait","Un souhait en début de phrase : « Pourvu que… ! » = j'espère vraiment que…"],
+    ["Il faut terminer ce projet","le directeur revienne de voyage.",["avant que"],"temps","Le temps : le projet doit être fini avant son retour."],
+    ["Elle parle doucement","les enfants (ne) se réveillent.",["de peur que"],"crainte","La crainte : elle veut éviter que les enfants se réveillent. Notez le « ne » explétif facultatif."],
+    ["Je continuerai à travailler","mon chef soit satisfait.",["jusqu'à ce que"],"temps","La limite dans le temps : je travaille jusqu'au moment où il est satisfait."],
+    ["","tu dises, je ne changerai pas d'avis.",["quoi que"],"concession","« Quoi que » (deux mots) = peu importe ce que tu dis."],
+    ["Tu peux emprunter ma voiture","tu me la rendes demain.",["à condition que","pourvu que"],"condition","La condition : je te la prête si tu me la rends."],
+    ["Il est parti","personne le remarque.",["sans que"],"manière","La manière : il est parti et personne ne l'a remarqué."],
+    ["Nous irons à la plage,","la météo change.",["à moins que"],"condition","« À moins que » = sauf si la météo change."]
+  ];
+  var QCM=[
+    ["Elle continue ses études ____ ses parents ne soient pas d'accord.",["bien que","pour que","jusqu'à ce que"],"Concession : ses parents ne sont pas d'accord, mais elle continue."],
+    ["Je vais attendre ici ____ tu arrives.",["jusqu'à ce que","pourvu que","à condition que"],"Temps : j'attends jusqu'au moment de ton arrivée."],
+    ["____ tu fasses, sois honnête.",["Quoi que","Quoique","Bien que"],"« Quoi que » (deux mots) = peu importe ce que tu fais."],
+    ["Je te prête mon ordinateur ____ tu en prennes soin.",["à condition que","avant que","de peur que"],"Condition : je te le prête si tu en prends soin."],
+    ["Je lui ai parlé ____ il comprenne le problème.",["pour que","quoique","pourvu que"],"But : je lui ai parlé dans l'objectif qu'il comprenne."],
+    ["Ferme la fenêtre ____ le chat (ne) sorte.",["de peur que","afin que","bien que"],"Crainte : tu veux éviter que le chat sorte."],
+    ["Il a pris mon vélo ____ je le sache.",["sans que","pour que","jusqu'à ce que"],"Manière : il l'a pris et je ne le savais pas."],
+    ["____ il fasse beau ce week-end !",["Pourvu qu'","Bien qu'","Avant qu'"],"Souhait exclamatif : « Pourvu qu'il fasse beau ! »"]
+  ];
+  var INF=[
+    ["Je travaille beaucoup ____ réussir mon examen.",["pour","pour que"],"Même sujet (je) → pour + infinitif."],
+    ["Appelle-moi ____ partir.",["avant de","avant que"],"Même sujet (tu) → avant de + infinitif."],
+    ["Il est sorti ____ dire au revoir.",["sans","sans que"],"Même sujet (il) → sans + infinitif."],
+    ["Je t'aide ____ tu finisses vite.",["pour que","pour"],"Sujets différents (je / tu) → pour que + subjonctif."],
+    ["Tu peux sortir ____ rentrer avant minuit.",["à condition de","à condition que"],"Même sujet (tu) → à condition de + infinitif."],
+    ["Elle ne dit rien ____ se tromper.",["de peur de","de peur que"],"Même sujet (elle) → de peur de + infinitif."],
+    ["Range ta chambre ____ tes grands-parents arrivent.",["avant que","avant de"],"Sujets différents (tu / tes grands-parents) → avant que + subjonctif."]
+  ];
+
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function typo(root){var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),n;while((n=w.nextNode())){var v=n.nodeValue,nv=v.replace(/ ([?!:;»])/g," $1").replace(/« /g,"« ");if(nv!==v)n.nodeValue=nv;}}
+  function el(t,c,h){var n=document.createElement(t);if(c)n.className=c;if(h!=null)n.innerHTML=h;return n;}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+  function msg(r){return r===1?"Parfait !":r>=.8?"Excellent travail !":r>=.6?"Bon travail : relisez les explications des erreurs.":"Relisez la théorie et recommencez : vous allez progresser !";}
+  function controls(box,onCheck,onReset){
+    var row=el("div","btnrow"),v=el("button","btn","✓ Vérifier"),r=el("button","btn ghost","↺ Recommencer");v.type=r.type="button";
+    var sc=el("div","score"),bar=el("div","bar","<div></div>");bar.style.display="none";
+    v.addEventListener("click",function(){var res=onCheck();sc.textContent="Score : "+res[0]+" / "+res[1]+" · "+msg(res[0]/res[1]);typo(sc);bar.style.display="";bar.firstChild.style.width=(res[0]/res[1]*100)+"%";});
+    r.addEventListener("click",function(){onReset();});
+    row.appendChild(v);row.appendChild(r);box.appendChild(row);box.appendChild(sc);box.appendChild(bar);
+  }
+
+  /* Onglets */
+  var tabs=document.querySelectorAll("nav button[data-tab]");
+  tabs.forEach(function(b){b.addEventListener("click",function(){
+    tabs.forEach(function(x){x.setAttribute("aria-selected",x===b?"true":"false");});
+    document.querySelectorAll("main section").forEach(function(s){s.classList.toggle("active",s.id===b.dataset.tab);});
+    window.scrollTo({top:0,behavior:"smooth"});});});
+
+  /* Banque de conjonctions */
+  (function(){
+    var bank=document.getElementById("bank"),box=document.getElementById("ex-bank"),selChip=null,selSlot=null,placed=[];
+    function label(i,c){return BANK[i][0]===""?cap(c):c;}
+    function render(){
+      bank.querySelectorAll(".chip").forEach(function(c){c.remove();});box.innerHTML="";selChip=null;selSlot=null;placed=BANK.map(function(){return null;});
+      shuffle(CONJ).forEach(function(c){var b=el("button","chip",esc(c));b.type="button";b.dataset.c=c;
+        b.addEventListener("click",function(){if(b.classList.contains("used")||box.dataset.done)return;
+          if(selSlot!==null){place(selSlot,c);return;}
+          selChip=selChip===c?null:c;bank.querySelectorAll(".chip").forEach(function(x){x.classList.toggle("sel",x.dataset.c===selChip);});});
+        bank.appendChild(b);});
+      BANK.forEach(function(d,i){
+        var it=el("div","item");
+        it.innerHTML='<span class="n">'+(i+1)+'.</span>'+(d[0]?esc(d[0])+" ":"")+'<button type="button" class="slot" data-i="'+i+'">……</button> '+esc(d[1])+'<span class="tag">'+esc(d[3])+'</span><div class="fb"></div>';
+        box.appendChild(it);
+      });
+      box.querySelectorAll(".slot").forEach(function(s){s.addEventListener("click",function(){
+        if(box.dataset.done)return;var i=+s.dataset.i;
+        if(placed[i]!==null){free(i);return;}
+        if(selChip){place(i,selChip);return;}
+        selSlot=selSlot===i?null:i;box.querySelectorAll(".slot").forEach(function(x){x.style.outline=(+x.dataset.i===selSlot)?"2px solid var(--accent)":"";});
+      });});
+      delete box.dataset.done;typo(box);
+      controls(box,check,render);
+    }
+    function place(i,c){
+      if(placed[i]!==null)free(i);placed[i]=c;
+      var s=box.querySelector('.slot[data-i="'+i+'"]');s.textContent=label(i,c);s.classList.add("filled");s.style.outline="";
+      bank.querySelector('.chip[data-c="'+c+'"]').classList.add("used");
+      selChip=null;selSlot=null;bank.querySelectorAll(".chip").forEach(function(x){x.classList.remove("sel");});
+    }
+    function free(i){
+      var c=placed[i];placed[i]=null;var s=box.querySelector('.slot[data-i="'+i+'"]');s.textContent="……";s.classList.remove("filled");
+      bank.querySelector('.chip[data-c="'+c+'"]').classList.remove("used");
+    }
+    function check(){
+      var good=0;box.dataset.done="1";
+      BANK.forEach(function(d,i){
+        var s=box.querySelector('.slot[data-i="'+i+'"]'),fb=s.parentNode.querySelector(".fb"),ok=d[2].indexOf(placed[i])>=0;
+        s.classList.remove("ok","ko");s.classList.add(ok?"ok":"ko");
+        if(ok){good++;fb.className="fb show ok";fb.textContent="✓ "+d[4];}
+        else{fb.className="fb show ko";fb.textContent=(placed[i]?"✗ ":"✗ Pas de réponse. ")+"Réponse : "+d[2].map(function(c){return label(i,c);}).join(" ou ")+". "+d[4];}
+        typo(fb);
+      });
+      return [good,BANK.length];
+    }
+    render();
+  })();
+
+  /* QCM */
+  function buildQCM(id,data,cls){
+    var box=document.getElementById(id),sel=[],ord=[];
+    function render(){
+      box.innerHTML="";sel=data.map(function(){return -1;});ord=data.map(function(d){return shuffle(d[1].map(function(_,k){return k;}));});
+      data.forEach(function(d,i){
+        var it=el("div","item");it.innerHTML='<div><span class="n">'+(i+1)+'.</span>'+esc(d[0]).replace("____","<b>____</b>")+'</div>';
+        var opts=el("div","opts"+(cls?" "+cls:""));
+        ord[i].forEach(function(oi,j){var b=el("button","opt",'<span class="l">'+L[j]+')</span>'+esc(d[1][oi]));b.type="button";
+          b.addEventListener("click",function(){if(b.disabled)return;sel[i]=oi;opts.querySelectorAll(".opt").forEach(function(x){x.classList.remove("sel");});b.classList.add("sel");});
+          opts.appendChild(b);});
+        it.appendChild(opts);it.appendChild(el("div","fb"));box.appendChild(it);
+      });
+      typo(box);controls(box,check,render);
+    }
+    function check(){
+      var good=0;box.querySelectorAll(".item").forEach(function(it,i){
+        var d=data[i],bs=it.querySelectorAll(".opt"),fb=it.querySelector(".fb"),pos=function(oi){return ord[i].indexOf(oi);};
+        bs.forEach(function(b){b.disabled=true;b.classList.remove("sel");});bs[pos(0)].classList.add("ok");
+        if(sel[i]===0){good++;fb.className="fb show ok";fb.textContent="✓ "+d[2];}
+        else{if(sel[i]>=0)bs[pos(sel[i])].classList.add("ko");fb.className="fb show ko";fb.textContent=(sel[i]<0?"✗ Pas de réponse. ":"✗ ")+"Réponse "+L[pos(0)]+") « "+d[1][0]+" ». "+d[2];}
+        typo(fb);});
+      return [good,data.length];
+    }
+    render();
+  }
+  buildQCM("ex-qcm",QCM);
+  buildQCM("ex-inf",INF,"two");
+  typo(document.body);
+})();
+</script>
+</body>
+</html>
