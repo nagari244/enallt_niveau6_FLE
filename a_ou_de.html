@@ -120,6 +120,148 @@
   /* Résultats */
   .score-big{font-family:"Fraunces",serif;font-size:clamp(3.5rem,12vw,6.5rem);color:var(--yellow);line-height:.95;margin:16px 0}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  /* ===== Parcours 3 : le jeu des doubles pronoms ===== */
+  .module.wide{grid-column:1/-1}
+  .pk-v{color:#8a32b4;font-weight:700} .pk-g{color:#33802a;font-weight:700} .pk-r{color:#c43a31;font-weight:700} .pk-b{color:#0a7489;font-weight:700}
+  .card.gamecard{padding:clamp(12px,3vw,32px)}
+  .gtitle{color:#4253d6;text-align:center;margin:4px 0 14px!important;font-size:clamp(1.55rem,5vw,2.4rem)!important}
+
+  /* Formules */
+  .gform{border:2px solid var(--ink);margin:0 0 18px}
+  .gform summary{cursor:pointer;font-weight:700;padding:12px 16px;background:#f5f6ff;list-style-position:inside}
+  .fgrid{display:grid;grid-template-columns:1fr;gap:14px;padding:14px}
+  @media(min-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
+  .fbox{border:2px solid var(--line);border-radius:12px;padding:14px 14px 12px;background:#fff}
+  .fbox.wide{grid-column:1/-1}
+  .fbox h4{margin:0 0 2px;font-size:1rem}
+  .fbox .fsub{margin:0 0 6px;color:var(--muted);font-size:.88rem}
+  .fex{margin:8px 0 0;font-size:.98rem}
+  .fnote{margin:8px 0 0;font-size:.9rem;color:var(--muted)}
+  .circles{display:flex;align-items:center;justify-content:center;margin:12px 0 4px;padding-right:10px}
+  .circ{width:clamp(90px,25vw,132px);aspect-ratio:1;border-radius:50%;border:3px solid;display:flex;flex-direction:column;justify-content:center;align-items:center;font-weight:700;line-height:1.3;position:relative;font-size:clamp(.9rem,2.8vw,1.05rem)}
+  .circ+.circ{margin-left:-14px}
+  .circ.v{background:#f4e6fa;border-color:#8a32b4;color:#73279a;z-index:3}
+  .circ.g{background:#e7f4e2;border-color:#33802a;color:#2b6c23;z-index:2}
+  .circ.r{background:#ffe5e1;border-color:#c43a31;color:#a72f27;z-index:1}
+  .circ.v::after,.circ.g::after{content:"";position:absolute;right:-17px;top:50%;transform:translateY(-50%);border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:15px solid currentColor}
+  .f2wrap{display:flex;align-items:center;justify-content:center;gap:12px;margin:12px 0 4px}
+  .vpill{border:3px solid #8a32b4;background:#faf3fd;border-radius:34px;padding:10px 16px;display:flex;flex-wrap:wrap;gap:2px 10px;justify-content:center;max-width:215px;font-weight:700}
+  .bubble{background:#e0f3f7;border:3px solid #0a7489;color:#075c6c;border-radius:26px 26px 26px 6px;padding:10px 20px;font-family:"Fraunces",Georgia,serif;font-size:1.6rem;font-weight:700;white-space:nowrap}
+  .chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0 2px}
+  .slot{border:2px solid;border-radius:10px;padding:6px 10px;font-weight:700;background:#fff;line-height:1.3}
+  .slot.verb{border-color:var(--ink);background:#fdf3cf}
+  .slot.v{border-color:#8a32b4;color:#73279a;background:#faf3fd}
+  .slot.g{border-color:#33802a;color:#2b6c23;background:#f3faf0}
+  .slot.r{border-color:#c43a31;color:#a72f27;background:#fff3f1}
+  .slot.b{border-color:#0a7489;color:#075c6c;background:#eef9fb}
+  .slot.mix{border-color:var(--ink)}
+  .arr{font-weight:700;color:var(--muted)}
+  .chain.mini{gap:4px;margin:4px 0 0}
+  .chain.mini .slot{padding:2px 7px;font-size:.86rem;border-radius:8px}
+  .fmlab{margin:12px 0 0;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  /* Consigne */
+  .gcons{margin:0 0 14px;font-size:1rem}
+  .gcons p{margin:4px 0}
+  .ib{display:inline-block;width:20px;height:20px;vertical-align:-4px}
+
+  /* Dés et pion */
+  .gplay{display:grid;grid-template-columns:1fr;gap:14px;border:2px solid var(--ink);padding:14px;background:#fff}
+  @media(min-width:760px){.gplay{grid-template-columns:auto 1fr;align-items:center;gap:24px}}
+  .dicebar{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center;gap:14px 18px}
+  .diewrap{text-align:center}
+  .dielab{display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
+  .die{width:70px;height:70px;border:3px solid var(--ink);border-radius:14px;background:#fff;display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);padding:9px;box-shadow:4px 4px 0 var(--ink)}
+  .die i,.mdie i{border-radius:50%;background:var(--ink);place-self:center;visibility:hidden}
+  .die i{width:12px;height:12px}
+  .die i.on,.mdie i.on{visibility:visible}
+  .die.rolling{animation:tumble .7s ease}
+  @keyframes tumble{0%{transform:none}25%{transform:rotate(-20deg) translateY(-8px)}50%{transform:rotate(15deg)}75%{transform:rotate(-8deg) translateY(-3px)}100%{transform:none}}
+  .rollbtn{min-width:170px}
+  .ptrack .ptop{display:flex;justify-content:space-between;align-items:baseline;font-weight:700;font-size:.92rem}
+  .prail{position:relative;margin:34px 12px 4px}
+  .pcells{display:grid;grid-template-columns:repeat(36,1fr);gap:2px}
+  .pcells span{height:14px;background:#e4e7eb;border-radius:3px}
+  .pcells span:nth-child(6n){margin-right:3px}
+  .pcells span.on{background:#4253d6}
+  .pawn{position:absolute;bottom:13px;width:24px;height:32px;transform:translateX(-50%);transition:left .7s cubic-bezier(.3,1.5,.6,1)}
+  .pawn svg{width:100%;height:100%;display:block;filter:drop-shadow(1px 2px 0 rgba(16,42,67,.35))}
+  .pends{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);margin:0 2px}
+
+  /* Carte tirée */
+  .gpanel{border:3px solid var(--ink);box-shadow:6px 6px 0 #4253d6;background:#fff;padding:clamp(14px,3vw,24px);margin:18px 0 6px;scroll-margin-top:12px}
+  .gpanel.empty{box-shadow:none;border-style:dashed;color:var(--muted);text-align:center}
+  .ghead{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center;margin-bottom:8px}
+  .gpos{font-weight:700;font-size:.85rem;color:var(--muted)}
+  .gtag{font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border:2px solid var(--ink)}
+  .gtag.i{background:#e6f8fb;border-color:#14899a}
+  .gtag.m{background:#fff0ee;border-color:#c43a31}
+  .gsmall{margin:0;font-size:.85rem;font-weight:600;color:var(--muted)}
+  .gprompt{font-size:clamp(1.2rem,3.8vw,1.6rem);font-weight:700;line-height:1.35;margin:4px 0 8px}
+  .gconsigne{margin:0 0 6px}
+  .gdonenote{margin:0 0 10px;padding:8px 12px;background:var(--ok-bg);border-left:6px solid var(--ok);font-weight:600}
+  .greveal{border-left:7px solid #4253d6;background:#f4f5ff;padding:12px 16px;margin-top:14px}
+  .greveal .glabel{margin:0;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#4253d6}
+  .gans{font-size:clamp(1.12rem,3.4vw,1.35rem);font-weight:700;margin:4px 0 6px}
+  .galt{margin:4px 0}
+  .gnote{margin:8px 0 0;font-size:.95rem;color:#3e4c59}
+  .gjudge{display:flex;flex-wrap:wrap;gap:12px}
+  .gmsg{margin:12px 0 0;font-weight:600}
+  .mm-pool,.mm-line{display:flex;flex-wrap:wrap;gap:8px;min-height:60px;padding:8px;border:2px dashed var(--line);margin-top:8px;align-items:center}
+  .mm-line{border-color:#4253d6;background:#fafaff}
+  .mm-lab{margin:12px 0 0;font-size:.85rem;font-weight:700;color:var(--muted)}
+  .chip{border:2px solid var(--ink);background:#fff;padding:8px 12px;min-height:44px;font-weight:700;letter-spacing:.04em;cursor:pointer}
+  .chip:disabled{opacity:.22;cursor:default}
+  .mm-act{display:flex;gap:14px;align-items:center;margin-top:10px;flex-wrap:wrap}
+
+  /* Plateau */
+  .gboard{display:grid;grid-template-columns:minmax(0,.78fr) repeat(6,minmax(0,1fr));gap:6px;margin-top:16px}
+  .gcell{position:relative;border:2px solid #f2a79d;border-radius:12px;background:#fff;padding:8px 5px 20px;min-height:112px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;font-size:13px;line-height:1.25;font-weight:500;cursor:pointer;-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word;transition:transform .12s,box-shadow .12s}
+  .gcell.m{background:#fff4f2}
+  .gcell.i{background:#e9fafd;border:3px solid #14899a}
+  .gcell.h{cursor:default;padding:6px;background:#fff}
+  .gcell:not(.h):hover,.gcell:not(.h):focus-visible{transform:translateY(-2px);box-shadow:0 4px 0 #f2a79d;outline:none}
+  .gcell.sel{outline:4px solid #4253d6;outline-offset:2px;z-index:2}
+  .gcell.h.hl{border-color:#4253d6;background:#eef0ff}
+  .gcell.rev{border-style:dashed;border-color:#b07a0e}
+  .gcell.done .gtxt,.gcell.done .glab,.gcell.done .gicon{opacity:.38}
+  .gdone{display:none;position:absolute;left:4px;top:3px;font-weight:700;color:var(--ok);font-size:15px}
+  .gcell.done .gdone{display:block}
+  .glab{display:block;font-size:10px;font-weight:600;color:var(--muted);margin-bottom:2px}
+  .glab.mm{font-size:13px;color:#c43a31;font-weight:700}
+  .gb{position:absolute;right:4px;bottom:4px;width:18px;height:18px}
+  .gicon{display:none;font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.25rem;line-height:1}
+  .gcell.i .gicon{color:#0f6f7d} .gcell.m .gicon{color:#c43a31}
+  .gpawn{display:none;position:absolute;right:3px;top:3px;width:15px;height:20px}
+  .gcell.sel .gpawn{display:block}
+  .mdie{width:72%;max-width:62px;aspect-ratio:1;border:2px solid #111;border-radius:13%;display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);padding:9%}
+  .mdie i{width:64%;aspect-ratio:1}
+  .gcorner svg{width:78%;max-width:66px}
+  .glegend{display:flex;flex-wrap:wrap;gap:6px 18px;margin:12px 0 0;font-size:.88rem;color:var(--muted)}
+  .glegend b{font-family:"Fraunces",Georgia,serif;color:var(--ink)}
+  .gfoot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center;margin-top:18px}
+  @media(max-width:899px){
+    .gcell{font-size:11.5px;min-height:98px;padding:6px 3px 17px;border-radius:10px}
+    .glab{font-size:9px} .glab.mm{font-size:11px} .gb{width:15px;height:15px;right:3px;bottom:3px}
+  }
+  @media(max-width:520px){
+    .fgrid{padding:8px;gap:10px} .fbox{padding:12px 10px 10px}
+    .circ{width:35%;max-width:124px;font-size:.8rem;line-height:1.1}
+    .circ+.circ{margin-left:-10px}
+    .f2wrap{flex-direction:column;gap:6px} .f2wrap .arr{transform:rotate(90deg)}
+  }
+  @media(max-width:639px){
+    .gboard{gap:4px;grid-template-columns:repeat(7,minmax(0,1fr))}
+    .gcell{min-height:0;aspect-ratio:1;padding:2px;border-radius:8px}
+    .gcell.i{border-width:2px}
+    .gtxt,.glab{display:none}
+    .gicon{display:block}
+    .gb{width:12px;height:12px;right:2px;bottom:2px}
+    .gdone{font-size:11px;left:3px;top:1px}
+    .gpawn{width:11px;height:14px;right:2px;top:2px}
+    .mdie{width:74%;border-width:1.5px}
+    .die{width:62px;height:62px;padding:8px} .die i{width:10px;height:10px}
+  }
   footer{max-width:980px;margin:0 auto;padding:0 16px 30px;color:var(--muted);font-size:.85rem}
 </style>
 </head>
@@ -335,14 +477,19 @@
     status("Prêt·e ?",0);
     render('<section class="screen active"><div class="card hero">'+
       '<p class="eyebrow">Activité 9</p><h2>Le, la, lui… ou en ?</h2>'+
-      '<p class="lead">Des mini-leçons, et entre chaque leçon trois quiz rapides. Choisissez votre parcours.</p></div>'+
+      '<p class="lead">Deux parcours de mini-leçons, avec trois quiz rapides après chaque leçon, puis un jeu de dés sur les doubles pronoms. Choisissez votre parcours.</p></div>'+
       '<div class="modules">'+MODS.map(function(m){
         var q=m.steps.filter(function(s){return s.t==="quiz";}).length;
         var d=state.done[m.id];
         return '<button class="module" type="button" data-mod="'+m.id+'"><span class="tag" style="color:'+m.color+'">'+m.tag+'</span>'+
           '<h3>'+esc(m.title)+'</h3><p>'+esc(m.desc)+' · '+q+' quiz</p>'+(d?'<span class="done">✓ Dernier score : '+d+'</span>':'')+'</button>';
-      }).join("")+'</div></section>');
+      }).join("")+
+      '<button class="module wide" type="button" id="toGame"><span class="tag" style="color:#4253d6">Parcours 3 · Jeu</span>'+
+        '<h3>Le jeu des doubles pronoms</h3><p>Lancez les dés, répondez à l\'oral et faites avancer votre pion · 36 cases</p>'+
+        (gcount()?'<span class="done">✓ '+gcount()+' / 36 cases réussies</span>':'')+'</button>'+
+      '</div></section>');
     main.querySelectorAll("[data-mod]").forEach(function(b){b.addEventListener("click",function(){start(b.getAttribute("data-mod"));});});
+    document.getElementById("toGame").addEventListener("click",game);
   }
 
   function start(id){
@@ -448,6 +595,276 @@
     popup("Oups…","ko");
   }
 
+
+  /* ================= PARCOURS 3 : LE JEU DES DOUBLES PRONOMS ================= */
+  /* Code couleur de la fiche : {v|…} me, te, se, nous, vous (violet) · {g|…} le, la, l', les (vert)
+     {r|…} lui, leur / à + personne (rouge) · {b|…} y, en (bleu).
+     Ligne = dé 1, colonne = dé 2. Les impératifs sont sur la diagonale. */
+  var G=[
+    [
+      {t:"i",p:"Donne {g|les bonbons} {r|à ton frère} !",a:"Donne-{g|les}-{r|lui} !",alt:["Au négatif :","Ne {g|les} {r|lui} donne pas !"],f:["f3","f1"]},
+      {t:"q",pol:"+",p:"Jeannette a acheté {b|des biscuits} {r|aux enfants} ?",a:"Oui, elle {r|leur} {b|en} a acheté.",alt:["Réponse négative :","Non, elle ne {r|leur} {b|en} a pas acheté."],n:"Avec {b|en}, le participe passé ne s'accorde pas : acheté.",f:["f2"]},
+      {t:"m",w:[["LE","g"],["VOUS","v"],["JE",""],["VAIS",""],["RÉPÉTER",""]],sol:[2,3,1,0,4],a:"Je vais {v|vous} {g|le} répéter.",n:"Avec un verbe suivi d'un infinitif, les pronoms se placent devant l'infinitif.",f:["f1"]},
+      {t:"q",pol:"+",p:"Tu racontes {g|cette histoire} {r|à tes cousins} ?",a:"Oui, je {g|la} {r|leur} raconte.",alt:["Réponse négative :","Non, je ne {g|la} {r|leur} raconte pas."],f:["f1"]},
+      {t:"q",pol:"-",p:"Lucie va expliquer {g|sa décision} {r|à ses parents} ?",a:"Non, elle ne va pas {g|la} {r|leur} expliquer.",alt:["Réponse affirmative :","Oui, elle va {g|la} {r|leur} expliquer."],n:"La négation entoure « va » ; les pronoms restent devant l'infinitif.",f:["f1"]},
+      {t:"q",pol:"+",p:"Il y a {b|des solutions efficaces} ?",a:"Oui, il {b|y} {b|en} a.",alt:["Réponse négative :","Non, il n'{b|y} {b|en} a pas."],n:"{b|y} se place toujours avant {b|en} : il y en a.",f:["f2"]}
+    ],
+    [
+      {t:"q",pol:"+",p:"Tu {v|me} prêtes {g|ta voiture} ?",a:"Oui, je {v|te} {g|la} prête.",alt:["Réponse négative :","Non, je ne {v|te} {g|la} prête pas."],n:"Dans la réponse, {v|me} devient {v|te}.",f:["f1"]},
+      {t:"i",p:"Ne {v|me} dis pas {g|la réponse} !",a:"Ne {v|me} {g|la} dis pas !",alt:["À l'affirmatif :","Dis-{g|la}-{v|moi} !"],n:"Au négatif, on garde l'ordre de la formule 1. À l'affirmatif, {v|me} devient {v|moi} et se place après {g|la}.",f:["f1","f3"]},
+      {t:"q",pol:"-",p:"Jeannette a acheté {b|des biscuits} ?",a:"Non, elle n'{b|en} a pas acheté.",alt:["Réponse affirmative :","Oui, elle {b|en} a acheté."],n:"Un seul pronom ici. Comparez avec la case ligne 1, colonne 2 : elle {r|leur} {b|en} a acheté.",f:["f2"]},
+      {t:"q",pol:"-",p:"Anne {v|t'}a expliqué {g|le problème} ?",a:"Non, elle ne {v|me} {g|l'}a pas expliqué.",alt:["Réponse affirmative :","Oui, elle {v|me} {g|l'}a expliqué."],f:["f1"]},
+      {t:"q",pol:"+",p:"Tu {v|te} souviens {b|des histoires qu'il racontait} ?",a:"Oui, je {v|m'}{b|en} souviens.",alt:["Réponse négative :","Non, je ne {v|m'}{b|en} souviens pas."],n:"Se souvenir {b|de} quelque chose → {b|en}.",f:["f2"]},
+      {t:"q",pol:"-",p:"Tu {v|t'}intéresses {b|à la mode} ?",a:"Non, je ne {v|m'}{b|y} intéresse pas.",alt:["Réponse affirmative :","Oui, je {v|m'}{b|y} intéresse."],n:"S'intéresser {b|à} quelque chose → {b|y}.",f:["f2"]}
+    ],
+    [
+      {t:"m",w:[["LES","g"],["LEUR","r"],["ELLE",""],["PRÊTE",""]],sol:[2,0,1,3],a:"Elle {g|les} {r|leur} prête.",f:["f1"]},
+      {t:"q",pol:"-",p:"Votre patron {v|vous} a envoyé {g|l'information} ?",a:"Non, il ne {v|nous} {g|l'}a pas envoyée.",alt:["Réponse affirmative :","Oui, il {v|nous} {g|l'}a envoyée."],n:"Si « vous » est un vouvoiement : il ne {v|me} {g|l'}a pas envoyée. Accord : {g|l'} = l'information (féminin), placé avant l'auxiliaire → envoyée.",f:["f1"]},
+      {t:"i",p:"Offrons {g|ce livre} {r|à Marie}.",a:"Offrons-{g|le}-{r|lui}.",alt:["Au négatif :","Ne {g|le} {r|lui} offrons pas."],f:["f3","f1"]},
+      {t:"q",pol:"+",p:"Elle a dit {g|la vérité} {r|à ses parents} ?",a:"Oui, elle {g|la} {r|leur} a dite.",alt:["Réponse négative :","Non, elle ne {g|la} {r|leur} a pas dite."],n:"Accord : {g|la} = la vérité, placé avant l'auxiliaire → dite.",f:["f1"]},
+      {t:"m",w:[["JE",""],["SOUVIENS",""],["BIEN",""],["EN","b"],["M'","v"]],sol:[0,4,3,1,2],a:"Je {v|m'}{b|en} souviens bien.",f:["f2"]},
+      {t:"q",pol:"-",p:"Il y a assez {b|de chaises} ?",a:"Non, il n'{b|y} {b|en} a pas assez.",alt:["Réponse affirmative :","Oui, il {b|y} {b|en} a assez."],f:["f2"]}
+    ],
+    [
+      {t:"q",pol:"+",p:"Ton père {v|t'}a offert {g|le billet du concert} ?",a:"Oui, il {v|me} {g|l'}a offert.",alt:["Réponse négative :","Non, il ne {v|me} {g|l'}a pas offert."],f:["f1"]},
+      {t:"m",w:[["PRÊTÉS",""],["NOUS",""],["LEUR","r"],["AVONS",""],["LES","g"]],sol:[1,4,2,3,0],a:"Nous {g|les} {r|leur} avons prêtés.",n:"Accord : {g|les} est placé avant l'auxiliaire → prêtés.",f:["f1"]},
+      {t:"m",w:[["LA","g"],["LUI","r"],["VOUS",""],["OFFREZ",""]],sol:[2,0,1,3],a:"Vous {g|la} {r|lui} offrez.",f:["f1"]},
+      {t:"i",p:"Présentez {g|votre projet} {r|à votre tuteur} !",a:"Présentez-{g|le}-{r|lui} !",alt:["Au négatif :","Ne {g|le} {r|lui} présentez pas !"],f:["f3","f1"]},
+      {t:"q",pol:"+",p:"Ton ami {v|t'}a expliqué {g|le sujet} ?",a:"Oui, il {v|me} {g|l'}a expliqué.",alt:["Réponse négative :","Non, il ne {v|me} {g|l'}a pas expliqué."],f:["f1"]},
+      {t:"q",pol:"n",p:"Combien {b|de textos} il a envoyés {r|à Lucie} ?",a:"Il {r|lui} {b|en} a envoyé trois.",n:"Avec {b|en}, pas d'accord : envoyé. Dans la question, « combien de textos » est placé avant l'auxiliaire : envoyés.",f:["f2"]}
+    ],
+    [
+      {t:"m",w:[["MARIA",""],["NE",""],["Y","b"],["FIE",""],["PAS",""],["S'","v"]],sol:[0,1,5,2,3,4],a:"Maria ne {v|s'}{b|y} fie pas.",n:"Se fier {b|à} quelque chose → {b|y}.",f:["f2"]},
+      {t:"q",pol:"n",p:"Combien {b|de livres} vous avez achetés ?",a:"Nous {b|en} avons acheté cinq.",alt:["Pour une seule personne :","J'{b|en} ai acheté cinq."],n:"Un seul pronom ici : {b|en} reprend la quantité.",f:["f2"]},
+      {t:"q",pol:"-",p:"Tu {v|te} souviens {b|de tes premières vacances} ?",a:"Non, je ne {v|m'}{b|en} souviens pas.",alt:["Réponse affirmative :","Oui, je {v|m'}{b|en} souviens."],f:["f2"]},
+      {t:"q",pol:"+",p:"Vous habitez {b|au Mexique} ?",a:"Oui, nous {b|y} habitons.",alt:["Réponse négative :","Non, nous n'{b|y} habitons pas."],n:"Un seul pronom ici : {b|y} reprend le lieu. Pour une seule personne : j'{b|y} habite.",f:["f2"]},
+      {t:"i",p:"Ne {v|te} reproche pas {g|les résultats}.",a:"Ne {v|te} {g|les} reproche pas.",alt:["À l'affirmatif :","Reproche-{g|les}-{v|toi}."],n:"Se reprocher quelque chose. Au négatif, ordre de la formule 1 ; à l'affirmatif, {v|te} devient {v|toi}.",f:["f1","f3"]},
+      {t:"q",pol:"+",p:"Vous {v|nous} avez réservé {g|les chambres d'hôtel} ?",a:"Oui, nous {v|vous} {g|les} avons réservées.",alt:["Réponse négative :","Non, nous ne {v|vous} {g|les} avons pas réservées."],n:"Accord : {g|les} = les chambres (féminin pluriel) → réservées.",f:["f1"]}
+    ],
+    [
+      {t:"q",pol:"n",p:"Combien {b|d'échantillons} tu {v|nous} as apportés ?",a:"Je {v|vous} {b|en} ai apporté dix.",n:"Avec {b|en}, pas d'accord : apporté.",f:["f2"]},
+      {t:"q",pol:"+",p:"Lucie {v|vous} a déjà raconté {g|son histoire} ?",a:"Oui, elle {v|nous} {g|l'}a déjà racontée.",alt:["Réponse négative :","Non, elle ne {v|nous} {g|l'}a pas encore racontée."],n:"Accord : {g|l'} = son histoire (féminin) → racontée. Au négatif, « déjà » devient « pas encore ».",f:["f1"]},
+      {t:"q",pol:"+",p:"Tu {v|t'}es bien habitué {b|à ton nouveau boulot} ?",a:"Oui, je {v|m'}{b|y} suis bien habitué(e).",alt:["Réponse négative :","Non, je ne {v|m'}{b|y} suis pas encore habitué(e)."],n:"S'habituer {b|à} quelque chose → {b|y}.",f:["f2"]},
+      {t:"q",pol:"-",p:"Qui {v|t'}a vendu {g|ces chaussures} ?",a:"Personne ne {v|me} {g|les} a vendues : c'est un cadeau !",alt:["Réponse affirmative :","C'est ma sœur qui {v|me} {g|les} a vendues."],n:"Avec « qui ? », la réponse négative commence par « personne ne… ». Accord : {g|les} = ces chaussures → vendues.",f:["f1"]},
+      {t:"m",w:[["NOUS","v"],["A",""],["IL",""],["OFFERTE",""],["L'","g"]],sol:[2,0,4,1,3],a:"Il {v|nous} {g|l'}a offerte.",n:"Accord : {g|l'} est féminin et placé avant l'auxiliaire → offerte.",f:["f1"]},
+      {t:"i",p:"Offrez {b|des biscuits} {r|à vos étudiants}.",a:"Offrez-{r|leur}-{b|en}.",alt:["Au négatif :","Ne {r|leur} {b|en} offrez pas."],n:"{b|en} se place toujours en dernier, même à l'impératif.",f:["f3","f2"]}
+    ]
+  ];
+
+  var GKEY="enallt6-a9-doubles-pronoms";
+  var gs={done:{},rev:{},cur:null,rolling:false};
+  var BPLUS='<svg class="gb" viewBox="0 0 24 24" role="img" aria-label="répondre affirmativement"><circle cx="12" cy="12" r="10" fill="#fff" stroke="#6a3ee0" stroke-width="2"/><path d="M7 12.4l3.2 3.2L17 9" fill="none" stroke="#6a3ee0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var BMINUS='<svg class="gb" viewBox="0 0 24 24" role="img" aria-label="répondre négativement"><circle cx="12" cy="12" r="11" fill="#e2383f"/><path d="M8.3 8.3l7.4 7.4M15.7 8.3l-7.4 7.4" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>';
+  var PAWN='<svg viewBox="0 0 24 32" aria-hidden="true"><circle cx="12" cy="7" r="5.5" fill="#4253d6" stroke="#102a43" stroke-width="1.5"/><path d="M8.5 12.5h7l2.6 11.5H5.9z" fill="#4253d6" stroke="#102a43" stroke-width="1.5" stroke-linejoin="round"/><rect x="3.5" y="24" width="17" height="5.5" rx="2.5" fill="#4253d6" stroke="#102a43" stroke-width="1.5"/><circle cx="10" cy="5.5" r="1.6" fill="#fff" opacity=".7"/></svg>';
+  var BUBBLES='<svg viewBox="0 0 64 52" aria-hidden="true"><path d="M8 4h30a6 6 0 0 1 6 6v14a6 6 0 0 1-6 6H20l-8 8v-8H8a6 6 0 0 1-6-6V10a6 6 0 0 1 6-6z" fill="#f26b5e"/><circle cx="14" cy="17" r="2.6" fill="#fff"/><circle cx="23" cy="17" r="2.6" fill="#fff"/><circle cx="32" cy="17" r="2.6" fill="#fff"/><path d="M30 22h26a6 6 0 0 1 6 6v12a6 6 0 0 1-6 6h-2v6l-7-6H30a6 6 0 0 1-6-6V28a6 6 0 0 1 6-6z" fill="#f7a93b"/><rect x="31" y="29" width="22" height="3" rx="1.5" fill="#fff"/><rect x="31" y="36" width="15" height="3" rx="1.5" fill="#fff"/></svg>';
+
+  function gload(){try{var x=JSON.parse(localStorage.getItem(GKEY)||"{}");gs.done=x.done||{};gs.rev=x.rev||{};}catch(e){}}
+  function gsave(){try{localStorage.setItem(GKEY,JSON.stringify({done:gs.done,rev:gs.rev}));}catch(e){}}
+  function gcount(){return Object.keys(gs.done).length;}
+  function pk(s){return esc(s).replace(/\{([vgrb])\|([^}]*)\}/g,'<span class="pk-$1">$2</span>');}
+  function plain(s){return s.replace(/\{[vgrb]\|([^}]*)\}/g,"$1");}
+  function pips(n){var on={1:[4],2:[0,8],3:[0,4,8],4:[0,2,6,8],5:[0,2,4,6,8],6:[0,2,3,5,6,8]}[n]||[],h="";for(var i=0;i<9;i++)h+='<i'+(on.indexOf(i)>-1?' class="on"':'')+'></i>';return h;}
+  function wtxt(w){return w[1]?'<span class="pk-'+w[1]+'">'+esc(w[0])+'</span>':esc(w[0]);}
+  function key(r,c){return r+"-"+c;}
+  function typeName(t){return t==="i"?"Impératif":t==="m"?"Méli-mélo":"Question";}
+
+  var F={
+    f1:'<div class="chain mini"><span class="slot v">me · te · se · nous · vous</span><span class="arr">→</span><span class="slot g">le · la · l\' · les</span><span class="arr">→</span><span class="slot r">lui · leur</span><span class="arr">+ verbe</span></div>',
+    f2:'<div class="chain mini"><span class="slot mix"><span class="pk-v">m\' t\' s\' nous vous</span> · <span class="pk-g">l\' les</span> · <span class="pk-r">lui leur</span></span><span class="arr">→</span><span class="slot b">y</span><span class="arr">→</span><span class="slot b">en</span></div>',
+    f3:'<div class="chain mini"><span class="slot verb">verbe</span><span class="arr">–</span><span class="slot g">le · la · les</span><span class="arr">–</span><span class="slot mix"><span class="pk-v">moi · toi · nous · vous</span> · <span class="pk-r">lui · leur</span></span><span class="arr">–</span><span class="slot b">y</span><span class="arr">–</span><span class="slot b">en</span></div>'
+  };
+  var FLAB={f1:"Formule 1 · ordre devant le verbe",f2:"Formule 2 · y et en à la fin",f3:"Formule 3 · impératif affirmatif"};
+
+  function formulas(){
+    return '<details class="gform" open><summary>Les formules de combinaison des pronoms</summary><div class="fgrid">'+
+      '<div class="fbox"><h4>Formule 1 · devant le verbe</h4><p class="fsub">Phrases affirmatives, négatives, questions et impératif négatif</p>'+
+        '<div class="circles"><div class="circ v"><span>me</span><span>te</span><span>se</span><span>nous</span><span>vous</span></div><div class="circ g"><span>la</span><span>le</span><span>l\'</span><span>les</span></div><div class="circ r"><span>lui</span><span>leur</span></div></div>'+
+        '<p class="fex">Je '+pk("{v|te} {g|la}")+' prête. · Elle '+pk("{g|la} {r|leur}")+' raconte. · Ne '+pk("{v|me} {g|la}")+' dis pas !</p>'+
+        '<p class="fnote">me, te, se, nous, vous ne se combinent jamais avec lui, leur.</p></div>'+
+      '<div class="fbox"><h4>Formule 2 · y et en toujours à la fin</h4><p class="fsub">Tous les autres pronoms se placent avant y et en ; y se place avant en.</p>'+
+        '<div class="f2wrap"><div class="vpill"><span class="pk-v">m\'</span><span class="pk-v">t\'</span><span class="pk-v">s\'</span><span class="pk-g">l\'</span><span class="pk-r">lui</span><span class="pk-v">nous</span><span class="pk-v">vous</span><span class="pk-g">les</span><span class="pk-r">leur</span></div><span class="arr" aria-hidden="true">→</span><div class="bubble">y / en</div></div>'+
+        '<p class="fex">Je '+pk("{v|m'}{b|en}")+' souviens. · Elle '+pk("{r|leur} {b|en}")+' a acheté. · Il '+pk("{b|y} {b|en}")+' a.</p></div>'+
+      '<div class="fbox wide"><h4>Formule 3 · impératif affirmatif : après le verbe, avec des traits d\'union</h4><p class="fsub">Le pronom COD (le, la, les) d\'abord, puis la personne, puis y, puis en.</p>'+
+        '<div class="chain"><span class="slot verb">verbe</span><span class="arr">–</span><span class="slot g">le · la · les</span><span class="arr">–</span><span class="slot mix"><span class="pk-v">moi · toi · nous · vous</span> · <span class="pk-r">lui · leur</span></span><span class="arr">–</span><span class="slot b">y</span><span class="arr">–</span><span class="slot b">en</span></div>'+
+        '<p class="fex">'+pk("Donne-{g|les}-{r|lui} !")+' · '+pk("Dis-{g|la}-{v|moi} !")+' · '+pk("Offrez-{r|leur}-{b|en} !")+' · '+pk("Donne-{v|m'}{b|en} !")+'</p>'+
+        '<p class="fnote">me, te deviennent moi, toi (mais m\'en, t\'en). Au négatif, on revient à la formule 1 : '+pk("Ne {v|me} {g|la} dis pas !")+'</p></div>'+
+      '</div></details>';
+  }
+
+  function cellHTML(r,c){
+    var x=G[r][c],inner;
+    if(x.t==="i")inner='<span class="glab">Impératif, remplacez :</span><span class="gtxt">'+pk(x.p)+'</span><span class="gicon" aria-hidden="true">!</span>';
+    else if(x.t==="m")inner='<span class="glab mm">Méli-mélo :</span><span class="gtxt">'+x.w.map(wtxt).join(" - ")+'</span><span class="gicon" aria-hidden="true">⇄</span>';
+    else inner='<span class="gtxt">'+pk(x.p)+'</span><span class="gicon" aria-hidden="true">?</span>'+(x.pol==="+"?BPLUS:x.pol==="-"?BMINUS:"");
+    var txt=x.t==="m"?x.w.map(function(w){return w[0];}).join(", "):plain(x.p);
+    return '<button type="button" class="gcell '+x.t+'" data-r="'+r+'" data-c="'+c+'" aria-label="Ligne '+(r+1)+', colonne '+(c+1)+'. '+esc(typeName(x.t))+' : '+esc(txt)+'"><span class="gdone" aria-hidden="true">✓</span><span class="gpawn" aria-hidden="true">'+PAWN+'</span>'+inner+'</button>';
+  }
+  function boardHTML(){
+    var h='<div class="gboard" id="gboard"><div class="gcell h gcorner">'+BUBBLES+'</div>';
+    for(var c=0;c<6;c++)h+='<div class="gcell h" data-hc="'+c+'" aria-label="Dé 2 : '+(c+1)+'"><div class="mdie">'+pips(c+1)+'</div></div>';
+    for(var r=0;r<6;r++){
+      h+='<div class="gcell h" data-hr="'+r+'" aria-label="Dé 1 : '+(r+1)+'"><div class="mdie">'+pips(r+1)+'</div></div>';
+      for(c=0;c<6;c++)h+=cellHTML(r,c);
+    }
+    return h+'</div>';
+  }
+  function trackHTML(){
+    var n=gcount(),s="";
+    for(var i=0;i<36;i++)s+='<span'+(i<n?' class="on"':'')+'></span>';
+    return '<div class="ptrack"><div class="ptop"><span>Mon pion</span><span id="pcount">'+n+' / 36 cases réussies</span></div>'+
+      '<div class="prail"><div class="pcells" id="pcells">'+s+'</div><div class="pawn" id="pawn" style="left:'+(n/36*100)+'%">'+PAWN+'</div></div>'+
+      '<div class="pends"><span>Départ</span><span>Arrivée</span></div></div>';
+  }
+  function gstatus(){
+    var n=gcount();
+    document.getElementById("stepLabel").textContent="Jeu · doubles pronoms";
+    document.getElementById("scoreLabel").textContent=n+" / 36";
+    document.getElementById("fill").style.width=Math.round(n/36*100)+"%";
+  }
+  function refresh(){
+    var n=gcount(),cells=document.querySelectorAll("#pcells span");
+    for(var i=0;i<cells.length;i++)cells[i].className=i<n?"on":"";
+    var pw=document.getElementById("pawn");if(pw)pw.style.left=(n/36*100)+"%";
+    var pc=document.getElementById("pcount");if(pc)pc.textContent=n+" / 36 cases réussies";
+    document.querySelectorAll("#gboard [data-r]").forEach(function(b){
+      var k=key(b.getAttribute("data-r"),b.getAttribute("data-c"));
+      b.classList.toggle("done",!!gs.done[k]);
+      b.classList.toggle("rev",!!gs.rev[k]&&!gs.done[k]);
+      b.classList.toggle("sel",!!gs.cur&&k===key(gs.cur.r,gs.cur.c));
+    });
+    document.querySelectorAll("#gboard [data-hr]").forEach(function(h){h.classList.toggle("hl",!!gs.cur&&+h.getAttribute("data-hr")===gs.cur.r);});
+    document.querySelectorAll("#gboard [data-hc]").forEach(function(h){h.classList.toggle("hl",!!gs.cur&&+h.getAttribute("data-hc")===gs.cur.c);});
+    gstatus();
+  }
+
+  function game(){
+    state.mod=null;gs.cur=null;
+    render('<section class="screen active"><div class="card gamecard">'+
+      '<p class="eyebrow" style="color:#4253d6">Activité 9 · Parcours 3 · Jeu</p>'+
+      '<h2 class="gtitle">Les doubles pronoms en français</h2>'+
+      formulas()+
+      '<div class="gcons"><p><b>Lancez les dés.</b> Le dé 1 donne la ligne, le dé 2 donne la colonne.</p>'+
+        '<p>a) Lisez à haute voix la question. Répondez <u>affirmativement</u> '+BPLUS.replace('class="gb"','class="ib"')+' ou <u>négativement</u> '+BMINUS.replace('class="gb"','class="ib"')+' à l\'oral avec les pronoms adéquats.</p>'+
+        '<p>b) Ordonnez les éléments du <b class="pk-r">Méli-mélo</b> correctement ou remplacez les objets à l\'impératif par un pronom.</p>'+
+        '<p>Vérifiez la réponse : si vous avez réussi, votre pion avance.</p></div>'+
+      '<div class="gplay"><div class="dicebar">'+
+        '<div class="diewrap"><span class="dielab">Dé 1 · ligne</span><div class="die" id="d1" aria-hidden="true">'+pips(1)+'</div></div>'+
+        '<div class="diewrap"><span class="dielab">Dé 2 · colonne</span><div class="die" id="d2" aria-hidden="true">'+pips(1)+'</div></div>'+
+        '<button class="btn rollbtn" type="button" id="roll">Lancer les dés</button></div>'+
+        trackHTML()+'</div>'+
+      '<div class="gpanel empty" id="gpanel" aria-live="polite"><p>Lancez les dés pour tirer une case, ou touchez une case du plateau.</p></div>'+
+      boardHTML()+
+      '<p class="glegend"><span><b>?</b> question</span><span><b>⇄</b> méli-mélo</span><span><b>!</b> impératif (en diagonale)</span><span>✓ case réussie</span><span>bordure en pointillés : à revoir</span></p>'+
+      '<div class="gfoot"><button class="linkbtn" type="button" id="menu">← Menu</button><button class="btn ghost" type="button" id="greset">Recommencer le parcours</button></div>'+
+      '</div></section>');
+    document.getElementById("menu").addEventListener("click",home);
+    document.getElementById("roll").addEventListener("click",roll);
+    document.querySelectorAll("#gboard [data-r]").forEach(function(b){
+      b.addEventListener("click",function(){openCell(+b.getAttribute("data-r"),+b.getAttribute("data-c"));});
+    });
+    var rs=document.getElementById("greset");
+    rs.addEventListener("click",function(){
+      if(!rs.dataset.armed){rs.dataset.armed="1";rs.textContent="Confirmer : tout effacer ?";setTimeout(function(){if(rs.dataset.armed){delete rs.dataset.armed;rs.textContent="Recommencer le parcours";}},4000);return;}
+      delete rs.dataset.armed;gs.done={};gs.rev={};gs.cur=null;gsave();rs.textContent="Recommencer le parcours";
+      var p=document.getElementById("gpanel");p.className="gpanel empty";p.innerHTML="<p>Parcours remis à zéro. Lancez les dés !</p>";refresh();
+    });
+    refresh();
+  }
+
+  function setDie(id,n){document.getElementById(id).innerHTML=pips(n);}
+  function roll(){
+    if(gs.rolling)return;
+    gs.rolling=true;
+    var btn=document.getElementById("roll");btn.disabled=true;
+    var d1=document.getElementById("d1"),d2=document.getElementById("d2");
+    var a=1+Math.floor(Math.random()*6),b=1+Math.floor(Math.random()*6);
+    function finish(){setDie("d1",a);setDie("d2",b);gs.rolling=false;btn.disabled=false;openCell(a-1,b-1);}
+    if(reduce){finish();return;}
+    [d1,d2].forEach(function(d){d.classList.remove("rolling");void d.offsetWidth;d.classList.add("rolling");});
+    var iv=setInterval(function(){setDie("d1",1+Math.floor(Math.random()*6));setDie("d2",1+Math.floor(Math.random()*6));},80);
+    setTimeout(function(){clearInterval(iv);finish();},720);
+  }
+
+  function openCell(r,c){
+    gs.cur={r:r,c:c};
+    var x=G[r][c],k=key(r,c),p=document.getElementById("gpanel");
+    var h='<div class="ghead"><span class="gpos">Dé 1 : '+(r+1)+' · Dé 2 : '+(c+1)+'</span><span class="gtag '+x.t+'">'+typeName(x.t)+'</span></div>';
+    if(gs.done[k])h+='<p class="gdonenote">✓ Case déjà réussie. Relancez les dés, ou refaites-la pour vous entraîner.</p>';
+    if(x.t==="i")h+='<p class="gsmall">Impératif, remplacez :</p><p class="gprompt">'+pk(x.p)+'</p><p class="gconsigne">Remplacez les compléments par des pronoms et dites la phrase à voix haute.</p>';
+    else if(x.t==="q"){
+      h+='<p class="gprompt">'+pk(x.p)+'</p>';
+      h+='<p class="gconsigne">'+(x.pol==="+"?'Répondez <b>affirmativement</b> '+BPLUS.replace('class="gb"','class="ib"'):x.pol==="-"?'Répondez <b>négativement</b> '+BMINUS.replace('class="gb"','class="ib"'):'Répondez avec <b>un nombre</b>')+' à l\'oral, avec les pronoms adéquats.</p>';
+    }else{
+      h+='<p class="gsmall">Méli-mélo :</p><p class="gconsigne">Touchez les mots dans le bon ordre pour reconstruire la phrase.</p>'+
+        '<div class="mm-pool" id="mmpool">'+x.w.map(function(w,i){return '<button type="button" class="chip" data-i="'+i+'">'+wtxt(w)+'</button>';}).join("")+'</div>'+
+        '<p class="mm-lab">Votre phrase :</p><div class="mm-line" id="mmline"></div>'+
+        '<div class="mm-act"><button class="btn ghost" type="button" id="mmcheck" disabled>Vérifier</button><button class="linkbtn" type="button" id="mmclear">Effacer</button></div>'+
+        '<div class="feedback" id="mmfb"></div>';
+    }
+    h+='<div class="greveal" id="grev" hidden><p class="glabel">Réponse possible</p><p class="gans">'+pk(x.a)+'</p>'+
+      (x.alt?'<p class="galt"><b>'+esc(x.alt[0])+'</b> '+pk(x.alt[1])+'</p>':'')+
+      (x.n?'<p class="gnote">'+pk(x.n)+'</p>':'')+
+      x.f.map(function(f){return '<p class="fmlab">'+FLAB[f]+'</p>'+F[f];}).join("")+'</div>';
+    h+='<div class="nav"><button class="btn ghost" type="button" id="gshow">Voir la réponse</button>'+
+      '<div class="gjudge" id="gjudge" hidden><button class="btn" type="button" id="gok">✓ Réussi : mon pion avance</button><button class="btn ghost" type="button" id="gko">À revoir</button></div>'+
+      '<button class="linkbtn" type="button" id="groll2">Relancer les dés</button></div><p class="gmsg" id="gmsg" aria-live="polite"></p>';
+    p.className="gpanel";p.innerHTML=h;typo(p);
+    document.getElementById("gshow").addEventListener("click",reveal);
+    document.getElementById("gok").addEventListener("click",function(){judge(true);});
+    document.getElementById("gko").addEventListener("click",function(){judge(false);});
+    document.getElementById("groll2").addEventListener("click",function(){
+      document.querySelector(".gplay").scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});roll();
+    });
+    if(x.t==="m")meli(x);
+    refresh();
+    setTimeout(function(){p.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});},60);
+  }
+
+  function reveal(){
+    var rv=document.getElementById("grev");if(!rv.hidden)return;
+    rv.hidden=false;
+    document.getElementById("gshow").hidden=true;
+    var k=key(gs.cur.r,gs.cur.c);
+    if(!gs.done[k])document.getElementById("gjudge").hidden=false;
+    setTimeout(function(){rv.scrollIntoView({behavior:reduce?"auto":"smooth",block:"nearest"});},80);
+  }
+
+  function judge(ok){
+    var k=key(gs.cur.r,gs.cur.c),msg=document.getElementById("gmsg");
+    document.getElementById("gjudge").hidden=true;
+    if(ok){
+      gs.done[k]=1;delete gs.rev[k];gsave();refresh();
+      var n=gcount();
+      if(n>=36){msg.textContent="Bravo ! Votre pion est arrivé : 36 cases sur 36. Vous maîtrisez les doubles pronoms !";confetti(null,240);popup("Arrivée !","ok");}
+      else{msg.textContent="Votre pion avance : "+n+" / 36. Relancez les dés !";confetti(document.getElementById("pawn"),60);popup("Bravo !","ok");}
+    }else{
+      gs.rev[k]=1;gsave();refresh();
+      msg.textContent="Case marquée « à revoir ». Relisez la formule, puis réessayez plus tard.";
+    }
+    typo(msg);
+  }
+
+  function meli(x){
+    var picked=[],pool=document.getElementById("mmpool"),line=document.getElementById("mmline"),chk=document.getElementById("mmcheck"),fb=document.getElementById("mmfb");
+    function draw(){
+      line.innerHTML=picked.map(function(i,pos){return '<button type="button" class="chip" data-p="'+pos+'" aria-label="Retirer '+esc(x.w[i][0])+'">'+wtxt(x.w[i])+'</button>';}).join("");
+      pool.querySelectorAll(".chip").forEach(function(b){b.disabled=picked.indexOf(+b.getAttribute("data-i"))>-1;});
+      chk.disabled=picked.length!==x.w.length;
+      line.querySelectorAll(".chip").forEach(function(b){b.addEventListener("click",function(){picked.splice(+b.getAttribute("data-p"),1);fb.className="feedback";draw();});});
+    }
+    pool.querySelectorAll(".chip").forEach(function(b){b.addEventListener("click",function(){var i=+b.getAttribute("data-i");if(picked.indexOf(i)<0){picked.push(i);draw();}});});
+    document.getElementById("mmclear").addEventListener("click",function(){picked=[];fb.className="feedback";draw();});
+    chk.addEventListener("click",function(){
+      var good=picked.join(",")===x.sol.join(",");
+      if(good){fb.className="feedback show good";fb.textContent="✓ Bravo, la phrase est bien construite !";reveal();}
+      else{fb.className="feedback show";fb.textContent="✗ Pas encore. Regardez l'ordre des pronoms dans les formules, puis réessayez.";oops(document.getElementById("gpanel"));}
+      typo(fb);
+    });
+    draw();
+  }
+
+
+  gload();
   home();
 })();
 </script>
