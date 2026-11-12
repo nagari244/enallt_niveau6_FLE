@@ -365,6 +365,20 @@
     .xm{padding:8px 9px;font-size:.92rem}
     .xtab{min-width:118px;padding:8px 10px}
   }
+  /* Jeu · onglet impératif */
+  .gtabs{margin:0 0 14px}
+  .gtabs .xtn{border-color:#4253d6;color:#4253d6}
+  .gtabs .xtab.on{background:#4253d6;border-color:#4253d6}
+  .gtabs .xtab.on .xtn{border-color:#fff;color:#fff}
+  .gimp{border-top:3px solid #4253d6;padding-top:14px}
+  .gimp-t{margin:16px 0 6px;font-size:1.15rem;color:#2b3aa8}
+  .gimp table.rules td{font-weight:600}
+  .gimp-l{margin:12px 0 0;padding-left:22px}
+  .gimp-l li{margin:4px 0}
+  .wwbox{position:relative;width:100%;max-width:760px;aspect-ratio:500/380;min-height:300px;margin:10px auto 0;border:2px solid var(--ink);background:#fff}
+  .wwbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .wwload{position:absolute;inset:0;display:grid;place-items:center;margin:0;color:var(--muted)}
+  .wwlink{font-size:.88rem;color:var(--muted);text-align:center;margin:8px 0 0}
   footer{max-width:980px;margin:0 auto;padding:0 16px 30px;color:var(--muted);font-size:.85rem}
 </style>
 </head>
@@ -848,11 +862,36 @@
     gstatus();
   }
 
+  function impHTML(){
+    var rows=[["Dis-{g|le}-{v|moi} !","Ne {v|me} {g|le} dis pas !"],["Donne-{g|les}-{r|lui} !","Ne {g|les} {r|lui} donne pas !"],
+      ["Offre-{r|leur}-{b|en} !","Ne {r|leur} {b|en} offre pas !"],["Donne-{v|m'}{b|en} !","Ne {v|m'}{b|en} donne pas !"],["Vas-{b|y} !","N'{b|y} va pas !"]];
+    return '<div id="gImp" class="gimp" hidden>'+
+      '<h3 class="gimp-t">Pratiquons l\'impératif</h3>'+
+      '<p>Pourquoi l\'impératif ? Parce qu\'à l\'impératif <b>affirmatif</b>, les pronoms se placent <b>après le verbe</b>, avec des traits d\'union, et leur ordre change : on dit '+pk("Dis-{g|le}-{v|moi} !")+' et non <s>Dis-me-le</s>. Au <b>négatif</b>, on revient à l\'ordre habituel, devant le verbe : '+pk("Ne {v|me} {g|le} dis pas !")+'</p>'+
+      '<div class="tablewrap"><table class="rules"><tr><th>Impératif affirmatif</th><th>Impératif négatif</th></tr>'+
+        rows.map(function(r){return '<tr><td>'+pk(r[0])+'</td><td>'+pk(r[1])+'</td></tr>';}).join("")+'</table></div>'+
+      '<p class="fmlab">Affirmatif · formule 3</p>'+F.f3+'<p class="fmlab">Négatif · formule 1</p>'+F.f1+
+      '<ul class="gimp-l"><li>D\'abord le COD (le, la, les), puis la personne : '+pk("Donne-{g|les}-{r|lui} !")+'</li>'+
+        '<li>me, te deviennent moi, toi… sauf devant en : '+pk("Donne-{v|m'}{b|en} !")+'</li>'+
+        '<li>y et en restent à la fin ; on ajoute un <span style="white-space:nowrap">-s</span> devant eux : '+pk("Vas-{b|y} !")+' '+pk("Parles-{b|en} !")+'</li>'+
+        '<li>Au négatif : ne + pronoms + verbe + pas, sans trait d\'union.</li></ul>'+
+      '<h3 class="gimp-t">Fiches de révision · Doubles pronoms</h3>'+
+      '<p>Lisez la carte, dites la réponse à voix haute, puis retournez-la pour vérifier.</p>'+
+      '<div class="wwbox" id="wwbox"><p class="wwload">Chargement de l\'activité…</p></div>'+
+      '<p class="wwlink">L\'activité ne s\'affiche pas ? <a href="https://wordwall.net/fr/embed/f4b327ce6b7b4b348f8894cf3dea72af?themeId=50&amp;templateId=76&amp;fontStackId=12" target="_blank" rel="noopener">Ouvrez-la sur Wordwall</a> (connexion Internet nécessaire).</p>'+
+      '</div>';
+  }
+
   function game(){
     state.mod=null;gs.cur=null;
     render('<section class="screen active"><div class="card gamecard">'+
       '<p class="eyebrow" style="color:#4253d6">Activité 9 · Parcours 3 · Jeu</p>'+
       '<h2 class="gtitle">Les doubles pronoms en français</h2>'+
+      '<div class="xtabs gtabs" role="tablist">'+
+        '<button type="button" role="tab" class="xtab on" data-g="dice" aria-selected="true"><span class="xtn">1</span><span><b>Le jeu de dés</b><small>36 cases</small></span></button>'+
+        '<button type="button" role="tab" class="xtab" data-g="imp" aria-selected="false"><span class="xtn">2</span><span><b>Pratiquons l\'impératif</b><small>Règle et fiches Wordwall</small></span></button>'+
+      '</div>'+
+      '<div id="gDice">'+
       formulas()+
       '<div class="gcons"><p><b>Lancez les dés.</b> Le dé 1 donne la ligne, le dé 2 donne la colonne.</p>'+
         '<p>a) Lisez à haute voix la question. Répondez <u>affirmativement</u> '+BPLUS.replace('class="gb"','class="ib"')+' ou <u>négativement</u> '+BMINUS.replace('class="gb"','class="ib"')+' à l\'oral avec les pronoms adéquats.</p>'+
@@ -866,6 +905,7 @@
       '<div class="gpanel empty" id="gpanel" aria-live="polite"><p>Lancez les dés pour tirer une case, ou touchez une case du plateau.</p></div>'+
       boardHTML()+
       '<p class="glegend"><span><b>?</b> question</span><span><b>⇄</b> méli-mélo</span><span><b>!</b> impératif (en diagonale)</span><span>✓ case réussie</span><span>bordure en pointillés : à revoir</span></p>'+
+      '</div>'+impHTML()+
       '<div class="gfoot"><button class="linkbtn" type="button" id="menu">← Menu</button><button class="btn ghost" type="button" id="greset">Recommencer le parcours</button></div>'+
       '</div></section>');
     document.getElementById("menu").addEventListener("click",home);
@@ -879,6 +919,18 @@
       delete rs.dataset.armed;gs.done={};gs.rev={};gs.cur=null;gsave();rs.textContent="Recommencer le parcours";
       var p=document.getElementById("gpanel");p.className="gpanel empty";p.innerHTML="<p>Parcours remis à zéro. Lancez les dés !</p>";refresh();
     });
+    main.querySelectorAll(".gtabs .xtab").forEach(function(b){b.addEventListener("click",function(){
+      var imp=b.getAttribute("data-g")==="imp";
+      main.querySelectorAll(".gtabs .xtab").forEach(function(o){var on=o===b;o.classList.toggle("on",on);o.setAttribute("aria-selected",on);});
+      document.getElementById("gDice").hidden=imp;
+      document.getElementById("gImp").hidden=!imp;
+      document.getElementById("greset").hidden=imp;
+      if(imp){
+        document.getElementById("stepLabel").textContent="Jeu · Pratiquons l'impératif";
+        var box=document.getElementById("wwbox");
+        if(!box.querySelector("iframe"))box.innerHTML='<iframe src="https://wordwall.net/fr/embed/f4b327ce6b7b4b348f8894cf3dea72af?themeId=50&amp;templateId=76&amp;fontStackId=12" title="Wordwall · Doubles pronoms (fiches de révision)" loading="lazy" allowfullscreen></iframe>';
+      }else gstatus();
+    });});
     refresh();
   }
 
