@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dialogues à pronoms · Activité orale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#102a43; --blue:#0066a6; --blue-soft:#e3f0f8; --yellow:#f6c945; --yellow-soft:#fdf3cf;
+    --wine:#7d1f35; --wine-soft:#f8e4e8; --paper:#ffffff; --muted:#52606d; --line:#d9dee4;
+    --ok:#157345; --ok-bg:#ddf2e5; --ko:#a12a35; --ko-bg:#fde3e0;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.55}
+  button{font:inherit;color:inherit}
+  .frame{max-width:980px;margin:0 auto;padding:16px 16px 60px}
+  .back{display:inline-block;font-size:.9rem;font-weight:700;color:var(--blue);text-decoration:none;margin-bottom:8px}
+
+  /* En-tête */
+  .topbar{border-bottom:3px solid var(--ink);padding-bottom:14px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:flex-end}
+  .brand{display:flex;align-items:center;gap:12px}
+  .dots{width:14px;height:14px;border-radius:50%;background:var(--wine);box-shadow:20px 0 0 var(--yellow),40px 0 0 var(--blue);margin-right:40px;flex:0 0 auto}
+  .kicker{margin:0;text-transform:uppercase;letter-spacing:.13em;font-weight:700;font-size:.78rem}
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif;letter-spacing:-.02em;line-height:1.1}
+  h1{margin:10px 0 0;font-size:clamp(1.7rem,5vw,2.6rem)}
+  .status{min-width:190px;flex:1 1 190px;max-width:320px}
+  .status .row{display:flex;justify-content:space-between;font-weight:700;font-size:.88rem;margin-bottom:6px}
+  .track{height:9px;background:var(--line);border-radius:99px;overflow:hidden}
+  .fill{height:100%;width:0;background:var(--wine);border-radius:inherit;transition:width .4s ease}
+
+  /* Écrans */
+  .screen{display:none;animation:rise .35s ease both}
+  .screen.active{display:block}
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .card{border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);background:var(--paper);padding:clamp(18px,4vw,36px);margin-top:26px}
+  .card.hero{background:var(--blue);color:#fff}
+  .card.lesson{background:#fff}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;text-transform:uppercase;font-size:.75rem;font-weight:700;letter-spacing:.12em;margin:0}
+  .eyebrow::before{content:"";width:26px;height:4px;background:currentColor;display:block}
+  .card h2{margin:12px 0 10px;font-size:clamp(1.4rem,4vw,2rem)}
+  .lead{font-size:1.05rem;margin:4px 0 14px}
+
+  /* Accueil : choix du parcours */
+  .modules{display:grid;grid-template-columns:1fr;gap:16px;margin-top:22px}
+  @media(min-width:720px){.modules{grid-template-columns:1fr 1fr}}
+  .module{border:3px solid var(--ink);background:#fff;color:var(--ink);padding:18px;text-align:left;cursor:pointer;box-shadow:5px 5px 0 var(--yellow);transition:transform .15s,box-shadow .15s}
+  .module:hover,.module:focus-visible{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--yellow);outline:none}
+  .module .tag{display:inline-block;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border:2px solid var(--ink);margin-bottom:8px}
+  .module h3{margin:4px 0 6px;font-size:1.35rem}
+  .module p{margin:0;color:var(--muted);font-size:.95rem}
+  .module .done{display:block;margin-top:8px;font-weight:700;color:var(--ok)}
+
+  /* Éléments de leçon */
+  .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+  .pill{border:2px solid var(--ink);padding:6px 11px;font-weight:600;font-size:.92rem;background:#fff}
+  .pill.cod{background:var(--blue-soft);border-color:var(--blue)}
+  .pill.coi{background:var(--wine-soft);border-color:var(--wine)}
+  .pill.de{background:var(--yellow-soft);border-color:#b48a14}
+  .two{display:grid;grid-template-columns:1fr;gap:14px;margin:12px 0}
+  @media(min-width:680px){.two{grid-template-columns:1fr 1fr}}
+  .panel{border:2px solid var(--ink);padding:14px 16px}
+  .panel.cod{background:var(--blue-soft);border-color:var(--blue)}
+  .panel.coi{background:var(--wine-soft);border-color:var(--wine)}
+  .panel.de{background:var(--yellow-soft);border-color:#b48a14}
+  .panel h4{margin:0 0 6px;font-size:1.02rem}
+  .panel p{margin:4px 0}
+  .ex{margin:6px 0;font-size:1.02rem}
+  .ex b{white-space:nowrap}
+  .arrow{color:var(--muted);margin:0 6px}
+  .c-cod{color:var(--blue);font-weight:700}
+  .c-coi{color:var(--wine);font-weight:700}
+  .c-de{color:#8a6a0c;font-weight:700}
+  .tip{border-left:6px solid var(--yellow);background:var(--yellow-soft);padding:10px 14px;margin:14px 0 0;font-weight:500}
+  table.rules{border-collapse:collapse;width:100%;margin:10px 0;font-size:.97rem}
+  table.rules th,table.rules td{border:2px solid var(--ink);padding:8px 10px;text-align:left;vertical-align:top}
+  table.rules th{background:var(--yellow-soft)}
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+  /* Quiz */
+  .qcount{font-weight:700;color:var(--wine)}
+  .prompt{font-size:clamp(1.15rem,3.5vw,1.45rem);font-weight:700;margin:6px 0 4px}
+  .help{color:var(--muted);margin:0 0 6px}
+  .choices{display:grid;gap:12px;margin-top:18px}
+  .choices.grid{grid-template-columns:1fr 1fr}
+  @media(min-width:700px){.choices.grid{grid-template-columns:repeat(3,1fr)}}
+  .choice{display:flex;gap:12px;align-items:center;min-height:58px;border:2px solid var(--ink);background:#fff;padding:12px 14px;text-align:left;font-weight:600;cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s}
+  .choice:hover:not(:disabled),.choice:focus-visible:not(:disabled){transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--yellow);outline:none}
+  .choice:disabled{cursor:default}
+  .choice .l{flex:0 0 auto;display:grid;place-items:center;min-width:30px;height:30px;padding:0 6px;background:var(--ink);color:#fff;border-radius:999px;font-size:.85rem;font-weight:700}
+  .choice.correct{background:var(--ok-bg);border-color:var(--ok)}
+  .choice.correct .l{background:var(--ok)}
+  .choice.wrong{background:var(--ko-bg);border-color:var(--ko)}
+  .choice.wrong .l{background:var(--ko)}
+  .feedback{display:none;margin-top:18px;padding:13px 16px;border-left:7px solid var(--ko);background:var(--ko-bg);font-weight:600}
+  .feedback.show{display:block;animation:rise .25s ease both}
+  .feedback.good{border-color:var(--ok);background:var(--ok-bg)}
+  .nav{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-top:20px}
+  .btn{border:2px solid var(--ink);background:var(--yellow);color:var(--ink);padding:12px 18px;min-height:50px;font-weight:700;cursor:pointer;box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+  .btn:hover:not(:disabled),.btn:focus-visible{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink);outline:none}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+  .btn.ghost{background:#fff}
+  .linkbtn{background:none;border:0;padding:6px 0;font-weight:700;color:var(--blue);cursor:pointer;text-decoration:underline}
+
+  /* Animation d'erreur */
+  .shake{animation:shake .45s ease}
+  @keyframes shake{0%,100%{transform:none}20%{transform:translateX(-9px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(4px)}}
+  .flash{position:fixed;inset:0;pointer-events:none;background:rgba(161,42,53,.14);opacity:0;z-index:40}
+  .flash.on{animation:flash .5s ease}
+  @keyframes flash{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+  .pop{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%) scale(.6);font-family:"Fraunces",serif;font-size:3.2rem;font-weight:700;pointer-events:none;opacity:0;z-index:41}
+  .pop.ok{color:var(--ok)} .pop.ko{color:var(--ko)}
+  .pop.on{animation:pop .8s ease}
+  @keyframes pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}30%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}100%{opacity:0;transform:translate(-50%,-60%) scale(1)}}
+  #confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
+
+  /* Résultats */
+  .score-big{font-family:"Fraunces",serif;font-size:clamp(3.5rem,12vw,6.5rem);color:var(--yellow);line-height:.95;margin:16px 0}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  .pk-v{color:#8a32b4;font-weight:700} .pk-g{color:#33802a;font-weight:700} .pk-r{color:#c43a31;font-weight:700} .pk-b{color:#0a7489;font-weight:700}
+  .card.gamecard{padding:clamp(12px,3vw,32px)}
+  .gtitle{color:#4253d6;text-align:center;margin:4px 0 14px!important;font-size:clamp(1.55rem,5vw,2.4rem)!important}
+
+  /* Formules */
+  .gform{border:2px solid var(--ink);margin:0 0 18px}
+  .gform summary{cursor:pointer;font-weight:700;padding:12px 16px;background:#f5f6ff;list-style-position:inside}
+  .fgrid{display:grid;grid-template-columns:1fr;gap:14px;padding:14px}
+  @media(min-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
+  .fbox{border:2px solid var(--line);border-radius:12px;padding:14px 14px 12px;background:#fff}
+  .fbox.wide{grid-column:1/-1}
+  .fbox h4{margin:0 0 2px;font-size:1rem}
+  .fbox .fsub{margin:0 0 6px;color:var(--muted);font-size:.88rem}
+  .fex{margin:8px 0 0;font-size:.98rem}
+  .fnote{margin:8px 0 0;font-size:.9rem;color:var(--muted)}
+  .circles{display:flex;align-items:center;justify-content:center;margin:12px 0 4px;padding-right:10px}
+  .circ{width:clamp(90px,25vw,132px);aspect-ratio:1;border-radius:50%;border:3px solid;display:flex;flex-direction:column;justify-content:center;align-items:center;font-weight:700;line-height:1.3;position:relative;font-size:clamp(.9rem,2.8vw,1.05rem)}
+  .circ+.circ{margin-left:-14px}
+  .circ.v{background:#f4e6fa;border-color:#8a32b4;color:#73279a;z-index:3}
+  .circ.g{background:#e7f4e2;border-color:#33802a;color:#2b6c23;z-index:2}
+  .circ.r{background:#ffe5e1;border-color:#c43a31;color:#a72f27;z-index:1}
+  .circ.v::after,.circ.g::after{content:"";position:absolute;right:-17px;top:50%;transform:translateY(-50%);border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:15px solid currentColor}
+  .f2wrap{display:flex;align-items:center;justify-content:center;gap:12px;margin:12px 0 4px}
+  .vpill{border:3px solid #8a32b4;background:#faf3fd;border-radius:34px;padding:10px 16px;display:flex;flex-wrap:wrap;gap:2px 10px;justify-content:center;max-width:215px;font-weight:700}
+  .bubble{background:#e0f3f7;border:3px solid #0a7489;color:#075c6c;border-radius:26px 26px 26px 6px;padding:10px 20px;font-family:"Fraunces",Georgia,serif;font-size:1.6rem;font-weight:700;white-space:nowrap}
+  .chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0 2px}
+  .slot{border:2px solid;border-radius:10px;padding:6px 10px;font-weight:700;background:#fff;line-height:1.3}
+  .slot.verb{border-color:var(--ink);background:#fdf3cf}
+  .slot.v{border-color:#8a32b4;color:#73279a;background:#faf3fd}
+  .slot.g{border-color:#33802a;color:#2b6c23;background:#f3faf0}
+  .slot.r{border-color:#c43a31;color:#a72f27;background:#fff3f1}
+  .slot.b{border-color:#0a7489;color:#075c6c;background:#eef9fb}
+  .slot.mix{border-color:var(--ink)}
+  .arr{font-weight:700;color:var(--muted)}
+  .chain.mini{gap:4px;margin:4px 0 0}
+  .chain.mini .slot{padding:2px 7px;font-size:.86rem;border-radius:8px}
+  .fmlab{margin:12px 0 0;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  .gfoot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center;margin-top:18px}
+  /* ===== Parcours 4 : dialogues à pronoms ===== */
+  .dsec{font-size:1.05rem;margin:18px 0 8px;color:#b0570e}
+  .dmenu{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+  .dcard{display:flex;gap:12px;align-items:flex-start;text-align:left;border:2px solid var(--ink);background:#fff;padding:12px 14px;cursor:pointer;font:inherit;color:inherit;position:relative;min-height:64px;transition:transform .12s,box-shadow .12s}
+  .dcard:hover,.dcard:focus-visible{transform:translateY(-2px);box-shadow:4px 4px 0 #b0570e;outline:none}
+  .dcard.ok{background:#f6fbf4}
+  .dnum{flex:none;width:30px;height:30px;border-radius:50%;border:2px solid #b0570e;color:#b0570e;display:grid;place-items:center;font-weight:700;font-size:.9rem}
+  .dtx b{display:block;line-height:1.25}
+  .dtx small{display:block;color:var(--muted);font-size:.8rem;margin-top:3px}
+  .dok{position:absolute;right:8px;top:6px;color:var(--ok);font-weight:700}
+  .dcons{border-left:6px solid #b0570e;background:#fff8ef;padding:8px 14px;margin:6px 0 12px}
+  .dcons p{margin:4px 0}
+  .dblank-s{display:inline-block;border-bottom:2px dashed #4253d6;background:#f3f4ff;padding:0 6px;color:#4253d6;font-weight:700}
+  .doral-s{display:inline-block;border:2px dotted #b07a0e;border-radius:6px;padding:0 6px;background:#fffbea;font-size:.9rem;font-weight:700;color:#6b4e00}
+  .dtools{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 6px}
+  .dtools .btn{padding:8px 14px;font-size:.92rem}
+  .dlg{margin:6px 0 4px}
+  .dline{display:flex;gap:10px;align-items:flex-start;margin:12px 0}
+  .dline.B{flex-direction:row-reverse}
+  .dwho{flex:none;width:40px;height:40px;border-radius:50%;border:2.5px solid var(--ink);display:grid;place-items:center;font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.15rem;margin-top:2px}
+  .dwho.A{background:#eef0ff}
+  .dwho.B{background:#ffeedb}
+  .dsay{margin:0;border:2px solid var(--ink);padding:10px 14px;max-width:min(86%,640px);background:#fff;border-radius:18px 18px 18px 4px;font-size:clamp(1rem,2.9vw,1.1rem);line-height:1.8;box-shadow:3px 3px 0 rgba(16,42,67,.12)}
+  .dline.B .dsay{border-radius:18px 18px 4px 18px;background:#fffaf3}
+  .dgapw{white-space:nowrap}
+  .dgap{display:inline-flex;align-items:center;justify-content:center;border:none;border-bottom:2px dashed #4253d6;background:#f3f4ff;padding:0 7px;min-width:52px;min-height:30px;font:inherit;font-weight:700;color:#4253d6;cursor:pointer;border-radius:4px 4px 0 0;vertical-align:baseline}
+  .dgap .dans{display:none}
+  .dgap.on{background:#eef0ff;border-bottom-style:solid}
+  .dgap.on .dblank{display:none}
+  .dgap.on .dans{display:inline}
+  .dhint{width:24px;height:24px;border-radius:50%;border:1.5px solid #9aa5b1;background:#fff;color:#52606d;font-size:.78rem;font-weight:700;cursor:pointer;margin:0 2px 0 3px;padding:0;vertical-align:middle;line-height:1}
+  .dhintt{display:none;font-size:.82rem;font-style:italic;color:#52606d;margin-right:3px}
+  .dhintt.on{display:inline}
+  .doral{display:inline;border:2px dotted #b07a0e;border-radius:8px;padding:2px 7px;background:#fffbea;cursor:pointer;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+  .dcue{font-size:.92rem;color:#6b4e00}
+  .doral .dans{display:none;font-weight:700}
+  .doral.on .dans{display:inline}
+  @media(max-width:520px){
+    .dline{gap:6px}
+    .dwho{width:32px;height:32px;font-size:1rem}
+    .dsay{max-width:calc(100% - 40px);padding:9px 11px}
+  }
+  footer{max-width:980px;margin:0 auto;padding:0 16px 30px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div class="flash" id="flash" aria-hidden="true"></div>
+<div class="pop" id="pop" aria-hidden="true"></div>
+
+<div class="frame">
+  <a class="back" href="index.html">← Matériel didactique</a>
+  <header class="topbar">
+    <div>
+      <div class="brand"><span class="dots" aria-hidden="true"></span><p class="kicker">Niveau 6 · Extra · Activité orale</p></div>
+      <h1>Dialogues à pronoms</h1>
+    </div>
+    <div class="status" aria-label="Progression">
+      <div class="row"><span id="stepLabel">Prêt·e ?</span><span id="scoreLabel">0 / 20 joués</span></div>
+      <div class="track"><div class="fill" id="fill"></div></div>
+    </div>
+  </header>
+
+  <main id="main" aria-live="polite"></main>
+</div>
+<footer>Niveau 6 · ENALLT, UNAM · Conception pédagogique : Nadia Aguilar Neri</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ================= ÉTAT ================= */
+  var state={mod:null,i:0,score:0,total:0,done:{}};
+  var main=document.getElementById("main");
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function typo(root){
+    var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),n;
+    while((n=w.nextNode())){var v=n.nodeValue,nv=v.replace(/ ([?!:;»])/g," $1").replace(/« /g,"« ");if(nv!==v)n.nodeValue=nv;}
+  }
+  function status(label,pct){
+    document.getElementById("stepLabel").textContent=label;
+    document.getElementById("scoreLabel").textContent="Score : "+state.score+(state.mod?" / "+state.total:"");
+    document.getElementById("fill").style.width=(pct||0)+"%";
+  }
+  function render(html){main.innerHTML=html;typo(main);window.scrollTo({top:0,behavior:"smooth"});}
+
+  /* ================= ANIMATIONS ================= */
+  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var cv=document.getElementById("confetti"),cx=cv.getContext("2d"),parts=[],raf=null;
+  function size(){cv.width=window.innerWidth*devicePixelRatio;cv.height=window.innerHeight*devicePixelRatio;cx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);}
+  size();window.addEventListener("resize",size);
+  function confetti(el,count){
+    if(reduce)return;
+    var r=el?el.getBoundingClientRect():{left:window.innerWidth/2-1,top:window.innerHeight/3,width:2,height:2};
+    var x0=r.left+r.width/2,y0=r.top+r.height/2,cols=["#7d1f35","#f6c945","#0066a6","#157345","#102a43"];
+    for(var i=0;i<(count||90);i++){
+      var a=Math.random()*Math.PI*2,v=4+Math.random()*7;
+      parts.push({x:x0,y:y0,vx:Math.cos(a)*v,vy:Math.sin(a)*v-5,w:6+Math.random()*6,h:4+Math.random()*4,rot:Math.random()*6,vr:(Math.random()-.5)*.3,c:cols[i%cols.length],life:0});
+    }
+    if(!raf)raf=requestAnimationFrame(tick);
+  }
+  function tick(){
+    cx.clearRect(0,0,cv.width,cv.height);
+    parts=parts.filter(function(p){return p.life<120&&p.y<window.innerHeight+40;});
+    parts.forEach(function(p){
+      p.vy+=.25;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.rot+=p.vr;p.life++;
+      cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot);cx.globalAlpha=Math.max(0,1-p.life/120);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore();
+    });
+    raf=parts.length?requestAnimationFrame(tick):null;
+    if(!raf)cx.clearRect(0,0,cv.width,cv.height);
+  }
+  function popup(text,kind){
+    if(reduce)return;
+    var p=document.getElementById("pop");p.textContent=text;p.className="pop "+kind;void p.offsetWidth;p.className="pop "+kind+" on";
+  }
+  function oops(card){
+    if(reduce)return;
+    card.classList.remove("shake");void card.offsetWidth;card.classList.add("shake");
+    var f=document.getElementById("flash");f.classList.remove("on");void f.offsetWidth;f.classList.add("on");
+    popup("Oups…","ko");
+  }
+
+
+  function pk(s){return esc(s).replace(/\{([vgrb])\|([^}]*)\}/g,'<span class="pk-$1">$2</span>');}
+
+  var F={
+    f1:'<div class="chain mini"><span class="slot v">me · te · se · nous · vous</span><span class="arr">→</span><span class="slot g">le · la · l\' · les</span><span class="arr">→</span><span class="slot r">lui · leur</span><span class="arr">+ verbe</span></div>',
+    f2:'<div class="chain mini"><span class="slot mix"><span class="pk-v">m\' t\' s\' nous vous</span> · <span class="pk-g">l\' les</span> · <span class="pk-r">lui leur</span></span><span class="arr">→</span><span class="slot b">y</span><span class="arr">→</span><span class="slot b">en</span></div>',
+    f3:'<div class="chain mini"><span class="slot verb">verbe</span><span class="arr">–</span><span class="slot g">le · la · les</span><span class="arr">–</span><span class="slot mix"><span class="pk-v">moi · toi · nous · vous</span> · <span class="pk-r">lui · leur</span></span><span class="arr">–</span><span class="slot b">y</span><span class="arr">–</span><span class="slot b">en</span></div>'
+  };
+  var FLAB={f1:"Formule 1 · ordre devant le verbe",f2:"Formule 2 · y et en à la fin",f3:"Formule 3 · impératif affirmatif"};
+
+  function formulas(){
+    return '<details class="gform" open><summary>Les formules de combinaison des pronoms</summary><div class="fgrid">'+
+      '<div class="fbox"><h4>Formule 1 · devant le verbe</h4><p class="fsub">Phrases affirmatives, négatives, questions et impératif négatif</p>'+
+        '<div class="circles"><div class="circ v"><span>me</span><span>te</span><span>se</span><span>nous</span><span>vous</span></div><div class="circ g"><span>la</span><span>le</span><span>l\'</span><span>les</span></div><div class="circ r"><span>lui</span><span>leur</span></div></div>'+
+        '<p class="fex">Je '+pk("{v|te} {g|la}")+' prête. · Elle '+pk("{g|la} {r|leur}")+' raconte. · Ne '+pk("{v|me} {g|la}")+' dis pas !</p>'+
+        '<p class="fnote">me, te, se, nous, vous ne se combinent jamais avec lui, leur.</p></div>'+
+      '<div class="fbox"><h4>Formule 2 · y et en toujours à la fin</h4><p class="fsub">Tous les autres pronoms se placent avant y et en ; y se place avant en.</p>'+
+        '<div class="f2wrap"><div class="vpill"><span class="pk-v">m\'</span><span class="pk-v">t\'</span><span class="pk-v">s\'</span><span class="pk-g">l\'</span><span class="pk-r">lui</span><span class="pk-v">nous</span><span class="pk-v">vous</span><span class="pk-g">les</span><span class="pk-r">leur</span></div><span class="arr" aria-hidden="true">→</span><div class="bubble">y / en</div></div>'+
+        '<p class="fex">Je '+pk("{v|m'}{b|en}")+' souviens. · Elle '+pk("{r|leur} {b|en}")+' a acheté. · Il '+pk("{b|y} {b|en}")+' a.</p></div>'+
+      '<div class="fbox wide"><h4>Formule 3 · impératif affirmatif : après le verbe, avec des traits d\'union</h4><p class="fsub">Le pronom COD (le, la, les) d\'abord, puis la personne, puis y, puis en.</p>'+
+        '<div class="chain"><span class="slot verb">verbe</span><span class="arr">–</span><span class="slot g">le · la · les</span><span class="arr">–</span><span class="slot mix"><span class="pk-v">moi · toi · nous · vous</span> · <span class="pk-r">lui · leur</span></span><span class="arr">–</span><span class="slot b">y</span><span class="arr">–</span><span class="slot b">en</span></div>'+
+        '<p class="fex">'+pk("Donne-{g|les}-{r|lui} !")+' · '+pk("Dis-{g|la}-{v|moi} !")+' · '+pk("Offrez-{r|leur}-{b|en} !")+' · '+pk("Donne-{v|m'}{b|en} !")+'</p>'+
+        '<p class="fnote">me, te deviennent moi, toi (mais m\'en, t\'en). Au négatif, on revient à la formule 1 : '+pk("Ne {v|me} {g|la} dis pas !")+'</p></div>'+
+      '</div></details>';
+  }
+
+  /* ================= DIALOGUES À PRONOMS ================= */
+  /* [[réponse::indice]] = trou à compléter à l'oral · ((consigne::réponse)) = réplique à reformuler à l'oral.
+     Code couleur des réponses : {v|…} me te se nous vous · {g|…} le la l' les · {r|…} lui leur · {b|…} y en */
+  var D=[
+    {g:"j",ti:"Le déménagement de Sophie",th:"Amitié",l:[
+      ["A","Tu as vu Sophie récemment ?"],
+      ["B","Non, ça fait deux mois que ((ne pas voir Sophie::je ne {g|l'}ai pas vue)). Pourquoi ?"],
+      ["A","Elle ne [[{v|t'}::à toi]]a pas parlé de son déménagement ?"],
+      ["B","Non, elle ne [[{v|m'}{b|en}::à moi · de son déménagement]] a pas parlé. Ça s'est mal passé ?"],
+      ["A","Oui, mais c'est une longue histoire et j'ai cours, je dois partir. Je [[{v|te} {g|la}::à toi · cette histoire]] raconte à 17 h ? Au café, comme d'habitude ?"],
+      ["B","D'accord, je [[{v|t'}{b|y}::toi · au café]] attends."]]},
+    {g:"j",ti:"Le colocataire",th:"Colocation",l:[
+      ["A","Ton colocataire paie toujours le loyer en retard ?"],
+      ["B","Oui ! Ce mois-ci, il ne [[{v|me} {g|l'}::à moi · le loyer]]a pas encore donné."],
+      ["A","Tu [[{r|lui}::à ton colocataire]] as parlé du problème ?"],
+      ["B","Non, je ne [[{r|lui} {b|en}::à lui · du problème]] ai pas encore parlé. ((avoir peur de vexer mon colocataire::J'ai peur de {g|le} vexer))."],
+      ["A","Ne [[{g|le}::ton colocataire]] laisse pas faire ! Explique-[[{r|lui}::à ton colocataire]] la situation calmement."]]},
+    {g:"j",ti:"Le premier stage",th:"Premier emploi",l:[
+      ["A","Tu as envoyé ton CV aux ressources humaines de Nova ?"],
+      ["B","Oui, je [[{g|le} {r|leur}::mon CV · aux ressources humaines]] ai envoyé lundi."],
+      ["A","Et ils [[{v|t'}::à toi]]ont répondu ?"],
+      ["B","Pas encore. Je dois [[{g|les}::les ressources humaines]] rappeler demain."],
+      ["A","N'attends pas ! Appelle-[[{g|les}::les ressources humaines]] aujourd'hui. Et si tu as un entretien, je peux [[{v|te}::à toi]] prêter ma veste noire."],
+      ["B","C'est gentil ! ((apporter ta veste à moi · demain ?::Tu {v|me} {g|l'}apportes demain ?))"]]},
+    {g:"j",ti:"Accros aux réseaux sociaux",th:"Réseaux sociaux",l:[
+      ["A","Tu passes combien de temps sur les réseaux sociaux ?"],
+      ["B","Trop ! J'[[{b|y}::sur les réseaux sociaux]] passe au moins quatre heures par jour."],
+      ["A","Moi aussi. Mon téléphone, je [[{g|le}::mon téléphone]] regarde même pendant les cours !"],
+      ["B","Désactive les notifications ! Moi, je [[{g|les}::les notifications]] ai désactivées le mois dernier."],
+      ["A","Et ça [[{v|t'}::toi]]a aidé(e) ?"],
+      ["B","Oui, beaucoup. ((essayer cette méthode · toi aussi !::Essaie-{g|la}, toi aussi !))"]]},
+    {g:"j",ti:"Le petit boulot du week-end",th:"Travail étudiant",l:[
+      ["A","Tu travailles toujours au café le week-end ?"],
+      ["B","Oui, j'[[{b|y}::au café]] travaille le samedi et le dimanche."],
+      ["A","Et ton patron [[{v|te}::toi]] paie bien ?"],
+      ["B","Pas vraiment, mais les clients [[{v|me}::à moi]] laissent des pourboires."],
+      ["A","Ils [[{v|t'}{b|en}::à toi · des pourboires]] laissent beaucoup ?"],
+      ["B","Ça dépend ! ((pouvoir parler de ce travail à toi · demain::Je peux {v|t'}{b|en} parler demain)), j'ai cours maintenant."]]},
+    {g:"j",ti:"Un semestre à Lyon",th:"Mobilité",l:[
+      ["A","Tu as reçu la réponse de l'université de Lyon ?"],
+      ["B","Oui, ils [[{v|m'}::moi]]ont accepté(e) ! Je pars [[{b|y}::à Lyon]] étudier un semestre."],
+      ["A","Félicitations ! Tes parents [[{g|le}::ça]] savent ?"],
+      ["B","Oui, je [[{g|le} {r|leur}::ça · à mes parents]] ai annoncé hier. Ils sont très fiers !"],
+      ["A","Tu as déjà trouvé un logement ?"],
+      ["B","Pas encore. ((aller chercher un logement · le mois prochain::Je vais {b|en} chercher un le mois prochain))."]]},
+    {g:"j",ti:"Le bénévolat",th:"Engagement",l:[
+      ["A","Tu fais toujours du bénévolat dans l'association pour l'environnement ?"],
+      ["B","Oui, j'[[{b|en}::du bénévolat]] fais deux fois par mois."],
+      ["A","Ça [[{v|m'}::moi]]intéresse ! Il faut s'inscrire ?"],
+      ["B","Oui, avec un formulaire. Je peux [[{v|te} {g|l'}::à toi · le formulaire]]envoyer."],
+      ["A","Super, envoie-[[{g|le}-{v|moi}::le formulaire · à moi]] ! Et la prochaine action, c'est quand ?"],
+      ["B","Samedi, on nettoie la plage. ((on · attendre toi à 8 h::On {v|t'}attend à 8 h)) !"]]},
+    {g:"j",ti:"Les résultats de l'examen",th:"Études",l:[
+      ["A","Tu as vu les résultats de l'examen ?"],
+      ["B","Oui, la prof [[{g|les}::les résultats]] a publiés ce matin. J'ai réussi !"],
+      ["A","Bravo ! Moi, je ne [[{g|les}::les résultats]] trouve pas sur la plateforme."],
+      ["B","Demande-[[{g|les}-{r|lui}::les résultats · à la prof]] ! Elle va sûrement [[{v|te} {g|les}::à toi · les résultats]] envoyer."],
+      ["A","((écrire à la prof · ce soir ?::Je {r|lui} écris ce soir ?))"],
+      ["B","Non, ne [[{r|lui}::à la prof]] écris pas ce soir : elle répond seulement le matin."]]},
+    {g:"j",ti:"Sortir le soir",th:"Relations avec les parents",l:[
+      ["A","Tes parents [[{v|te}::toi]] laissent sortir le soir ?"],
+      ["B","Oui, mais ils [[{v|me}::à moi]] demandent de rentrer avant minuit."],
+      ["A","Et si tu rentres plus tard ?"],
+      ["B","Je [[{r|leur}::à mes parents]] envoie un message. Sinon, ma mère [[{v|m'}::moi]]attend dans le salon !"],
+      ["A","La mienne aussi ! Un jour, elle [[{v|m'}::moi]]avait attendu(e) jusqu'à deux heures du matin."],
+      ["B","((ne pas raconter ça à ma mère · elle va avoir des idées !::Ne {g|le} {r|lui} raconte pas, elle va avoir des idées !))"]]},
+    {g:"j",ti:"Le livre de Marc",th:"Études",l:[
+      ["A","Tu as toujours le livre de Marc ?"],
+      ["B","Non, je [[{g|le} {r|lui}::le livre · à Marc]] ai rendu la semaine dernière."],
+      ["A","Dommage, j'[[{b|en}::du livre]] avais besoin pour mon exposé."],
+      ["B","Demande-[[{g|le}-{r|lui}::le livre · à Marc]] ! Il est sympa, il va sûrement [[{v|te} {g|le}::à toi · le livre]] prêter."],
+      ["A","Tu as son numéro ?"],
+      ["B","Oui, ((envoyer son numéro à toi · tout de suite::je {v|te} {g|l'}envoie tout de suite))."]]},
+
+    {g:"c",ti:"Le colis qui n'arrive pas",th:"Achats en ligne",l:[
+      ["A","Tu as reçu les écouteurs que tu as commandés en ligne ?"],
+      ["B","Non, ça fait trois semaines que ((attendre les écouteurs::je {g|les} attends)) !"],
+      ["A","Tu as écrit au vendeur ?"],
+      ["B","Oui, je [[{r|lui}::au vendeur]] ai écrit deux fois, mais il ne [[{v|m'}::à moi]]a jamais répondu."],
+      ["A","Demande-[[{r|lui}::au vendeur]] un remboursement ! Et si tu as le numéro de suivi, envoie-[[{g|le}-{v|moi}::le numéro · à moi]] : je vais regarder."],
+      ["B","D'accord, je [[{v|te} {g|l'}::à toi · le numéro]]envoie ce soir."]]},
+    {g:"c",ti:"Le pull trop petit",th:"Retour en magasin",l:[
+      ["A","Il est joli, ton pull ! Tu [[{g|l'}::le pull]]as acheté où ?"],
+      ["B","Au centre commercial, mais il est trop petit. Je vais [[{g|le}::le pull]] rapporter au magasin."],
+      ["A","Tu as gardé le ticket de caisse ?"],
+      ["B","Oui, je [[{g|l'}::le ticket]]ai mis dans mon portefeuille."],
+      ["A","Alors montre-[[{g|le}-{r|leur}::le ticket · aux vendeurs]] : ils vont sûrement [[{v|te} {g|l'}::à toi · le pull]]échanger."],
+      ["B","J'espère ! ((ne pas vouloir garder ce pull::Je ne veux pas {g|le} garder))."]]},
+    {g:"c",ti:"L'arnaque par SMS",th:"Arnaques",l:[
+      ["A","J'ai reçu un SMS bizarre : on [[{v|me}::à moi]] demande mes coordonnées bancaires pour un colis."],
+      ["B","Surtout, ne [[{r|leur}::aux escrocs]] réponds pas ! C'est une arnaque."],
+      ["A","Ah bon ? Ma mère a reçu le même message hier."],
+      ["B","Elle [[{r|leur}::aux escrocs]] a donné ses coordonnées ?"],
+      ["A","Non, heureusement : ((parler de ces arnaques à ma mère · la semaine dernière · plus-que-parfait::je {r|lui} {b|en} avais parlé la semaine dernière))."],
+      ["B","Bien joué ! Et toi, signale le message : transfère-[[{g|le}::le message]] au 33700."]]},
+    {g:"c",ti:"La crème « miracle »",th:"Publicité trompeuse",l:[
+      ["A","Tu as vu la pub pour la crème « miracle » ? Elle promet de rajeunir de dix ans !"],
+      ["B","Oui, je [[{g|l'}::la pub]]ai vue. Ma sœur [[{b|en}::de cette crème]] a acheté trois pots."],
+      ["A","Trois ? Et elle [[{b|en}::de la crème]] est contente ?"],
+      ["B","Pas du tout ! Elle [[{g|l'}::la crème]]a essayée pendant un mois : rien."],
+      ["A","C'est une pratique commerciale trompeuse. ((devoir réclamer un remboursement à la marque::Elle doit {r|lui} {b|en} réclamer un))."],
+      ["B","Tu as raison, je vais [[{g|le} {r|lui}::ça · à ma sœur]] dire."]]},
+    {g:"c",ti:"La mode de seconde main",th:"Consommation responsable",l:[
+      ["A","Tu achètes encore des vêtements neufs ?"],
+      ["B","Presque plus. J'[[{b|en}::des vêtements]] achète surtout d'occasion, sur une appli."],
+      ["A","Et tes vieux vêtements, tu [[{g|les}::tes vieux vêtements]] jettes ?"],
+      ["B","Non, je [[{g|les}::mes vieux vêtements]] vends ou je [[{g|les}::mes vieux vêtements]] donne à une association."],
+      ["A","Bonne idée ! Tu peux [[{v|me} {g|la}::à moi · l'appli]] montrer ?"],
+      ["B","Bien sûr, ((envoyer le lien à toi · maintenant::je {v|te} {g|l'}envoie maintenant))."]]},
+    {g:"c",ti:"Le téléphone en panne",th:"Réclamer",l:[
+      ["A","Mon téléphone ne marche plus, et je [[{g|l'}::mon téléphone]]ai acheté il y a six mois !"],
+      ["B","Il est encore sous garantie. Rapporte-[[{g|le}::ton téléphone]] au magasin."],
+      ["A","Je [[{g|l'}::mon téléphone]]avais déjà rapporté en juillet, et ils ne l'ont pas réparé."],
+      ["B","Alors écris au service client et explique-[[{r|leur}::au service client]] le problème."],
+      ["A","Et s'ils ne [[{v|me}::à moi]] répondent pas ?"],
+      ["B","((parler de ton problème à l'association de consommateurs !::Parles-{b|en} à l'association de consommateurs !))"]]},
+    {g:"c",ti:"Les soldes",th:"Achats",l:[
+      ["A","Tu vas aux soldes samedi ?"],
+      ["B","Oui, j'[[{b|y}::aux soldes]] vais avec ma cousine. Elle veut des baskets."],
+      ["A","Elle n'[[{b|en}::des baskets]] a pas déjà trois paires ?"],
+      ["B","Si, mais elle dit qu'elle [[{b|en}::des baskets]] a besoin pour le sport !"],
+      ["A","Ne [[{r|lui}::à ta cousine]] prête pas d'argent, cette fois !"],
+      ["B","Promis, ((ne pas prêter d'argent à ma cousine::je ne {r|lui} {b|en} prête pas))."]]},
+    {g:"c",ti:"Le forfait téléphonique",th:"Contrats",l:[
+      ["A","Ton opérateur [[{v|t'}::à toi]]a proposé une nouvelle offre ?"],
+      ["B","Oui, un conseiller [[{v|m'}::moi]]a appelé(e) hier. Il [[{v|me} {g|l'}::à moi · l'offre]]a présentée pendant vingt minutes !"],
+      ["A","Et tu [[{g|l'}::l'offre]]as acceptée ?"],
+      ["B","Non, je [[{r|lui}::au conseiller]] ai dit que j'allais réfléchir."],
+      ["A","Lis bien le contrat avant de [[{g|le}::le contrat]] signer !"],
+      ["B","Oui, ((ils · aller envoyer le contrat à moi par mail::ils vont {v|me} {g|l'}envoyer par mail))."]]},
+    {g:"c",ti:"Le marché du quartier",th:"Consommation responsable",l:[
+      ["A","Tu fais tes courses au supermarché ?"],
+      ["B","Plus maintenant. Je [[{g|les}::mes courses]] fais au marché du quartier, le dimanche."],
+      ["A","Tu [[{b|y}::au marché]] trouves de tout ?"],
+      ["B","Presque. Et les producteurs [[{v|nous}::à nous]] expliquent d'où viennent leurs produits."],
+      ["A","Ça [[{v|m'}::moi]]intéresse ! Tu [[{v|m'}{b|y}::moi · au marché]] emmènes dimanche ?"],
+      ["B","Avec plaisir ! ((attendre toi devant la boulangerie · à 9 h::Je {v|t'}attends devant la boulangerie à 9 h))."]]},
+    {g:"c",ti:"Le cadeau d'Inès",th:"Achats",l:[
+      ["A","Tu as trouvé un cadeau pour Inès ?"],
+      ["B","Oui, je [[{r|lui}::à Inès]] ai acheté un livre de cuisine végétarienne."],
+      ["A","Elle va adorer ! Tu [[{g|le} {r|lui}::le livre · à Inès]] donnes quand ?"],
+      ["B","Samedi, à sa fête. Et toi, tu [[{r|lui}::à Inès]] offres quoi ?"],
+      ["A","Rien encore… Tu peux [[{v|m'}{b|en}::à moi · des idées]] donner, des idées ?"],
+      ["B","Offre-[[{r|lui}::à Inès]] des places de cinéma ! ((elle · adorer le cinéma · tu sais::Elle {g|l'}adore, tu sais))."]]}
+  ];
+
+  var DKEY="enallt6-extra-dialogues";
+  var ds={done:{},swap:false,cur:0};
+  function dload(){try{var x=JSON.parse(localStorage.getItem(DKEY)||"{}");ds.done=x.done||{};}catch(e){}}
+  function dsave(){try{localStorage.setItem(DKEY,JSON.stringify({done:ds.done}));}catch(e){}}
+  function dcount(){return Object.keys(ds.done).length;}
+  function dstatus(label){
+    var n=dcount();
+    document.getElementById("stepLabel").textContent=label||"Dialogues";
+    document.getElementById("scoreLabel").textContent=n+" / "+D.length+" joués";
+    document.getElementById("fill").style.width=Math.round(n/D.length*100)+"%";
+  }
+
+  function dialogues(){
+    state.mod=null;dstatus("Dialogues à pronoms");
+    render('<section class="screen active"><div class="card">'+
+      '<p class="eyebrow" style="color:#b0570e">Extra · Activité orale · En binôme</p>'+
+      '<h2>Dialogues à pronoms</h2>'+
+      '<p class="lead" style="margin-bottom:10px">Des micro-dialogues sur les thèmes du cours : les jeunes et la consommation. Choisissez-en un avec votre binôme, ou laissez le hasard choisir. Lisez-le à voix haute et dites les pronoms qui manquent.</p>'+
+      '<div class="nav" style="margin:0 0 16px"><button class="btn" type="button" id="drand">Un dialogue au hasard</button></div>'+
+      [["j","Dossier « Les jeunes »"],["c","Dossier « Consommation »"]].map(function(sec){
+        return '<h3 class="dsec">'+sec[1]+'</h3><div class="dmenu">'+D.map(function(d,i){
+          if(d.g!==sec[0])return "";
+          return '<button class="dcard'+(ds.done[i]?' ok':'')+'" type="button" data-d="'+i+'"><span class="dnum">'+(i+1)+'</span>'+
+            '<span class="dtx"><b>'+esc(d.ti)+'</b><small>'+esc(d.th)+' · '+d.l.length+' répliques · '+gapsOf(d)+' trous</small></span>'+(ds.done[i]?'<span class="dok" aria-label="déjà joué">✓</span>':'')+'</button>';
+        }).join("")+'</div>';
+      }).join("")+
+      '<div class="gfoot"><a class="linkbtn" href="index.html">← Matériel didactique</a>'+(dcount()?'<button class="btn ghost" type="button" id="dreset">Effacer les ✓</button>':'')+'</div>'+
+      '</div></section>');
+    document.getElementById("drand").addEventListener("click",function(){openDialog(randomDialog());});
+    main.querySelectorAll("[data-d]").forEach(function(b){b.addEventListener("click",function(){openDialog(+b.getAttribute("data-d"));});});
+    var rs=document.getElementById("dreset");
+    if(rs)rs.addEventListener("click",function(){ds.done={};dsave();dialogues();});
+  }
+  function gapsOf(d){var n=0;d.l.forEach(function(l){n+=(l[1].match(/\[\[|\(\(/g)||[]).length;});return n;}
+  function randomDialog(){
+    var free=[],i;
+    for(i=0;i<D.length;i++)if(!ds.done[i]&&i!==ds.cur)free.push(i);
+    if(!free.length)for(i=0;i<D.length;i++)if(i!==ds.cur)free.push(i);
+    return free[Math.floor(Math.random()*free.length)];
+  }
+
+  function dline(txt){
+    var re=/\[\[(.+?)::(.+?)\]\]|\(\((.+?)::(.+?)\)\)/g,out="",last=0,m;
+    while((m=re.exec(txt))){
+      out+=esc(txt.slice(last,m.index));last=re.lastIndex;
+      if(m[1]!==undefined){
+        out+='<span class="dgapw"><button type="button" class="dgap" aria-label="Pronom manquant : toucher pour voir la réponse"><span class="dblank">……</span><span class="dans">'+pk(m[1])+'</span></button>'+
+          '<button type="button" class="dhint" aria-label="Indice : mot remplacé">?</button><span class="dhintt">['+esc(m[2])+']</span></span>';
+      }else{
+        out+='<span class="doral"><span class="dcue"><b>À l\'oral :</b> '+esc(m[3])+'</span><span class="dans"> → '+pk(m[4])+'</span></span>';
+      }
+    }
+    return out+esc(txt.slice(last));
+  }
+
+  function openDialog(i){
+    ds.cur=i;
+    var d=D[i];
+    dstatus("Dialogue "+(i+1)+" / "+D.length);
+    render('<section class="screen active"><div class="card">'+
+      '<p class="eyebrow" style="color:#b0570e">'+(d.g==="j"?"Les jeunes":"Consommation")+' · Dialogue '+(i+1)+' · '+esc(d.th)+'</p>'+
+      '<h2>'+esc(d.ti)+'</h2>'+
+      '<div class="dcons"><p><b>En binôme :</b> choisissez qui est l\'élève A et qui est l\'élève B. Lisez le dialogue à voix haute en disant les pronoms qui manquent <span class="dblank-s">……</span>.</p>'+
+        '<p>Les cases <span class="doral-s">À l\'oral</span> sont à dire avec vos mots, en remplaçant les compléments par des pronoms. Le bouton <b>?</b> montre le mot remplacé.</p></div>'+
+      '<div class="dtools"><button class="btn ghost" type="button" id="dswap">⇄ Inverser les rôles</button><button class="btn ghost" type="button" id="dhints">Afficher les indices</button></div>'+
+      '<div class="dlg" id="dlg">'+d.l.map(function(l){
+        var who=ds.swap?(l[0]==="A"?"B":"A"):l[0];
+        return '<div class="dline '+l[0]+'"><span class="dwho '+who+'" aria-label="Élève '+who+'">'+who+'</span><p class="dsay">'+dline(l[1])+'</p></div>';
+      }).join("")+'</div>'+
+      '<div class="nav"><button class="btn" type="button" id="dshow">Voir les réponses attendues</button>'+
+        '<button class="btn ghost" type="button" id="ddone">'+(ds.done[i]?'✓ Dialogue déjà joué':'✓ Dialogue joué')+'</button></div>'+
+      formulas().replace('class="gform" open','class="gform"').replace('Les formules de combinaison des pronoms','Rappel : les formules des pronoms')+
+      '<div class="gfoot"><button class="linkbtn" type="button" id="dlist">← Liste des dialogues</button>'+
+        '<span style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn ghost" type="button" id="drand2">Au hasard</button><button class="btn" type="button" id="dnext">Dialogue suivant →</button></span></div>'+
+      '</div></section>');
+    var dlg=document.getElementById("dlg");
+    dlg.querySelectorAll(".dgap").forEach(function(g){g.addEventListener("click",function(){g.classList.toggle("on");});});
+    dlg.querySelectorAll(".doral").forEach(function(o){o.setAttribute("tabindex","0");o.setAttribute("role","button");
+      o.addEventListener("click",function(){o.classList.toggle("on");});
+      o.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();o.classList.toggle("on");}});});
+    dlg.querySelectorAll(".dhint").forEach(function(h){h.addEventListener("click",function(){h.nextElementSibling.classList.toggle("on");});});
+    var shown=false,hints=false;
+    document.getElementById("dshow").addEventListener("click",function(){
+      shown=!shown;
+      dlg.querySelectorAll(".dgap,.doral").forEach(function(g){g.classList.toggle("on",shown);});
+      this.textContent=shown?"Masquer les réponses":"Voir les réponses attendues";
+    });
+    document.getElementById("dhints").addEventListener("click",function(){
+      hints=!hints;
+      dlg.querySelectorAll(".dhintt").forEach(function(h){h.classList.toggle("on",hints);});
+      this.textContent=hints?"Masquer les indices":"Afficher les indices";
+    });
+    document.getElementById("dswap").addEventListener("click",function(){
+      ds.swap=!ds.swap;
+      dlg.querySelectorAll(".dline").forEach(function(l){
+        var w=l.querySelector(".dwho"),nw=w.textContent==="A"?"B":"A";
+        w.textContent=nw;w.className="dwho "+nw;w.setAttribute("aria-label","Élève "+nw);
+      });
+      popup("Rôles inversés","ok");
+    });
+    var dd=document.getElementById("ddone");
+    dd.addEventListener("click",function(){
+      if(ds.done[i])return;
+      ds.done[i]=1;dsave();dstatus("Dialogue "+(i+1)+" / "+D.length);
+      dd.textContent="✓ Dialogue déjà joué";confetti(dd,50);popup("Bravo !","ok");
+    });
+    document.getElementById("dlist").addEventListener("click",dialogues);
+    document.getElementById("dnext").addEventListener("click",function(){openDialog((i+1)%D.length);});
+    document.getElementById("drand2").addEventListener("click",function(){openDialog(randomDialog());});
+  }
+
+
+  dload();
+  dialogues();
+})();
+</script>
+</body>
+</html>
