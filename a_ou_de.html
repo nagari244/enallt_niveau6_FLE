@@ -304,6 +304,67 @@
     .dwho{width:32px;height:32px;font-size:1rem}
     .dsay{max-width:calc(100% - 40px);padding:9px 11px}
   }
+  /* ===== Parcours 5 : expressions idiomatiques ===== */
+  .xtabs{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 2px 10px;margin:0 -2px;scroll-snap-type:x proximity}
+  .xtab{flex:1 0 auto;min-width:128px;display:flex;gap:9px;align-items:center;text-align:left;border:2px solid var(--ink);background:#fff;padding:9px 12px;cursor:pointer;font:inherit;color:inherit;scroll-snap-align:start}
+  .xtab b{display:block;font-size:.95rem;line-height:1.2}
+  .xtab small{display:block;font-size:.75rem;color:var(--muted)}
+  .xtn{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid #7a2e8e;color:#7a2e8e;display:grid;place-items:center;font-weight:700;font-size:.85rem}
+  .xtab.on{background:#7a2e8e;color:#fff;border-color:#7a2e8e;box-shadow:3px 3px 0 var(--ink)}
+  .xtab.on small{color:#f1e3f5}
+  .xtab.on .xtn{border-color:#fff;color:#fff}
+  .xpanel{border-top:3px solid #7a2e8e;padding-top:16px;margin-top:4px}
+  .xintro{margin:0 0 12px}
+  .xtools{margin:0 0 6px}
+  .xtools .btn{padding:8px 14px;font-size:.92rem;min-height:42px}
+  .xlist{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:760px){.xlist{grid-template-columns:1fr 1fr}}
+  .xcard{border:2px solid var(--ink);padding:14px 16px;background:#fff;position:relative}
+  .xcard.known{background:#fbf8fc}
+  .xhead{display:flex;gap:10px;align-items:flex-start}
+  .xnum{flex:none;width:30px;height:30px;border-radius:50%;background:#7a2e8e;color:#fff;display:grid;place-items:center;font-weight:700;font-size:.85rem;margin-top:2px}
+  .xexpr{margin:0;font-family:"Fraunces",Georgia,serif;font-size:1.25rem;line-height:1.2;color:#5c1f6c}
+  .xinf{margin:2px 0 0;font-size:.82rem;color:var(--muted);font-style:italic}
+  .xok{margin-left:auto;font-size:.8rem;font-weight:700;color:var(--ok);white-space:nowrap}
+  .xdlg{margin:10px 0 8px;display:grid;gap:6px}
+  .xl{margin:0;display:flex;gap:8px;align-items:flex-start;line-height:1.45}
+  .xw{flex:none;width:24px;height:24px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;font-size:.75rem;font-weight:700}
+  .xw.A{background:#eef0ff} .xw.B{background:#ffeedb}
+  mark.xhl{background:#f3e6f7;color:#5c1f6c;font-weight:700;padding:0 1px;border-radius:3px}
+  .xsens{margin:6px 0 2px;padding:6px 10px;background:#faf6fb;border-left:5px solid #7a2e8e}
+  .hidesens .xsens{cursor:pointer}
+  .hidesens .xsens .xs{filter:blur(6px);user-select:none}
+  .hidesens .xsens.peek .xs{filter:none}
+  .xnote{margin:6px 0 0;font-size:.88rem;color:#3e4c59}
+  .xspeak{font-size:.9rem;margin-top:6px}
+  .xacts{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:700px){.xacts{grid-template-columns:1fr 1fr}}
+  .xact{text-align:left;border:2px solid var(--ink);background:#fff;padding:14px 16px;cursor:pointer;font:inherit;color:inherit;transition:transform .12s,box-shadow .12s}
+  .xact:hover,.xact:focus-visible{transform:translateY(-2px);box-shadow:4px 4px 0 #7a2e8e;outline:none}
+  .xact b{display:block;font-size:1.05rem}
+  .xact small{display:block;color:var(--muted);margin-top:4px}
+  .xbest{display:inline-block;margin-top:8px;font-size:.8rem;font-weight:700;color:var(--ok)}
+  .xcount,.xsmall{font-size:.85rem;color:var(--muted);margin:0 0 8px}
+  .flip{border:3px solid var(--ink);box-shadow:6px 6px 0 #7a2e8e;background:#fff;padding:20px;min-height:230px;cursor:pointer;display:flex;flex-direction:column;justify-content:center}
+  .flip .back{display:none}
+  .flip.on{background:#faf6fb}
+  .flip.on .front{display:none}
+  .flip.on .back{display:block}
+  .xbig{font-family:"Fraunces",Georgia,serif;font-size:clamp(1.35rem,4.5vw,1.8rem);font-weight:700;color:#5c1f6c;margin:4px 0 8px;line-height:1.25}
+  .xjudge{display:flex;gap:10px;flex-wrap:wrap}
+  .xgap{display:inline-block;border-bottom:2px dashed #7a2e8e;background:#f7eef9;padding:0 6px;color:#7a2e8e}
+  .xdone{text-align:center;padding:10px 0}
+  .xmatch{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+  .xcol{display:grid;gap:8px;align-content:start}
+  .xm{border:2px solid var(--ink);background:#fff;padding:10px 12px;min-height:52px;text-align:left;font:inherit;font-weight:600;cursor:pointer;line-height:1.3}
+  .xm.left{font-family:"Fraunces",Georgia,serif;color:#5c1f6c}
+  .xm.sel{background:#f3e6f7;box-shadow:3px 3px 0 #7a2e8e}
+  .xm.ok{background:var(--ok-bg);border-color:var(--ok);opacity:.75;cursor:default}
+  .xm.no{background:var(--ko-bg);border-color:var(--ko);animation:shake .4s}
+  @media(max-width:520px){
+    .xm{padding:8px 9px;font-size:.92rem}
+    .xtab{min-width:118px;padding:8px 10px}
+  }
   footer{max-width:980px;margin:0 auto;padding:0 16px 30px;color:var(--muted);font-size:.85rem}
 </style>
 </head>
@@ -519,7 +580,7 @@
     status("Prêt·e ?",0);
     render('<section class="screen active"><div class="card hero">'+
       '<p class="eyebrow">Activité 9</p><h2>Le, la, lui… ou en ?</h2>'+
-      '<p class="lead">Deux parcours de mini-leçons, avec trois quiz rapides après chaque leçon, un jeu de dés sur les doubles pronoms et des dialogues à jouer en binôme. Choisissez votre parcours.</p></div>'+
+      '<p class="lead">Deux parcours de mini-leçons, avec trois quiz rapides après chaque leçon, un jeu de dés sur les doubles pronoms, des dialogues à jouer en binôme et des expressions idiomatiques. Choisissez votre parcours.</p></div>'+
       '<div class="modules">'+MODS.map(function(m){
         var q=m.steps.filter(function(s){return s.t==="quiz";}).length;
         var d=state.done[m.id];
@@ -532,10 +593,14 @@
       '<button class="module wide" type="button" id="toDial"><span class="tag" style="color:#b0570e">Parcours 4 · Dialoguer</span>'+
         '<h3>Dialogues à pronoms</h3><p>En binôme, jouez des micro-dialogues sur les jeunes et la consommation, avec des pronoms simples et doubles · '+D.length+' dialogues</p>'+
         (dcount()?'<span class="done">✓ '+dcount()+' / '+D.length+' dialogues joués</span>':'')+'</button>'+
+      '<button class="module wide" type="button" id="toExpr"><span class="tag" style="color:#7a2e8e">Parcours 5 · Expressions</span>'+
+        '<h3>Les expressions idiomatiques avec pronoms</h3><p>T\'en fais pas, je m\'en doutais, ça y est… Découvrez 20 expressions utiles au B1, puis entraînez-vous avec des fiches et des quiz</p>'+
+        (xknown()?'<span class="done">✓ '+xknown()+' / '+X.length+' expressions sues</span>':'')+'</button>'+
       '</div></section>');
     main.querySelectorAll("[data-mod]").forEach(function(b){b.addEventListener("click",function(){start(b.getAttribute("data-mod"));});});
     document.getElementById("toGame").addEventListener("click",game);
     document.getElementById("toDial").addEventListener("click",dialogues);
+    document.getElementById("toExpr").addEventListener("click",function(){expressions("d1");});
   }
 
   function start(id){
@@ -1169,9 +1234,387 @@
   }
 
 
+
+  /* ================= PARCOURS 5 : EXPRESSIONS IDIOMATIQUES ================= */
+  /* inf = forme de base · f = forme usuelle · c = contexte (**expression** en relief) · s = sens
+     n = remarque · si = situation (quiz « quelle expression ? ») · gp = phrase à trous + pronoms (bonne réponse en premier)
+     bad = emploi incorrect [réplique A, réplique B, explication] */
+  var X=[
+    {p:1,inf:"s'en faire",f:"(Ne) t'en fais pas !",
+     c:[["A","J'ai un examen demain et je suis très stressée."],["B","**T'en fais pas**, tu as bien révisé !"]],
+     s:"Ne t'inquiète pas.",n:"À l'oral, le « ne » tombe souvent : « T'en fais pas ! ». Avec vous : « Ne vous en faites pas. »",
+     si:"Ton amie est stressée avant un examen. Tu la rassures :",gp:["T'___ fais pas, tu as bien révisé !","en","y","le"],
+     bad:["J'ai eu 18/20 à mon examen !","T'en fais pas !","On ne rassure pas quelqu'un qui annonce une bonne nouvelle."]},
+    {p:1,inf:"en avoir marre (fam.)",f:"J'en ai marre !",
+     c:[["A","Encore des travaux dans la rue ?"],["B","Oui, **j'en ai marre** de ce bruit !"]],
+     s:"Je ne supporte plus cette situation.",n:"Familier. Plus neutre : « J'en ai assez. » En avoir marre de + nom ou de + infinitif.",
+     si:"Ton voisin fait du bruit tous les soirs depuis un mois. Tu dis :",gp:["J'___ ai marre de ce bruit !","en","y","le"],
+     bad:["Tu aimes ton nouveau travail ?","Oui, j'en ai marre, c'est génial !","« En avoir marre » exprime l'agacement, pas le plaisir."]},
+    {p:1,inf:"ne plus en pouvoir",f:"Je n'en peux plus !",
+     c:[["A","On fait encore un exercice ?"],["B","Non, **je n'en peux plus**, je vais me coucher."]],
+     s:"Je suis épuisé(e), à bout.",n:"À l'oral : « J'en peux plus ! » On le dit aussi après un grand repas.",
+     si:"Tu as travaillé douze heures sans pause. Tu dis :",gp:["Je n'___ peux plus, je vais me coucher.","en","le","y"],
+     bad:["Tu es en forme ce matin ?","Oui, je n'en peux plus, j'ai très bien dormi !","« Ne plus en pouvoir », c'est être épuisé, pas en forme."]},
+    {p:1,inf:"ne pas en revenir",f:"Je n'en reviens pas !",
+     c:[["A","Tu sais quoi ? Lucas a eu 20/20 en maths !"],["B","**Je n'en reviens pas** ! Il ne travaille jamais !"]],
+     s:"Je suis très surpris(e).",n:"S'emploie pour une surprise forte, bonne ou mauvaise.",
+     si:"On t'annonce une nouvelle incroyable. Tu dis :",gp:["Lucas a eu 20/20 ? Je n'___ reviens pas !","en","y","le"],
+     bad:["Il fait chaud au mois de mai à Mexico.","Je n'en reviens pas !","Rien de surprenant ici : l'expression marque une grande surprise."]},
+    {p:1,inf:"en vouloir à qn",f:"Tu m'en veux ?",
+     c:[["A","Je suis désolé pour hier soir. **Tu m'en veux** encore ?"],["B","Non, je ne t'en veux plus, c'est oublié."]],
+     s:"Tu es encore fâché(e) contre moi ?",n:"En vouloir à qn de + infinitif : « Je t'en veux de m'avoir menti. »",
+     si:"Tu as oublié un rendez-vous avec ton ami. Tu lui demandes s'il est encore fâché :",gp:["Je suis désolé. Tu ___ veux encore ?","m'en","me le","m'y"],
+     bad:["Merci pour ton cadeau !","Je t'en veux beaucoup !","On remercie : il n'y a aucune raison d'être fâché."]},
+    {p:1,inf:"s'en vouloir",f:"Je m'en veux !",
+     c:[["A","Tu as oublié l'anniversaire de ta mère ?"],["B","Oui… **Je m'en veux** tellement !"]],
+     s:"Je me le reproche, je me sens coupable.",n:"S'en vouloir de + infinitif : « Je m'en veux de l'avoir oublié. »",
+     si:"Tu as oublié l'anniversaire de ta meilleure amie. Tu te sens coupable :",gp:["J'ai oublié son anniversaire. Je ___ veux tellement !","m'en","me le","m'y"],
+     bad:["Félicitations pour ton diplôme !","Merci, je m'en veux !","S'en vouloir, c'est se sentir coupable : ça ne va pas avec une réussite."]},
+    {p:1,inf:"ne pas en parler",f:"Ne m'en parle pas !",
+     c:[["A","Alors, le métro ce matin ?"],["B","**Ne m'en parle pas** ! Une heure de retard !"]],
+     s:"C'est un sujet pénible, je suis bien d'accord.",n:"On réagit à un sujet désagréable qu'on connaît bien.",
+     si:"Quelqu'un te parle d'un problème qui t'énerve aussi beaucoup. Tu réagis :",gp:["Le métro ? Ne ___ parle pas ! Une heure de retard !","m'en","me le","m'y"],
+     bad:["Tes vacances à la plage, c'était bien ?","Ne m'en parle pas ! C'était merveilleux !","« Ne m'en parle pas ! » s'emploie pour une expérience pénible."]},
+    {p:1,inf:"n'y pouvoir rien",f:"Je n'y peux rien.",
+     c:[["A","Le cours est annulé ? Mais j'ai traversé toute la ville !"],["B","Désolé, **je n'y peux rien**, le prof est malade."]],
+     s:"Ce n'est pas ma faute, je ne peux rien faire.",n:"Y = à cette situation. « On n'y peut rien. »",
+     si:"Un touriste se plaint de la pluie pendant l'excursion. Le guide répond :",gp:["La pluie ? Désolé, je n'___ peux rien.","y","en","le"],
+     bad:["Tu peux fermer la fenêtre, s'il te plaît ?","Je n'y peux rien.","La personne peut fermer la fenêtre : l'expression s'emploie quand on n'a aucun pouvoir sur la situation."]},
+    {p:1,inf:"s'en douter",f:"Je m'en doutais !",
+     c:[["A","Marc est encore en retard."],["B","**Je m'en doutais** ! Il est toujours en retard."]],
+     s:"Je l'avais deviné, ça ne me surprend pas.",n:"Contraire de « Je n'en reviens pas ! »",
+     si:"Ton amie t'annonce une chose que tu avais devinée. Tu dis :",gp:["Marc est en retard ? Je ___ doutais !","m'en","me le","m'y"],
+     bad:["J'ai gagné un voyage au Japon !","Je m'en doutais !","Une nouvelle totalement inattendue : on dirait plutôt « Je n'en reviens pas ! »"]},
+    {p:1,inf:"en prier qn",f:"Je vous en prie. / Je t'en prie.",
+     c:[["A","Merci beaucoup pour votre aide, madame."],["B","**Je vous en prie**, c'est normal."]],
+     s:"De rien. (formule de politesse)",n:"Aussi pour inviter quelqu'un : « Entrez, je vous en prie. »",
+     si:"Un inconnu te remercie de lui avoir indiqué le chemin. Tu réponds poliment :",gp:["Merci, madame ! — Je vous ___ prie.","en","y","le"],
+     bad:["Aïe ! Tu m'as marché sur le pied !","Je t'en prie !","Il faut s'excuser (« Pardon ! ») : « Je t'en prie » répond à un remerciement."]},
+
+    {p:2,inf:"y aller",f:"Vas-y ! / On y va ?",
+     c:[["A","Je n'ose pas parler de ma note au prof."],["B","**Vas-y**, il est sympa !"]],
+     s:"Lance-toi, ose ! (« On y va ? » = on part ?)",n:"Attention au -s devant y : va → vas-y. Avec vous : « Allez-y ! »",
+     si:"Ton ami hésite à appeler la fille qui lui plaît. Tu l'encourages :",gp:["Va___, il est sympa !","s-y","-y","-en"],
+     bad:["Je vais rater mon bus si je ne pars pas maintenant…","Vas-y, reste encore une heure !","Vas-y pousse à agir : ici, la réponse dit le contraire."]},
+    {p:2,inf:"ça y est",f:"Ça y est !",
+     c:[["A","Alors, ces résultats ?"],["B","**Ça y est**, j'ai mon diplôme !"]],
+     s:"C'est fait, enfin !",n:"Aussi en question : « Ça y est, tu as fini ? »",
+     si:"Après six mois de recherche, tu as enfin trouvé un appartement. Tu l'annonces :",gp:["Ça ___ est, j'ai trouvé un appartement !","y","en","l'"],
+     bad:["Tu as commencé ton mémoire ?","Ça y est, je n'ai pas encore commencé.","« Ça y est » annonce que c'est fait, pas que rien n'a commencé."]},
+    {p:2,inf:"s'en aller",f:"Je m'en vais. / Va-t'en !",
+     c:[["A","Tu pars déjà ?"],["B","Oui, **je m'en vais**, j'ai cours à 8 h demain."]],
+     s:"Je pars.",n:"Impératif : « Va-t'en ! », « Allez-vous-en ! » Passé composé : « Je m'en suis allé(e). »",
+     si:"La fête est finie pour toi. Tu salues tes amis :",gp:["Bon, je ___ vais, j'ai cours demain.","m'en","m'y","me le"],
+     bad:["Tu restes dîner avec nous ?","Oui, je m'en vais !","Si on reste, on ne s'en va pas : la réponse se contredit."]},
+    {p:2,inf:"s'en sortir",f:"Je ne m'en sors pas.",
+     c:[["A","Le loyer a encore augmenté ?"],["B","Oui, avec mon salaire de stagiaire, **je ne m'en sors pas**."]],
+     s:"Je n'arrive pas à faire face (à tout payer, à tout finir…).",n:"Au positif : « Ne t'en fais pas, tu vas t'en sortir. »",
+     si:"Tu as trop de travail et pas assez de temps. Tu dis :",gp:["Trop de travail ! Je ne ___ sors pas.","m'en","m'y","me le"],
+     bad:["Tu as fini tous tes devoirs en une heure ?","Oui, je ne m'en sors pas !","Finir vite, c'est réussir : « je ne m'en sors pas » dit le contraire."]},
+    {p:2,inf:"s'en tirer",f:"On s'en est bien tirés !",
+     c:[["A","Le bus a freiné d'un coup, tout le monde est tombé !"],["B","Ouf, personne n'est blessé. **On s'en est bien tirés** !"]],
+     s:"On a évité le pire, sans trop de dommages.",n:"Avec on = nous, accord au pluriel : tirés / tirées. « Il s'en est tiré avec quelques bleus. »",
+     si:"Ton vélo est tombé, mais tu n'as qu'une petite égratignure. Tu dis :",gp:["Ouf, personne n'est blessé : on ___ est bien tirés !","s'en","s'y","se l'"],
+     bad:["Notre équipe a perdu 5 à 0.","On s'en est bien tirés !","Perdre 5 à 0, ce n'est pas éviter le pire."]},
+    {p:2,inf:"s'en occuper",f:"Je m'en occupe.",
+     c:[["A","Qui réserve le restaurant pour samedi ?"],["B","**Je m'en occupe** !"]],
+     s:"Je prends ça en charge.",n:"S'occuper de qch → s'en occuper. Pour une personne : « Je m'occupe d'elle. »",
+     si:"Ton équipe cherche quelqu'un pour envoyer le dossier. Tu te proposes :",gp:["Le restaurant ? Je ___ occupe !","m'en","m'y","me l'"],
+     bad:["Tu as appelé le plombier ?","Non, je m'en occupe, mais ce n'est pas mon problème.","Si on s'en occupe, on accepte de le faire : la réponse se contredit."]},
+    {p:2,inf:"s'y faire",f:"Je ne m'y fais pas.",
+     c:[["A","Alors, la vie à Montréal ?"],["B","J'adore, mais le froid… **je ne m'y fais pas** !"]],
+     s:"Je ne m'habitue pas.",n:"Se faire à qch = s'habituer. « Tu vas t'y faire, tu verras. »",
+     si:"Tu commences à travailler à 6 h et tu as encore du mal à te lever. Tu dis :",gp:["Le froid ? Je ne ___ fais pas !","m'y","m'en","me le"],
+     bad:["Tu as faim ?","Oui, je ne m'y fais pas.","S'y faire, c'est s'habituer à une situation : ça ne répond pas à la question."]},
+    {p:2,inf:"s'y prendre",f:"Comment tu t'y prends ?",
+     c:[["A","Tu économises 2 000 pesos par mois ? **Comment tu t'y prends** ?"],["B","Je cuisine à la maison et je ne prends jamais de taxi."]],
+     s:"Comment tu fais ? (quelle est ta méthode ?)",n:"« Il s'y est mal pris » = il n'a pas utilisé la bonne méthode.",
+     si:"Ta collègue finit toujours son travail avant 17 h. Tu lui demandes sa méthode :",gp:["Tu économises tout ça ? Comment tu t'___ prends ?","y","en","le"],
+     bad:["Tu as pris le bus ce matin ?","Oui, je m'y suis pris à 7 h.","S'y prendre, c'est la manière de faire, pas prendre un transport."]},
+    {p:2,inf:"en baver (fam.)",f:"J'en ai bavé !",
+     c:[["A","Ton mémoire est enfin fini ?"],["B","Oui, mais **j'en ai bavé** : trois mois sans week-end !"]],
+     s:"Ça a été très dur, j'ai beaucoup souffert.",n:"Familier. Plus neutre : « Ça a été très difficile. »",
+     si:"Ton premier semestre à l'université a été très difficile. Tu le racontes :",gp:["Trois mois sans week-end : j'___ ai bavé !","en","y","l'"],
+     bad:["C'était comment, la plage ?","Super reposant, j'en ai bavé !","En baver, c'est souffrir : ça ne va pas avec « reposant »."]},
+    {p:2,inf:"le dire",f:"Je te l'avais bien dit !",
+     c:[["A","Il pleut et je n'ai pas pris de parapluie…"],["B","**Je te l'avais bien dit** !"]],
+     s:"J'avais raison, je t'avais prévenu(e).",n:"Le = ça (ce que j'avais dit). Plus-que-parfait : l'avertissement est antérieur.",
+     si:"Ton ami n'a pas suivi ton conseil et maintenant il a un problème. Tu dis :",gp:["Tu n'as pas pris de parapluie ? Je te ___ avais bien dit !","l'","en","y"],
+     bad:["Bonjour, je m'appelle Paul, enchanté.","Je te l'avais bien dit !","Personne n'avait rien annoncé : la formule rappelle un avertissement donné avant."]}
+  ];
+
+  var XKEY="enallt6-a9-expressions";
+  var xs={known:{},best:{},tab:"d1"};
+  var XC="#7a2e8e";
+  function xload(){try{var o=JSON.parse(localStorage.getItem(XKEY)||"{}");xs.known=o.known||{};xs.best=o.best||{};}catch(e){}}
+  function xsave(){try{localStorage.setItem(XKEY,JSON.stringify({known:xs.known,best:xs.best}));}catch(e){}}
+  function xknown(){return Object.keys(xs.known).length;}
+  function xpart(p){var r=[];X.forEach(function(x,i){if(!p||x.p===p)r.push(i);});return r;}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  function hl(s){return esc(s).replace(/\*\*(.+?)\*\*/g,'<mark class="xhl">$1</mark>');}
+  function plainx(s){return s.replace(/\*\*/g,"");}
+  function xstatus(label){
+    document.getElementById("stepLabel").textContent=label;
+    document.getElementById("scoreLabel").textContent=xknown()+" / "+X.length+" sues";
+    document.getElementById("fill").style.width=Math.round(xknown()/X.length*100)+"%";
+  }
+
+  /* Écoute (synthèse vocale du navigateur, si elle existe) */
+  var canSpeak=!!(window.speechSynthesis&&window.SpeechSynthesisUtterance);
+  function speak(lines){
+    if(!canSpeak)return;
+    try{
+      speechSynthesis.cancel();
+      var voices=speechSynthesis.getVoices().filter(function(v){return /^fr/i.test(v.lang);});
+      lines.forEach(function(t){
+        var u=new SpeechSynthesisUtterance(plainx(t));u.lang="fr-FR";u.rate=.95;
+        if(voices.length)u.voice=voices.filter(function(v){return /fr[-_]FR/i.test(v.lang);})[0]||voices[0];
+        speechSynthesis.speak(u);
+      });
+    }catch(e){}
+  }
+
+  var XTABS=[
+    {id:"d1",n:"1",lab:"Découvrir",sub:"Partie 1"},
+    {id:"p1",n:"2",lab:"S'entraîner",sub:"Partie 1"},
+    {id:"d2",n:"3",lab:"Découvrir",sub:"Partie 2"},
+    {id:"p2",n:"4",lab:"S'entraîner",sub:"Partie 2"},
+    {id:"rv",n:"5",lab:"Tout réviser",sub:"Parties 1 et 2"}
+  ];
+
+  function expressions(tab){
+    state.mod=null;
+    if(tab)xs.tab=tab;
+    render('<section class="screen active"><div class="card xcardwrap">'+
+      '<p class="eyebrow" style="color:'+XC+'">Activité 9 · Parcours 5 · Expressions</p>'+
+      '<h2>Les expressions idiomatiques avec pronoms</h2>'+
+      '<p class="lead" style="margin-bottom:12px">20 expressions de l\'oral, indispensables au niveau B1. Découvrez-les en contexte, puis entraînez-vous.</p>'+
+      '<div class="xtabs" role="tablist">'+XTABS.map(function(t){
+        return '<button type="button" role="tab" class="xtab'+(t.id===xs.tab?' on':'')+'" data-t="'+t.id+'" aria-selected="'+(t.id===xs.tab)+'"><span class="xtn">'+t.n+'</span><span><b>'+t.lab+'</b><small>'+t.sub+'</small></span></button>';
+      }).join("")+'</div>'+
+      '<div id="xpanel" class="xpanel" role="tabpanel"></div>'+
+      '<div class="gfoot"><button class="linkbtn" type="button" id="menu">← Menu</button></div>'+
+      '</div></section>');
+    document.getElementById("menu").addEventListener("click",function(){if(canSpeak)speechSynthesis.cancel();home();});
+    main.querySelectorAll(".xtab").forEach(function(b){b.addEventListener("click",function(){
+      if(canSpeak)speechSynthesis.cancel();
+      xs.tab=b.getAttribute("data-t");
+      main.querySelectorAll(".xtab").forEach(function(o){var on=o===b;o.classList.toggle("on",on);o.setAttribute("aria-selected",on);});
+      b.scrollIntoView({behavior:reduce?"auto":"smooth",block:"nearest",inline:"center"});
+      showTab();
+    });});
+    showTab();
+  }
+  function tabInfo(){return XTABS.filter(function(t){return t.id===xs.tab;})[0];}
+  function xpanel(html){var p=document.getElementById("xpanel");p.innerHTML=html;typo(p);return p;}
+  function showTab(){
+    var t=tabInfo();
+    xstatus(t.lab+(t.id==="rv"?"":" · "+t.sub));
+    if(t.id==="d1")discover(1);else if(t.id==="d2")discover(2);
+    else if(t.id==="p1")practiceMenu(1);else if(t.id==="p2")practiceMenu(2);else reviewMenu();
+  }
+
+  /* ---------- Onglets 1 et 3 : découvrir ---------- */
+  function discover(p){
+    var ids=xpart(p);
+    var html='<p class="xintro">'+(p===1?'<b>Partie 1 · Réagir et dire ce qu\'on ressent.</b>':'<b>Partie 2 · Agir et se débrouiller.</b>')+
+      ' Lisez chaque mini-dialogue à deux, à voix haute'+(canSpeak?', ou écoutez-le':'')+'. Puis cachez le sens et essayez de l\'expliquer avec vos mots.</p>'+
+      '<div class="xtools"><button class="btn ghost" type="button" id="xhide">Cacher les sens</button></div>'+
+      '<div class="xlist">'+ids.map(function(i){
+        var x=X[i];
+        return '<article class="xcard'+(xs.known[i]?' known':'')+'"><div class="xhead"><span class="xnum">'+(i+1)+'</span><div><h3 class="xexpr">'+esc(x.f)+'</h3><p class="xinf">'+esc(x.inf)+'</p></div>'+
+          (xs.known[i]?'<span class="xok">✓ sue</span>':'')+'</div>'+
+          '<div class="xdlg">'+x.c.map(function(l){return '<p class="xl"><span class="xw '+l[0]+'">'+l[0]+'</span><span>'+hl(l[1])+'</span></p>';}).join("")+'</div>'+
+          '<p class="xsens"><b>Sens :</b> <span class="xs">'+esc(x.s)+'</span></p>'+
+          '<p class="xnote">'+esc(x.n)+'</p>'+
+          (canSpeak?'<button class="linkbtn xspeak" type="button" data-i="'+i+'">▶ Écouter le dialogue</button>':'')+
+          '</article>';
+      }).join("")+'</div>'+
+      '<div class="nav"><span></span><button class="btn" type="button" id="xgo">'+(p===1?'S\'entraîner · Partie 1 →':'S\'entraîner · Partie 2 →')+'</button></div>';
+    var pn=xpanel(html),hidden=false;
+    document.getElementById("xhide").addEventListener("click",function(){
+      hidden=!hidden;pn.classList.toggle("hidesens",hidden);this.textContent=hidden?"Montrer les sens":"Cacher les sens";
+    });
+    pn.querySelectorAll(".xsens").forEach(function(s){s.addEventListener("click",function(){if(hidden)s.classList.toggle("peek");});});
+    pn.querySelectorAll(".xspeak").forEach(function(b){b.addEventListener("click",function(){var x=X[+b.getAttribute("data-i")];speak(x.c.map(function(l){return l[1];}));});});
+    document.getElementById("xgo").addEventListener("click",function(){goTab(p===1?"p1":"p2");});
+  }
+  function goTab(id){var b=main.querySelector('.xtab[data-t="'+id+'"]');if(b)b.click();window.scrollTo({top:0,behavior:reduce?"auto":"smooth"});}
+
+  /* ---------- Onglets 2 et 4 : s'entraîner ---------- */
+  function actCard(id,title,desc,key){
+    var b=xs.best[key];
+    return '<button class="xact" type="button" data-a="'+id+'"><b>'+title+'</b><small>'+desc+'</small>'+(b!==undefined?'<span class="xbest">Meilleur score : '+b+'</span>':'')+'</button>';
+  }
+  function practiceMenu(p){
+    var k=xpart(p).filter(function(i){return xs.known[i];}).length;
+    xpanel('<p class="xintro"><b>Partie '+p+' · S\'entraîner.</b> Commencez par les fiches de révision, puis faites les trois quiz.</p>'+
+      '<div class="xacts">'+
+        actCard("cards","Fiches de révision","Retournez la fiche, dites le sens, puis classez-la : je sais / à revoir · "+k+" / 10 sues","")+
+        actCard("q1","Quiz 1 · Quel sens ?","Une expression en contexte : choisissez son sens.","q1p"+p)+
+        actCard("q2","Quiz 2 · Quelle expression ?","Une situation : choisissez ce qu'on dit.","q2p"+p)+
+        actCard("q3","Quiz 3 · Les bons pronoms","Complétez l'expression avec les bons pronoms.","q3p"+p)+
+      '</div>');
+    main.querySelectorAll(".xact").forEach(function(b){b.addEventListener("click",function(){
+      var a=b.getAttribute("data-a"),ids=xpart(p),back=function(){practiceMenu(p);};
+      if(a==="cards")flashcards(ids,back);
+      else if(a==="q1")runQuiz(qSens(ids),"Quiz 1 · Quel sens ?","q1p"+p,back);
+      else if(a==="q2")runQuiz(qExpr(ids,ids),"Quiz 2 · Quelle expression ?","q2p"+p,back);
+      else runQuiz(qPron(ids),"Quiz 3 · Les bons pronoms","q3p"+p,back);
+    });});
+  }
+
+  /* Fiches de révision */
+  function flashcards(ids,back){
+    var deck=shuffle(ids),pos=0,flipped=false;
+    function draw(){
+      if(!deck.length){
+        xpanel('<div class="xdone"><p class="score-big" style="color:'+XC+'">✓</p><p class="prompt">Toutes les fiches de cette partie sont sues !</p>'+
+          '<div class="nav" style="justify-content:center"><button class="btn ghost" type="button" id="xagain">Revoir toutes les fiches</button><button class="btn" type="button" id="xback">← Activités</button></div></div>');
+        confetti(null,160);
+        document.getElementById("xagain").addEventListener("click",function(){ids.forEach(function(i){delete xs.known[i];});xsave();xstatus(document.getElementById("stepLabel").textContent);flashcards(ids,back);});
+        document.getElementById("xback").addEventListener("click",back);
+        return;
+      }
+      var i=deck[0],x=X[i],left=deck.length;
+      xpanel('<p class="xcount">Fiche · encore '+left+' à revoir'+(left>1?'':'')+'</p>'+
+        '<div class="flip'+(flipped?' on':'')+'" id="flip" role="button" tabindex="0" aria-label="Retourner la fiche">'+
+          '<div class="face front"><p class="xsmall">Que veut dire…</p><p class="xbig">'+esc(x.f)+'</p><div class="xdlg">'+x.c.map(function(l){return '<p class="xl"><span class="xw '+l[0]+'">'+l[0]+'</span><span>'+hl(l[1])+'</span></p>';}).join("")+'</div><p class="xsmall">Dites le sens à voix haute, puis touchez la fiche.</p></div>'+
+          '<div class="face back"><p class="xsmall">Sens</p><p class="xbig">'+esc(x.s)+'</p><p class="xinf">'+esc(x.inf)+'</p><p class="xnote">'+esc(x.n)+'</p></div>'+
+        '</div>'+
+        '<div class="nav"><button class="btn ghost" type="button" id="xflip">'+(flipped?'Voir le recto':'Retourner la fiche')+'</button>'+
+          '<span class="xjudge"><button class="btn ghost" type="button" id="xko"'+(flipped?'':' disabled')+'>À revoir</button><button class="btn" type="button" id="xok"'+(flipped?'':' disabled')+'>Je sais ✓</button></span></div>'+
+        '<div class="gfoot"><button class="linkbtn" type="button" id="xback">← Activités</button><span class="xsmall">'+ids.filter(function(j){return xs.known[j];}).length+' / '+ids.length+' sues</span></div>');
+      var f=document.getElementById("flip");
+      function flip(){flipped=!flipped;draw();}
+      f.addEventListener("click",flip);
+      f.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();flip();}});
+      document.getElementById("xflip").addEventListener("click",flip);
+      document.getElementById("xok").addEventListener("click",function(){xs.known[i]=1;xsave();deck.shift();flipped=false;xstatus(document.getElementById("stepLabel").textContent);popup("Bravo !","ok");draw();});
+      document.getElementById("xko").addEventListener("click",function(){deck.push(deck.shift());flipped=false;draw();});
+      document.getElementById("xback").addEventListener("click",back);
+    }
+    deck=deck.filter(function(i){return !xs.known[i];});
+    if(!deck.length)deck=shuffle(ids);
+    draw();
+  }
+
+  /* Banques de questions : {pre, q, o:[…], r, fb} — options en HTML */
+  function pick(pool,except,n){return shuffle(pool.filter(function(j){return except.indexOf(j)<0;})).slice(0,n);}
+  function ctxHTML(x){return '<div class="xdlg">'+x.c.map(function(l){return '<p class="xl"><span class="xw '+l[0]+'">'+l[0]+'</span><span>'+hl(l[1])+'</span></p>';}).join("")+'</div>';}
+  function qSens(ids){
+    return shuffle(ids).map(function(i){
+      var x=X[i],d=pick(ids,[i],2),o=shuffle([i].concat(d));
+      return {pre:ctxHTML(x),q:"Que veut dire « "+x.f+" » dans ce dialogue ?",o:o.map(function(j){return esc(X[j].s);}),r:o.indexOf(i),fb:"« "+x.f+" » : "+x.s};
+    });
+  }
+  function qExpr(ids,pool){
+    return shuffle(ids).map(function(i){
+      var x=X[i],d=pick(pool,[i],2),o=shuffle([i].concat(d));
+      return {pre:"",q:x.si,o:o.map(function(j){return esc(X[j].f);}),r:o.indexOf(i),fb:"On dit « "+x.f+" » : "+x.s};
+    });
+  }
+  function qPron(ids){
+    return shuffle(ids).map(function(i){
+      var x=X[i],g=x.gp,opts=shuffle([g[1],g[2],g[3]]);
+      var sent=esc(g[0]).replace("___",'<span class="xgap">……</span>');
+      return {pre:"",q:sent,raw:true,help:"Quels pronoms manquent ?",o:opts.map(esc),r:opts.indexOf(g[1]),fb:"Bonne réponse : "+g[0].replace("___",g[1]).replace(" ,",",")+" ("+x.inf+")"};
+    });
+  }
+  function qBien(ids){
+    return shuffle(ids).map(function(i,k){
+      var x=X[i],bad=Math.random()<.5,lines=bad?[["A",x.bad[0]],["B",x.bad[1]]]:x.c;
+      return {pre:'<div class="xdlg">'+lines.map(function(l){return '<p class="xl"><span class="xw '+l[0]+'">'+l[0]+'</span><span>'+hl(l[1])+'</span></p>';}).join("")+'</div>',
+        q:"L'expression « "+x.f+" » est-elle bien employée ?",o:["Oui, elle va bien dans ce contexte.","Non, elle ne va pas dans ce contexte."],r:bad?1:0,
+        fb:bad?x.bad[2]:"Oui : « "+x.f+" » = "+x.s};
+    });
+  }
+
+  /* Moteur de quiz (options numérotées a), b), c)) */
+  function runQuiz(qs,title,key,back){
+    var k=0,score=0;
+    function draw(){
+      var q=qs[k];
+      xpanel('<div id="qcard"><p class="qcount" style="color:'+XC+'">'+esc(title)+' · '+(k+1)+' / '+qs.length+'</p>'+q.pre+
+        '<p class="prompt">'+(q.raw?q.q:esc(q.q))+'</p>'+(q.help?'<p class="help">'+esc(q.help)+'</p>':'')+
+        '<div class="choices">'+q.o.map(function(o,j){return '<button class="choice" type="button" data-j="'+j+'"><span class="l">'+L[j]+')</span><span>'+o+'</span></button>';}).join("")+'</div>'+
+        '<div class="feedback" id="fb"></div>'+
+        '<div class="nav"><button class="linkbtn" type="button" id="xback">← Activités</button><button class="btn" type="button" id="xnext" disabled>'+(k+1<qs.length?'Suivant →':'Voir mon score →')+'</button></div></div>');
+      var card=document.getElementById("qcard");
+      card.querySelectorAll(".choice").forEach(function(b){b.addEventListener("click",function(){
+        if(card.dataset.done)return;card.dataset.done="1";
+        var j=+b.getAttribute("data-j"),all=card.querySelectorAll(".choice"),fb=document.getElementById("fb");
+        all.forEach(function(c){c.disabled=true;});all[q.r].classList.add("correct");
+        if(j===q.r){score++;fb.className="feedback show good";fb.textContent="✓ "+q.fb;confetti(b,40);popup("Bravo !","ok");}
+        else{b.classList.add("wrong");fb.className="feedback show";fb.textContent="✗ "+q.fb;oops(card);}
+        typo(fb);document.getElementById("xnext").disabled=false;
+        setTimeout(function(){fb.scrollIntoView({behavior:reduce?"auto":"smooth",block:"nearest"});},150);
+      });});
+      document.getElementById("xnext").addEventListener("click",function(){k++;if(k<qs.length)draw();else end();});
+      document.getElementById("xback").addEventListener("click",back);
+    }
+    function end(){
+      if(key&&(xs.best[key]===undefined||score>xs.best[key].split(" /")[0]*1)){xs.best[key]=score+" / "+qs.length;xsave();}
+      var r=score/qs.length;
+      xpanel('<div class="xdone"><p class="score-big" style="color:'+XC+'">'+score+' / '+qs.length+'</p><p class="prompt">'+(r>=.8?'Excellent !':r>=.5?'Bien ! Encore un effort.':'Relisez les expressions et recommencez.')+'</p>'+
+        '<div class="nav" style="justify-content:center"><button class="btn ghost" type="button" id="xagain">↺ Recommencer</button><button class="btn" type="button" id="xback">← Activités</button></div></div>');
+      if(r>=.8)confetti(null,200);
+      document.getElementById("xagain").addEventListener("click",function(){runQuiz(shuffle(qs),title,key,back);});
+      document.getElementById("xback").addEventListener("click",back);
+    }
+    draw();
+  }
+
+  /* ---------- Onglet 5 : tout réviser ---------- */
+  function reviewMenu(){
+    xpanel('<p class="xintro"><b>Tout réviser · Les 20 expressions.</b> Trois activités pour reconnaître le bon contexte et la bonne expression.</p>'+
+      '<div class="xacts">'+
+        actCard("sit","Quelle expression pour cette situation ?","20 situations, les deux parties mélangées.","rsit")+
+        actCard("match","Associer expression et sens","Touchez une expression, puis son sens. 4 manches de 5.","")+
+        actCard("bien","Bien employée ou pas ?","Lisez le mini-dialogue : l'expression va-t-elle dans ce contexte ?","rbien")+
+      '</div>');
+    main.querySelectorAll(".xact").forEach(function(b){b.addEventListener("click",function(){
+      var a=b.getAttribute("data-a"),all=xpart(0);
+      if(a==="sit")runQuiz(qExpr(all,all),"Quelle expression ?","rsit",reviewMenu);
+      else if(a==="bien")runQuiz(qBien(all),"Bien employée ?","rbien",reviewMenu);
+      else matching(shuffle(all),0,0);
+    });});
+  }
+  function matching(order,round,errors){
+    var ids=order.slice(round*5,round*5+5),L2=shuffle(ids),R2=shuffle(ids),sel=null,found=0;
+    xpanel('<p class="qcount" style="color:'+XC+'">Associer · manche '+(round+1)+' / 4</p>'+
+      '<p class="help">Touchez une expression, puis le sens qui lui correspond.</p>'+
+      '<div class="xmatch"><div class="xcol">'+L2.map(function(i){return '<button class="xm left" type="button" data-i="'+i+'">'+esc(X[i].f)+'</button>';}).join("")+'</div>'+
+      '<div class="xcol">'+R2.map(function(i){return '<button class="xm right" type="button" data-i="'+i+'">'+esc(X[i].s)+'</button>';}).join("")+'</div></div>'+
+      '<div class="feedback" id="fb"></div>'+
+      '<div class="nav"><button class="linkbtn" type="button" id="xback">← Activités</button><button class="btn" type="button" id="xnext" disabled>'+(round<3?'Manche suivante →':'Terminer →')+'</button></div>');
+    var pn=document.getElementById("xpanel");
+    pn.querySelectorAll(".xm.left").forEach(function(b){b.addEventListener("click",function(){
+      if(b.disabled)return;pn.querySelectorAll(".xm.left").forEach(function(o){o.classList.remove("sel");});b.classList.add("sel");sel=b;});});
+    pn.querySelectorAll(".xm.right").forEach(function(b){b.addEventListener("click",function(){
+      if(b.disabled||!sel)return;
+      if(sel.getAttribute("data-i")===b.getAttribute("data-i")){
+        [sel,b].forEach(function(o){o.classList.remove("sel");o.classList.add("ok");o.disabled=true;});sel=null;found++;
+        if(found===5){var fb=document.getElementById("fb");fb.className="feedback show good";fb.textContent="✓ Manche réussie !";popup("Bravo !","ok");confetti(b,60);document.getElementById("xnext").disabled=false;}
+      }else{errors++;b.classList.add("no");setTimeout(function(){b.classList.remove("no");},450);}
+    });});
+    document.getElementById("xback").addEventListener("click",reviewMenu);
+    document.getElementById("xnext").addEventListener("click",function(){
+      if(round<3)matching(order,round+1,errors);
+      else{
+        xpanel('<div class="xdone"><p class="score-big" style="color:'+XC+'">20 / 20</p><p class="prompt">Toutes les paires sont trouvées, avec '+errors+' erreur'+(errors>1?'s':'')+'.</p>'+
+          '<div class="nav" style="justify-content:center"><button class="btn ghost" type="button" id="xagain">↺ Recommencer</button><button class="btn" type="button" id="xback2">← Activités</button></div></div>');
+        if(errors<=3)confetti(null,200);
+        document.getElementById("xagain").addEventListener("click",function(){matching(shuffle(xpart(0)),0,0);});
+        document.getElementById("xback2").addEventListener("click",reviewMenu);
+      }
+    });
+  }
+
   gload();
   dload();
-  if(location.hash==="#dialogues")dialogues();else home();
+  xload();
+  if(location.hash==="#dialogues")dialogues();else if(location.hash==="#expressions")expressions();else home();
 })();
 </script>
 </body>
