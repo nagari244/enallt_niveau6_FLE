@@ -85,6 +85,11 @@
   .btnrow{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px}
   .btn{font:inherit;font-weight:600;border-radius:10px;padding:11px 16px;min-height:46px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:#fff}
   .btn.ghost{background:#fff;color:var(--accent)}
+  .btn:disabled{opacity:.45;cursor:default}
+  .item input:disabled,.texte select:disabled{opacity:1;color:var(--text);-webkit-text-fill-color:var(--text)}
+  table.t.recap td:last-child,table.t.recap th:last-child{text-align:right;white-space:nowrap}
+  table.t.recap tfoot td{font-weight:700;color:var(--accent);border-top:2px solid var(--accent);border-bottom:0;font-size:1.05rem}
+  .pending{color:var(--muted)}
   .score{font-weight:700;color:var(--accent);margin-top:8px}
   .bar{height:8px;background:var(--line);border-radius:999px;overflow:hidden;margin-top:6px}
   .bar > div{height:100%;width:0;background:var(--accent);transition:width .4s}
@@ -117,6 +122,7 @@
   <button role="tab" data-tab="textes" aria-selected="false">6. Textes</button>
   <button role="tab" data-tab="connecteurs" aria-selected="false">7. Connecteurs</button>
   <button role="tab" data-tab="debats" aria-selected="false">8. Débats</button>
+  <button role="tab" data-tab="bilan" aria-selected="false">9. Bilan</button>
 </div></nav>
 
 <main>
@@ -271,6 +277,19 @@
   <p style="font-size:.93rem">Pendant le débat, un·e observateur·trice note les phrases au subjonctif et vérifie la forme du verbe.</p></div>
   <div class="cards" id="fiches"></div>
 </section>
+
+<!-- 9. BILAN -->
+<section id="bilan">
+  <h2>Bilan : total des points</h2>
+  <p>Faites les exercices et appuyez sur <b>Vérifier</b> : vos points s'ajoutent ici automatiquement. Les débats (production orale) sont évalués séparément.</p>
+  <div class="tablewrap"><table class="t recap">
+    <thead><tr><th>Exercice</th><th>Points</th></tr></thead>
+    <tbody id="recapBody"></tbody>
+    <tfoot><tr><td>Total</td><td id="recapTotal"></td></tr></tfoot>
+  </table></div>
+  <p class="score" id="recapMsg"></p>
+  <div class="box tip"><p>📸 Quand vous avez terminé, faites une capture d'écran de ce tableau et remettez-la sur Google Classroom.</p></div>
+</section>
 </main>
 <footer>Niveau 6 · ENALLT, UNAM · Conception pédagogique : Nadia Aguilar Neri</footer>
 
@@ -412,11 +431,28 @@
   function bare(s){return norm(s).normalize("NFD").replace(/[̀-ͯ]/g,"");}
   function el(t,c,h){var n=document.createElement(t);if(c)n.className=c;if(h!=null)n.innerHTML=h;return n;}
   function msg(r){return r===1?"Parfait !":r>=.8?"Excellent travail !":r>=.6?"Bon travail : relisez les explications des erreurs.":"Relisez la règle et recommencez : vous allez progresser !";}
-  function controls(box,onCheck,onReset){
+  /* ---------- Bilan : [clé, intitulé, nombre de points] ---------- */
+  var EXOS=[["ex-irreg","Exercice 1 · Conjuguez au subjonctif (irréguliers)",EX_IRREG.length],["ex-conj","Exercice 2 · Les trois groupes",EX_CONJ.length],["ex-inf","Exercice 3 · Infinitif ou subjonctif ?",EX_INF.length],
+    ["t1","Texte 1 · Le télétravail",T1.length],["t2","Texte 2 · L'intelligence artificielle",T2.length],["ex-connect","Exercice 4 · Quel mode après le connecteur ?",EX_CONNECT.length]];
+  var SCORES={};
+  function recap(){
+    var tot=0,max=0,done=0,body=document.getElementById("recapBody");body.innerHTML="";
+    EXOS.forEach(function(x){var s=SCORES[x[0]];max+=x[2];if(s){tot+=s[0];done++;}
+      var tr=el("tr");tr.appendChild(el("td",null,esc(x[1])));
+      tr.appendChild(s?el("td",null,s[0]+" / "+x[2]):el("td","pending","— / "+x[2]+" (à faire)"));body.appendChild(tr);});
+    document.getElementById("recapTotal").textContent=tot+" / "+max+" ("+Math.round(tot/max*100)+" %)";
+    document.getElementById("recapMsg").textContent=done<EXOS.length?"Exercices vérifiés : "+done+" / "+EXOS.length+".":msg(tot/max);
+    typo(document.getElementById("bilan"));
+  }
+  // lockRoot : zone dont les champs sont bloqués après la vérification
+  function controls(box,onCheck,onReset,key,lockRoot){
     var row=el("div","btnrow"),v=el("button","btn","✓ Vérifier"),r=el("button","btn ghost","↺ Recommencer");
     v.type=r.type="button";var sc=el("div","score"),bar=el("div","bar","<div></div>");bar.style.display="none";
-    v.addEventListener("click",function(){var res=onCheck();sc.textContent="Score : "+res[0]+" / "+res[1]+" · "+msg(res[0]/res[1]);typo(sc);bar.style.display="";bar.firstChild.style.width=(res[0]/res[1]*100)+"%";});
-    r.addEventListener("click",function(){onReset();sc.textContent="";bar.style.display="none";});
+    v.addEventListener("click",function(){if(v.disabled)return;var res=onCheck();v.disabled=true;
+      (lockRoot||box).querySelectorAll("input,select").forEach(function(f){f.disabled=true;});
+      SCORES[key]=res;recap();
+      sc.textContent="Score : "+res[0]+" / "+res[1]+" · "+msg(res[0]/res[1]);typo(sc);bar.style.display="";bar.firstChild.style.width=(res[0]/res[1]*100)+"%";});
+    r.addEventListener("click",function(){delete SCORES[key];recap();onReset();sc.textContent="";bar.style.display="none";});
     row.appendChild(v);row.appendChild(r);box.appendChild(row);box.appendChild(sc);box.appendChild(bar);
   }
 
@@ -442,7 +478,7 @@
         box.appendChild(it);
       });
       typo(box);
-      controls(box,check,render);
+      controls(box,check,render,id);
     }
     function check(){
       var good=0,items=box.querySelectorAll(".item");
@@ -476,7 +512,7 @@
           b.addEventListener("click",function(){if(b.disabled)return;sel[i]=oi;opts.querySelectorAll(".opt").forEach(function(x){x.classList.remove("sel");});b.classList.add("sel");});opts.appendChild(b);});
         it.appendChild(opts);it.appendChild(el("div","fb"));box.appendChild(it);
       });
-      typo(box);controls(box,check,render);
+      typo(box);controls(box,check,render,"ex-inf");
     }
     function check(){
       var good=0;box.querySelectorAll(".item").forEach(function(it,i){
@@ -510,7 +546,7 @@
         });
         ex.classList.add("show");typo(ex);
         return [good,data.length];
-      },render);
+      },render,id,box);
     }
     render();
   }
@@ -523,6 +559,7 @@
       '<div class="contre"><b>✗ Contre</b><ul>'+f[3].map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+'</ul></div></div>';
   }).join("");
 
+  recap();
   typo(document.body);
 })();
 </script>

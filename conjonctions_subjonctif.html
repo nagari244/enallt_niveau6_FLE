@@ -74,6 +74,11 @@
   .btnrow{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px}
   .btn{font:inherit;font-weight:600;border-radius:10px;padding:11px 16px;min-height:46px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:#fff}
   .btn.ghost{background:#fff;color:var(--accent)}
+  .btn:disabled{opacity:.45;cursor:default}
+  table.t.recap{min-width:0}
+  table.t.recap td:last-child,table.t.recap th:last-child{text-align:right;white-space:nowrap}
+  table.t.recap tfoot td{font-weight:700;color:var(--accent);border-top:2px solid var(--accent);border-bottom:0;font-size:1.05rem}
+  .pending{color:var(--muted)}
   .score{font-weight:700;color:var(--accent);margin-top:8px}
   .bar{height:8px;background:var(--line);border-radius:999px;overflow:hidden;margin-top:6px}
   .bar > div{height:100%;width:0;background:var(--accent);transition:width .4s}
@@ -97,6 +102,7 @@
   <button role="tab" data-tab="pratique" aria-selected="false">2. Pratique</button>
   <button role="tab" data-tab="renfo" aria-selected="false">3. Renforcement</button>
   <button role="tab" data-tab="infinitif" aria-selected="false">4. Ou infinitif ?</button>
+  <button role="tab" data-tab="bilan" aria-selected="false">5. Bilan</button>
 </div></nav>
 
 <main>
@@ -172,6 +178,19 @@
   <h3>Exercice</h3>
   <div class="exo" id="ex-inf"></div>
 </section>
+
+<!-- BILAN -->
+<section id="bilan">
+  <h2>Bilan : total des points</h2>
+  <p>Faites les exercices et appuyez sur <b>Vérifier</b> : vos points s'ajoutent ici automatiquement.</p>
+  <div class="tablewrap"><table class="t recap">
+    <thead><tr><th>Exercice</th><th>Points</th></tr></thead>
+    <tbody id="recapBody"></tbody>
+    <tfoot><tr><td>Total</td><td id="recapTotal"></td></tr></tfoot>
+  </table></div>
+  <p class="score" id="recapMsg"></p>
+  <div class="box tip"><p>📸 Quand vous avez terminé, faites une capture d'écran de ce tableau et remettez-la sur Google Classroom.</p></div>
+</section>
 </main>
 <footer>Niveau 6 · ENALLT, UNAM · Conception pédagogique : Nadia Aguilar Neri</footer>
 
@@ -219,11 +238,24 @@
   function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
   function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
   function msg(r){return r===1?"Parfait !":r>=.8?"Excellent travail !":r>=.6?"Bon travail : relisez les explications des erreurs.":"Relisez la théorie et recommencez : vous allez progresser !";}
-  function controls(box,onCheck,onReset){
+  /* Bilan : [clé, intitulé, nombre de points] */
+  var EXOS=[["ex-bank","Pratique · Complétez avec la bonne conjonction",BANK.length],["ex-qcm","Renforcement · Choisissez la bonne conjonction",QCM.length],["ex-inf","Subjonctif ou infinitif ?",INF.length]];
+  var SCORES={};
+  function recap(){
+    var tot=0,max=0,done=0,body=document.getElementById("recapBody");body.innerHTML="";
+    EXOS.forEach(function(x){var s=SCORES[x[0]];max+=x[2];if(s){tot+=s[0];done++;}
+      var tr=el("tr");tr.appendChild(el("td",null,esc(x[1])));
+      tr.appendChild(s?el("td",null,s[0]+" / "+x[2]):el("td","pending","— / "+x[2]+" (à faire)"));body.appendChild(tr);});
+    document.getElementById("recapTotal").textContent=tot+" / "+max+" ("+Math.round(tot/max*100)+" %)";
+    document.getElementById("recapMsg").textContent=done<EXOS.length?"Exercices vérifiés : "+done+" / "+EXOS.length+".":msg(tot/max);
+    typo(document.getElementById("bilan"));
+  }
+  function controls(box,onCheck,onReset,key){
     var row=el("div","btnrow"),v=el("button","btn","✓ Vérifier"),r=el("button","btn ghost","↺ Recommencer");v.type=r.type="button";
     var sc=el("div","score"),bar=el("div","bar","<div></div>");bar.style.display="none";
-    v.addEventListener("click",function(){var res=onCheck();sc.textContent="Score : "+res[0]+" / "+res[1]+" · "+msg(res[0]/res[1]);typo(sc);bar.style.display="";bar.firstChild.style.width=(res[0]/res[1]*100)+"%";});
-    r.addEventListener("click",function(){onReset();});
+    v.addEventListener("click",function(){if(v.disabled)return;var res=onCheck();v.disabled=true;SCORES[key]=res;recap();
+      sc.textContent="Score : "+res[0]+" / "+res[1]+" · "+msg(res[0]/res[1]);typo(sc);bar.style.display="";bar.firstChild.style.width=(res[0]/res[1]*100)+"%";});
+    r.addEventListener("click",function(){delete SCORES[key];recap();onReset();});
     row.appendChild(v);row.appendChild(r);box.appendChild(row);box.appendChild(sc);box.appendChild(bar);
   }
 
@@ -257,7 +289,7 @@
         selSlot=selSlot===i?null:i;box.querySelectorAll(".slot").forEach(function(x){x.style.outline=(+x.dataset.i===selSlot)?"2px solid var(--accent)":"";});
       });});
       delete box.dataset.done;typo(box);
-      controls(box,check,render);
+      controls(box,check,render,"ex-bank");
     }
     function place(i,c){
       if(placed[i]!==null)free(i);placed[i]=c;
@@ -296,7 +328,7 @@
           opts.appendChild(b);});
         it.appendChild(opts);it.appendChild(el("div","fb"));box.appendChild(it);
       });
-      typo(box);controls(box,check,render);
+      typo(box);controls(box,check,render,id);
     }
     function check(){
       var good=0;box.querySelectorAll(".item").forEach(function(it,i){
@@ -311,6 +343,7 @@
   }
   buildQCM("ex-qcm",QCM);
   buildQCM("ex-inf",INF,"two");
+  recap();
   typo(document.body);
 })();
 </script>
