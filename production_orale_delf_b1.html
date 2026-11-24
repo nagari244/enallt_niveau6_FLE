@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DELF B1 – Production orale : répertoire d'entraînement</title>
+<style>
+:root{
+  --ink:#1f2933; --muted:#5b6670; --line:#e2e6eb; --navy:#1d3a5f; --blue:#2b6cb0;
+  --tint:#f5f7fa; --amber:#b7791f; --cream:#fffaf0; --ok:#2f855a; --ko:#c53030;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+header{border-bottom:3px solid var(--navy);padding:22px 0 14px}
+header .kicker{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);font-weight:700}
+header h1{margin:4px 0 4px;font-size:1.45rem;line-height:1.25;color:var(--navy)}
+header p{margin:0;color:var(--muted);font-size:.95rem}
+nav.tabs{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
+nav.tabs .wrap{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+nav.tabs .wrap::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;padding:13px 14px;border:none;background:none;font:inherit;font-weight:600;font-size:.95rem;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+.tab.active{color:var(--navy);border-bottom-color:var(--blue)}
+section.panel{display:none;padding:18px 0 130px}
+section.panel.active{display:block}
+h2{color:var(--navy);font-size:1.3rem;margin:6px 0 10px}
+h3{color:var(--navy);font-size:1.08rem;margin:18px 0 8px}
+h4{margin:10px 0 4px;font-size:.98rem;color:var(--navy)}
+p{margin:8px 0}
+ul,ol{padding-left:22px;margin:6px 0}
+li{margin:3px 0}
+.lead{color:var(--muted)}
+.card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:14px 0;background:#fff;scroll-margin-top:64px}
+.card.tint{background:var(--tint)}
+.alert{border:1px solid #f1dfb8;border-left:5px solid var(--amber);background:var(--cream);border-radius:10px;padding:12px 14px;margin:14px 0}
+.alert strong{color:#7b4f12}
+.grid2{display:grid;gap:12px}
+.grid4{display:grid;gap:12px}
+@media(min-width:720px){.grid2{grid-template-columns:1fr 1fr}.grid4{grid-template-columns:1fr 1fr}}
+.step{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff}
+.step .n{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;font-size:.9rem;margin-right:8px}
+.badge{display:inline-block;font-size:.78rem;font-weight:700;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:#fff;vertical-align:middle}
+.badge.tu{border-color:#c9d8ee;color:#1f4f8a;background:#eef4fb}
+.badge.vous{border-color:#ddd3ee;color:#5a3d8a;background:#f5f1fb}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:9px 16px;border-radius:10px;border:1px solid var(--blue);background:var(--blue);color:#fff;font:inherit;font-weight:600;font-size:.95rem;cursor:pointer;text-align:center}
+.btn.ghost{background:#fff;color:var(--blue)}
+.btn.small{min-height:38px;padding:6px 12px;font-size:.88rem}
+.btn:disabled{opacity:.5;cursor:default}
+.btnrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+details{border-top:1px solid var(--line);margin-top:10px}
+details summary{cursor:pointer;font-weight:600;color:var(--blue);padding:10px 0;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"▸ ";}
+details[open] summary::before{content:"▾ ";}
+.subj-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:space-between}
+.subj-head h3{margin:0;font-size:1.05rem}
+.num{color:var(--blue);font-weight:800;margin-right:4px}
+.consigne{margin:10px 0 4px}
+.examiner{font-size:.92rem;color:var(--muted);font-style:italic}
+.doc{border-left:4px solid var(--blue);background:var(--tint);padding:12px 14px;border-radius:0 10px 10px 0;margin:10px 0;font-size:1rem}
+.src{font-size:.82rem;color:var(--muted);margin-top:4px}
+.kv{margin:8px 0}
+.kv b{color:var(--navy)}
+.obj{margin:6px 0;padding:8px 10px;border:1px dashed var(--line);border-radius:8px}
+.obj .q{font-weight:600}
+.obj .r{color:#1f4f8a}
+.pick{border:2px solid var(--blue)!important}
+.drawbox{display:grid;gap:12px;margin-top:10px}
+@media(min-width:720px){.drawbox{grid-template-columns:1fr 1fr}}
+.mini{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff}
+.mini h4{margin-top:0}
+select{font:inherit;min-height:44px;padding:6px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);max-width:100%}
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+.qbox{border:2px solid var(--blue);border-radius:12px;padding:14px 16px;margin:10px 0;font-size:1.08rem;font-weight:600;color:var(--navy);background:#fff}
+.contrast{display:grid;gap:10px}
+@media(min-width:720px){.contrast{grid-template-columns:1fr 1.6fr}}
+.bad{border:1px solid #f0cccc;border-left:5px solid var(--ko);border-radius:10px;padding:10px 12px}
+.good{border:1px solid #c9d8ee;border-left:5px solid var(--blue);border-radius:10px;padding:10px 12px}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--tint);color:var(--navy)}
+.tablewrap{overflow-x:auto}
+.check label{display:flex;gap:8px;align-items:flex-start;padding:5px 0}
+.check input{margin-top:5px;width:18px;height:18px;flex:0 0 auto}
+/* Exercices */
+.item{border-top:1px solid var(--line);padding:12px 0}
+.item:first-of-type{border-top:none}
+.item .sit{color:var(--muted);font-size:.95rem;margin-bottom:4px}
+.item .q{font-weight:600;margin-bottom:6px}
+.opt{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:6px 0;cursor:pointer;background:#fff}
+.opt input{margin-top:5px;width:18px;height:18px;flex:0 0 auto}
+.opt .l{font-weight:700;color:var(--navy);min-width:22px}
+.opt.correct{border-color:var(--ok);border-left:6px solid var(--ok)}
+.opt.wrong{border-color:var(--ko);border-left:6px solid var(--ko)}
+.opt.locked{cursor:default}
+.score{font-weight:700;color:var(--navy);margin-left:8px}
+.msg{font-size:.92rem;color:var(--ko);margin-left:6px}
+.recap input[type=text]{font:inherit;min-height:44px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;width:100%;max-width:420px}
+.total td{font-weight:800;color:var(--navy)}
+footer{border-top:1px solid var(--line);padding:16px 0 110px;color:var(--muted);font-size:.9rem}
+/* Chronomètre */
+#timerbar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:#fff;border-top:2px solid var(--navy);box-shadow:0 -4px 14px rgba(0,0,0,.06);display:none}
+#timerbar.on{display:block}
+#timerbar .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding-top:10px;padding-bottom:10px}
+#tLabel{font-weight:700;color:var(--navy);font-size:.92rem;flex:1 1 180px}
+#tHint{display:block;font-weight:400;color:var(--muted);font-size:.82rem}
+#tTime{font:800 1.9rem/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--navy);min-width:110px;text-align:center}
+#tTime.done{color:var(--ko)}
+@media(max-width:600px){#tHint{display:none}#tTime{font-size:1.5rem;min-width:84px}#tLabel{font-size:.85rem;flex-basis:150px}#timerbar .wrap{padding-top:8px;padding-bottom:8px;gap:6px 10px}}
+#tProg{position:absolute;left:0;top:-2px;height:2px;background:var(--blue);width:0}
+@media print{
+  nav.tabs,#timerbar,.btn,.btnrow,.filters,.noprint{display:none!important}
+  section.panel{display:none!important;padding:0}
+  section.panel.active{display:block!important}
+  .card,.step,.mini{break-inside:avoid}
+  body{font-size:12pt}
+  footer{padding-bottom:0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">ENALLT · Niveau 6 · Préparation au DELF B1</div>
+    <h1>Production orale B1 — Répertoire d'entraînement</h1>
+    <p>Entretien dirigé · 15 sujets d'interaction · 20 documents pour donner son point de vue. Document d'entraînement non officiel, conforme au format de l'épreuve.</p>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap">
+    <button class="tab active" data-tab="epreuve">L'épreuve</button>
+    <button class="tab" data-tab="p1">1 · Entretien dirigé</button>
+    <button class="tab" data-tab="p2">2 · Interaction</button>
+    <button class="tab" data-tab="p3">3 · Point de vue</button>
+    <button class="tab" data-tab="exos">Exercices notés</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ===================== L'ÉPREUVE ===================== -->
+<section class="panel active" id="epreuve">
+  <h2>L'épreuve de production orale du DELF B1</h2>
+  <p>L'épreuve est notée sur <b>25 points</b> (note minimale : 5/25). Elle dure <b>10 à 15 minutes</b>. Avant de commencer, vous avez <b>10 minutes de préparation</b>, uniquement pour la partie 3. Les trois parties s'enchaînent.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Partie</th><th>Durée</th><th>Préparation</th><th>Ce que vous faites</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. Entretien dirigé</b></td><td>2 à 3 min</td><td>Non</td><td>Vous parlez de vous : votre famille, vos activités, vos centres d'intérêt, votre passé, votre présent, vos projets. L'examinateur·rice commence par : « Bonjour ! Pouvez-vous vous présenter, me parler de vous, de votre famille ? »</td></tr>
+      <tr><td><b>2. Exercice en interaction</b></td><td>3 à 4 min</td><td>Non</td><td>Vous tirez au sort deux sujets et vous en choisissez un. Vous jouez un rôle face à l'examinateur·rice pour résoudre un problème de la vie quotidienne un peu inhabituel.</td></tr>
+      <tr><td><b>3. Expression d'un point de vue</b></td><td>5 à 7 min</td><td>10 min</td><td>Avant l'épreuve, vous tirez au sort deux documents et vous en choisissez un. Vous dégagez le thème, vous présentez votre opinion dans un exposé de 3 minutes environ, puis l'examinateur·rice vous pose quelques questions.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Ce que l'on évalue</h3>
+  <p class="lead">La grille officielle comporte 11 critères, chacun évalué de 0 à 5 points (par demi-points). La note finale est donnée sur 25.</p>
+  <div class="grid2">
+    <div class="card tint">
+      <h4>Partie 1 — Entretien dirigé</h4>
+      <ul><li>Je parle de moi en donnant des informations, des raisons et des explications.</li><li>Je réponds sans préparation, avec une certaine assurance.</li></ul>
+      <h4>Partie 2 — Interaction</h4>
+      <ul><li>Je fais face à une situation un peu inhabituelle, sans préparation.</li><li>J'adapte ma façon de parler à la situation (politesse, tu/vous).</li><li>Je réagis à ce que dit l'examinateur·rice : je vérifie, je confirme, je commente son point de vue.</li></ul>
+    </div>
+    <div class="card tint">
+      <h4>Partie 3 — Point de vue</h4>
+      <ul><li>Je présente le sujet de façon simple et directe.</li><li>J'explique avec assez de précision les idées principales de ma réflexion.</li><li>Je relie mes idées pour que mon discours soit facile à suivre.</li></ul>
+      <h4>Pour les trois parties</h4>
+      <ul><li>Lexique : un vocabulaire suffisant pour les sujets courants.</li><li>Grammaire : la phrase simple et les phrases complexes courantes.</li><li>Prononciation : claire et compréhensible, malgré quelques erreurs.</li></ul>
+    </div>
+  </div>
+
+  <div class="alert"><strong>Règle d'or pour les trois parties :</strong> l'examinateur·rice évalue ce que vous <b>produisez</b>. Une réponse courte, un « oui », un « je ne sais pas » ou une discussion qui s'arrête trop vite vous font perdre des points. Développez toujours : une idée, une raison, un exemple.</div>
+
+  <h3>Chronomètre</h3>
+  <p class="lead">Le chronomètre reste visible en bas de l'écran quand vous changez de section.</p>
+  <div class="btnrow">
+    <button class="btn" onclick="startTimer(600,'Préparation de la partie 3','Notez des mots-clés, pas des phrases.')">Préparation · 10 min</button>
+    <button class="btn ghost" onclick="startTimer(180,'Partie 1 · Entretien dirigé','2 à 3 minutes')">Entretien · 3 min</button>
+    <button class="btn ghost" onclick="startTimer(240,'Partie 2 · Interaction','3 à 4 minutes — ne concluez pas trop vite')">Interaction · 4 min</button>
+    <button class="btn ghost" onclick="startTimer(180,'Partie 3 · Exposé','Environ 3 minutes, puis les questions')">Exposé · 3 min</button>
+  </div>
+
+  <h3>Autoévaluation après une simulation</h3>
+  <div class="card check">
+    <label><input type="checkbox"> Partie 1 : j'ai donné des raisons et des exemples, pas seulement des informations.</label>
+    <label><input type="checkbox"> Partie 1 : j'ai utilisé le présent, le passé et le futur.</label>
+    <label><input type="checkbox"> Partie 2 : j'ai identifié tout de suite le registre (tu/vous) et je l'ai gardé jusqu'à la fin.</label>
+    <label><input type="checkbox"> Partie 2 : j'ai posé clairement le problème dès le début.</label>
+    <label><input type="checkbox"> Partie 2 : j'ai répondu à chaque objection et j'ai proposé au moins deux solutions.</label>
+    <label><input type="checkbox"> Partie 2 : je n'ai pas accepté le premier refus ; nous avons trouvé une solution ou un compromis.</label>
+    <label><input type="checkbox"> Partie 3 : j'ai présenté le document et formulé une problématique.</label>
+    <label><input type="checkbox"> Partie 3 : j'ai développé au moins deux idées avec des exemples et des connecteurs.</label>
+    <label><input type="checkbox"> Partie 3 : j'ai donné une opinion claire dans ma conclusion.</label>
+    <label><input type="checkbox"> J'ai parlé sans lire mes notes.</label>
+  </div>
+</section>
+
+<!-- ===================== PARTIE 1 ===================== -->
+<section class="panel" id="p1">
+  <h2>Partie 1 · Entretien dirigé <span class="badge">2–3 min · sans préparation</span></h2>
+  <p>L'examinateur·rice veut vous mettre à l'aise en vous faisant parler de vous. Mais attention : il/elle attend des <b>informations développées</b>, avec des raisons et des explications, et des temps variés (passé, présent, futur).</p>
+
+  <h3>Méthode : développer une information personnelle</h3>
+  <div class="grid2">
+    <div class="step"><span class="n">1</span><b>Information</b> — la réponse directe.<br><i>J'habite à Mexico.</i></div>
+    <div class="step"><span class="n">2</span><b>Précision</b> — où, depuis quand, avec qui, comment.<br><i>…dans le quartier de Coyoacán, depuis dix ans, avec mes parents.</i></div>
+    <div class="step"><span class="n">3</span><b>Raison / sentiment</b> — pourquoi, ce que vous en pensez.<br><i>J'aime ce quartier parce qu'il est calme et vivant à la fois.</i></div>
+    <div class="step"><span class="n">4</span><b>Exemple ou souvenir</b> — un fait concret, au passé si possible.<br><i>Le week-end dernier, par exemple, je suis allé(e) à un concert sur la place.</i></div>
+    <div class="step"><span class="n">5</span><b>Ouverture</b> — un projet, un souhait (futur, conditionnel).<br><i>Plus tard, j'aimerais vivre quelque temps au Québec.</i></div>
+  </div>
+
+  <h3>Comparez</h3>
+  <div class="contrast">
+    <div class="bad"><b>Réponse trop courte</b><br>« J'habite à Mexico. J'étudie l'ingénierie. J'aime la musique. »<br><small>Trois informations, aucune raison, aucun exemple : l'examinateur·rice doit tout relancer.</small></div>
+    <div class="good"><b>Réponse développée</b><br>« J'habite à Mexico, dans le quartier de Coyoacán, depuis une dizaine d'années. J'aime beaucoup ce quartier parce qu'il est calme, mais il y a aussi beaucoup de cafés et de librairies. Par exemple, le dimanche, je vais souvent au marché avec ma famille. Je fais des études d'ingénierie : j'ai choisi cette filière parce que j'adore les mathématiques. Plus tard, j'aimerais bien travailler quelque temps au Québec pour pratiquer mon français. »</div>
+  </div>
+
+  <h3>S'entraîner : une question au hasard</h3>
+  <p class="lead">Tirez une question et répondez à voix haute pendant une minute en suivant les 5 étapes.</p>
+  <div class="btnrow">
+    <button class="btn" onclick="drawQuestion()">Tirer une question</button>
+    <button class="btn ghost" onclick="startTimer(60,'Partie 1 · Une réponse développée','Information → précision → raison → exemple → ouverture')">Répondre · 1 min</button>
+  </div>
+  <div id="qDraw" class="qbox" style="display:none"></div>
+
+  <h3>Banque de questions</h3>
+  <div id="qBank" class="grid2"></div>
+
+  <h3>Les relances de l'examinateur·rice</h3>
+  <div class="card tint">
+    <p>Si votre réponse est courte, l'examinateur·rice relance. Anticipez ces questions en y répondant <b>avant</b> qu'il/elle les pose :</p>
+    <ul>
+      <li>Pourquoi ? / Qu'est-ce qui vous plaît dans… ?</li>
+      <li>Pouvez-vous me donner un exemple ?</li>
+      <li>Depuis quand ? / Comment ça s'est passé ?</li>
+      <li>Et à l'avenir, qu'est-ce que vous aimeriez faire ?</li>
+      <li>Si vous pouviez…, que feriez-vous ?</li>
+    </ul>
+  </div>
+
+  <h3>Boîte à outils</h3>
+  <div class="grid2">
+    <div class="card">
+      <h4>Se présenter et préciser</h4>
+      <ul><li>Je m'appelle…, j'ai… ans, je viens de…</li><li>J'habite à… depuis…</li><li>Je fais des études de… / Je travaille comme…</li><li>Dans ma famille, nous sommes…</li></ul>
+      <h4>Expliquer et justifier</h4>
+      <ul><li>Ce qui me plaît, c'est… / Ce que j'aime surtout, c'est…</li><li>J'ai choisi… parce que… / car…</li><li>Pour moi, c'est important de…</li></ul>
+    </div>
+    <div class="card">
+      <h4>Raconter et projeter</h4>
+      <ul><li>Quand j'étais petit(e), je…</li><li>L'année dernière, je suis allé(e)… C'était…</li><li>J'ai l'intention de… / Je vais…</li><li>J'aimerais… / Mon rêve, ce serait de…</li></ul>
+      <h4>Gagner du temps, contourner un mot</h4>
+      <ul><li>Alors… c'est une bonne question.</li><li>Je ne connais pas le mot exact, mais c'est une sorte de…</li><li>Pardon, pouvez-vous répéter la question ?</li></ul>
+    </div>
+  </div>
+
+  <div class="alert"><strong>Pièges à éviter :</strong> réciter un texte appris par cœur (l'examinateur·rice vous interrompra avec une question imprévue) ; répondre par oui ou non ; rester au présent ; parler trop vite pour « finir » ; se taire au lieu de demander de répéter.</div>
+</section>
+
+<!-- ===================== PARTIE 2 ===================== -->
+<section class="panel" id="p2">
+  <h2>Partie 2 · Exercice en interaction <span class="badge">3–4 min · sans préparation</span></h2>
+  <p>Vous tirez au sort deux sujets et vous en choisissez un. L'examinateur·rice joue un rôle et <b>résiste volontairement</b> : il/elle refuse, doute, pose des conditions. Votre travail est de faire avancer la discussion jusqu'à une solution.</p>
+
+  <h3>Analyser la situation en 4 questions (en lisant le sujet)</h3>
+  <div class="grid4">
+    <div class="step"><span class="n">1</span><b>Qui parle à qui ?</b> → <b>le registre</b><br>Ami(e), colocataire, frère ou sœur, parent, camarade → <b>tu</b>, ton familier.<br>Voisin(e) que l'on connaît peu, vendeur·se, employé·e, responsable, directeur·rice → <b>vous</b>, formules de politesse. Ne mélangez jamais les deux.</div>
+    <div class="step"><span class="n">2</span><b>Quel est le noyau ?</b> → <b>le problème à résoudre</b><br>Résumez-le en une phrase : « Je dois obtenir… / convaincre… de… / trouver une solution pour… ». Tout ce que vous dites doit servir ce but. Ne partez pas dans un débat général.</div>
+    <div class="step"><span class="n">3</span><b>Quels arguments ? Quelles solutions ?</b><br>Préparez mentalement trois arguments (faits, conséquences, sentiments) et deux solutions de rechange. Si la première est refusée, vous avez la suivante.</div>
+    <div class="step"><span class="n">4</span><b>Que va répondre l'autre ?</b><br>Imaginez ses objections (règlement, argent, temps, habitude) et votre réponse. Prévoyez aussi une <b>concession</b> : ce que vous êtes prêt(e) à accepter pour arriver à un compromis.</div>
+  </div>
+
+  <div class="alert"><strong>S'arrêter trop vite est pénalisé.</strong> Accepter le premier refus (« Ah, d'accord, tant pis… ») met fin à l'échange et vous fait perdre des points. L'examinateur·rice attend que vous insistiez poliment, que vous reformuliez, que vous proposiez autre chose. Continuez à chercher des arguments et des idées, sans jamais perdre de vue le problème à résoudre.</div>
+
+  <h3>Le déroulement d'une interaction réussie</h3>
+  <ol>
+    <li><b>Ouvrir</b> : saluer, se présenter si nécessaire, annoncer le problème.</li>
+    <li><b>Expliquer</b> : décrire la situation, donner ses raisons.</li>
+    <li><b>Réagir</b> : écouter l'objection, la reformuler, y répondre, vérifier une information.</li>
+    <li><b>Négocier</b> : proposer, accepter une partie, demander une contrepartie.</li>
+    <li><b>Conclure</b> : récapituler la solution trouvée, remercier, prendre congé.</li>
+  </ol>
+
+  <details class="card">
+    <summary>Boîte à outils de l'interaction (tu / vous)</summary>
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>Pour…</th><th>Avec « vous »</th><th>Avec « tu »</th></tr></thead>
+      <tbody>
+        <tr><td>Ouvrir et poser le problème</td><td>Bonjour Madame/Monsieur, excusez-moi de vous déranger. Je viens vous voir au sujet de…</td><td>Salut ! Tu as cinq minutes ? Il faut que je te parle de…</td></tr>
+        <tr><td>Argumenter</td><td>Je me permets d'insister parce que… / Comprenez-moi : …</td><td>Écoute, pour moi c'est important parce que… / Tu sais, …</td></tr>
+        <tr><td>Insister poliment</td><td>Je comprends bien, mais… / Il n'y aurait vraiment aucune possibilité de… ?</td><td>Je comprends, mais… / Tu es sûr(e) qu'on ne peut pas… ?</td></tr>
+        <tr><td>Proposer une solution</td><td>Est-ce que vous accepteriez de… ? / Je vous propose de…</td><td>Et si on… ? / Qu'est-ce que tu penses de… ?</td></tr>
+        <tr><td>Faire une concession</td><td>D'accord pour…, à condition que… / Je peux accepter…, si…</td><td>OK pour…, mais alors… / Je veux bien…, si tu…</td></tr>
+        <tr><td>Vérifier, réagir à l'autre</td><td>Si je vous comprends bien, … ? / Vous voulez dire que… ?</td><td>Donc, si je comprends bien, … ? / Tu veux dire que… ?</td></tr>
+        <tr><td>Conclure</td><td>Très bien, donc nous sommes d'accord : … Je vous remercie.</td><td>Super, alors on fait comme ça : … Merci, c'est sympa !</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </details>
+
+  <h3>Tirage au sort</h3>
+  <p class="lead">Comme le jour de l'examen : tirez deux sujets, lisez-les et choisissez celui que vous préférez.</p>
+  <div class="btnrow"><button class="btn" onclick="drawTwo('p2')">Tirer deux sujets</button></div>
+  <div id="p2Draw" class="drawbox"></div>
+
+  <h3>Les 15 sujets</h3>
+  <div class="filters">
+    <span>Afficher :</span>
+    <button class="btn small" data-reg="all" onclick="filterReg('all')">Tous</button>
+    <button class="btn small ghost" data-reg="tu" onclick="filterReg('tu')">Tutoiement</button>
+    <button class="btn small ghost" data-reg="vous" onclick="filterReg('vous')">Vouvoiement</button>
+  </div>
+  <p class="lead">Avant d'ouvrir « Analyser la situation », répondez mentalement aux 4 questions.</p>
+  <div id="p2List"></div>
+</section>
+
+<!-- ===================== PARTIE 3 ===================== -->
+<section class="panel" id="p3">
+  <h2>Partie 3 · Expression d'un point de vue <span class="badge">10 min de préparation · 5–7 min</span></h2>
+  <p>Vous choisissez un document parmi deux tirés au sort. Vous dégagez le thème soulevé par le document et vous présentez votre opinion dans un exposé personnel d'environ 3 minutes. Ensuite, l'examinateur·rice vous pose quelques questions.</p>
+
+  <h3>Méthode pour les 10 minutes de préparation</h3>
+  <div class="grid2">
+    <div class="step"><span class="n">1</span><b>Lire deux fois</b> et repérer les mots-clés, la question finale, les avantages et les inconvénients cités.</div>
+    <div class="step"><span class="n">2</span><b>Dégager le thème</b> : de quoi parle le document, en une phrase ?</div>
+    <div class="step"><span class="n">3</span><b>Formuler une problématique</b> : une question ouverte qui permet de discuter (souvent proche de la dernière phrase du document).</div>
+    <div class="step"><span class="n">4</span><b>Faire un plan</b> : 2 ou 3 idées, chacune avec un exemple concret (expérience personnelle, situation connue).</div>
+    <div class="step"><span class="n">5</span><b>Préparer l'introduction et la conclusion</b> : ce sont les deux moments où l'on perd le plus facilement ses moyens.</div>
+    <div class="step"><span class="n">6</span><b>Noter des mots-clés</b>, pas des phrases complètes : vous ne devez pas lire.</div>
+  </div>
+
+  <h3>Squelette d'exposé</h3>
+  <div class="card tint">
+    <p><b>Introduction</b> — Le document que j'ai choisi s'intitule « … ». Il parle de… Cela pose la question suivante : … ? Je vais d'abord…, puis…</p>
+    <p><b>Développement</b> — D'abord / Premièrement, … Par exemple, … — Ensuite / De plus, … C'est pourquoi… — Cependant / Pourtant / En revanche, … Même si…, …</p>
+    <p><b>Conclusion</b> — Pour conclure / En conclusion, je pense que… À mon avis, la meilleure solution serait de…</p>
+  </div>
+
+  <details class="card">
+    <summary>Comment ces documents sont calibrés au niveau B1</summary>
+    <ul>
+      <li>Texte court : 80 à 120 mots (le nombre de mots est indiqué sur chaque document).</li>
+      <li>Thème de société proche de la vie quotidienne : travail, consommation, jeunes, ville, alimentation, éducation, loisirs, environnement.</li>
+      <li>Contexte francophone (France, Belgique, Suisse, Québec), comme dans les sujets d'examen.</li>
+      <li>Lexique courant ; présent, passé composé et quelques formes simples du futur et du conditionnel.</li>
+      <li>Une tension explicite : le texte présente des avantages et des limites, sans donner la réponse.</li>
+      <li>Une question finale qui ouvre le débat et aide à formuler la problématique.</li>
+    </ul>
+    <p class="src">Textes rédigés pour l'entraînement. Les faits mentionnés sont réels et volontairement simplifiés.</p>
+  </details>
+
+  <h3>Tirage au sort</h3>
+  <div class="btnrow"><button class="btn" onclick="drawTwo('p3')">Tirer deux documents</button></div>
+  <div id="p3Draw" class="drawbox"></div>
+
+  <h3>Les 20 documents</h3>
+  <div class="filters">
+    <label for="themeSel">Thème :</label>
+    <select id="themeSel" onchange="filterTheme(this.value)"></select>
+  </div>
+  <div id="p3List"></div>
+</section>
+
+<!-- ===================== EXERCICES ===================== -->
+<section class="panel" id="exos">
+  <h2>Exercices notés · Analyser avant de parler</h2>
+  <p>Quatre exercices pour s'entraîner à analyser les situations et à organiser son discours. Cliquez sur « Vérifier » à la fin de chaque exercice. Le tableau récapitulatif se trouve en bas de la page.</p>
+  <div id="exoList"></div>
+
+  <div class="card recap" id="recap">
+    <h3 style="margin-top:0">Tableau récapitulatif</h3>
+    <p><label for="stName"><b>Nom et prénom :</b></label><br><input type="text" id="stName" autocomplete="name" placeholder="Écrivez votre nom"></p>
+    <p class="lead" id="recapDate"></p>
+    <div class="tablewrap">
+      <table><thead><tr><th>Exercice</th><th>Points</th><th>Sur</th></tr></thead><tbody id="recapBody"></tbody></table>
+    </div>
+    <p>Quand vous avez vérifié les quatre exercices, faites une capture d'écran de ce tableau et déposez-la sur Google Classroom.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">Conception pédagogique : Nadia Aguilar Neri · DELF B1, production orale · Document d'entraînement non officiel.</div>
+</footer>
+
+<div id="timerbar" role="timer" aria-live="off">
+  <div id="tProg"></div>
+  <div class="wrap">
+    <div id="tLabel">—<span id="tHint"></span></div>
+    <div id="tTime">00:00</div>
+    <div class="btnrow" style="margin:0">
+      <button class="btn small" id="tPause" onclick="toggleTimer()">Pause</button>
+      <button class="btn small ghost" onclick="resetTimer()">Recommencer</button>
+      <button class="btn small ghost" onclick="closeTimer()" aria-label="Fermer le chronomètre">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================= DONNÉES ================= */
+
+const QBANK = [
+  {t:"Vous et votre quotidien", q:[
+    "Bonjour ! Pouvez-vous vous présenter, me parler de vous, de votre famille ?",
+    "Comment se passe une journée normale pour vous ?",
+    "Où habitez-vous ? Qu'est-ce que vous aimez dans votre quartier ?",
+    "Comment allez-vous à l'université ou au travail ? Combien de temps dure le trajet ?",
+    "Qu'est-ce que vous faites le week-end, en général ?"]},
+  {t:"Vos études, votre travail", q:[
+    "Qu'est-ce que vous étudiez ? Pourquoi avez-vous choisi cette filière ?",
+    "Est-ce que vous travaillez ? Parlez-moi de votre travail.",
+    "Quelle matière ou quelle activité vous plaît le plus ? Pourquoi ?",
+    "Qu'est-ce qui est difficile dans vos études ou dans votre travail ?"]},
+  {t:"Vos loisirs et vos goûts", q:[
+    "Parlez-moi de vos passe-temps préférés.",
+    "Quel type de musique, de films ou de livres aimez-vous ?",
+    "Pratiquez-vous un sport ? Depuis quand ?",
+    "Quel est votre plat préféré ? Savez-vous le préparer ?"]},
+  {t:"Votre passé, vos souvenirs", q:[
+    "Où avez-vous passé vos dernières vacances ?",
+    "Racontez-moi un bon souvenir d'enfance.",
+    "Comment avez-vous commencé à apprendre le français ?",
+    "Parlez-moi d'une personne qui a été importante dans votre vie."]},
+  {t:"Vos projets", q:[
+    "Que voulez-vous faire plus tard ?",
+    "Quels sont vos projets pour les prochaines vacances ?",
+    "Si vous pouviez vivre dans un autre pays, lequel choisiriez-vous ? Pourquoi ?",
+    "Pourquoi voulez-vous passer le DELF ? À quoi va vous servir le français ?"]},
+  {t:"Le français et vous", q:[
+    "Qu'est-ce qui vous plaît dans la langue française ?",
+    "Connaissez-vous un pays ou une région francophone ? Aimeriez-vous y aller ?",
+    "Qu'est-ce qui est facile ou difficile pour vous en français ?"]}
+];
+
+const P2 = [
+ {t:"Le voisin batteur", reg:"vous",
+  c:"Vous habitez dans un immeuble à Lyon. Depuis un mois, votre nouveau voisin joue de la batterie tous les soirs jusqu'à 23 heures. Vous commencez le travail très tôt le matin et vous êtes fatigué(e). Vous allez le voir pour trouver une solution.",
+  ex:"L'examinateur·rice joue le rôle du voisin. Il défend d'abord son droit de jouer chez lui, puis accepte un compromis si vous proposez des solutions concrètes.",
+  roles:"Vous parlez à un voisin que vous connaissez peu → vouvoiement, ton poli et calme. Vous allez continuer à vivre à côté de lui : évitez le conflit.",
+  noyau:"Obtenir que le bruit s'arrête plus tôt le soir, sans se fâcher avec le voisin.",
+  args:["Je me lève à 5 h 30 pour aller travailler.","Je suis fatigué(e) et je fais des erreurs au travail.","Les murs de l'immeuble sont fins : on entend tout.","Le règlement de l'immeuble demande le calme après 22 heures."],
+  obj:[["J'ai le droit de jouer chez moi !","Bien sûr, je ne vous demande pas d'arrêter, seulement de changer d'horaire."],["Je travaille la journée, je ne peux jouer que le soir.","Je comprends. Et le week-end, en journée ? Ou dans une salle de répétition ?"],["Les autres voisins ne se plaignent pas.","Peut-être, mais ma chambre est juste à côté de votre salon."]],
+  comp:["Jouer jusqu'à 21 heures en semaine.","Utiliser une batterie électronique avec un casque.","Mettre un tapis épais ou isoler la pièce.","Louer une salle de répétition municipale."],
+  lex:"le bruit, déranger, la tranquillité, le règlement de l'immeuble, insonoriser, un casque, une salle de répétition"},
+ {t:"Le colis abîmé", reg:"vous",
+  c:"Vous avez acheté un aspirateur sur un site internet français. Le colis est arrivé abîmé et l'appareil ne fonctionne pas. Vous téléphonez au service client, qui ne veut ni vous rembourser ni vous l'échanger. Vous essayez d'obtenir une solution.",
+  ex:"L'examinateur·rice joue le rôle du conseiller ou de la conseillère du service client. Il/Elle doute d'abord de votre bonne foi, puis propose une solution partielle.",
+  roles:"Vous parlez à un professionnel que vous ne connaissez pas → vouvoiement. Restez ferme mais poli(e) : la colère ne vous aidera pas.",
+  noyau:"Obtenir le remboursement ou l'échange d'un appareil qui ne fonctionne pas.",
+  args:["L'appareil ne marche pas depuis le premier jour.","J'ai pris des photos du carton abîmé à la livraison.","J'ai acheté sur votre site : c'est à vous de trouver une solution.","Je suis client(e) depuis longtemps."],
+  obj:[["Vous l'avez peut-être fait tomber.","Non, je peux vous envoyer les photos du colis prises à la livraison."],["Il faut contacter directement le fabricant.","J'ai payé sur votre site, je préfère régler le problème avec vous."],["Un remboursement prend un mois.","Dans ce cas, pouvez-vous m'envoyer un nouvel appareil tout de suite ?"]],
+  comp:["Échange immédiat contre un appareil neuf.","Remboursement avec frais de retour payés par le site.","Bon d'achat ou réduction sur une prochaine commande."],
+  lex:"le service client, un colis, rembourser, échanger, la garantie, une réclamation, les frais de retour"},
+ {t:"La visite des parents", reg:"tu",
+  c:"Vous partagez un appartement à Montréal avec un(e) ami(e) québécois(e). Vos parents veulent venir vous voir pendant deux semaines et dormir dans l'appartement. Votre colocataire n'est pas d'accord. Vous essayez de le/la convaincre.",
+  ex:"L'examinateur·rice joue le rôle du/de la colocataire. Il/Elle refuse d'abord (examens, manque de place, factures), puis accepte si vous proposez des garanties.",
+  roles:"Vous parlez à un(e) ami(e) qui partage votre vie quotidienne → tutoiement, ton amical. Convainquez sans imposer : c'est aussi son appartement.",
+  noyau:"Obtenir l'accord du/de la colocataire pour accueillir vos parents, en limitant la gêne pour lui/elle.",
+  args:["Je n'ai pas vu mes parents depuis un an.","Ils seront dehors presque toute la journée pour visiter.","Ils dormiront dans ma chambre.","Ce sera l'occasion de te faire goûter la cuisine de mon pays."],
+  obj:[["L'appartement est trop petit.","Ils prendront ma chambre et moi, je dormirai sur le canapé."],["J'ai des examens, j'ai besoin de calme.","Ils sortiront toute la journée et, le soir, on sera discrets, promis."],["Les factures vont augmenter.","Je paierai la différence d'électricité et je ferai les courses pendant ces deux semaines."]],
+  comp:["Réduire la visite à une semaine.","Loger les parents quelques nuits ailleurs (hôtel, location).","Choisir des dates après les examens."],
+  lex:"héberger, accueillir, un(e) colocataire, partager les frais, la vie privée, être discret/discrète"},
+ {t:"Mer ou montagne ?", reg:"tu",
+  c:"Vous partez une semaine en vacances en France avec votre frère ou votre sœur. Vous voulez aller à la montagne pour faire de la randonnée ; il/elle préfère la plage. Il faut réserver aujourd'hui. Vous discutez pour choisir la destination.",
+  ex:"L'examinateur·rice joue le rôle du frère ou de la sœur. Il/Elle défend la plage et vous reproche de toujours choisir.",
+  roles:"Vous parlez à un membre de votre famille → tutoiement, ton familier. Le but n'est pas de « gagner », mais de partir ensemble et contents.",
+  noyau:"Choisir aujourd'hui une destination qui convient aux deux.",
+  args:["À la montagne, il y a moins de monde en été.","L'air est pur et on peut faire du sport.","Les logements sont souvent moins chers qu'au bord de la mer.","Il y a aussi des lacs pour se baigner."],
+  obj:[["Je veux me reposer, pas marcher toute la journée !","On peut faire des balades faciles et se reposer au bord d'un lac."],["C'est toujours toi qui choisis.","C'est vrai. Alors cette fois, on cherche une solution juste pour nous deux."],["À la montagne, le soir, il n'y a rien à faire.","En été, il y a des festivals, des marchés, des terrasses… On ne va pas s'ennuyer."]],
+  comp:["Trois jours à la montagne, quatre jours à la mer.","Choisir une région qui a les deux (Pyrénées, Corse…).","Cette année la plage, l'année prochaine la montagne."],
+  lex:"réserver, un séjour, la randonnée, se reposer, se baigner, l'hébergement, un compromis"},
+ {t:"Les cours du soir", reg:"vous",
+  c:"Vous faites un stage dans une entreprise à Bruxelles. Votre responsable vous demande de rester tous les soirs jusqu'à 20 heures pour finir un projet. Mais vous suivez un cours de français le mardi et le jeudi à 18 h 30. Vous allez le/la voir pour trouver une solution.",
+  ex:"L'examinateur·rice joue le rôle du/de la responsable. Il/Elle insiste sur l'urgence du projet et sur la disponibilité attendue d'un stagiaire.",
+  roles:"Vous parlez à votre supérieur(e) → vouvoiement, ton respectueux. Montrez votre motivation : vous ne refusez pas de travailler.",
+  noyau:"Garder vos cours du mardi et du jeudi tout en montrant que vous restez engagé(e) dans le projet.",
+  args:["Mes cours sont déjà payés et ils durent seulement deux mois.","Le français me sert dans mon stage, avec les clients.","Ma convention de stage prévoit des horaires précis.","Je suis plus efficace quand je ne suis pas épuisé(e)."],
+  obj:[["En ce moment, tout le monde reste tard.","Je comprends : je peux rester tard le lundi, le mercredi et le vendredi."],["Le projet doit être terminé vendredi.","Je peux arriver à 7 h 30 le mardi et le jeudi pour avancer."],["Un stagiaire doit être disponible.","Je suis disponible et motivé(e) ; je vous demande seulement deux soirs."]],
+  comp:["Arriver plus tôt le mardi et le jeudi.","Rester tard les autres soirs.","Finir une tâche à distance après le cours."],
+  lex:"un stage, un(e) stagiaire, le/la responsable, les horaires, une convention de stage, rattraper des heures, disponible"},
+ {t:"L'abonnement de sport", reg:"vous",
+  c:"Vous avez pris un abonnement d'un an dans une salle de sport à Toulouse. Vous venez de trouver un emploi dans une autre ville et vous voulez arrêter votre abonnement. Le/La responsable de la salle refuse. Vous essayez de trouver une solution.",
+  ex:"L'examinateur·rice joue le rôle du/de la responsable de la salle. Il/Elle s'appuie sur le contrat signé, puis propose des solutions de son côté.",
+  roles:"Relation commerciale → vouvoiement. Appuyez-vous sur des faits (justificatif, contrat) plutôt que sur l'émotion.",
+  noyau:"Arrêter ou suspendre l'abonnement sans payer tous les mois restants.",
+  args:["Je déménage pour un nouveau travail : je peux montrer mon contrat.","Je ne pourrai plus du tout venir à la salle.","Je suis un(e) client(e) régulier/régulière depuis deux ans.","Payer pour un service que je n'utilise pas, ce n'est pas juste."],
+  obj:[["Le contrat est d'un an, vous l'avez signé.","Oui, mais le contrat ne prévoit-il rien en cas de déménagement ?"],["Il y a peut-être une salle de notre chaîne dans votre nouvelle ville.","J'ai vérifié : il n'y en a pas à moins de 50 kilomètres."],["Il faudra payer des frais.","Je veux bien payer des frais raisonnables, mais pas six mois d'abonnement."]],
+  comp:["Payer un mois de préavis seulement.","Céder l'abonnement à un(e) ami(e).","Suspendre l'abonnement quelques mois."],
+  lex:"un abonnement, résilier, suspendre, un contrat, un justificatif, un préavis, des frais"},
+ {t:"L'exposé à deux", reg:"tu",
+  c:"À l'université, en France, vous préparez un exposé avec un(e) camarade. La présentation a lieu dans trois jours, mais il/elle n'a pas encore fait sa partie du travail. Vous l'appelez pour régler le problème.",
+  ex:"L'examinateur·rice joue le rôle du/de la camarade. Il/Elle manque de temps, minimise le problème et propose d'improviser.",
+  roles:"Entre étudiant(e)s → tutoiement. Restez constructif/constructive : vous avez besoin de lui/d'elle pour réussir.",
+  noyau:"Obtenir que le/la camarade fasse sa partie à temps pour réussir l'exposé ensemble.",
+  args:["La note est la même pour nous deux.","J'ai déjà fait plus de la moitié du travail.","Le professeur va poser des questions à chacun de nous.","Il ne reste que trois jours."],
+  obj:[["J'ai un petit boulot, je n'ai pas le temps.","Je comprends. On peut faire une liste de tâches courtes et précises."],["Tu es trop perfectionniste.","Peut-être, mais on doit au moins finir les diapositives et répéter une fois."],["On peut improviser, ça va aller.","Le professeur évalue aussi la préparation : improviser, c'est risqué."]],
+  comp:["Partager : toi les diapositives, moi le texte.","Se retrouver demain deux heures à la bibliothèque.","Répéter ensemble en visioconférence la veille."],
+  lex:"un exposé, une note, la répartition des tâches, les diapositives, répéter, un délai"},
+ {t:"La chambre d'hôtel", reg:"vous",
+  c:"Vous arrivez dans un hôtel à Genève, en Suisse. Vous aviez réservé une chambre calme avec vue sur le lac, mais on vous donne une petite chambre sur une rue bruyante. Vous avez une réunion importante le lendemain. Vous parlez à la réception.",
+  ex:"L'examinateur·rice joue le rôle du/de la réceptionniste. L'hôtel est complet ce soir ; il/elle cherche d'abord à justifier l'erreur.",
+  roles:"Relation client–professionnel → vouvoiement. Vous avez raison, mais restez courtois(e) : c'est plus efficace.",
+  noyau:"Obtenir la chambre réservée ou une compensation équitable.",
+  args:["J'ai une confirmation écrite de ma réservation.","J'ai payé plus cher pour la vue sur le lac.","J'ai besoin de bien dormir avant ma réunion.","Je viens souvent à Genève pour le travail."],
+  obj:[["L'hôtel est complet ce soir.","Alors je voudrais changer de chambre demain, et une réduction pour cette nuit."],["L'erreur vient du site de réservation.","J'ai réservé directement sur le site de votre hôtel ; voici la confirmation."],["C'est la même catégorie de chambre.","Sur ma confirmation, c'est écrit « vue sur le lac » : ce n'est pas la même chose."]],
+  comp:["Changement de chambre le lendemain et petit-déjeuner offert.","Remboursement de la différence de prix.","Une nuit dans un hôtel partenaire du même niveau."],
+  lex:"la réception, une réservation, complet, une confirmation, la différence de prix, un dédommagement"},
+ {t:"Garder le chien d'un ami", reg:"tu",
+  c:"Vous habitez dans un petit appartement à Bordeaux et vous travaillez beaucoup. Votre meilleur(e) ami(e) part un mois en voyage et vous demande de garder son chien. Vous ne pouvez pas accepter, mais vous ne voulez pas le/la décevoir. Vous discutez avec lui/elle.",
+  ex:"L'examinateur·rice joue le rôle de l'ami(e). Il/Elle insiste au nom de l'amitié, puis accepte une autre solution si vous l'aidez vraiment.",
+  roles:"Entre ami(e)s → tutoiement. Ici, vous devez refuser : soyez clair(e) mais chaleureux/chaleureuse, et proposez votre aide autrement.",
+  noyau:"Refuser sans blesser votre ami(e) et l'aider à trouver une autre solution pour le chien.",
+  args:["Je travaille dix heures par jour : le chien resterait seul.","Mon appartement est petit et n'a pas de jardin.","Mon propriétaire n'accepte pas les animaux.","Je veux que ton chien soit bien, je sais que c'est important pour toi."],
+  obj:[["Tu es mon meilleur ami / ma meilleure amie, je n'ai personne d'autre !","Justement, je veux t'aider à trouver une vraie solution."],["Un mois, ce n'est pas long.","Un mois seul toute la journée, c'est long pour un chien."],["Je peux te payer.","Ce n'est pas une question d'argent, c'est une question de temps."]],
+  comp:["Garder le chien le premier week-end.","Chercher ensemble une pension ou un(e) gardien(ne) d'animaux.","Demander à un voisin retraité ; passer le promener le samedi."],
+  lex:"garder un animal, promener, une pension pour chiens, rendre service, refuser poliment, décevoir"},
+ {t:"Le train en retard", reg:"vous",
+  c:"Vous avez voyagé de Paris à Bordeaux en train. Votre train est arrivé avec trois heures de retard : vous avez raté votre correspondance et vous avez dû prendre un taxi. Le lendemain, vous allez au guichet de la gare pour demander une compensation.",
+  ex:"L'examinateur·rice joue le rôle de l'agent de la gare. Il/Elle vous renvoie vers un formulaire en ligne et refuse de rembourser le taxi.",
+  roles:"Relation avec l'employé·e d'un service → vouvoiement. Exposez les faits avec précision : heure, durée, frais.",
+  noyau:"Obtenir un remboursement ou une compensation pour le retard et les frais de taxi.",
+  args:["Le train a eu trois heures de retard.","J'ai raté ma correspondance pour Arcachon.","J'ai payé un taxi : voici le reçu.","Je n'ai reçu aucune information pendant le trajet."],
+  obj:[["Il faut remplir un formulaire sur internet.","D'accord, mais pouvez-vous enregistrer ma demande maintenant ou m'aider à le remplir ?"],["Nous ne remboursons pas les taxis.","Je comprends, mais sans taxi, j'aurais dormi à la gare. Une compensation est-elle possible ?"],["Le retard est dû à un problème technique.","Ce n'est pas ma faute non plus ; je demande seulement une solution juste."]],
+  comp:["Remboursement partiel du billet.","Bon de voyage pour un prochain trajet.","Prise en charge d'une partie du taxi."],
+  lex:"le guichet, un retard, une correspondance, un reçu, un bon de voyage, une indemnisation"},
+ {t:"Le cadeau d'anniversaire", reg:"tu",
+  c:"Avec un groupe d'amis, vous voulez offrir un cadeau à une amie pour ses 30 ans. Un ami propose un téléphone très cher : chacun devrait payer 100 euros. Vous trouvez que c'est trop. Vous en parlez avec lui pour trouver une autre idée.",
+  ex:"L'examinateur·rice joue le rôle de l'ami qui a eu l'idée. Il tient à son projet et pense que vous ne voulez pas faire d'effort.",
+  roles:"Entre ami(e)s → tutoiement. Parlez d'argent avec tact : ne critiquez pas l'idée de l'autre, proposez mieux.",
+  noyau:"Se mettre d'accord sur un cadeau qui plaira à l'amie sans dépasser le budget de chacun.",
+  args:["Tout le monde n'a pas 100 euros à dépenser ce mois-ci.","Un cadeau original peut faire plus plaisir qu'un objet cher.","Elle préfère vivre des expériences qu'avoir des objets.","Elle aimerait peut-être choisir son téléphone elle-même."],
+  obj:[["On n'a pas 30 ans tous les jours !","Tu as raison, c'est pour ça que je veux un cadeau personnel, dont elle se souviendra."],["Elle a besoin d'un nouveau téléphone.","Alors offrons-lui une carte cadeau : chacun donne ce qu'il peut."],["Si tu ne veux pas payer, ne participe pas.","Ce n'est pas ça : je pense aussi aux autres, qui n'osent pas le dire."]],
+  comp:["Un budget de 30 euros par personne.","Un cadeau-expérience : concert, cours de cuisine, week-end.","Une carte cadeau avec une participation libre."],
+  lex:"cotiser, un budget, avoir les moyens, une carte cadeau, une sortie, faire plaisir"},
+ {t:"Le jardin partagé", reg:"vous",
+  c:"Vous habitez dans une résidence à Nantes. Un espace vert derrière l'immeuble n'est jamais utilisé. Vous voulez y créer un jardin partagé avec d'autres habitants. Vous rencontrez le/la président(e) de l'association des locataires, qui n'est pas favorable au projet.",
+  ex:"L'examinateur·rice joue le rôle du/de la président(e) de l'association. Il/Elle a peur de la saleté, des coûts et des disputes entre voisins.",
+  roles:"Vous parlez à un(e) représentant(e) que vous connaissez peu → vouvoiement. Présentez un projet concret et rassurant.",
+  noyau:"Obtenir l'autorisation de tester le jardin partagé.",
+  args:["L'espace est abandonné depuis des années.","Le jardin créera des liens entre voisins.","Les enfants pourront apprendre d'où viennent les légumes.","Une dizaine d'habitants sont déjà intéressés."],
+  obj:[["Ça va salir la résidence.","Nous ferons un planning d'entretien : chacun aura ses jours."],["Qui va payer ?","Les participants, et nous pouvons demander une aide à la mairie."],["Les gens vont se disputer pour les légumes.","Nous écrirons ensemble un règlement simple."]],
+  comp:["Un essai de six mois sur une petite surface.","Une réunion avec tous les habitants pour voter.","Un bilan à la fin de l'essai."],
+  lex:"un jardin partagé, entretenir, les habitants, l'association des locataires, une subvention, un essai"},
+ {t:"Une année à l'étranger", reg:"tu",
+  c:"Vous avez 23 ans, vous êtes étudiant(e) et vous vivez chez vos parents à Québec. Vous voulez faire une pause dans vos études pour partir un an faire du volontariat à l'étranger. Votre père ou votre mère s'inquiète et n'est pas d'accord. Vous essayez de le/la convaincre.",
+  ex:"L'examinateur·rice joue le rôle du parent. Il/Elle s'inquiète pour les études, la sécurité et l'argent.",
+  roles:"Vous parlez à votre parent → tutoiement. Rassurez-le/la avec des informations précises : ses peurs sont légitimes.",
+  noyau:"Convaincre le parent d'accepter votre projet d'année de volontariat.",
+  args:["Je vais gagner en autonomie et en maturité.","Je vais pratiquer une langue étrangère.","Cette expérience sera utile pour mon CV.","Le programme est sérieux et encadré."],
+  obj:[["Et tes études ?","Mon université accepte une année de pause : je reprends l'année suivante."],["C'est dangereux, tu seras loin et seul(e).","Il y a un responsable sur place et je t'appellerai chaque semaine."],["Qui va payer ?","J'ai des économies, et les volontaires sont logés et nourris."]],
+  comp:["Partir six mois au lieu d'un an.","Un appel vidéo chaque semaine.","Une visite des parents au milieu du séjour."],
+  lex:"une année de césure, le volontariat, l'autonomie, s'inquiéter, rassurer, encadré"},
+ {t:"Un cours trop facile", reg:"vous",
+  c:"Vous suivez un cours intensif de français de quatre semaines dans une école de langues à Nice. Le niveau de votre groupe est trop facile pour vous. Vous demandez au directeur ou à la directrice de changer de groupe, mais il/elle vous répond que le groupe supérieur est complet.",
+  ex:"L'examinateur·rice joue le rôle du directeur ou de la directrice. Il/Elle défend l'organisation de l'école et minimise le problème.",
+  roles:"Relation client–institution → vouvoiement. Soyez précis(e) : exemples, résultats du test, objectifs.",
+  noyau:"Obtenir un cours adapté à votre niveau ou une compensation.",
+  args:["Mon test d'entrée indique le niveau B1.","Nous révisons des choses que je connais déjà.","J'ai payé cher pour progresser rapidement.","Je prépare un examen important."],
+  obj:[["Le groupe supérieur est complet.","Est-ce que je peux y aller la semaine prochaine, si une place se libère ?"],["Réviser les bases, c'est toujours utile.","Une révision, oui, mais pas pendant quatre semaines."],["Le test d'entrée est seulement indicatif.","Alors est-ce que je peux repasser un test ou parler avec le professeur ?"]],
+  comp:["Changement de groupe la semaine suivante.","Des cours particuliers en compensation.","Un remboursement partiel."],
+  lex:"un test de niveau, un groupe, progresser, complet, un cours particulier, un remboursement"},
+ {t:"Le covoiturage", reg:"tu",
+  c:"Chaque matin, à Lille, vous allez au travail en covoiturage avec un(e) collègue, dans sa voiture, et vous partagez les frais d'essence. Depuis un mois, il/elle arrive souvent avec 15 ou 20 minutes de retard, et vous êtes en retard au travail. Vous lui en parlez.",
+  ex:"L'examinateur·rice joue le rôle du/de la collègue. Il/Elle minimise le problème, accuse les embouteillages, puis se vexe.",
+  roles:"Entre collègues qui se tutoient → tutoiement. Parlez du problème, pas de la personne : vous voulez garder le covoiturage.",
+  noyau:"Régler le problème des retards sans perdre le covoiturage ni la bonne entente avec le/la collègue.",
+  args:["Mon chef m'a déjà fait une remarque.","J'ai une réunion à 9 heures le lundi et le jeudi.","Nous partageons les frais : c'est un engagement commun.","Je préfère venir avec toi plutôt qu'en bus."],
+  obj:[["Ce n'est que quelques minutes !","Pour moi, c'est important : cette semaine, c'est arrivé trois fois."],["Les embouteillages, ce n'est pas ma faute.","Je sais. Alors partons quinze minutes plus tôt."],["Si tu n'es pas content(e), prends le bus.","Je préfère continuer avec toi, c'est plus agréable. Cherchons une solution."]],
+  comp:["Partir quinze minutes plus tôt.","Envoyer un message dès qu'il y a un retard.","Choisir un autre point de rendez-vous, plus pratique."],
+  lex:"le covoiturage, être en retard, les frais d'essence, les embouteillages, la ponctualité, se vexer"}
+];
+
+const P3 = [
+ {t:"La semaine de quatre jours", th:"Travail",
+  x:"En France, quelques entreprises testent la semaine de quatre jours. Les salariés travaillent du lundi au jeudi et gardent le même salaire. Pour les employeurs qui ont essayé, les résultats sont souvent positifs : les employés sont moins fatigués, moins souvent absents et plus motivés. Mais ce modèle ne convient pas à tout le monde. Dans un hôpital, un restaurant ou un magasin, il faut être présent tous les jours. Certains salariés disent aussi que leurs journées sont devenues trop longues et stressantes. Alors, travailler moins de jours, est-ce vraiment travailler mieux ?",
+  pb:"Travailler moins de jours permet-il de mieux travailler ?",
+  a:["Plus de temps pour la famille et les loisirs, moins de fatigue.","Des salariés plus motivés et moins souvent absents."],
+  b:["Impossible dans certains métiers (santé, commerce, restauration).","Des journées plus longues et parfois plus stressantes."],
+  q:["Aimeriez-vous travailler ou étudier quatre jours par semaine ? Pourquoi ?","Que feriez-vous de votre journée libre ?","Quels métiers ne peuvent pas adopter ce rythme, selon vous ?"]},
+ {t:"Le portable interdit à l'école", th:"Éducation",
+  x:"Depuis 2018, en France, les élèves des écoles et des collèges n'ont plus le droit d'utiliser leur téléphone portable dans l'établissement, même pendant les récréations. Pour beaucoup d'enseignants, c'est une bonne mesure : les élèves sont plus concentrés en classe et discutent davantage entre eux. Certains parents, au contraire, sont inquiets : ils veulent pouvoir joindre leurs enfants à tout moment. Et des élèves expliquent que le téléphone est aussi un outil utile pour apprendre, chercher une information ou un mot dans le dictionnaire. Faut-il vraiment interdire le portable à l'école ?",
+  pb:"Faut-il interdire le téléphone portable à l'école ?",
+  a:["Les élèves sont plus concentrés.","Ils discutent et jouent davantage ensemble."],
+  b:["Les parents veulent pouvoir joindre leurs enfants.","Le téléphone peut être un outil pour apprendre."],
+  q:["À quel âge un enfant devrait-il avoir un téléphone ?","Utilisez-vous votre téléphone pour apprendre le français ? Comment ?","Quelles règles proposeriez-vous pour l'école ?"]},
+ {t:"La seconde main, nouvelle mode ?", th:"Consommation",
+  x:"Acheter des vêtements d'occasion était autrefois réservé aux petits budgets. Aujourd'hui, c'est à la mode. Grâce aux applications de vente entre particuliers, des millions de Français vendent et achètent des vêtements déjà portés. Les avantages sont nombreux : on dépense moins, on trouve des pièces originales et on protège la planète en produisant moins de déchets. Mais certains remarquent un effet inattendu : comme il est facile de revendre, on achète encore plus souvent. Pour eux, la seconde main ne change pas vraiment nos habitudes. La seconde main est-elle vraiment une consommation plus responsable ?",
+  pb:"Acheter d'occasion, est-ce vraiment consommer de façon plus responsable ?",
+  a:["On dépense moins et on trouve des pièces originales.","Moins de production, donc moins de déchets."],
+  b:["Revendre facilement pousse à acheter plus souvent.","Les habitudes de consommation ne changent pas vraiment."],
+  q:["Achetez-vous des objets ou des vêtements d'occasion ?","Qu'est-ce que vous n'achèteriez jamais d'occasion ?","Comment consommer de manière plus responsable au quotidien ?"]},
+ {t:"Télétravail : liberté ou isolement ?", th:"Travail",
+  x:"Depuis la crise sanitaire, le télétravail fait partie de la vie de nombreux salariés français. Travailler à la maison deux ou trois jours par semaine présente des avantages : on évite les transports, on gagne du temps et on organise sa journée plus librement. Pourtant, tout n'est pas positif. Certains télétravailleurs se sentent seuls et regrettent les discussions avec leurs collègues. D'autres ont du mal à séparer vie professionnelle et vie privée : ils lisent leurs courriels le soir et travaillent plus qu'avant. Le télétravail, une liberté ou un piège ?",
+  pb:"Le télétravail est-il une liberté ou un piège ?",
+  a:["On évite les transports et on gagne du temps.","On organise sa journée plus librement."],
+  b:["La solitude, le manque de contacts avec les collègues.","La difficulté à séparer travail et vie privée."],
+  q:["Préférez-vous étudier ou travailler à la maison ou sur place ?","Comment bien séparer travail et vie privée à la maison ?","Le télétravail convient-il à tout le monde ?"]},
+ {t:"Rester chez ses parents après 25 ans", th:"Jeunes",
+  x:"En France, comme dans beaucoup de pays d'Europe, de nombreux jeunes adultes vivent encore chez leurs parents après 25 ans. La raison principale est économique : les loyers sont chers, surtout dans les grandes villes, et le premier emploi est souvent précaire. Pour certains, c'est une situation confortable : on économise de l'argent et on garde des liens forts avec sa famille. Pour d'autres, c'est difficile à vivre : ils ont l'impression de ne pas être vraiment adultes et ils manquent d'intimité. Habiter chez ses parents, est-ce un choix raisonnable ou un frein à l'autonomie ?",
+  pb:"Habiter chez ses parents après 25 ans : choix raisonnable ou frein à l'autonomie ?",
+  a:["On économise de l'argent.","On garde des liens forts avec sa famille."],
+  b:["Le manque d'intimité.","Le sentiment de ne pas être vraiment adulte."],
+  q:["À quel âge faut-il quitter le domicile familial, selon vous ?","Quels sont les avantages et les inconvénients de la colocation ?","Que pourraient faire les villes pour aider les jeunes à se loger ?"]},
+ {t:"Des centres-villes sans voitures", th:"Ville et transports",
+  x:"Paris, Strasbourg, Bruxelles… Dans de nombreuses villes, les voitures ont de moins en moins de place. Des rues deviennent piétonnes, des pistes cyclables remplacent des places de parking et la vitesse est limitée à 30 km/h. Les habitants respirent un air plus propre et les enfants peuvent jouer dehors plus tranquillement. Mais les commerçants s'inquiètent : sans voiture, les clients vont-ils encore venir faire leurs courses en ville ? Et pour les personnes âgées ou pour celles qui habitent loin, la voiture reste souvent indispensable. Faut-il fermer les centres-villes aux voitures ?",
+  pb:"Faut-il fermer les centres-villes aux voitures ?",
+  a:["Un air plus propre et moins de bruit.","Plus de sécurité pour les piétons et les enfants."],
+  b:["Les commerçants craignent de perdre des clients.","La voiture reste nécessaire pour certaines personnes."],
+  q:["Comment vous déplacez-vous en ville ?","Aimeriez-vous vivre dans une ville sans voitures ?","Quelles solutions pour les personnes âgées ou qui habitent loin ?"]},
+ {t:"Un repas végétarien par semaine à la cantine", th:"Alimentation",
+  x:"Depuis 2019, toutes les cantines scolaires françaises doivent proposer au moins un repas végétarien par semaine. L'objectif : manger moins de viande, pour la santé et pour l'environnement. Beaucoup de parents approuvent cette mesure, et certaines villes proposent même deux menus végétariens par semaine. Mais d'autres familles ne sont pas d'accord : selon elles, la viande est importante pour la croissance des enfants, et l'école ne doit pas décider de ce qu'ils mangent. Les cuisiniers, eux, expliquent qu'il faut apprendre à préparer des plats végétariens bons et variés. Faut-il moins de viande dans les assiettes des enfants ?",
+  pb:"Faut-il moins de viande dans les assiettes des enfants ?",
+  a:["Bon pour la santé et pour l'environnement.","Les enfants découvrent de nouveaux aliments."],
+  b:["Certaines familles pensent que la viande est importante.","L'école ne devrait pas décider de ce que mangent les enfants."],
+  q:["Mangez-vous souvent de la viande ?","Que pensez-vous des repas à l'école ou à l'université ?","Seriez-vous prêt(e) à manger végétarien une fois par semaine ?"]},
+ {t:"Trop de touristes dans les sites naturels", th:"Tourisme et environnement",
+  x:"Chaque été, des milliers de visiteurs viennent admirer les calanques près de Marseille. Pour protéger la nature, l'accès à l'une des plus célèbres est maintenant limité en été : il faut réserver gratuitement sa place sur internet. D'autres sites touristiques, en France et en Europe, réfléchissent à des solutions semblables : nombre limité de visiteurs, entrée payante ou horaires de visite. Pour les défenseurs de l'environnement, c'est indispensable. Mais certains voyageurs trouvent ces règles injustes : la nature, disent-ils, doit rester libre et accessible à tous. Faut-il limiter le nombre de touristes ?",
+  pb:"Faut-il limiter le nombre de touristes dans les sites naturels ?",
+  a:["Protéger la nature et les animaux.","Une visite plus agréable, avec moins de monde."],
+  b:["La nature doit rester libre et accessible à tous.","Les réservations compliquent les voyages."],
+  q:["Avez-vous déjà visité un lieu où il y avait trop de touristes ?","Quel type de voyageur êtes-vous ?","Comment voyager de manière plus responsable ?"]},
+ {t:"S'informer sur les réseaux sociaux", th:"Médias",
+  x:"Beaucoup de jeunes Français ne lisent plus de journal et ne regardent plus le journal télévisé. Pour s'informer, ils utilisent surtout les réseaux sociaux et les vidéos courtes. Cette manière de s'informer est rapide, gratuite et souvent plus vivante. Mais elle présente aussi des risques : il est parfois difficile de savoir qui a écrit une information et si elle est vraie. De plus, les réseaux montrent surtout des contenus proches de nos opinions. Certains enseignants proposent donc des cours pour apprendre aux élèves à vérifier l'information. Peut-on bien s'informer avec les réseaux sociaux ?",
+  pb:"Peut-on bien s'informer avec les réseaux sociaux ?",
+  a:["Une information rapide, gratuite et vivante.","Des sujets variés, parfois absents des médias traditionnels."],
+  b:["Il est difficile de vérifier les sources.","On voit surtout des contenus proches de nos opinions."],
+  q:["Comment vous informez-vous ?","Avez-vous déjà cru une fausse information ?","Comment vérifier une information ?"]},
+ {t:"Le repas en famille disparaît-il ?", th:"Famille",
+  x:"En France, le repas est traditionnellement un moment important : on prend le temps de manger ensemble et de discuter. Pourtant, les habitudes changent. Avec des horaires de travail différents, les activités des enfants et les écrans, beaucoup de familles ne dînent plus ensemble tous les soirs. Chacun mange quand il peut, parfois devant la télévision ou son téléphone. Pour certains, ce changement est dommage, car le repas familial permet de partager sa journée et de transmettre des valeurs. D'autres répondent que l'essentiel n'est pas de manger ensemble, mais de passer de bons moments en famille. Le repas en famille est-il toujours nécessaire ?",
+  pb:"Le repas en famille est-il toujours nécessaire ?",
+  a:["Un moment pour partager sa journée.","Un moyen de transmettre des valeurs et des habitudes."],
+  b:["Les horaires de chacun sont différents.","On peut passer de bons moments ensemble autrement."],
+  q:["Chez vous, mangez-vous souvent ensemble ?","Que pensez-vous des écrans pendant les repas ?","Quel repas de famille vous a laissé un bon souvenir ?"]},
+ {t:"L'année de césure", th:"Jeunes",
+  x:"Après le baccalauréat ou pendant leurs études, certains jeunes Français décident de faire une pause d'un an : c'est l'année de césure. Ils en profitent pour voyager, travailler, faire du bénévolat ou apprendre une langue à l'étranger. Pour eux, cette expérience permet de mieux se connaître et de choisir son avenir avec plus de maturité. Mais tout le monde ne peut pas se l'offrir : il faut de l'argent ou trouver un travail. Et certains parents ont peur que leur enfant perde le rythme et ne reprenne jamais ses études. L'année de césure : perte de temps ou chance à saisir ?",
+  pb:"L'année de césure : perte de temps ou chance à saisir ?",
+  a:["Mieux se connaître et choisir son avenir.","Acquérir des expériences utiles (langues, travail)."],
+  b:["Il faut des moyens financiers.","Le risque de perdre le rythme des études."],
+  q:["Aimeriez-vous faire une année de césure ? Pour faire quoi ?","Les entreprises apprécient-elles ce type d'expérience ?","Comment financer une année de césure ?"]},
+ {t:"Les influenceurs et la consommation", th:"Consommation",
+  x:"Vêtements, maquillage, voyages, restaurants… Sur les réseaux sociaux, les influenceurs présentent chaque jour des produits à des millions d'abonnés. Beaucoup de jeunes leur font confiance et achètent ce qu'ils recommandent. Pour les marques, c'est une publicité très efficace. Le problème, c'est que la frontière entre conseil sincère et publicité payée n'est pas toujours claire. En France, depuis 2023, une loi oblige les influenceurs à indiquer clairement quand un contenu est une publicité. Cette règle suffit-elle à protéger les jeunes consommateurs ?",
+  pb:"Les règles actuelles suffisent-elles à protéger les jeunes face aux influenceurs ?",
+  a:["Les influenceurs donnent parfois des conseils utiles.","La loi oblige à signaler la publicité : c'est plus transparent."],
+  b:["Les jeunes ne font pas toujours la différence entre conseil et publicité.","Les réseaux poussent à acheter sans réfléchir."],
+  q:["Suivez-vous des influenceurs ? Pourquoi ?","Avez-vous déjà acheté un produit conseillé sur les réseaux ?","Comment apprendre aux jeunes à consommer avec esprit critique ?"]},
+ {t:"Le bénévolat, une expérience à valoriser", th:"Société",
+  x:"Aider à distribuer des repas, donner des cours de soutien, nettoyer une plage… En France, des millions de personnes font du bénévolat dans une association. Elles donnent de leur temps sans être payées, simplement pour être utiles. Les bénévoles disent souvent qu'ils reçoivent beaucoup en retour : des rencontres, de nouvelles compétences et le plaisir d'agir. Certaines entreprises regardent même cette expérience avec intérêt quand elles recrutent. Pourtant, les associations manquent de bénévoles, surtout parmi les jeunes actifs, qui disent ne pas avoir le temps. Faut-il encourager, ou même rendre obligatoire, une forme d'engagement bénévole ?",
+  pb:"Faut-il encourager, voire rendre obligatoire, le bénévolat ?",
+  a:["Des rencontres, des compétences, le plaisir d'être utile.","Une expérience appréciée par certains employeurs."],
+  b:["Le manque de temps des personnes qui travaillent.","Un engagement obligatoire n'est plus vraiment du bénévolat."],
+  q:["Avez-vous déjà fait du bénévolat ?","Quelle association aimeriez-vous aider ?","L'école ou l'université devrait-elle organiser des activités bénévoles ?"]},
+ {t:"Livré en 24 heures : à quel prix ?", th:"Consommation",
+  x:"Commander le matin et recevoir son colis le lendemain, ou même le soir : la livraison rapide est devenue normale pour beaucoup de consommateurs. C'est pratique, surtout quand on manque de temps. Mais cette rapidité a un prix. Les camions de livraison circulent davantage, ce qui augmente la pollution, et les livreurs travaillent souvent dans des conditions difficiles. De plus, les petits commerces de quartier ont du mal à résister. Certains consommateurs choisissent donc d'attendre quelques jours de plus ou de retirer leurs achats en magasin. Avons-nous vraiment besoin d'être livrés si vite ?",
+  pb:"Avons-nous vraiment besoin d'être livrés si vite ?",
+  a:["C'est pratique quand on manque de temps.","On trouve des produits qu'il n'y a pas près de chez soi."],
+  b:["Plus de pollution et des conditions de travail difficiles pour les livreurs.","Les petits commerces de quartier souffrent."],
+  q:["Achetez-vous souvent en ligne ? Quoi ?","Préférez-vous les magasins ou internet ? Pourquoi ?","Accepteriez-vous d'attendre plus longtemps votre colis ?"]},
+ {t:"Bouger chaque jour à l'école", th:"Sport et santé",
+  x:"En France, les élèves de l'école primaire doivent maintenant faire au moins trente minutes d'activité physique chaque jour, en plus des cours de sport. L'objectif est de lutter contre la sédentarité : les enfants passent de plus en plus de temps assis, en classe ou devant les écrans. Danse, jeux dans la cour, marche : les enseignants peuvent choisir l'activité. Beaucoup trouvent l'idée excellente, car les élèves sont ensuite plus calmes et plus attentifs. D'autres expliquent qu'ils manquent déjà de temps pour les mathématiques et le français. Le sport doit-il prendre plus de place à l'école ?",
+  pb:"Le sport doit-il prendre plus de place à l'école ?",
+  a:["Lutter contre la sédentarité.","Des élèves plus calmes et plus attentifs."],
+  b:["Moins de temps pour les matières principales.","Tous les élèves n'aiment pas le sport."],
+  q:["Quelle place avait le sport pendant votre scolarité ?","Faites-vous du sport aujourd'hui ?","Comment bouger plus quand on étudie ou travaille assis ?"]},
+ {t:"Faut-il supprimer les devoirs à la maison ?", th:"Éducation",
+  x:"Officiellement, les devoirs écrits à la maison ne sont pas autorisés à l'école primaire en France. Dans la réalité, pourtant, beaucoup d'enfants en ont chaque soir. Pour certains parents, les devoirs sont utiles : ils permettent de réviser, de prendre de bonnes habitudes de travail et de suivre ce que l'enfant apprend. Pour d'autres, ils créent des inégalités, car tous les enfants n'ont pas quelqu'un à la maison pour les aider. Et après une longue journée d'école, les enfants ont aussi besoin de jouer et de se reposer. Faut-il supprimer les devoirs à la maison ?",
+  pb:"Faut-il supprimer les devoirs à la maison ?",
+  a:["Réviser et prendre de bonnes habitudes de travail.","Les parents suivent ce que fait leur enfant."],
+  b:["Des inégalités entre les enfants aidés et les autres.","Les enfants ont besoin de jouer et de se reposer."],
+  q:["Aviez-vous beaucoup de devoirs quand vous étiez enfant ?","Qui vous aidait à faire vos devoirs ?","Par quoi pourrait-on remplacer les devoirs ?"]},
+ {t:"Quitter la ville pour la campagne", th:"Mode de vie",
+  x:"Ces dernières années, de nombreux citadins français ont décidé de quitter les grandes villes pour s'installer à la campagne. Ils cherchent une vie plus calme, une maison avec un jardin et un logement moins cher. Le télétravail rend ce changement plus facile. Mais la vie à la campagne n'est pas toujours aussi simple qu'on l'imagine : il faut souvent prendre la voiture pour tout, les médecins et les commerces sont parfois loin, et il faut du temps pour s'intégrer dans un village. Certains reviennent en ville après quelques années. Vivre à la campagne, un rêve réaliste ?",
+  pb:"Vivre à la campagne est-il un rêve réaliste ?",
+  a:["Une vie plus calme et un logement moins cher.","Le télétravail facilite le changement."],
+  b:["La voiture devient indispensable.","Les services sont loin et l'intégration prend du temps."],
+  q:["Préférez-vous la ville ou la campagne ?","Qu'est-ce qui vous manquerait à la campagne ?","Où aimeriez-vous vivre dans dix ans ?"]},
+ {t:"Réparer plutôt que jeter", th:"Consommation",
+  x:"Un grille-pain qui ne marche plus, un téléphone à l'écran cassé, un pantalon troué : souvent, nous préférons jeter et racheter, car réparer coûte cher ou prend du temps. Pour changer ces habitudes, des « repair cafés » se développent en France et en Belgique. Dans ces lieux, des bénévoles aident gratuitement les habitants à réparer leurs objets. En France, l'État aide aussi à payer certaines réparations chez des professionnels. Mais pour beaucoup de consommateurs, acheter un objet neuf reste plus simple. Réparer ses objets, est-ce l'avenir de la consommation ?",
+  pb:"Réparer ses objets, est-ce l'avenir de la consommation ?",
+  a:["Moins de déchets et des économies.","Des lieux d'entraide comme les repair cafés."],
+  b:["Réparer coûte parfois plus cher que racheter.","Acheter neuf reste plus simple et plus rapide."],
+  q:["Avez-vous déjà fait réparer un objet ?","Savez-vous réparer quelque chose vous-même ?","Que pourraient faire les fabricants pour faciliter la réparation ?"]},
+ {t:"Les jeunes et le permis de conduire", th:"Jeunes",
+  x:"Pendant longtemps, obtenir son permis de conduire à 18 ans était une étape importante dans la vie d'un jeune Français. Aujourd'hui, le permis attire moins certains jeunes, surtout dans les grandes villes. Les raisons sont multiples : le permis et la voiture coûtent cher, les transports en commun sont nombreux et le vélo est à la mode. Beaucoup pensent aussi à l'environnement. Pourtant, à la campagne, la voiture reste presque indispensable pour étudier ou travailler. Et pour certains employeurs, avoir le permis est encore une condition pour obtenir un emploi. Le permis de conduire est-il toujours nécessaire ?",
+  pb:"Le permis de conduire est-il toujours nécessaire ?",
+  a:["Indispensable à la campagne et pour certains emplois.","Une liberté et une autonomie."],
+  b:["Le permis et la voiture coûtent cher.","En ville, les transports en commun et le vélo suffisent."],
+  q:["Avez-vous le permis ? Pourquoi ?","Comment vous déplacez-vous au quotidien ?","La voiture est-elle un symbole de liberté pour vous ?"]},
+ {t:"Lire encore des livres papier ?", th:"Culture",
+  x:"Liseuses électroniques, livres audio, applications… Il n'a jamais été aussi facile de lire sur un écran. Pourtant, en France, le livre papier résiste bien : la plupart des lecteurs préfèrent encore tourner les pages d'un vrai livre. Ils aiment son odeur, le plaisir de l'offrir ou de le prêter à un ami. Les partisans du numérique, eux, mettent en avant les avantages pratiques : on peut emporter des centaines de livres en vacances, agrandir les caractères et lire dans le noir. Le livre papier a-t-il encore un avenir ?",
+  pb:"Le livre papier a-t-il encore un avenir ?",
+  a:["Le plaisir de l'objet, de l'offrir, de le prêter.","Une pause loin des écrans."],
+  b:["On emporte des centaines de livres partout.","On peut agrandir les caractères et lire dans le noir."],
+  q:["Quel est le dernier livre que vous avez lu ?","Préférez-vous lire sur papier ou sur écran ?","Comment donner envie de lire aux jeunes ?"]}
+];
+
+const EXOS = [
+ {t:"Exercice 1 · Choisir le bon registre", c:"Lisez la situation. Quelle est la meilleure façon de commencer la discussion ?", items:[
+  {s:"Vous allez voir votre voisin, que vous ne connaissez pas, pour parler du bruit.", o:["« Salut ! Dis donc, ta musique d'hier soir, c'était vraiment trop fort. »","« Bonjour Monsieur, excusez-moi de vous déranger, je suis votre voisine du 3e. »","« Bonjour Monsieur, écoute, je viens te parler de ta musique d'hier soir. »"], k:1},
+  {s:"Vous appelez votre meilleure amie, Léa, pour changer vos plans de samedi.", o:["« Salut Léa, c'est moi ! Tu as deux minutes ? C'est pour samedi. »","« Bonjour Madame, je me permets de vous appeler au sujet de samedi. »","« Salut Léa, est-ce que vous auriez un moment pour parler de samedi ? »"], k:0},
+  {s:"Vous téléphonez au service client de votre banque.", o:["« Allô, salut ! J'ai un souci avec ma carte, tu peux m'aider ? »","« Bonjour, j'ai un problème avec ma carte, est-ce que tu pourrais regarder ? »","« Bonjour Madame, j'ai un problème avec ma carte, pourriez-vous m'aider ? »"], k:2},
+  {s:"Vous demandez un jour de congé à votre responsable.", o:["« Coucou ! T'as deux secondes ? Je voudrais un jour de libre vendredi. »","« Excusez-moi, vous auriez un moment ? Je voudrais vous parler d'un congé. »","« Excusez-moi, tu aurais un moment ? Je voudrais vous parler d'un congé. »"], k:1},
+  {s:"Hugo, votre colocataire et ami, n'a pas fait la vaisselle depuis une semaine.", o:["« Bonjour Hugo, pourriez-vous faire la vaisselle, s'il vous plaît ? »","« Excusez-moi, je voulais vous dire que la vaisselle n'est pas faite. »","« Dis, Hugo, il faut qu'on parle de la vaisselle, ça fait une semaine… »"], k:2},
+  {s:"Vous rencontrez le directeur de votre école de langues pour changer de groupe.", o:["« Bonjour Monsieur, merci de me recevoir. Je viens au sujet de mon groupe. »","« Bonjour ! Alors voilà, ton cours est trop facile pour moi, franchement. »","« Salut, merci de me recevoir. Je viens vous voir au sujet de mon groupe. »"], k:0}
+ ]},
+ {t:"Exercice 2 · Trouver le noyau de la discussion", c:"Quel est le noyau de la discussion, c'est-à-dire le problème à résoudre ?", items:[
+  {s:"Votre train a eu trois heures de retard ; vous avez raté votre correspondance et payé un taxi. Vous êtes au guichet.", o:["Raconter en détail votre voyage et l'ambiance dans le train.","Obtenir un remboursement ou une compensation pour le retard et le taxi.","Critiquer en général le fonctionnement des trains en France."], k:1},
+  {s:"Votre ami veut que vous gardiez son chien un mois ; vous travaillez beaucoup et votre appartement est petit.", o:["Refuser sans blesser votre ami et l'aider à trouver une autre solution.","Expliquer à votre ami pourquoi les chiens ne doivent pas vivre en ville.","Accepter tout de suite pour ne pas créer de problème avec votre ami."], k:0},
+  {s:"Vous avez acheté un aspirateur en ligne ; il ne fonctionne pas et le service client refuse de le reprendre.", o:["Comparer le prix de cet aspirateur avec celui d'autres sites internet.","Expliquer au conseiller comment vous utilisez habituellement l'appareil.","Obtenir un échange ou un remboursement de l'appareil qui ne marche pas."], k:2},
+  {s:"Vous voulez accueillir votre famille deux semaines dans l'appartement que vous partagez ; votre colocataire n'est pas d'accord.", o:["Obtenir l'accord de votre colocataire en limitant la gêne pour lui.","Parler de votre famille et des endroits qu'elle veut visiter.","Rappeler à votre colocataire que vous payez aussi le loyer."], k:0},
+  {s:"Votre responsable veut que vous restiez tous les soirs jusqu'à 20 h ; vous avez un cours de français le mardi et le jeudi.", o:["Montrer à votre responsable que les horaires de l'entreprise sont injustes.","Présenter votre cours de français et le niveau que vous voulez atteindre.","Garder vos cours en montrant que vous restez disponible pour le travail."], k:2},
+  {s:"Vos amis veulent offrir un cadeau très cher à une amie ; vous trouvez que c'est trop.", o:["Expliquer à vos amis que les cadeaux d'anniversaire ne sont pas importants.","Trouver ensemble un cadeau qui plaît et qui respecte le budget de chacun.","Proposer de ne pas participer et d'offrir seul(e) votre propre cadeau."], k:1}
+ ]},
+ {t:"Exercice 3 · Relancer sans abandonner", c:"L'examinateur·rice vous répond ceci. Quelle réaction permet de continuer l'échange et d'avancer vers une solution ?", items:[
+  {s:"« Désolé, c'est le règlement : je ne peux rien faire pour vous. »", o:["« Ah bon… Je comprends, tant pis. Merci quand même, au revoir. »","« Je comprends. Mais est-ce qu'il y a une exception ou un responsable ? »","« Votre règlement est absurde. Je vais tout raconter sur internet. »"], k:1},
+  {s:"« Mais ce n'est que quelques minutes de retard, ce n'est pas grave ! »", o:["« Pour moi, si : trois fois cette semaine. Et si on partait plus tôt ? »","« Bon, tu as raison, ce n'est pas si grave. On oublie, alors. »","« Tu es toujours en retard, partout, avec tout le monde, c'est fou. »"], k:0},
+  {s:"« J'ai le droit de jouer de la musique chez moi ! »", o:["« Oui, vous avez raison, excusez-moi de vous avoir dérangé. »","« Non, vous n'avez aucun droit, je vais appeler la police ce soir. »","« Bien sûr, je ne vous demande pas d'arrêter, juste de jouer plus tôt. »"], k:2},
+  {s:"« L'hôtel est complet, je n'ai pas d'autre chambre ce soir. »", o:["« Ce n'est pas mon problème, trouvez-moi une chambre tout de suite ! »","« D'accord. Et demain ? Et pour ce soir, une petite réduction ? »","« Ah, d'accord, je comprends, ce n'est pas grave, je vais rester. »"], k:1},
+  {s:"« Tu es trop perfectionniste ! On peut improviser l'exposé. »", o:["« Tu as raison, je m'inquiète trop. On verra bien le jour de l'exposé. »","« Tu ne fais jamais rien ; je vais tout raconter au professeur demain. »","« Peut-être, mais le prof note la préparation. Faisons au moins les diapos. »"], k:2},
+  {s:"« Un mois, ce n'est pas long ! Tu peux bien garder mon chien. »", o:["« Un mois seul toute la journée, c'est triste pour lui. Cherchons ensemble. »","« Bon, d'accord, si ce n'est qu'un mois, je vais me débrouiller. »","« Non, c'est non. Je n'ai pas envie d'en parler plus longtemps. »"], k:0}
+ ]},
+ {t:"Exercice 4 · Relier ses idées dans l'exposé", c:"Choisissez le connecteur qui convient.", items:[
+  {s:"« Le télétravail permet d'éviter les transports. ___, certaines personnes se sentent seules. »", o:["Pourtant","Par conséquent","Par exemple"], k:0},
+  {s:"« Les loyers sont très chers dans les grandes villes ; ___ beaucoup de jeunes restent chez leurs parents. »", o:["en revanche","d'abord","c'est pourquoi"], k:2},
+  {s:"« Je vais ___ présenter les avantages de la seconde main, puis j'en montrerai les limites. »", o:["enfin","d'abord","donc"], k:1},
+  {s:"« Le téléphone peut être utile pour apprendre : ___, on peut chercher un mot dans un dictionnaire en ligne. »", o:["cependant","bref","par exemple"], k:2},
+  {s:"« ___ il est pratique, le livre numérique ne remplace pas le plaisir du papier. »", o:["Même s'","Puisqu'","Dès qu'"], k:0},
+  {s:"« ___, je pense que réparer nos objets est une bonne idée, à condition que ce soit simple et pas trop cher. »", o:["Pour commencer","En conclusion","En revanche"], k:1}
+ ]}
+];
+
+/* ================= OUTILS ================= */
+const $ = s => document.querySelector(s);
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+// Typographie française : espaces insécables
+const fr = s => esc(s).replace(/ ([?!;:»])/g," $1").replace(/« /g,"« ");
+const words = s => s.split(/\s+/).filter(w => /[A-Za-zÀ-ÿ0-9]/.test(w)).length;
+const L = ["a)","b)","c)","d)"];
+
+/* ================= ONGLETS ================= */
+document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => showTab(b.dataset.tab)));
+function showTab(id){
+  document.querySelectorAll(".tab").forEach(b => b.classList.toggle("active", b.dataset.tab === id));
+  document.querySelectorAll("section.panel").forEach(s => s.classList.toggle("active", s.id === id));
+  window.scrollTo({top:0});
+}
+
+/* ================= PARTIE 1 ================= */
+function renderQBank(){
+  $("#qBank").innerHTML = QBANK.map(b =>
+    `<div class="card"><h4>${fr(b.t)}</h4><ul>${b.q.map(q => `<li>${fr(q)}</li>`).join("")}</ul></div>`).join("");
+}
+let lastQ = "";
+function drawQuestion(){
+  const all = QBANK.flatMap(b => b.q);
+  let q; do { q = all[Math.floor(Math.random()*all.length)]; } while (q === lastQ && all.length > 1);
+  lastQ = q;
+  const box = $("#qDraw"); box.style.display = "block"; box.innerHTML = fr(q);
+}
+
+/* ================= PARTIE 2 ================= */
+function p2Card(s, i){
+  return `<div class="card" id="p2-${i}" data-reg="${s.reg}">
+    <div class="subj-head"><h3><span class="num">${i+1}.</span>${fr(s.t)}</h3>
+      <span class="badge ${s.reg}">${s.reg === "tu" ? "Tutoiement" : "Vouvoiement"}</span></div>
+    <p class="consigne">${fr(s.c)}</p>
+    <p class="examiner">${fr(s.ex)}</p>
+    <div class="btnrow noprint"><button class="btn small ghost" onclick="startTimer(240,'Interaction : ${esc(s.t).replace(/'/g,"\\'")}','3 à 4 minutes — ne concluez pas trop vite')">Lancer le chrono · 4 min</button></div>
+    <details>
+      <summary>Analyser la situation</summary>
+      <p class="kv"><b>1. Qui parle à qui ? Quel registre ?</b><br>${fr(s.roles)}</p>
+      <p class="kv"><b>2. Le noyau :</b> ${fr(s.noyau)}</p>
+      <div class="kv"><b>3. Arguments possibles :</b><ul>${s.args.map(a => `<li>${fr(a)}</li>`).join("")}</ul></div>
+      <div class="kv"><b>4. Objections probables et réponses :</b>
+        ${s.obj.map(o => `<div class="obj"><div class="q">L'examinateur·rice : « ${fr(o[0])} »</div><div class="r">Vous : « ${fr(o[1])} »</div></div>`).join("")}</div>
+      <div class="kv"><b>Compromis possibles :</b><ul>${s.comp.map(a => `<li>${fr(a)}</li>`).join("")}</ul></div>
+      <p class="kv"><b>Lexique utile :</b> ${fr(s.lex)}</p>
+    </details>
+  </div>`;
+}
+function renderP2(){ $("#p2List").innerHTML = P2.map(p2Card).join(""); }
+function filterReg(r){
+  document.querySelectorAll("[data-reg].btn").forEach(b => b.classList.toggle("ghost", b.dataset.reg !== r));
+  document.querySelectorAll("#p2List .card").forEach(c => c.style.display = (r === "all" || c.dataset.reg === r) ? "" : "none");
+}
+
+/* ================= PARTIE 3 ================= */
+function p3Card(d, i){
+  return `<div class="card" id="p3-${i}" data-th="${esc(d.th)}">
+    <div class="subj-head"><h3><span class="num">${i+1}.</span>${fr(d.t)}</h3><span class="badge">${fr(d.th)}</span></div>
+    <div class="doc">${fr(d.x)}<div class="src">Document conçu pour l'entraînement au DELF B1 · ${words(d.x)} mots</div></div>
+    <div class="btnrow noprint">
+      <button class="btn small ghost" onclick="startTimer(600,'Préparation : ${esc(d.t).replace(/'/g,"\\'")}','Thème → problématique → plan → mots-clés')">Préparation · 10 min</button>
+      <button class="btn small ghost" onclick="startTimer(180,'Exposé : ${esc(d.t).replace(/'/g,"\\'")}','Environ 3 minutes, puis les questions')">Exposé · 3 min</button>
+    </div>
+    <details>
+      <summary>Pistes (après la préparation)</summary>
+      <p class="kv"><b>Problématique possible :</b> ${fr(d.pb)}</p>
+      <div class="grid2">
+        <div><b>Idées dans un sens</b><ul>${d.a.map(a => `<li>${fr(a)}</li>`).join("")}</ul></div>
+        <div><b>Idées dans l'autre sens</b><ul>${d.b.map(a => `<li>${fr(a)}</li>`).join("")}</ul></div>
+      </div>
+      <div class="kv"><b>Questions possibles de l'examinateur·rice :</b><ul>${d.q.map(a => `<li>${fr(a)}</li>`).join("")}</ul></div>
+    </details>
+  </div>`;
+}
+function renderP3(){
+  $("#p3List").innerHTML = P3.map(p3Card).join("");
+  const themes = [...new Set(P3.map(d => d.th))].sort((a,b) => a.localeCompare(b,"fr"));
+  $("#themeSel").innerHTML = `<option value="all">Tous les thèmes (${P3.length})</option>` +
+    themes.map(t => `<option value="${esc(t)}">${esc(t)} (${P3.filter(d => d.th === t).length})</option>`).join("");
+}
+function filterTheme(v){
+  document.querySelectorAll("#p3List .card").forEach(c => c.style.display = (v === "all" || c.dataset.th === v) ? "" : "none");
+}
+
+/* ================= TIRAGE AU SORT ================= */
+function drawTwo(kind){
+  const arr = kind === "p2" ? P2 : P3;
+  const a = Math.floor(Math.random()*arr.length);
+  let b; do { b = Math.floor(Math.random()*arr.length); } while (b === a);
+  const box = $("#" + kind + "Draw");
+  box.innerHTML = [a,b].map(i => {
+    const s = arr[i];
+    const body = kind === "p2"
+      ? `<span class="badge ${s.reg}">${s.reg === "tu" ? "Tutoiement" : "Vouvoiement"}</span><p>${fr(s.c)}</p>`
+      : `<p class="lead">${fr(s.x.split(". ").slice(0,2).join(". "))}. (…)</p>`;
+    return `<div class="mini"><h4>${i+1}. ${fr(s.t)}</h4>${body}
+      <button class="btn small" onclick="choose('${kind}',${i})">Je choisis ce sujet</button></div>`;
+  }).join("");
+}
+function choose(kind, i){
+  if (kind === "p2") filterReg("all"); else { $("#themeSel").value = "all"; filterTheme("all"); }
+  document.querySelectorAll(".pick").forEach(c => c.classList.remove("pick"));
+  const card = $("#" + kind + "-" + i);
+  card.classList.add("pick");
+  card.scrollIntoView({behavior:"smooth", block:"start"});
+  if (kind === "p3") startTimer(600, "Préparation : " + P3[i].t, "Thème → problématique → plan → mots-clés");
+}
+
+/* ================= EXERCICES ================= */
+const results = EXOS.map(() => null);
+function renderExos(){
+  $("#exoList").innerHTML = EXOS.map((e, ei) => `
+    <div class="card" id="ex-${ei}">
+      <h3 style="margin-top:0">${fr(e.t)}</h3>
+      <p class="lead">${fr(e.c)}</p>
+      ${e.items.map((it, ii) => `
+        <div class="item">
+          <div class="sit"><b>${ii+1}.</b> ${fr(it.s)}</div>
+          ${it.o.map((o, oi) => `
+            <label class="opt" id="o-${ei}-${ii}-${oi}">
+              <input type="radio" name="q-${ei}-${ii}" value="${oi}">
+              <span class="l">${L[oi]}</span><span>${fr(o)}</span>
+            </label>`).join("")}
+        </div>`).join("")}
+      <div class="btnrow" style="align-items:center">
+        <button class="btn" id="vb-${ei}" onclick="verify(${ei})">Vérifier</button>
+        <span class="score" id="sc-${ei}"></span><span class="msg" id="ms-${ei}"></span>
+      </div>
+    </div>`).join("");
+}
+function verify(ei){
+  const e = EXOS[ei];
+  const answers = e.items.map((_, ii) => {
+    const c = document.querySelector(`input[name="q-${ei}-${ii}"]:checked`);
+    return c ? +c.value : null;
+  });
+  if (answers.includes(null)){
+    $("#ms-"+ei).textContent = "Répondez à toutes les questions avant de vérifier.";
+    return;
+  }
+  $("#ms-"+ei).textContent = "";
+  let pts = 0;
+  e.items.forEach((it, ii) => {
+    if (answers[ii] === it.k) pts++;
+    it.o.forEach((_, oi) => {
+      const el = $(`#o-${ei}-${ii}-${oi}`);
+      el.classList.add("locked");
+      el.querySelector("input").disabled = true;
+      if (oi === it.k) el.classList.add("correct");
+      else if (oi === answers[ii]) el.classList.add("wrong");
+    });
+  });
+  results[ei] = pts;
+  $("#sc-"+ei).textContent = `${pts} / ${e.items.length}`;
+  $("#vb-"+ei).disabled = true;
+  renderRecap();
+}
+function renderRecap(){
+  let tot = 0, max = 0;
+  const rows = EXOS.map((e, i) => {
+    max += e.items.length;
+    if (results[i] !== null) tot += results[i];
+    return `<tr><td>${fr(e.t)}</td><td>${results[i] === null ? "—" : results[i]}</td><td>${e.items.length}</td></tr>`;
+  }).join("");
+  $("#recapBody").innerHTML = rows + `<tr class="total"><td>Total</td><td>${tot}</td><td>${max}</td></tr>`;
+  $("#recapDate").textContent = "Date : " + new Date().toLocaleDateString("fr-FR", {weekday:"long", day:"numeric", month:"long", year:"numeric"});
+}
+
+/* ================= CHRONOMÈTRE ================= */
+const T = {total:0, left:0, end:0, running:false, id:null};
+function fmt(s){ return String(Math.floor(s/60)).padStart(2,"0") + ":" + String(s%60).padStart(2,"0"); }
+function paint(){
+  $("#tTime").textContent = fmt(T.left);
+  $("#tTime").classList.toggle("done", T.left === 0);
+  $("#tProg").style.width = T.total ? (100*(T.total - T.left)/T.total) + "%" : "0";
+  $("#tPause").textContent = T.running ? "Pause" : (T.left === 0 ? "—" : "Reprendre");
+  $("#tPause").disabled = T.left === 0;
+}
+function tick(){
+  T.left = Math.max(0, Math.round((T.end - Date.now())/1000));
+  if (T.left === 0){ clearInterval(T.id); T.running = false; $("#tHint").textContent = "Temps écoulé."; }
+  paint();
+}
+function startTimer(sec, label, hint){
+  clearInterval(T.id);
+  T.total = sec; T.left = sec; T.end = Date.now() + sec*1000; T.running = true;
+  $("#tLabel").firstChild.textContent = label;
+  $("#tHint").textContent = hint || "";
+  $("#tHint").dataset.h = hint || "";
+  $("#timerbar").classList.add("on");
+  T.id = setInterval(tick, 250);
+  paint();
+}
+function toggleTimer(){
+  if (T.left === 0) return;
+  if (T.running){ clearInterval(T.id); T.running = false; }
+  else { T.end = Date.now() + T.left*1000; T.running = true; T.id = setInterval(tick, 250); }
+  paint();
+}
+function resetTimer(){
+  clearInterval(T.id);
+  T.left = T.total; T.running = false;
+  $("#tHint").textContent = $("#tHint").dataset.h || "";
+  paint();
+}
+function closeTimer(){ clearInterval(T.id); T.running = false; $("#timerbar").classList.remove("on"); }
+
+/* ================= IMPRESSION ================= */
+window.addEventListener("beforeprint", () => document.querySelectorAll(".panel.active details").forEach(d => d.open = true));
+
+/* ================= INIT ================= */
+renderQBank(); renderP2(); renderP3(); renderExos(); renderRecap();
+</script>
+</body>
+</html>
